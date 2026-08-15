@@ -26,7 +26,7 @@ public sealed partial class ArmableSystem : EntitySystem
     /// </summary>
     private void OnExamine(EntityUid uid, ArmableComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !comp.ShowStatusOnExamination || !TryComp<ItemToggleComponent>(uid, out var itemToggle))
+        if (!comp.ShowStatusOnExamination || !TryComp<ItemToggleComponent>(uid, out var itemToggle))
             return;
 
         if (itemToggle.Activated)

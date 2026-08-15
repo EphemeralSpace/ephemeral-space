@@ -318,7 +318,7 @@ public sealed partial class MachineFrameSystem : EntitySystem
     }
     private void OnMachineFrameExamined(EntityUid uid, MachineFrameComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !component.HasBoard)
+        if (!component.HasBoard)
             return;
 
         var board = component.BoardContainer.ContainedEntities[0];

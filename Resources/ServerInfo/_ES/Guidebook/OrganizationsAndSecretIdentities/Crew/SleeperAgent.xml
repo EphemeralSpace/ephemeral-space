@@ -3,7 +3,7 @@
 
     The Sleeper Agent is a member of a crew who is waiting to turn and defect to the Syndicate at a moment's notice.
 
-    If a [textlink="traitor" link="Traitor"] on-board the station dies, the Sleeper Agent will have a chance to be woken up, converting them into a random traitor mask.
+    If a [textlink="traitor" link="Traitor"] on-board the station dies, the Sleeper Agent will have a chance to be woken up, converting them into a random traitor secret identity.
     This chance scales based on the number of traitors who have died.
 
     In the event that they are not woken up, however, the Sleeper Agent will remain a crew member.

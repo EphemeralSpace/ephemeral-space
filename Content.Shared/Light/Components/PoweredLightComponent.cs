@@ -80,7 +80,7 @@ namespace Content.Shared.Light.Components
         /// Stun duration applied to a mob that hits the light with an unarmed attack
         /// </summary>
         [DataField]
-        public TimeSpan UnarmedHitStun = TimeSpan.FromSeconds(5);
+        public TimeSpan UnarmedHitStun = TimeSpan.FromSeconds(2);
     }
 
     /// <summary>

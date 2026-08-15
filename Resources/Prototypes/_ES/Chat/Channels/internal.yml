@@ -1,0 +1,10 @@
+- type: esChatChannel
+  id: Server
+  textColor: orange
+  filterCategory: Server
+  chatBoxLocation: Stagehand
+
+- type: esChatChannel
+  id: Announcement
+  textColor: limeGreen
+  filterCategory: Announcement

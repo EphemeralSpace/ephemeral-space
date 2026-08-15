@@ -44,11 +44,6 @@
     icon: ESTraitor
     organization: Traitor
     examineString: es-secret-identity-organization-traitor-examine
-  # TODO chat refactor this is obviously malicious client-abusable
-  - type: IntrinsicRadioReceiver
-  - type: ActiveRadio
-    channels:
-    - Syndicate
 
 - type: entity
   parent: BaseMentalAction
@@ -63,4 +58,4 @@
     useDelay: 60
   - type: InstantAction
     event: !type:ESTransponderActionEvent
-      channel: Syndicate
+      channel: SyndicateTransponder

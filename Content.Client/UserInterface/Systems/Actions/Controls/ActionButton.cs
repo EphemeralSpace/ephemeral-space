@@ -204,7 +204,7 @@ public sealed class ActionButton : Control, IEntityControl
         if (_player.LocalEntity is null)
             return null;
 
-        var ev = new ExaminedEvent(desc, Action.Value, _player.LocalEntity.Value, true, !desc.IsEmpty);
+        var ev = new ExaminedEvent(desc, Action.Value, _player.LocalEntity.Value, !desc.IsEmpty);
         _entities.EventBus.RaiseLocalEvent(Action.Value.Owner, ev);
 
         var newDesc = ev.GetTotalMessage();

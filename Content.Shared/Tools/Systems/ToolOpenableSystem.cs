@@ -100,9 +100,6 @@ public sealed partial class ToolOpenableSystem : EntitySystem
 
     private void OnExamine(Entity<ToolOpenableComponent> entity, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         string msg;
         var name = GetName(entity);
         if (entity.Comp.IsOpen)

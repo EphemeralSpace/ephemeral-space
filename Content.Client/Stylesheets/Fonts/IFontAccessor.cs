@@ -28,6 +28,11 @@ public enum StandardFontType : byte
     /// Monospace font.
     /// </summary>
     Monospace,
+
+    /// <summary>
+    /// Chat font.
+    /// </summary>
+    Chat,
 }
 
 /// <summary>

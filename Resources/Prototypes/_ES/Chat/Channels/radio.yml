@@ -1,0 +1,267 @@
+# Radios are generally split into two different channels, the "radio whisper" and the "transmission"
+# The transmission is what is added to players via headsets and contains all the user facing configurations
+# like keybindings and names. However, they are simply reskinned whispers with an extra component. When spoken on,
+# these radio whisper channels send a secondary message on the corresponding transmission channel. This channel
+# doesn't do normal speech transformations like accents, so this ensures the two channels have the same text.
+
+- type: esChatChannel
+  id: BaseRadio
+  filterCategory: Radio
+  glorfAffected: true
+
+- type: entity
+  id: ESBaseRadioChatProcessor
+  abstract: true
+  components:
+  - type: ESGhostListenableChatChannel
+  - type: ESRadioChatChannel
+
+# Channels
+## Common
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperCommon
+  name: es-chat-channel-name-radio-common
+  order: 4
+  color: LimeGreen
+  chatProcessor: RadioWhisperCommonChatProcessor
+  prefixes: [ ";" ]
+  focusKey: FocusRadioWindow
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperCommonChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Common
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Common
+  textColor: "#2cdb2c"
+  chatProcessor: CommonRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: CommonRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-common-fmt-verb
+    boldFormat: es-chat-channel-radio-common-bold-fmt-verb
+
+## Command
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperCommand
+  name: es-chat-channel-name-radio-command
+  order: 5
+  color: "#fcdf03"
+  chatProcessor: RadioWhisperCommandChatProcessor
+  prefixes: [ ":c", ".c" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperCommandChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Command
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Command
+  textColor: "#fcdf03"
+  chatProcessor: CommandRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: CommandRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-command-fmt-verb
+    boldFormat: es-chat-channel-radio-command-bold-fmt-verb
+
+## Engineering
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperEngineering
+  name: es-chat-channel-name-radio-engineering
+  order: 6
+  color: "#ff733c"
+  chatProcessor: RadioWhisperEngineeringChatProcessor
+  prefixes: [ ":e", ".e" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperEngineeringChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Engineering
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Engineering
+  textColor: "#ff733c"
+  chatProcessor: EngineeringRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: EngineeringRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-engineering-fmt-verb
+    boldFormat: es-chat-channel-radio-engineering-bold-fmt-verb
+
+## Medical
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperMedical
+  name: es-chat-channel-name-radio-medical
+  order: 7
+  color: "#57b8f0"
+  chatProcessor: RadioWhisperMedicalChatProcessor
+  prefixes: [ ":m", ".m" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperMedicalChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Medical
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Medical
+  textColor: "#57b8f0"
+  chatProcessor: MedicalRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: MedicalRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-medical-fmt-verb
+    boldFormat: es-chat-channel-radio-medical-bold-fmt-verb
+
+## Science
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperScience
+  name: es-chat-channel-name-radio-science
+  order: 8
+  color: "#cd7ccd"
+  chatProcessor: RadioWhisperScienceChatProcessor
+  prefixes: [ ":n", ".n" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperScienceChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Science
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Science
+  textColor: "#cd7ccd"
+  chatProcessor: ScienceRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: ScienceRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-science-fmt-verb
+    boldFormat: es-chat-channel-radio-science-bold-fmt-verb
+
+## Security
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperSecurity
+  name: es-chat-channel-name-radio-security
+  order: 9
+  color: "#ff4242"
+  chatProcessor: RadioWhisperSecurityChatProcessor
+  prefixes: [ ":s", ".s" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperSecurityChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Security
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Security
+  textColor: "#ff4242"
+  chatProcessor: SecurityRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: SecurityRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-security-fmt-verb
+    boldFormat: es-chat-channel-radio-security-bold-fmt-verb
+
+## Service
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperService
+  name: es-chat-channel-name-radio-service
+  order: 10
+  color: "#539c00"
+  chatProcessor: RadioWhisperServiceChatProcessor
+  prefixes: [ ":v", ".v" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperServiceChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Service
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Service
+  textColor: "#539c00"
+  chatProcessor: ServiceRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: ServiceRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-service-fmt-verb
+    boldFormat: es-chat-channel-radio-service-bold-fmt-verb
+
+## Supply
+- type: esChatChannel
+  parent: BaseWhisper
+  id: RadioWhisperSupply
+  name: es-chat-channel-name-radio-supply
+  order: 11
+  color: "#b48b57"
+  chatProcessor: RadioWhisperSupplyChatProcessor
+  prefixes: [ ":u", ".u" ]
+
+- type: entity
+  parent: WhisperChatProcessor
+  id: RadioWhisperSupplyChatProcessor
+  components:
+  - type: ESWhisperRadioChatChannel
+    radioChannel: Supply
+
+- type: esChatChannel
+  parent: BaseRadio
+  id: Supply
+  textColor: "#b48b57"
+  chatProcessor: SupplyRadioChatProcessor
+
+- type: entity
+  parent: ESBaseRadioChatProcessor
+  id: SupplyRadioChatProcessor
+  components:
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-radio-supply-fmt-verb
+    boldFormat: es-chat-channel-radio-supply-bold-fmt-verb

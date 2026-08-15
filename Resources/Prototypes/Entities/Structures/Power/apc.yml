@@ -22,7 +22,7 @@
     color: "#3db83b"
     castShadows: false
     netsync: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     offset: 0,-0.2
     falloff: 20
     curveFactor: 1.0

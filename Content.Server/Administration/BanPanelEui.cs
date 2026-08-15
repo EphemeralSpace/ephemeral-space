@@ -2,8 +2,8 @@ using System.Net;
 using System.Net.Sockets;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server.Chat.Managers;
 using Content.Server.EUI;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Eui;
@@ -17,7 +17,7 @@ public sealed partial class BanPanelEui : BaseEui
     [Dependency] private IEntityManager _entities = default!;
     [Dependency] private ILogManager _log = default!;
     [Dependency] private IPlayerLocator _playerLocator = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IAdminManager _admins = default!;
 
     private readonly ISawmill _sawmill;
@@ -68,7 +68,7 @@ public sealed partial class BanPanelEui : BaseEui
 
         if (ban.Target == null && string.IsNullOrWhiteSpace(ban.IpAddress) && ban.Hwid == null)
         {
-            _chat.DispatchServerMessage(Player, Loc.GetString("ban-panel-no-data"));
+            _chat.SendServerMessage(Loc.GetString("ban-panel-no-data"), Player);
 
             return;
         }
@@ -87,7 +87,7 @@ public sealed partial class BanPanelEui : BaseEui
         {
             if (!IPAddress.TryParse(ban.IpAddress, out var ipAddress) || !uint.TryParse(ban.IpAddressHid, out var hidInt) || hidInt > Ipv6_CIDR || hidInt > Ipv4_CIDR && ipAddress.AddressFamily == AddressFamily.InterNetwork)
             {
-                _chat.DispatchServerMessage(Player, Loc.GetString("ban-panel-invalid-ip"));
+                _chat.SendServerMessage(Loc.GetString("ban-panel-invalid-ip"), Player);
                 return;
             }
 
@@ -105,7 +105,7 @@ public sealed partial class BanPanelEui : BaseEui
             var located = await _playerLocator.LookupIdByNameOrIdAsync(ban.Target);
             if (located == null)
             {
-                _chat.DispatchServerMessage(Player, Loc.GetString("cmd-ban-player"));
+                _chat.SendServerMessage(Loc.GetString("cmd-ban-player"), Player);
                 return;
             }
             targetUid = located.UserId;

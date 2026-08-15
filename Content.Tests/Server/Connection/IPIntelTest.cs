@@ -2,9 +2,9 @@
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Moq;
 using NUnit.Framework;
@@ -44,7 +44,7 @@ public static class IPIntelTest
             dbManager.Object,
             cfg,
             logManager,
-            new Mock<IChatManager>().Object,
+            new Mock<IESSharedChatManager>().Object,
             gameTiming
         );
     }

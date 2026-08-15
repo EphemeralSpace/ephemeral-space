@@ -97,7 +97,7 @@
     - Plasma
     - Smoke
     - Cryogas
-    - WaterVapor # The Fog...
+    - Steam # The Fog...
     count: 2
 
 - type: entity
@@ -190,7 +190,6 @@
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
-    onlyJamHeadsets: true
     affectedChannels:
     - Common
     extraChannels:

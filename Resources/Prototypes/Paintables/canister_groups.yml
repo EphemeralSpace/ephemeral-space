@@ -13,4 +13,4 @@
     plasma: PlasmaCanister
     storage: StorageCanister
     tritium: TritiumCanister
-    water-vapor: WaterVaporCanister
+    steam: SteamCanister

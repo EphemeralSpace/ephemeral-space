@@ -1,7 +1,5 @@
 using System.Linq;
-using Content.Shared.Chat;
 using Content.Shared.DoAfter;
-using Content.Shared.Examine;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -10,10 +8,7 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 
 namespace Content.Shared.Radio.EntitySystems;
@@ -23,7 +18,6 @@ namespace Content.Shared.Radio.EntitySystems;
 /// </summary>
 public sealed partial class EncryptionKeySystem : EntitySystem
 {
-    [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedContainerSystem _container = default!;
@@ -33,10 +27,6 @@ public sealed partial class EncryptionKeySystem : EntitySystem
 
     public override void Initialize()
     {
-        base.Initialize();
-        SubscribeLocalEvent<EncryptionKeyComponent, ExaminedEvent>(OnKeyExamined);
-        SubscribeLocalEvent<EncryptionKeyHolderComponent, ExaminedEvent>(OnHolderExamined);
-
         SubscribeLocalEvent<EncryptionKeyHolderComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
@@ -162,87 +152,6 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     {
         component.KeyContainer = _container.EnsureContainer<Container>(uid, EncryptionKeyHolderComponent.KeyContainerName);
         UpdateChannels(uid, component);
-    }
-
-    private void OnHolderExamined(EntityUid uid, EncryptionKeyHolderComponent component, ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange)
-            return;
-
-        if (component.KeyContainer.ContainedEntities.Count == 0)
-        {
-            args.PushMarkup(Loc.GetString("encryption-keys-no-keys"));
-            return;
-        }
-
-        if (component.Channels.Count > 0)
-        {
-            using (args.PushGroup(nameof(EncryptionKeyComponent)))
-            {
-                args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
-                AddChannelsExamine(component.Channels,
-                    component.DefaultChannel,
-                    args,
-                    _protoManager,
-                    "examine-encryption-channel");
-            }
-        }
-    }
-
-    private void OnKeyExamined(EntityUid uid, EncryptionKeyComponent component, ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange)
-            return;
-
-        if(component.Channels.Count > 0)
-        {
-            args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
-            AddChannelsExamine(component.Channels, component.DefaultChannel, args, _protoManager, "examine-encryption-channel");
-        }
-    }
-
-    /// <summary>
-    ///     A method for formating list of radio channels for examine events.
-    /// </summary>
-    /// <param name="channels">HashSet of channels in headset, encryptionkey or etc.</param>
-    /// <param name="protoManager">IPrototypeManager for getting prototypes of channels with their variables.</param>
-    /// <param name="channelFTLPattern">String that provide id of pattern in .ftl files to format channel with variables of it.</param>
-    public void AddChannelsExamine(HashSet<ProtoId<RadioChannelPrototype>> channels, string? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
-    {
-        RadioChannelPrototype? proto;
-        foreach (var id in channels)
-        {
-            proto = _protoManager.Index<RadioChannelPrototype>(id);
-
-            var key = id == SharedChatSystem.CommonChannel
-                ? SharedChatSystem.RadioCommonPrefix.ToString()
-                : $"{SharedChatSystem.RadioChannelPrefix}{proto.KeyCode}";
-
-            examineEvent.PushMarkup(Loc.GetString(channelFTLPattern,
-                ("color", proto.Color),
-                ("key", key),
-                ("id", proto.LocalizedName),
-                ("freq", proto.Frequency / 10f)));
-        }
-
-        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel, out proto))
-        {
-            if (HasComp<HeadsetComponent>(examineEvent.Examined))
-            {
-                var msg = Loc.GetString("examine-headset-default-channel",
-                ("prefix", SharedChatSystem.DefaultChannelPrefix),
-                ("channel", proto.LocalizedName),
-                ("color", proto.Color));
-                examineEvent.PushMarkup(msg);
-            }
-            if (HasComp<EncryptionKeyComponent>(examineEvent.Examined))
-            {
-                var msg = Loc.GetString("examine-encryption-default-channel",
-                ("channel", proto.LocalizedName),
-                ("color", proto.Color));
-                examineEvent.PushMarkup(msg);
-            }
-        }
     }
 
     [Serializable, NetSerializable]

@@ -19,3 +19,6 @@ es-stagehand-notification-new-stagehand = {$username} has joined the backstage c
 
 es-stagehand-notification-apc-bugged = {$player} bugged {$buggable}!
 es-stagehand-notification-apc-bug-removed = {$player} removed the bug from {$buggable}!
+
+es-stagehand-notification-terminal-compromised = {$player} compromised {THE($terminal)}!
+es-stagehand-notification-terminal-warp-drive-override = {$player} overrode warp drive security for {THE($terminal)}

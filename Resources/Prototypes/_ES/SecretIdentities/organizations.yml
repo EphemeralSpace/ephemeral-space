@@ -17,6 +17,10 @@
   metaIcon: ESTraitor
   gameRule: ESOrganizationRuleTraitor
   disguisedSecretIdentityName: es-news-disguise-traitors
+  tips:
+  - TraitorNukeTerminalPower
+  - TraitorSabotageWithoutPower
+  - TraitorSabotageWarpDriveTerminals
   objectives:
     all:
     - id: ESObjectiveTraitorKillRandom
@@ -39,6 +43,9 @@
   color: tan
   metaIcon: ESParasite
   gameRule: ESOrganizationRuleParasite
+  tips:
+  - ParasiteSometimesStayAlive
+  - ParasiteSabotageNotAlwaysGood
   objectives:
     all:
     - id: ESObjectiveParasiteInfect

@@ -182,7 +182,7 @@
       weight: 90
     - group:
       - id: CarbonDioxideCanister
-      - id: WaterVaporCanister
+      - id: SteamCanister
       - id: PlasmaCanister
         weight: 0.25
       weight: 10
@@ -201,7 +201,7 @@
       weight: 90
     - group:
       - id: CarbonDioxideCanisterBroken
-      - id: WaterVaporCanisterBroken
+      - id: SteamCanisterBroken
       - id: NitrousOxideCanisterBroken
       - id: PlasmaCanisterBroken
         weight: 0.25

@@ -58,12 +58,12 @@ public abstract partial class ESSharedKeypadSystem : EntitySystem
     {
         using (args.PushGroup(nameof(ESKeypadComponent), 1))
         {
-            var edit = ent.Comp.EditModeEnabled && args.IsInDetailsRange;
+            var edit = ent.Comp.EditModeEnabled;
             var tool = _prototype.Index(ent.Comp.EditModeQuality);
 
             if (_powerReceiver.IsPowered(ent.Owner))
                 args.PushMarkup(Loc.GetString("es-keypad-examine", ("locked", ent.Comp.Locked), ("edit", edit)));
-            if (!ent.Comp.Locked && args.IsInDetailsRange)
+            if (!ent.Comp.Locked)
                 args.PushMarkup(Loc.GetString("es-keypad-examine-edit-mode", ("tool", Loc.GetString(tool.ToolName))));
         }
     }

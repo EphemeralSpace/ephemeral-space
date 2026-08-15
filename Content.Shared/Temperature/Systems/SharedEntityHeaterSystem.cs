@@ -31,9 +31,6 @@ public abstract partial class SharedEntityHeaterSystem : EntitySystem
 
     private void OnExamined(Entity<EntityHeaterComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         args.PushMarkup(Loc.GetString("entity-heater-examined", ("setting", ent.Comp.Setting)));
     }
 

@@ -2,8 +2,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Content.Server.Chat.Managers;
 using Content.Server.Database;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
@@ -31,7 +31,7 @@ namespace Content.Server.Administration.Managers
         [Dependency] private IConGroupController _conGroup = default!;
         [Dependency] private IResourceManager _res = default!;
         [Dependency] private IServerConsoleHost _consoleHost = default!;
-        [Dependency] private IChatManager _chat = default!;
+        [Dependency] private IESSharedChatManager _chat = default!;
         [Dependency] private ToolshedManager _toolshed = default!;
         [Dependency] private ILogManager _logManager = default!;
 
@@ -86,8 +86,8 @@ namespace Content.Server.Administration.Managers
                 return;
             }
 
-            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-de-admin-message", ("exAdminName", session.Name)));
-            _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-became-normal-player-message"));
+            _chat.SendAdminMessage(Loc.GetString("admin-manager-self-de-admin-message", ("exAdminName", session.Name)));
+            _chat.SendServerMessage(Loc.GetString("admin-manager-became-normal-player-message"), session);
 
             UpdateDatabaseDeadminnedState(session, true);
             reg.Data.Active = false;
@@ -126,9 +126,9 @@ namespace Content.Server.Administration.Managers
             playerData.Stealthed = true;
             reg.Data.Stealth = true;
 
-            _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-stealthed-message"));
-            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-de-admin-message", ("exAdminName", session.Name)), AdminFlags.Stealth);
-            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-enable-stealth", ("stealthAdminName", session.Name)), flagWhitelist: AdminFlags.Stealth);
+            _chat.SendServerMessage(Loc.GetString("admin-manager-stealthed-message"), session);
+            _chat.SendAdminMessage(Loc.GetString("admin-manager-self-de-admin-message", ("exAdminName", session.Name)), AdminFlags.Stealth);
+            _chat.SendAdminMessage(Loc.GetString("admin-manager-self-enable-stealth", ("stealthAdminName", session.Name)), flagWhitelist: AdminFlags.Stealth);
         }
 
         public void UnStealth(ICommonSession session)
@@ -145,9 +145,9 @@ namespace Content.Server.Administration.Managers
             playerData.Stealthed = false;
             reg.Data.Stealth = false;
 
-            _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-unstealthed-message"));
-            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-re-admin-message", ("newAdminName", session.Name)), flagBlacklist: AdminFlags.Stealth);
-            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-disable-stealth", ("exStealthAdminName", session.Name)), flagWhitelist: AdminFlags.Stealth);
+            _chat.SendServerMessage(Loc.GetString("admin-manager-unstealthed-message"), session);
+            _chat.SendAdminMessage(Loc.GetString("admin-manager-self-re-admin-message", ("newAdminName", session.Name)), flagBlacklist: AdminFlags.Stealth);
+            _chat.SendAdminMessage(Loc.GetString("admin-manager-self-disable-stealth", ("exStealthAdminName", session.Name)), flagWhitelist: AdminFlags.Stealth);
         }
 
         public void ReAdmin(ICommonSession session)
@@ -162,20 +162,19 @@ namespace Content.Server.Administration.Managers
                 return;
             }
 
-            _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-became-admin-message"));
+            _chat.SendServerMessage(Loc.GetString("admin-manager-became-admin-message"), session);
 
             UpdateDatabaseDeadminnedState(session, false);
             reg.Data.Active = true;
 
             if (!reg.Data.Stealth)
             {
-                _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-re-admin-message", ("newAdminName", session.Name)));
+                _chat.SendAdminMessage(Loc.GetString("admin-manager-self-re-admin-message", ("newAdminName", session.Name)));
             }
             else
             {
-                _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-stealthed-message"));
-                _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-self-re-admin-message",
-                    ("newAdminName", session.Name)), flagWhitelist: AdminFlags.Stealth);
+                _chat.SendServerMessage(Loc.GetString("admin-manager-stealthed-message"), session);
+                _chat.SendAdminMessage(Loc.GetString("admin-manager-self-re-admin-message", ("newAdminName", session.Name)), flagWhitelist: AdminFlags.Stealth);
             }
 
             SendPermsChangedEvent(session);
@@ -197,7 +196,7 @@ namespace Content.Server.Administration.Managers
             {
                 // No longer admin.
                 _admins.Remove(player);
-                _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-no-longer-admin-message"));
+                _chat.SendServerMessage(Loc.GetString("admin-manager-no-longer-admin-message"), player);
             }
             else
             {
@@ -212,7 +211,7 @@ namespace Content.Server.Administration.Managers
                         RankId = rankId
                     };
                     _admins.Add(player, reg);
-                    _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-became-admin-message"));
+                    _chat.SendServerMessage(Loc.GetString("admin-manager-became-admin-message"), player);
                 }
                 else
                 {
@@ -225,7 +224,7 @@ namespace Content.Server.Administration.Managers
                     {
                         aData.Active = true;
 
-                        _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-admin-permissions-updated-message"));
+                        _chat.SendServerMessage(Loc.GetString("admin-manager-admin-permissions-updated-message"), player);
                     }
                 }
 
@@ -359,13 +358,13 @@ namespace Content.Server.Administration.Managers
                 {
                     if (reg.Data.Stealth)
                     {
-                        _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
+                        _chat.SendAdminMessage(Loc.GetString("admin-manager-admin-logout-message",
                             ("name", e.Session.Name)), flagWhitelist: AdminFlags.Stealth);
 
                     }
                     else
                     {
-                        _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
+                        _chat.SendAdminMessage(Loc.GetString("admin-manager-admin-logout-message",
                             ("name", e.Session.Name)));
                     }
                 }
@@ -400,13 +399,13 @@ namespace Content.Server.Administration.Managers
                     if (reg.Data.Stealth)
                     {
 
-                        _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-stealthed-message"));
-                        _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-login-message",
+                        _chat.SendServerMessage(Loc.GetString("admin-manager-stealthed-message"), session);
+                        _chat.SendAdminMessage(Loc.GetString("admin-manager-admin-login-message",
                             ("name", session.Name)), flagWhitelist: AdminFlags.Stealth);
                     }
                     else
                     {
-                        _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-login-message",
+                        _chat.SendAdminMessage(Loc.GetString("admin-manager-admin-login-message",
                             ("name", session.Name)));
                     }
                 }

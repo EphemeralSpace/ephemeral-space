@@ -11,9 +11,10 @@ namespace Content.Client.Popups;
 /// <summary>
 /// Handles screens-space popups. World popups are handled via PopupOverlay.
 /// </summary>
-public sealed class PopupUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed partial class PopupUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     [UISystemDependency] private readonly PopupSystem? _popup = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     private Font _smallFont = default!;
     private Font _mediumFont = default!;
@@ -24,13 +25,12 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
     public override void Initialize()
     {
         base.Initialize();
-        var cache = IoCManager.Resolve<IResourceCache>();
 
         // ES START
         // TODO: Move fonts to stylesheets, respect user font preferences.
-        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf"), 10);
-        _mediumFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-Italic.ttf"), 12);
-        _largeFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Tomorrow/Tomorrow-BoldItalic.ttf"), 14);
+        _smallFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 10);
+        _mediumFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
+        _largeFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 14);
         // ES END
     }
 
@@ -60,6 +60,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         var updatedPosition = position - new Vector2(0f, MathF.Min(8f, 12f * (popup.TotalTime * popup.TotalTime + popup.TotalTime)));
         var font = _smallFont;
         var color = Color.White.WithAlpha(alpha);
+        var outline = new TextOutline(2f, Color.Black.WithAlpha(alpha));
 
         switch (popup.Type)
         {
@@ -85,7 +86,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         }
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);
-        handle.DrawString(font, updatedPosition - dimensions / 2f, popup.Text, scale, color.WithAlpha(alpha));
+        handle.DrawString(font, (updatedPosition - dimensions / 2f) + popup.RandomOffset, popup.Text, scale, color.WithAlpha(alpha), outline);
     }
 
     /// <summary>

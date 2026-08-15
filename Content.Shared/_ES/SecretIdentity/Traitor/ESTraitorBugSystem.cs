@@ -56,7 +56,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     {
         using (args.PushGroup(nameof(ESTraitorBuggableComponent)))
         {
-            if (ent.Comp.IsBugged && args.IsInDetailsRange)
+            if (ent.Comp.IsBugged)
             {
                 var progress = _entityTimer.GetTimerProgress(ent.Comp.Timer.Value);
                 args.PushMarkup(Loc.GetString("es-bugging-progress-examine-text", ("progress", (int) (progress * 100))));

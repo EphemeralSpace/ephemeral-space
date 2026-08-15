@@ -1,12 +1,12 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
 using Content.Shared.CCVar;
@@ -15,12 +15,10 @@ using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
-using Content.Shared.Mind;
 using Content.Shared.PDA;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.StationRecords;
 using Content.Shared.Throwing;
@@ -32,14 +30,13 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminSystem : EntitySystem
 {
     [Dependency] private IAdminManager _adminManager = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private HandsSystem _hands = default!;
@@ -272,7 +269,7 @@ public sealed partial class AdminSystem : EntitySystem
     private void OnPanicBunkerChanged(bool enabled)
     {
         PanicBunker.Enabled = enabled;
-        _chat.SendAdminAlert(Loc.GetString(enabled
+        _chat.SendAdminMessage(Loc.GetString(enabled
             ? "admin-ui-panic-bunker-enabled-admin-alert"
             : "admin-ui-panic-bunker-disabled-admin-alert"
         ));

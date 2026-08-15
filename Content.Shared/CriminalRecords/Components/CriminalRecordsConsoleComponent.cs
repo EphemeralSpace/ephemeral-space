@@ -1,7 +1,5 @@
+using Content.Shared._ES.Chat;
 using Content.Shared.CriminalRecords.Systems;
-using Content.Shared.CriminalRecords.Components;
-using Content.Shared.CriminalRecords;
-using Content.Shared.Radio;
 using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 using Content.Shared.Security;
@@ -44,7 +42,7 @@ public sealed partial class CriminalRecordsConsoleComponent : Component
     /// Channel to send messages to when someone's status gets changed.
     /// </summary>
     [DataField]
-    public ProtoId<RadioChannelPrototype> SecurityChannel = "Security";
+    public ProtoId<ESChatChannelPrototype> SecurityChannel = "Security";
 
     /// <summary>
     /// Max length of arrest and crime history strings.

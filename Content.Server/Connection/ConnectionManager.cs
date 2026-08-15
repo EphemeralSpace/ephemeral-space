@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Content.Server.Administration.Managers;
-using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
@@ -59,7 +59,7 @@ namespace Content.Server.Connection
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private ILogManager _logManager = default!;
-        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private IESSharedChatManager _chatManager = default!;
         [Dependency] private IHttpClientHolder _http = default!;
         [Dependency] private IAdminManager _adminManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
@@ -197,7 +197,7 @@ namespace Content.Server.Connection
             var otherUsernames = string.Join(", ",
                 otherConnectionsFromAddress.Select(session => session.Name));
 
-            _chatManager.SendAdminAlert(Loc.GetString("admin-alert-shared-connection",
+            _chatManager.SendAdminMessage(Loc.GetString("admin-alert-shared-connection",
                 ("player", username),
                 ("otherCount", otherConnectionCount),
                 ("otherList", otherUsernames)));

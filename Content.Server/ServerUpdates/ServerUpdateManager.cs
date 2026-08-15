@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Server.Chat.Managers;
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Robust.Server;
 using Robust.Server.Player;
@@ -23,7 +23,7 @@ public sealed partial class ServerUpdateManager : IPostInjectInit
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IWatchdogApi _watchdog = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IBaseServer _server = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private ILogManager _logManager = default!;
@@ -99,7 +99,7 @@ public sealed partial class ServerUpdateManager : IPostInjectInit
 
     private void WatchdogOnUpdateReceived()
     {
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("server-updates-received"));
+        _chatManager.SendServerMessage(Loc.GetString("server-updates-received"));
         _updateOnRoundEnd = true;
         ServerEmptyUpdateRestartCheck("update notification");
     }

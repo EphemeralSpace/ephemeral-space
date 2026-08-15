@@ -7,7 +7,6 @@
   - type: Item
     storedRotation: 0
   - type: IngestionBlocker
-  - type: FlashImmunity
   - type: IdentityBlocker
   - type: EyeProtection
   - type: PhysicalComposition

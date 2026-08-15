@@ -1,7 +1,7 @@
 <Document>
     <ESGuideSecretIdentityEmbed SecretIdentity="Pickpocket"/>
 
-    The Pickpocket is a crew mask that wants nothing more than to line their pockets with belongings from their fellow crewmembers.
+    The Pickpocket is a crew secret identity that wants nothing more than to line their pockets with belongings from their fellow crewmembers.
 
     They may use an action to grab an item out of someone's bag.
     The target is given no indication of this occuring. However, if they turn to face the Pickpocket, it'll cancel the theft.

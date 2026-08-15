@@ -1,6 +1,8 @@
+using Content.Server._ES.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Vocalization.Components;
+using Content.Shared._ES.Chat;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Robust.Shared.Random;
@@ -16,7 +18,7 @@ namespace Content.Server.Vocalization.Systems;
 public sealed partial class VocalizationSystem : EntitySystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IRobustRandom _random = default!;
 
@@ -87,7 +89,7 @@ public sealed partial class VocalizationSystem : EntitySystem
             return;
 
         // send the message
-        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, entity.Comp.HideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal);
+        _chat.TrySendMessage(message, ESSharedChatSystem.LocalChannel, entity, hideChat: entity.Comp.HideChat);
     }
 
     public override void Update(float frameTime)

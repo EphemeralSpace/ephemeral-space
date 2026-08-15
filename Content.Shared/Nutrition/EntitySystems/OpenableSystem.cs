@@ -75,7 +75,7 @@ public sealed partial class OpenableSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, OpenableComponent comp, ExaminedEvent args)
     {
-        if (!comp.Opened || !args.IsInDetailsRange)
+        if (!comp.Opened)
             return;
 
         var text = Loc.GetString(comp.ExamineText);

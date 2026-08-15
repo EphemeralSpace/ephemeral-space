@@ -7,9 +7,9 @@ namespace Content.Shared.Atmos.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class GasTankComponent : Component, IGasMixtureHolder
 {
-    public const float MaxExplosionRange = 26f;
+    public const float MaxExplosionRange = 5f;
     private const float DefaultLowPressure = 0f;
-    private const float DefaultOutputPressure = Atmospherics.OneAtmosphere;
+    private const float DefaultOutputPressure = 21.3f;
 
     public int Integrity = 3;
     public bool IsLowPressure => Air.Pressure <= TankLowPressure;
@@ -51,7 +51,7 @@ public sealed partial class GasTankComponent : Component, IGasMixtureHolder
     ///     The maximum allowed output pressure.
     /// </summary>
     [DataField]
-    public float MaxOutputPressure = 3 * DefaultOutputPressure;
+    public float MaxOutputPressure = 2 * DefaultOutputPressure;
 
     /// <summary>
     ///     Tank is connected to internals.

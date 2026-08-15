@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Popups;
@@ -12,6 +13,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 
@@ -25,6 +27,7 @@ namespace Content.Client.Popups
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IPrototypeManager _prototype = default!;
         [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IRobustRandom _random = default!;
         [Dependency] private IUserInterfaceManager _uiManager = default!;
         [Dependency] private IReplayRecordingManager _replayRecording = default!;
         [Dependency] private ExamineSystemShared _examine = default!;
@@ -38,9 +41,10 @@ namespace Content.Client.Popups
 
         private readonly List<IPopupPredictionInstance> _predictionInstances = new();
 
-        public const float MinimumPopupLifetime = 0.7f;
-        public const float MaximumPopupLifetime = 5f;
-        public const float PopupLifetimePerCharacter = 0.04f;
+        public const float MaximumPopupRandomOffsetMagnitude = 20f;
+        public const float MinimumPopupLifetime = 1f;
+        public const float MaximumPopupLifetime = 4f;
+        public const float PopupLifetimePerCharacter = 0.1f;
 
         public override void Initialize()
         {
@@ -101,6 +105,7 @@ namespace Content.Client.Popups
             {
                 Text = message,
                 Type = type,
+                RandomOffset = _random.NextVector2(MaximumPopupRandomOffsetMagnitude)
             };
 
             _aliveWorldLabels.Add(popupData, label);
@@ -147,6 +152,7 @@ namespace Content.Client.Popups
             {
                 Text = message,
                 Type = type,
+                RandomOffset = _random.NextVector2(MaximumPopupRandomOffsetMagnitude)
             };
 
             _aliveCursorLabels.Add(popupData, label);
@@ -314,6 +320,7 @@ namespace Content.Client.Popups
             public PopupType Type = PopupType.Small;
             public string Text { get; set; } = string.Empty;
             public float TotalTime { get; set; }
+            public Vector2 RandomOffset = Vector2.Zero;
             public int Repeats = 1;
         }
 

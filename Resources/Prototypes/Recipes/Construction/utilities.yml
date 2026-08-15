@@ -934,20 +934,6 @@
   conditions:
     - !type:NoUnstackableInTile
 
-# INTERCOM
-- type: construction
-  id: IntercomAssembly
-  graph: Intercom
-  startNode: start
-  targetNode: intercom
-  category: construction-category-structures
-  placementMode: SnapgridCenter
-  objectType: Structure
-  canRotate: true
-  canBuildInImpassable: true
-  conditions:
-  - !type:WallmountCondition {}
-
 # TIMERS
 - type: construction
   id: SignalTimer

@@ -77,13 +77,6 @@
   - !type:AtmosMonitorDeviceNetWire
 
 - type: wireLayout
-  id: Intercom
-  wires:
-  - !type:PowerWireAction
-  - !type:SpeechWireAction
-  - !type:ListenWireAction
-
-- type: wireLayout
   id: FireAlarm
   wires:
   - !type:PowerWireAction
@@ -170,12 +163,6 @@
 
 - type: wireLayout
   id: ComputerAi
-  dummyWires: 2
-  wires:
-  - !type:PowerWireAction
-
-- type: wireLayout
-  id: Holopad
   dummyWires: 2
   wires:
   - !type:PowerWireAction

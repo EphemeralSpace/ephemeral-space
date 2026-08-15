@@ -30,7 +30,7 @@ public sealed partial class TriggerSystem
 
     private void OnVoiceExamine(EntityUid uid, TriggerOnVoiceComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !component.ShowExamine)
+        if (!component.ShowExamine)
             return;
 
         if (component.InspectUninitializedLoc != null && string.IsNullOrWhiteSpace(component.KeyPhrase))

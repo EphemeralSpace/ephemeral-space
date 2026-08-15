@@ -1,15 +1,14 @@
 using System.Linq;
 using Content.Server._ES.Stagehand;
 using Content.Server.Actions;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Auditions.Components;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Stagehand;
-using Content.Shared.Chat;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -24,7 +23,7 @@ namespace Content.Server._ES.SecretIdentity;
 
 public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySystem
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
@@ -246,7 +245,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (_player.TryGetSessionById(mind.Comp.UserId, out var session))
         {
-            _chat.ChatMessageToOne(ChatChannel.Server, msg, msg, default, false, session.Channel, Color.Plum);
+            _chat.SendServerMessage(msg, session, Color.Plum);
         }
 
         if (mind.Comp.OwnedEntity is { } ownedEntity)
@@ -277,7 +276,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         RefreshCharacterInfoBlurb(mind.AsNullable());
 
-        var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
+        var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity, null);
         RaiseLocalEvent(organization.Value, ref ev, true);
     }
 
@@ -317,7 +316,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (organizationEntity.HasValue)
         {
-            var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity);
+            var ev = new ESSecretIdentityChangedEvent(mind, null, secretIdentity);
             RaiseLocalEvent(organizationEntity.Value, ref ev, true);
         }
     }
@@ -349,8 +348,14 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 /// <summary>
 /// Raised on a organization entity and broadcast when an entity's secret identity changes.
 /// </summary>
+/// <remarks>
+/// This is raised both when an identity is removed, and when a new one is applied.
+/// So, it will be raised twice if something fully changes an entity's secret identity (e.g. conversion)
+/// When being removed, <see cref="NewSecretIdentity"/> will be null, and <see cref="OldSecretIdentity"/> will have the old identity,
+/// and vice versa for being applied.
+/// </remarks>
 [ByRefEvent]
-public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? SecretIdentity);
+public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? NewSecretIdentity, ESSecretIdentityPrototype? OldSecretIdentity);
 
 /// <summary>
 ///     Fired when players are being assigned to a organization. Old random assignment algorithm kicks in

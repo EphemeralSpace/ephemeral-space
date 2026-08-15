@@ -271,9 +271,6 @@ public abstract partial class SharedGunSystem
     /// </summary>
     private void OnChamberMagazineExamine(EntityUid uid, ChamberMagazineAmmoProviderComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var (count, _) = GetChamberMagazineCountCapacity(uid, component);
         string boltState;
 

@@ -1,11 +1,6 @@
 ## Static
 
 - type: latheRecipePack
-  id: RoboticsStatic
-  recipes:
-  - SciFlash
-
-- type: latheRecipePack
   id: BorgLimbsStatic
   recipes:
   - LeftArmBorg

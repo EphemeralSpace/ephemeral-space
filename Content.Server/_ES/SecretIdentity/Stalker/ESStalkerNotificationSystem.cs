@@ -1,9 +1,8 @@
-using Content.Server.Chat.Managers;
 using Content.Server.Pinpointer;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.SecretIdentity.Stalker;
 using Content.Shared._ES.SecretIdentity.Stalker.Components;
-using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Robust.Server.Player;
@@ -13,7 +12,7 @@ namespace Content.Server._ES.SecretIdentity.Stalker;
 
 public sealed partial class ESStalkerNotificationSystem : EntitySystem
 {
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private ESStalkerTargetingSystem _stalkerTargeting = default!;
@@ -36,9 +35,8 @@ public sealed partial class ESStalkerNotificationSystem : EntitySystem
         var locationString = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(ent.Owner));
 
         var msg = Loc.GetString("es-stalker-notif-crit", ("location", locationString));
-        var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
         if (_player.TryGetSessionById(mindComponent.UserId, out var session))
-            _chat.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.Red);
+            _chat.SendServerMessage(msg, session, Color.Red);
     }
 
     private void OnPlayerKilled(Entity<ESStalkerTargetComponent> ent, ref ESPlayerKilledEvent args)
