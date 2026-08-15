@@ -22,7 +22,7 @@ public sealed partial class PermanentBlindnessSystem : EntitySystem
 
     private void OnExamined(Entity<PermanentBlindnessComponent> blindness, ref ExaminedEvent args)
     {
-        if (args.IsInDetailsRange && blindness.Comp.Blindness == 0)
+        if (blindness.Comp.Blindness == 0)
         {
             args.PushMarkup(Loc.GetString("permanent-blindness-trait-examined", ("target", Identity.Entity(blindness, EntityManager))));
         }

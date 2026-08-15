@@ -39,31 +39,26 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnGetExamineVerbs(EntityUid uid, CableComponent component, GetVerbsEvent<ExamineVerb> args)
         {
-            // Must be in details range to try this.
-            // Theoretically there should be a separate range at which a multitool works, but this does just fine.
-            if (_examineSystem.IsInDetailsRange(args.User, args.Target))
+            var held = args.Using;
+
+            // Pulsing is hardcoded here because I don't think it needs to be more complex than that right now.
+            // Update if I'm wrong.
+            var enabled = held != null && _toolSystem.HasQuality(held.Value, SharedToolSystem.PulseQuality);
+            var verb = new ExamineVerb
             {
-                var held = args.Using;
-
-                // Pulsing is hardcoded here because I don't think it needs to be more complex than that right now.
-                // Update if I'm wrong.
-                var enabled = held != null && _toolSystem.HasQuality(held.Value, SharedToolSystem.PulseQuality);
-                var verb = new ExamineVerb
+                Disabled = !enabled,
+                Message = Loc.GetString("cable-multitool-system-verb-tooltip"),
+                Text = Loc.GetString("cable-multitool-system-verb-name"),
+                Category = VerbCategory.Examine,
+                Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/zap.svg.192dpi.png")),
+                Act = () =>
                 {
-                    Disabled = !enabled,
-                    Message = Loc.GetString("cable-multitool-system-verb-tooltip"),
-                    Text = Loc.GetString("cable-multitool-system-verb-name"),
-                    Category = VerbCategory.Examine,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/zap.svg.192dpi.png")),
-                    Act = () =>
-                    {
-                        var markup = FormattedMessage.FromMarkupOrThrow(GenerateCableMarkup(uid));
-                        _examineSystem.SendExamineTooltip(args.User, uid, markup, false, false);
-                    }
-                };
+                    var markup = FormattedMessage.FromMarkupOrThrow(GenerateCableMarkup(uid));
+                    _examineSystem.SendExamineTooltip(args.User, uid, markup, false, false);
+                }
+            };
 
-                args.Verbs.Add(verb);
-            }
+            args.Verbs.Add(verb);
         }
 
         private string GenerateCableMarkup(EntityUid uid, NodeContainerComponent? nodeContainer = null)

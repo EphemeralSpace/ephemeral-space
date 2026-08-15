@@ -119,7 +119,7 @@ public sealed partial class CloningPodSystem : EntitySystem
 
     private void OnExamined(Entity<CloningPodComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !_powerReceiverSystem.IsPowered(ent.Owner))
+        if (!_powerReceiverSystem.IsPowered(ent.Owner))
             return;
 
         args.PushMarkup(Loc.GetString("cloning-pod-biomass", ("number", _material.GetMaterialAmount(ent.Owner, ent.Comp.RequiredMaterial))));

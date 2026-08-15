@@ -29,7 +29,6 @@
   storage:
     back:
     - ESBoxSurvival
-    - Flash
     - ForensicPad
     - ForensicScanner
 

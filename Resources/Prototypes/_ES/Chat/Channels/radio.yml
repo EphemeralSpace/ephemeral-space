@@ -27,7 +27,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperCommon
   name: es-chat-channel-name-radio-common
-  order: 4
   color: LimeGreen
   chatProcessor: RadioWhisperCommonChatProcessor
   prefixes: [ ";" ]
@@ -59,7 +58,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperCommand
   name: es-chat-channel-name-radio-command
-  order: 5
   color: "#fcdf03"
   chatProcessor: RadioWhisperCommandChatProcessor
   prefixes: [ ":c", ".c" ]
@@ -90,7 +88,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperEngineering
   name: es-chat-channel-name-radio-engineering
-  order: 6
   color: "#ff733c"
   chatProcessor: RadioWhisperEngineeringChatProcessor
   prefixes: [ ":e", ".e" ]
@@ -121,7 +118,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperMedical
   name: es-chat-channel-name-radio-medical
-  order: 7
   color: "#57b8f0"
   chatProcessor: RadioWhisperMedicalChatProcessor
   prefixes: [ ":m", ".m" ]
@@ -152,7 +148,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperScience
   name: es-chat-channel-name-radio-science
-  order: 8
   color: "#cd7ccd"
   chatProcessor: RadioWhisperScienceChatProcessor
   prefixes: [ ":n", ".n" ]
@@ -183,7 +178,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperSecurity
   name: es-chat-channel-name-radio-security
-  order: 9
   color: "#ff4242"
   chatProcessor: RadioWhisperSecurityChatProcessor
   prefixes: [ ":s", ".s" ]
@@ -214,7 +208,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperService
   name: es-chat-channel-name-radio-service
-  order: 10
   color: "#539c00"
   chatProcessor: RadioWhisperServiceChatProcessor
   prefixes: [ ":v", ".v" ]
@@ -245,7 +238,6 @@
   parent: BaseRadioWhisper
   id: RadioWhisperSupply
   name: es-chat-channel-name-radio-supply
-  order: 11
   color: "#b48b57"
   chatProcessor: RadioWhisperSupplyChatProcessor
   prefixes: [ ":u", ".u" ]

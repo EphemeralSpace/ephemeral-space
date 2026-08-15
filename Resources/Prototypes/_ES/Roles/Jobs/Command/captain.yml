@@ -30,7 +30,6 @@
   storage:
     back:
     - ESBoxSurvival
-    - Flash
 
 - type: chameleonOutfit
   id: ESCaptain

@@ -97,7 +97,6 @@
   id: ESSecurityEquipmentStatic
   recipes:
   - Handcuffs
-  - Flash
 
 # Service
 - type: latheRecipePack

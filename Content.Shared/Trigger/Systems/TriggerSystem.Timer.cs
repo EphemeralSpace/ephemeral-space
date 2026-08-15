@@ -44,7 +44,7 @@ public sealed partial class TriggerSystem
 
     private void OnTimerExamined(Entity<TimerTriggerComponent> ent, ref ExaminedEvent args)
     {
-        if (args.IsInDetailsRange && ent.Comp.Examinable)
+        if (ent.Comp.Examinable)
             args.PushText(Loc.GetString("timer-trigger-examine", ("time", ent.Comp.Delay.TotalSeconds)));
     }
 

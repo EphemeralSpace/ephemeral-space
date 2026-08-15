@@ -9,12 +9,3 @@
   result: Handcuffs
   materials:
     Steel: 300
-
-- type: latheRecipe
-  parent: BaseToolRecipe
-  id: Flash
-  result: Flash
-  materials:
-    Glass: 100
-    Plastic: 200
-    Steel: 100

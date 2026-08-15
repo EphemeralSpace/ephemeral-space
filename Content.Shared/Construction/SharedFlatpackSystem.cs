@@ -104,8 +104,6 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
 
     private void OnFlatpackExamined(Entity<FlatpackComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
         args.PushMarkup(Loc.GetString("flatpack-examine"));
     }
 

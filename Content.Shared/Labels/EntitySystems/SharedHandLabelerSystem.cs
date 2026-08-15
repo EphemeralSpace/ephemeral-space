@@ -146,9 +146,6 @@ public abstract partial class SharedHandLabelerSystem : EntitySystem
 
     private void OnExamined(Entity<HandLabelerComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var text = ent.Comp.AssignedLabel == string.Empty
             ? Loc.GetString("hand-labeler-examine-blank")
             : Loc.GetString("hand-labeler-examine-label-text", ("label-text", ent.Comp.AssignedLabel));

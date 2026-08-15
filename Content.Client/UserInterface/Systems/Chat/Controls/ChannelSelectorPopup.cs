@@ -38,7 +38,8 @@ public sealed partial class ChannelSelectorPopup : Popup
         Channels.Clear();
         _channelSelectorHBox.RemoveAllChildren();
 
-        foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>().OrderBy(p => p.Order))
+        var order = _prototype.Index(IESSharedChatManager.ChannelOrder);
+        foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>().OrderBy(p => order.Order.IndexOf(p)))
         {
             if (channel.Abstract)
                 continue;

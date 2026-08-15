@@ -78,9 +78,6 @@ public sealed partial class PaperSystem : EntitySystem
 
     private void OnExamined(Entity<PaperComponent> entity, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         using (args.PushGroup(nameof(PaperComponent)))
         {
             if (entity.Comp.Content != "")

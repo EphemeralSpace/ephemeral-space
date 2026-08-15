@@ -30,9 +30,6 @@ public sealed partial class MindExamineSystem : EntitySystem
 
     private void OnExamined(Entity<MindExaminableComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var message = ent.Comp.State switch
         {
             MindState.Irrecoverable => $"[color=mediumpurple]{Loc.GetString("comp-mind-examined-dead-and-irrecoverable", ("ent", ent.Owner))}[/color]",

@@ -467,7 +467,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text);
 
         if (prefixChannel == null)
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel));
@@ -651,13 +651,14 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         _chats.Remove(chat);
     }
 
-    public void NotifyChatTextChange(string text, ProtoId<ESChatChannelPrototype> channel)
+    public void NotifyChatTextChange(ChatBox box)
     {
+        _typingIndicator?.ClientChangedValidChannel(GetCurrentChatChannel(box));
         _typingIndicator?.ClientChangedChatText();
-        TryUpdateTypingSpeechBubble(text, channel);
+        TryUpdateTypingSpeechBubble(box., channel);
     }
 
-    public void NotifyChatFocus(bool isFocused)
+    public void NotifyChatFocus(ChatBox box, bool isFocused)
     {
         _typingIndicator?.ClientChangedChatFocus(isFocused);
 
@@ -673,6 +674,15 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         UpdateSelectedChannel(box);
         if (box.ChatInput.Input.Text != string.Empty)
             TryUpdateTypingSpeechBubble(box.ChatInput.Input.Text, box.SelectedChannel, true);
+    }
+
+    private ESChatChannelPrototype GetCurrentChatChannel(ChatBox box)
+    {
+        var (channel, _) = SplitInputContents(box.ChatInput.Input.Text);
+        if (channel != null)
+            return channel;
+
+        return _prototypeManager.Index(box.SelectedChannel);
     }
 
     public void Repopulate()

@@ -64,9 +64,6 @@ public abstract partial class SharedLatheSystem : EntitySystem
 
     private void OnExamined(Entity<LatheComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         if (ent.Comp.ReagentOutputSlotId != null)
             args.PushMarkup(Loc.GetString("lathe-menu-reagent-slot-examine"));
     }
