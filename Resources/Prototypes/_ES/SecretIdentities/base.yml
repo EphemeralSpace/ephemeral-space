@@ -26,6 +26,10 @@
     icon: ESParasite
     organization: Parasite
     examineString: es-secret-identity-organization-parasite-examine
+  mindComponents: # Goes on the mind so that we don't overwrite the base component on the mob
+  - type: ESChatPermissions
+    inherentChannels:
+    - ParasiteHivemind
   objectives:
     all:
     - id: ESObjectiveParasiteDie
