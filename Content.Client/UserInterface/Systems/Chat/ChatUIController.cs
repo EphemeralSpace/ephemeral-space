@@ -453,7 +453,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text);
 
         if (prefixChannel == null)
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel));
@@ -603,14 +603,24 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         _chats.Remove(chat);
     }
 
-    public void NotifyChatTextChange()
+    public void NotifyChatTextChange(ChatBox box)
     {
+        _typingIndicator?.ClientChangedValidChannel(GetCurrentChatChannel(box));
         _typingIndicator?.ClientChangedChatText();
     }
 
-    public void NotifyChatFocus(bool isFocused)
+    public void NotifyChatFocus(ChatBox box, bool isFocused)
     {
         _typingIndicator?.ClientChangedChatFocus(isFocused);
+    }
+
+    private ESChatChannelPrototype GetCurrentChatChannel(ChatBox box)
+    {
+        var (channel, _) = SplitInputContents(box.ChatInput.Input.Text);
+        if (channel != null)
+            return channel;
+
+        return _prototypeManager.Index(box.SelectedChannel);
     }
 
     public void Repopulate()

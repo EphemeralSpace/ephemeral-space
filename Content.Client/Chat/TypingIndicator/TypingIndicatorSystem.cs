@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat.TypingIndicator;
 using Robust.Client.Player;
@@ -17,6 +18,7 @@ public sealed partial class TypingIndicatorSystem : SharedTypingIndicatorSystem
     private TimeSpan _lastTextChange;
     private bool _isClientTyping;
     private bool _isClientChatFocused;
+    private bool _isValidChannel;
 
     public override void Initialize()
     {
@@ -59,6 +61,19 @@ public sealed partial class TypingIndicatorSystem : SharedTypingIndicatorSystem
         ClientUpdateTyping();
     }
 
+    public void ClientChangedValidChannel(ESChatChannelPrototype prototype)
+    {
+        // don't update it if player don't want to show typing
+        if (!_cfg.GetCVar(CCVars.ChatShowTypingIndicator))
+            return;
+
+        // placeholder until we have more sophisticated behavior.
+        var valid = prototype.GlorfAffected;
+
+        _isValidChannel = valid;
+        ClientUpdateTyping();
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -86,7 +101,7 @@ public sealed partial class TypingIndicatorSystem : SharedTypingIndicatorSystem
             return;
 
         var state = TypingIndicatorState.None;
-        if (_isClientChatFocused)
+        if (_isClientChatFocused && _isValidChannel)
             state = _isClientTyping ? TypingIndicatorState.Typing : TypingIndicatorState.Idle;
 
         // send a networked event to server
