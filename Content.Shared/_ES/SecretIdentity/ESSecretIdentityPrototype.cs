@@ -64,9 +64,11 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public HashSet<ProtoId<ESTipPrototype>> Tips = new();
 
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry Components = new();
 
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry MindComponents = new();
 
     /// <summary>
