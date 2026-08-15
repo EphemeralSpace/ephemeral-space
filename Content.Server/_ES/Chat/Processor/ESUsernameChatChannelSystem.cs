@@ -31,7 +31,6 @@ public sealed partial class ESUsernameChatChannelSystem : EntitySystem
 
     private void OnTransformName(Entity<ESUsernameChatChannelComponent> ent, ref ESTransformMessageSourceNameEvent args)
     {
-        args.Name = string.Empty;
         if (!_player.TryGetSessionByEntity(args.Source, out var session) ||
             !_player.TryGetPlayerData(session.UserId, out var data))
             return;
