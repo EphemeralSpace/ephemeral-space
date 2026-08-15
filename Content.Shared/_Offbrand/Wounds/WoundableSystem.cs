@@ -8,6 +8,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.HealthExaminable;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Random.Helpers;
+using Content.Shared.StatusEffect;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Network;
@@ -23,7 +24,8 @@ public sealed partial class WoundableSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;
-    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -41,8 +43,20 @@ public sealed partial class WoundableSystem : EntitySystem
 
         SubscribeLocalEvent<PainfulWoundComponent, StatusEffectRelayedEvent<GetPainEvent>>(OnGetPain);
         SubscribeLocalEvent<HealableWoundComponent, StatusEffectRelayedEvent<HealWoundsEvent>>(OnHealHealableWounds);
+        SubscribeLocalEvent<BleedingWoundComponent, StatusEffectAppliedEvent>(OnBleedApplied);
+        SubscribeLocalEvent<BleedingWoundComponent, StatusEffectRemovedEvent>(OnBleedRemoved);
         SubscribeLocalEvent<BleedingWoundComponent, StatusEffectRelayedEvent<GetBleedLevelEvent>>(OnGetBleedLevel);
         SubscribeLocalEvent<ClampableWoundComponent, StatusEffectRelayedEvent<ClampWoundsEvent>>(OnClampWounds);
+    }
+
+    private void OnBleedApplied(Entity<BleedingWoundComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        _bloodstream.UpdateBleedAlert(args.Target);
+    }
+
+    private void OnBleedRemoved(Entity<BleedingWoundComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        _bloodstream.UpdateBleedAlert(args.Target);
     }
 
     private void OnShutdown(Entity<WoundableComponent> ent, ref ComponentShutdown args)
