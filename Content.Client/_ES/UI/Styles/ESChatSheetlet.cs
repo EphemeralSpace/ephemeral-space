@@ -13,24 +13,13 @@ public sealed class ESChatSheetlet : Sheetlet<PalettedStylesheet>
     {
         var small = sheet.Fonts.GetFont(StandardFontType.Chat, 10);
         var medium = sheet.Fonts.GetFont(StandardFontType.Chat, 12);
-        var large = sheet.Fonts.GetFont(StandardFontType.Chat, 14);
 
         return
         [
             E()
                 .Class(StyleClass.FontChat)
                 .Font(medium)
-                .Prop(Label.StylePropertyFontOutlineThickness, 2f)
-                .Prop(Label.StylePropertyFontOutlineColor, Color.Black),
-
-
-            E<PanelContainer>()
-                .Class("speechBox")
-                .Margin(new Thickness(2f)),
-            E<PanelContainer>()
-                .Class("speechBox")
-                .ParentOf(E<RichTextLabel>().Class("bubbleHeader"))
-                .Font(small),
+                .Prop(Label.StylePropertyFontOutlineThickness, 2f),
 
             E<PanelContainer>()
                 .Class("speechBox", "whisperBox")

@@ -71,7 +71,7 @@ public partial class ChatBox : UIWidget
 
     private void OnChannelSelect(ProtoId<ESChatChannelPrototype> channel)
     {
-        Controller.UpdateSelectedChannel(this);
+        Controller.NotifyChatSelectorChanged(this);
         Controller.NotifyChatTextChange(this);
     }
 
