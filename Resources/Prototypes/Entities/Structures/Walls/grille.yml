@@ -91,6 +91,7 @@
       tags:
       - Structure
       - ESGrille
+    - type: TrayScanReveal
 # ES END
 
 - type: entity

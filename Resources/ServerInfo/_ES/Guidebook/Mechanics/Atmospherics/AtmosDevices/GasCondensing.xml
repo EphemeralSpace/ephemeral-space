@@ -6,7 +6,7 @@
     <GuideEntityEmbed Entity="BaseGasCondenser"/>
   </Box>
 
-  For example, water vapor can be condensed into liquid water, oxygen into liquid oxygen, and so on.
+  For example, steam can be condensed into liquid water, oxygen into liquid oxygen, and so on.
 
   It has a [textlink="pipenet" link="PipeNetworks"] connection to input gas, and an internal tank to store the condensed liquid.
 

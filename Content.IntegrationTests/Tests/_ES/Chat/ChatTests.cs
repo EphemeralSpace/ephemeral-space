@@ -50,7 +50,7 @@ public sealed class ChatTests : GameTest
                     if (otherPrefix == prefix)
                         continue;
 
-                    Assert.That(!otherPrefix.StartsWith(prefix), $"Chat prefix \'{prefix}\' for channel {channels[0]} collides with prefix \'{otherPrefix}\' for channel {otherChannels[0]}");
+                    Assert.That(!otherPrefix.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase), $"Chat prefix \'{prefix}\' for channel {channels[0]} collides with prefix \'{otherPrefix}\' for channel {otherChannels[0]}");
                 }
             }
         });

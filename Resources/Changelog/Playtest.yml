@@ -1764,3 +1764,57 @@ Entries:
       message: Chat now uses Wormtown9k, a pixel font.
   id: 189
   time: '2026-08-14T20:31:49.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: T-rays now show wires under grilles and walls
+    - type: Fix
+      message: Oxygen tank can no longer be breathed through your bag
+    - type: Tweak
+      message: Tank max output pressure is much lower (41.6 kpa)
+    - type: Tweak
+      message: Parasite damage cap lowered back to 200
+    - type: Add
+      message: >-
+        Parasite damage objective now tells you exactly how much damage you can
+        deal, how much leeway you have, and has popup warnings for when you
+        reach certain thresholds
+    - type: Fix
+      message: Fix stagehand player screen being scrolled when a new round starts
+    - type: Tweak
+      message: Mop is no longer wieldable and does less damage
+    - type: Tweak
+      message: Footsteps are much quieter now
+    - type: Tweak
+      message: >-
+        Sleeper agent can now proc when a traitor is converted to some other
+        identity (like getting wormed)
+    - type: Tweak
+      message: >-
+        Override terminals now have warp points & stagehand notifs for when
+        theyre hacked or overridden
+    - type: Tweak
+      message: >-
+        Leapleech objective now shows how many leeches you have stored (so
+        stagehands can see)
+    - type: Tweak
+      message: Shock stun is less time now
+    - type: Fix
+      message: Open lockers no longer block bullets (this includes burstworms)
+    - type: Tweak
+      message: You can no longer strip multiple items from someone at the same time
+    - type: Add
+      message: >-
+        Janitor mops are now 4x as good, i.e. they will delete 75% of the
+        solution they mop up instead of keeping it in the mop and making it
+        annoying
+    - type: Tweak
+      message: water vapor is call steam now yay
+  id: 190
+  time: '2026-08-14T22:55:16.0000000+00:00'
+- author: jessicamaybe
+  changes:
+    - type: Add
+      message: You can now hold shift to peek at player names
+  id: 191
+  time: '2026-08-15T00:52:01.0000000+00:00'

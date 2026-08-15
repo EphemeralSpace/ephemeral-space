@@ -13,8 +13,8 @@
   id: SpeakChatProcessor
   components:
   - type: ESGhostListenableChatChannel
-  - type: ESRangedChatChannel
-    requireLOS: false
+  - type: ESRangedChatChannel # TODO: The main message should be obscured through walls but it should still indicate someone talking
+    requireLOS: true
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-speak-fmt-verb
     boldFormat: es-chat-channel-speak-bold-fmt-verb
