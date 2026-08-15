@@ -1846,3 +1846,9 @@ Entries:
       message: Welding equipment and sunglasses no long protect from flashbangs.
   id: 194
   time: '2026-08-15T17:24:34.0000000+00:00'
+- author: Mistabay
+  changes:
+    - type: Tweak
+      message: Syndicate transponder cooldown is now 3:30 minutes.
+  id: 195
+  time: '2026-08-15T22:27:40.0000000+00:00'
