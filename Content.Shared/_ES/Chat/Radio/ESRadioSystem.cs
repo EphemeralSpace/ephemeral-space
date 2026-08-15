@@ -1,6 +1,8 @@
 using Content.Shared._ES.Chat.Radio.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Radio.Components;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -14,6 +16,9 @@ public sealed partial class ESRadioSystem : EntitySystem
     [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private EntityQuery<TelecomExemptComponent> _exemptQuery;
+    [Dependency] private SharedAudioSystem _audio = default!;
+
+    private static readonly SoundSpecifier RadioClick = new SoundCollectionSpecifier("ESRadioClick");
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -22,6 +27,7 @@ public sealed partial class ESRadioSystem : EntitySystem
 
         SubscribeLocalEvent<ESWhisperRadioChatChannelComponent, ESChatMessageSentEvent>(OnChatMessageSent);
 
+        SubscribeLocalEvent<ESRadioChatChannelComponent, ESChatMessageSentEvent>(OnRadioChatMessageSent);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESSendChatMessageAttemptEvent>(OnSendChatMessageAttempt);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESGetChatMessageRecipientsEvent>(OnGetRecipients);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESTransformChatMessageEvent>(OnRecipientTransformChatMessage);
@@ -39,6 +45,11 @@ public sealed partial class ESRadioSystem : EntitySystem
     {
         //TODO: maybe dont do name override and instead split the name derivation out from the message transforming for speach
         _chat.TrySendMessage(args.Content, ent.Comp.RadioChannel, args.Source, nameOverride: FormattedMessage.RemoveMarkupPermissive(args.Name));
+    }
+
+    private void OnRadioChatMessageSent(Entity<ESRadioChatChannelComponent> ent, ref ESChatMessageSentEvent args)
+    {
+        _audio.PlayPvs(RadioClick, args.Source);
     }
 
     private void OnSendChatMessageAttempt(Entity<ESRadioChatChannelComponent> ent, ref ESSendChatMessageAttemptEvent args)
