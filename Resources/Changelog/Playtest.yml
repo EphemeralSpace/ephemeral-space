@@ -1866,3 +1866,13 @@ Entries:
         other on.
   id: 197
   time: '2026-08-15T22:29:55.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Text entry now appears above your head as a speech bubble.
+    - type: Tweak
+      message: >-
+        Speech bubbles no longer show names, use the name peek if you want to
+        see it
+  id: 198
+  time: '2026-08-15T22:38:45.0000000+00:00'
