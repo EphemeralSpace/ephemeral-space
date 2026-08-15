@@ -7,8 +7,6 @@ using Content.Client.Examine;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Shared._ES.Chat;
-using Content.Shared._ES.Chat.Sanitization;
-using Content.Shared._ES.Chat.Sanitization.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
@@ -31,7 +29,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-
 namespace Content.Client.UserInterface.Systems.Chat;
 
 public sealed partial class ChatUIController : UIController, IOnSystemChanged<ESChatSystem>
@@ -49,7 +46,6 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
     [UISystemDependency] private readonly TypingIndicatorSystem? _typingIndicator = default;
     [UISystemDependency] private readonly ESChatSystem? _chatSys = default;
-    [UISystemDependency] private readonly ESSanitizationChatChannelSystem? _sanitize = default;
     [UISystemDependency] private readonly TransformSystem? _transform = default;
 
     private ISawmill _sawmill = default!;
@@ -87,12 +83,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     ///     The speech bubble that is currently tied to the chatbox output.
     ///     i.e., when
     /// </summary>
-    private SpeechBubble? _activeTypingSpeechBubble = null;
-
-    // mildly balls but this is so it doesnt delete when chat unfocuses from the message being sent
-    // (so the text can be replaced with the actual message)
-    // but is deleted when focus is lost any other way.
-    private bool _activeTypingIgnoreNextFocusChange = false;
+    private SpeechBubble? _activeTypingSpeechBubble;
 
     /// <summary>
     ///     Speech bubbles that are to-be-sent because of the "rate limit" they have.
@@ -306,7 +297,6 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             SpeechBubble.CreateSpeechBubble(speechData.Type, speechData.Name, speechData.Content, entity);
 
         bubble.OnDied += SpeechBubbleDied;
-
 
         if (_activeSpeechBubbles.TryGetValue(entity, out var existing))
         {
@@ -553,7 +543,8 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
         var modifiedText = ev.Suffix != null
             ? Loc.GetString(forceSay.ForceSayMessageWrap,
-                ("message", msg), ("suffix", ev.Suffix))
+                ("message", msg),
+                ("suffix", ev.Suffix))
             : Loc.GetString(forceSay.ForceSayMessageWrapNoSuffix,
                 ("message", msg));
 

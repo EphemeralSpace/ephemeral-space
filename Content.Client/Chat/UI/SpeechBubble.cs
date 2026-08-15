@@ -54,7 +54,7 @@ namespace Content.Client.Chat.UI
         public float VerticalOffset { get; set; }
         private float _verticalOffsetAchieved;
 
-        public bool Fading { get; private set; } = false;
+        public bool Fading { get; private set; }
 
         public Vector2 ContentSize { get; private set; }
         public string NameText { get; private set;  }
@@ -202,14 +202,6 @@ namespace Content.Client.Chat.UI
         public void MakePermanent()
         {
             _deathTime = null;
-        }
-
-        /// <summary>
-        ///     Causes this speech bubble to start fading after the normal duration again.
-        /// </summary>
-        public void MakeEphemeral()
-        {
-            _deathTime = _timing.RealTime + TotalTime;
         }
 
         /// <summary>
