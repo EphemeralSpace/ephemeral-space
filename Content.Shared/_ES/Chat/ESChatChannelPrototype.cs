@@ -24,9 +24,6 @@ public sealed partial class ESChatChannelPrototype : IPrototype, IInheritingProt
     public LocId Name = "generic-unknown-title";
 
     [DataField]
-    public int Order = -1;
-
-    [DataField]
     public Color Color = Color.DarkGray;
 
     [DataField]
