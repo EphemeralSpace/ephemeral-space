@@ -105,7 +105,7 @@ public sealed partial class TypingIndicatorSystem : SharedTypingIndicatorSystem
             state = _isClientTyping ? TypingIndicatorState.Typing : TypingIndicatorState.Idle;
 
         // send a networked event to server
-        if (_time.ApplyingState)
+        if (!_time.ApplyingState)
             RaisePredictiveEvent(new TypingChangedEvent(state));
     }
 
