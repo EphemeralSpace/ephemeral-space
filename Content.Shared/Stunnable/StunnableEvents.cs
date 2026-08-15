@@ -76,20 +76,8 @@ public record struct GetStandUpTimeEvent(TimeSpan DoAfterTime);
 public record struct TryForceStandEvent(float Stamina);
 
 /// <summary>
-///     Raised when you click on the Knocked Down Alert
-/// </summary>
-public sealed partial class KnockedDownAlertEvent : BaseAlertEvent;
-
-/// <summary>
 /// The DoAfterEvent for trying to stand the slow and boring way.
 /// </summary>
 [ByRefEvent]
 [Serializable, NetSerializable]
 public sealed partial class TryStandDoAfterEvent : SimpleDoAfterEvent;
-
-/// <summary>
-/// An event sent by the client to the server to ask it very nicely to perform a forced stand-up.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class ForceStandUpEvent : EntityEventArgs;
-

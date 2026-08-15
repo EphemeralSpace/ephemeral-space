@@ -1,19 +1,14 @@
 using System.Numerics;
-using Content.Shared.CombatMode;
-using Content.Shared.Interaction;
 using Content.Shared.Stunnable;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
-using Robust.Shared.Input;
-using Robust.Shared.Input.Binding;
 using Robust.Shared.Random;
 
 namespace Content.Client.Stunnable;
 
 public sealed partial class StunSystem : SharedStunSystem
 {
-    [Dependency] private SharedCombatModeSystem _combat = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SpriteSystem _spriteSystem = default!;
 
@@ -25,22 +20,6 @@ public sealed partial class StunSystem : SharedStunSystem
 
         SubscribeLocalEvent<StunVisualsComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<StunVisualsComponent, AppearanceChangeEvent>(OnAppearanceChanged);
-
-        CommandBinds.Builder
-            .BindAfter(EngineKeyFunctions.UseSecondary, new PointerInputCmdHandler(OnUseSecondary, true, true), typeof(SharedInteractionSystem))
-            .Register<StunSystem>();
-    }
-
-    private bool OnUseSecondary(in PointerInputCmdHandler.PointerInputCmdArgs args)
-    {
-        if (args.Session?.AttachedEntity is not {Valid: true} uid)
-            return false;
-
-        if (args.EntityUid != uid || !HasComp<KnockedDownComponent>(uid) || !_combat.IsInCombatMode(uid))
-            return false;
-
-        RaisePredictiveEvent(new ForceStandUpEvent());
-        return true;
     }
 
     /// <summary>
