@@ -110,9 +110,6 @@ public sealed partial class RCDSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, RCDComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var prototype = _protoManager.Index(component.ProtoId);
 
         var msg = Loc.GetString("rcd-component-examine-mode-details", ("mode", Loc.GetString(prototype.SetName)));

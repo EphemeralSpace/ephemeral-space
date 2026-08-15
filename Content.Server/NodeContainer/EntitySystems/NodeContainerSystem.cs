@@ -201,7 +201,7 @@ namespace Content.Server.NodeContainer.EntitySystems
 
         private void OnExamine(EntityUid uid, NodeContainerComponent component, ExaminedEvent args)
         {
-            if (!component.Examinable || !args.IsInDetailsRange)
+            if (!component.Examinable)
                 return;
 
             foreach (var node in component.Nodes.Values)

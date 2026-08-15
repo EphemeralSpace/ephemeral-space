@@ -92,9 +92,6 @@ public sealed partial class PlantHolderSystem : EntitySystem
 
     private void OnExamine(Entity<PlantHolderComponent> entity, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var (_, component) = entity;
 
         using (args.PushGroup(nameof(PlantHolderComponent)))

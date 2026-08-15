@@ -48,7 +48,7 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 
     private void OnExamined(Entity<ESCryptoNukeConsoleComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !ent.Comp.Compromised)
+        if (!ent.Comp.Compromised)
             return;
         args.PushMarkup(Loc.GetString("es-cryptonuke-examine-compromised"));
     }

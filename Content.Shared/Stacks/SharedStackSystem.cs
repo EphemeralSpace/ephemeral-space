@@ -135,9 +135,6 @@ public abstract partial class SharedStackSystem : EntitySystem
 
     private void OnStackExamined(Entity<StackComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         args.PushMarkup(
             Loc.GetString("comp-stack-examine-detail-count",
                 ("count", ent.Comp.Count),

@@ -53,9 +53,6 @@ public sealed partial class SprayPainterAmmoSystem : EntitySystem
 
     private void OnExamine(Entity<SprayPainterAmmoComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var examineMessage = Loc.GetString("rcd-ammo-component-on-examine", ("charges", ent.Comp.Charges));
         args.PushText(examineMessage);
     }
