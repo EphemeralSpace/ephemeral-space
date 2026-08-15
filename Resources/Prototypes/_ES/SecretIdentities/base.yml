@@ -55,7 +55,7 @@
     icon:
       sprite: Objects/Devices/communication.rsi
       state: old-radio
-    useDelay: 60
+    useDelay: 210
   - type: InstantAction
     event: !type:ESTransponderActionEvent
       channel: SyndicateTransponder
