@@ -186,6 +186,7 @@
     - id: HydroponicsToolHatchet
     - id: Multitool
     - id: LuxuryPen
+    - id: ClothingEyesGlassesSunglasses
     - id: Cablecuffs
     - id: Bola
     - id: EmergencyRollerBedSpawnFolded
@@ -277,11 +278,11 @@
     - id: PinpointerNuclear
     - id: CameraBug
     - id: MedkitFilled
+    - id: GrenadeFlashBang
 
     - id: ESKitSecretDoor
 
     - id: ClothingEyesHudSecurity
-    - id: ClothingEyesGlassesSunglasses
     - id: ClothingHandsGlovesColorYellow
 
     - all: # Russian Outfit
