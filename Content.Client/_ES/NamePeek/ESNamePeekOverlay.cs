@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._ES.Chat;
 using Content.Client.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -10,8 +11,6 @@ using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
-using Robust.Shared;
-using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Light;
 using Robust.Shared.Prototypes;
@@ -29,13 +28,12 @@ public sealed partial class NamePeekOverlay : Overlay
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private IConfigurationManager _configManager = default!;
-    [Dependency] private IUserInterfaceManager _uiManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private readonly ExamineSystem _examineSystem;
     private readonly EntityLookupSystem _lookup;
     private readonly ESNamePeekSystem _namePeekSystem;
+    private readonly ESChatSystem _chat;
     private readonly LightLevelSystem _lightLevel;
     private readonly ShaderInstance _shader;
     private readonly SharedTransformSystem _transform;
@@ -45,7 +43,7 @@ public sealed partial class NamePeekOverlay : Overlay
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
 
-    private TextOutline _outline = new (2f, Color.Black);
+    private TextOutline _outline = new (2f, Color.Black.WithAlpha(0.85f));
 
     private readonly HashSet<Entity<MobStateComponent>> _nearbyEntities = new();
 
@@ -58,6 +56,7 @@ public sealed partial class NamePeekOverlay : Overlay
         ExamineSystem examine,
         EntityLookupSystem lookup,
         ESNamePeekSystem namePeek,
+        ESChatSystem chat,
         LightLevelSystem lightLevel,
         SharedTransformSystem transform,
         SpriteSystem sprite,
@@ -68,6 +67,7 @@ public sealed partial class NamePeekOverlay : Overlay
         _examineSystem = examine;
         _lookup = lookup;
         _namePeekSystem = namePeek;
+        _chat = chat;
         _lightLevel = lightLevel;
         _transform = transform;
         _sprite = sprite;
@@ -79,7 +79,6 @@ public sealed partial class NamePeekOverlay : Overlay
         IoCManager.InjectDependencies(this);
 
         _shader = _prototypeManager.Index(UnshadedShader).Instance();
-
         var cache = IoCManager.Resolve<IResourceCache>();
         _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
     }
@@ -111,13 +110,12 @@ public sealed partial class NamePeekOverlay : Overlay
         args.DrawingHandle.SetTransform(Matrix3x2.Identity);
         args.DrawingHandle.UseShader(_shader);
 
-        var scale = _configManager.GetCVar(CVars.DisplayUIScale);
+        var scale = (args.ViewportControl as Control)?.UIScale ?? 0f;
 
-        if (scale == 0f)
-            scale = _uiManager.DefaultUIScale;
+        if (scale <= 0f)
+            return;
 
         var handle = args.ScreenHandle;
-
         var matrix = args.ViewportControl.GetWorldToScreenMatrix();
 
         _nearbyEntities.Clear();
@@ -141,7 +139,7 @@ public sealed partial class NamePeekOverlay : Overlay
             if (!_transformQuery.TryComp(ent, out var xform))
                 continue;
 
-            if (!_spriteQuery.TryComp(ent, out var sprite) || !sprite.Visible)
+            if (!_spriteQuery.TryComp(ent, out var sprite) || !sprite.Visible || sprite.Color.A <= 0f)
                 continue;
 
             var mapPos = _transform.GetMapCoordinates((ent, xform));
@@ -152,7 +150,7 @@ public sealed partial class NamePeekOverlay : Overlay
 
             //Don't show nametag if it's too dark
             //Most maintenance tunnels on toast seem to be below 0.9, main halls are usually 1
-            if (lightLevel < 0.89)
+            if (lightLevel <= 0.7)
                 continue;
 
             if (eye.DrawFov && !_examineSystem.InRangeUnOccluded(playerEnt, ent))
@@ -171,13 +169,15 @@ public sealed partial class NamePeekOverlay : Overlay
                  worldRot,
                  eye.Rotation);
 
-            var offset = (-eye.Rotation).ToWorldVec() * (-bounds.Box.Extents.Y);
+            var offsetBounds = bounds.Box.Enlarged(0.15f);
+            var offset = (-eye.Rotation).ToWorldVec() * (-offsetBounds.Extents.Y);
             var offsetWorldPos = worldPos - offset;
 
             var pos = Vector2.Transform(offsetWorldPos, matrix);
             var drawPosition = (pos - dimensions / 2f);
+            var color = _chat.GetChatColor(text);
 
-            handle.DrawString(_font, drawPosition, text, scale, Color.LightGray.WithAlpha(sprite.Color.A), _outline);
+            handle.DrawString(_font, drawPosition, text, scale, color.WithAlpha(0.85f), _outline);
         }
 
         args.DrawingHandle.UseShader(null);

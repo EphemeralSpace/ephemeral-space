@@ -1,3 +1,4 @@
+using Content.Client._ES.Chat;
 using Content.Client.Examine;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
@@ -22,6 +23,7 @@ public sealed partial class ESNamePeekSystem : EntitySystem
     [Dependency] private LightLevelSystem _lightLevel = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
@@ -40,6 +42,7 @@ public sealed partial class ESNamePeekSystem : EntitySystem
             _examine,
             _lookup,
             this,
+            _chat,
             _lightLevel,
             _transform,
             _sprite,
