@@ -7,13 +7,13 @@ using Robust.Client.GameStates;
 using Robust.Client.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Utility;
 using YamlDotNet.Core.Tokens;
 
 namespace Content.Client._ES.SoundOcclusion;
 
 public sealed class TomenoSoundOcclusionSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IOverlayManager _overlayManager = default!;
 
@@ -60,47 +60,45 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
     /* TODO list:
     - X PVS-sized, grid-aligned object tilemap for pathfinding data, boolean tilemap for airtight
-        - how to get pvs size? current grid?
         - X should we just use a Vector2i dictionary for occlusion and query for all airtight?
     - X Fill boolean tilemap with airtight data
         - X should i just grab all the airtight in pvs and slot it in?
         - X how to handle offgrid? multigrid?
             - X offgrid - space is occluded, planet is not
-            - X multigrid - idk, probably just query center of tiles?
+            - X multigrid - translate to local grid coordinates - good enough for docked shuttles
     - X make an overlay for this data
-    -- entering beautiful engine agnostic algorithm land. the serenity of those drums is astounding
+    -- Algorithm
     - X Flood fill from the listener pos
         - X breadth-first
         - X pathfinding data?
             - X coordinates to previous tile?
-            - has seen a wall flag for listener room size, count fresh tiles that havent seen a wall
     - X tracing against the tilemap/checking "los" - we use supercover dda
-    - pathfinding sounds - semi-done, currently naive
+    - X pathfinding sounds
         - check los first
-            - check if sound is in listener room? - for skipping premium reverb later
-        - X freelo with prev-tile
-    - shorten path - X semi-done - doesn't matter for now
-        - from either side with sound traces? should be fine to step across the path for now - since we use diagonals, yes
+    - shorten path - X mostly done - doesn't matter for now
+        - X from either side with sound traces? should be fine to step across the path for now - since we use diagonals, yes
             - maybe binary search or smt later
-            - last visible tile from hearer becomes the "portal" - for premium reverb later
-                - maybe we can use this rn to cache hearer side traces and save a bit if a path crosses over it
-    -- reentering hell
+            - last visible tile from hearer/listener becomes the "portal" - for updating gotten paths later
+            - shorten from listener first
+    -- Final stretch
+    - cleanup! make structures instead of system vars! split stuff!
     - when the soundstage becomes dirty (airtights move, etc), mark it as dirty and update on next client tick (Update)
-    - when a new soundstage is generated, schedule a background task thread to calculate the new paths
-        - just schedule using System.Threading.Tasks? maybe?
-        - we can only update the sounds/soundpaths up to 20 times a second - enforce this somehow?
-            - maybe we just choke off soundstage updates in general? <- seems like the way
     - this means we will need to snapshot all grid coordinate system info alongside the soundstage?
-    - mutex on the soundstage, background thread needs to wait for the latest soundstage to be written incase it gets dirty again
-        - either this, or some sort of double-buffering for the soundstage - mutex seems simpler, the bg thread can wait
-        - viceversa, the Update skips updating if the background thread is reading
-            - the background thread should actually copy the soundstage data and use that maybe?
-                - this way the soundstage is unlocked for most of it so it can freely update in the meantime
-    - when the background thread is working, the soundpath data must stay available
-        - the background thread must thread-safely switch the soundpaths over - maybe this emits an event for sounds to update?
-    - planning for sounds - some sort of structure that the sound will get its path in, threadsafe, sound keeps it?
-        - the sound will be updating the occlusion ratio based on the distances, updating the start & end point of the path
+    - when a new soundstage is generated, schedule a background task thread to calculate the new paths
+        - schedule using System.Threading.Tasks, save it
+            - for cancellation, getting the
+        - we can only update the sounds/soundpaths up to 20 times a second - don't gen stages faster than this!
+    - on next update, if the task is finished, it returns a new floodfill - push it into the system as new state
+        - track "soundstage generation", every time theres a new one we increment this
+    - SoundStage - basic occlusion data structure, includes grid info
+    - SoundPaths - structure returned by the floodfiller, includes SoundStage
+    - UpdatablePath
+        - emitterPortal, listenerPortal, portalDistance - distance between portals, soundstage generation
+        - new occluded dist: emitter-eportal + portaldistance + listener-lportal
+        - only 1 portal -> both distances from portals? no portal -> no occlusion
+        - sound only needs to grab a new path if the soundstage gen is different
     */
+
 
     public record SoundstagePathTile(float Distance, Vector2i? PreviousTile);
 
@@ -109,6 +107,11 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
     public Vector2i? LocalGridTile = null;
     public Vector2? LocalGridPos = null;
     public EntityUid? LocalGridUid = null;
+
+    public override void Update(float frameTime)
+    {
+        // TODO: do stuff here
+    }
 
     public bool IsSoundstageValid()
     {
@@ -140,7 +143,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         EntityUid gridUid;
         if (transform.GridUid == null)
         {
-            // TODO: Find the nearest grid? Only matters on planets tho
+            // TODO: Find the nearest grid? Only matters on planets tho, we don't have them yet
             //var mapUid = transform.MapUid;
             return;
         }
@@ -180,9 +183,8 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 continue;
 
             // TODO: Can these be offgrid? How does planet stuff work?
-
-            var transformedTile = _sharedMapSystem.LocalToTile(gridUid, grid, thisTransform.Coordinates);
-            Soundstage[transformedTile] = false;
+            // I think this will work, LocalToTile converts to world cords internally
+            Soundstage[_sharedMapSystem.LocalToTile(gridUid, grid, thisTransform.Coordinates)] = false;
         }
 
         // Ok babey time to get to da flodd filler
@@ -193,20 +195,15 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             (Vector2i.UpLeft, sqrt2, true), (Vector2i.UpRight, sqrt2, true), (Vector2i.DownRight, sqrt2, true), (Vector2i.DownLeft, sqrt2, true),
         ];
 
-        Queue<(Vector2i?, float, Vector2i)> queue = new();
-        queue.Enqueue((null, 0f, LocalGridTile.Value));
+        var comparer = Comparer<(Vector2i?, float, Vector2i)>.Create((a, b) => -a.Item2.CompareTo(b.Item2));
+        PriorityQueue<(Vector2i?, float, Vector2i)> queue = new(32, comparer);
+        queue.Add((null, 0f, LocalGridTile.Value));
         while (queue.Count > 0)
         {
-            var (lastTile, distance, tile) = queue.Dequeue();
-            //if (Airtights.TryGetValue(tile, out var airtight))
-
-            // wtf? why is this happening?
-            if (SoundstagePaths.ContainsKey(tile))
-                continue;
+            var (lastTile, distance, tile) = queue.Take();
 
             SoundstagePathTile myStage = new(distance, lastTile);
             SoundstagePaths[tile] = myStage;
-            //Vector2i[] candidates = [tile + Vector2i.Up, tile + Vector2i.Right, tile + Vector2i.Down, tile + Vector2i.Left, tile + Vector2i.UpLeft, tile + Vector2i.UpRight, tile + Vector2i.DownRight, tile + Vector2i.DownLeft,];
 
             // Troll physics: we are actually putting walls into the soundstage, we just don't continue spreading from them
             if (IsSoundPassable(tile) /*&& nextDistance <= 22*/)
@@ -215,8 +212,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 {
                     var candidate = tile + offset;
                     var nextDistance = distance + offsetDistance;
-                    if (candidate == lastTile)
-                        continue;
 
                     if (checkDiagonal)
                     {
@@ -225,41 +220,21 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                             continue;
                     }
 
-                    // i don't think this is possible in dfs, but i'll keep it in here until i test
-                    /*if (SoundstagePaths.TryGetValue(candidate, out var other))
-                    {
-                        if (other.Distance <= nextDistance)
-                            continue;
-                    }*/
-
                     if (SoundstagePaths.ContainsKey(candidate))
                         continue;
 
-                    queue.Enqueue((tile, nextDistance, candidate));
+                    // insert the candidate before it's actually processed so it doesn't get queued multiple times
+                    SoundstagePaths[candidate] = new(-1, tile);
+                    // TODO: refactor this to not be so dirty
+
+                    queue.Add((tile, nextDistance, candidate));
                 }
             }
         }
     }
 
-    public class SoundstagePath
-    {
-        private float Distance { get; set; }
-        private float PathDistance { get; set; }
-
-        private Vector2i EmitterPortal { get; set; }
-        private Vector2i ListenerPortal { get; set; }
-
-        private List<Vector2i> PathTiles;
-        private List<Vector2> PathPoints;
-        public SoundstagePath()
-        {
-            PathTiles = new List<Vector2i>();
-            PathPoints = new List<Vector2>();
-        }
-    }
-
     // Supercover DDA Algorithm
-    public bool CheckVisibility(Vector2 v1, Vector2 v2)
+    public bool CheckVisibility(Vector2 v2, Vector2 v1)
     {
         // var tileSize = 1f; // TODO: Properly cache grid data so we can do coordinate translations without comps
 
@@ -406,6 +381,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
     private void OnPlayerMove(Entity<ESLocalPlayerMarkerComponent> ent, ref MoveEvent args)
     {
+        // dirty soundstage when moving between tiles or grids
         if (!LocalGridPos.HasValue || !_mapGridQuery.TryGetComponent(LocalGridUid, out var grid))
         {
             SetupSoundstage();

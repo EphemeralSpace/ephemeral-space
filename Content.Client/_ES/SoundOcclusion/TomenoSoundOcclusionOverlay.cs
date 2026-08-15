@@ -1,6 +1,8 @@
 ﻿using System.Numerics;
 using Robust.Client.Debugging.Overlays;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -10,7 +12,7 @@ namespace Content.Client._ES.SoundOcclusion;
 public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
+    // [Dependency] private IMapManager _mapManager = default!;
 
     private readonly SharedMapSystem _mapSystem;
     private readonly TomenoSoundOcclusionSystem _soundSystem;
@@ -24,6 +26,12 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
         _mapSystem = _entityManager.System<SharedMapSystem>();
 
         _mapGridQuery = _entityManager.GetEntityQuery<MapGridComponent>();
+
+        base.Transform = _entityManager.System<SharedTransformSystem>();
+        base.Map = _entityManager.System<MapSystem>();
+        base.Lookup = _entityManager.System<EntityLookupSystem>();
+        var font = Cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf");
+        base.Font = new VectorFont(font, 8);
     }
 
     private (TomenoSoundOcclusionSystem.SoundstagePathTile?, Vector2i?) PosToSoundstage(Vector2i indices, Entity<MapGridComponent> grid)
@@ -72,7 +80,7 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 
         var coords = viewport.PixelToMap(mousePos.Position);
 
-        if (!MapMan.TryFindGridAt(coords, out var grid, out var comp))
+        if (!_mapSystem.TryFindGridAt(coords, out var grid, out var comp))
             return;
 
         var local = Map.WorldToLocal(grid, comp, coords.Position);
