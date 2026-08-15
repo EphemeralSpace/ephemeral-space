@@ -1,4 +1,6 @@
+using Content.Shared._ES.Chat;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.Ephemera.Components;
 
@@ -20,6 +22,9 @@ public sealed partial class ESEphemeraSpeakerComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? SpeakSound;
+
+    [DataField]
+    public ProtoId<ESChatChannelPrototype> SpeakChannel = "Lobby";
 }
 
 /// <summary>

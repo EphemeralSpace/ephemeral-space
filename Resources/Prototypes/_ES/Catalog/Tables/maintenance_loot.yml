@@ -123,7 +123,6 @@
       - id: FirelockElectronics
       - id: FireAlarmElectronics
       - id: AirAlarmElectronics
-      - id: IntercomElectronics
 
     - id: CleanerGrenade
     - id: Beaker
@@ -148,7 +147,6 @@
     - id: FireExtinguisher
     - id: SmokeGrenade
       weight: 2
-    - id: RadioHandheld
     - id: EmergencyOxygenTank
     - id: SprayPainterAmmo
 

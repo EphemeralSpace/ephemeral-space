@@ -52,13 +52,14 @@
   - type: SunShadowCast
   - type: ESDamageDeflection
     threshold: 45
+  - type: TrayScanReveal
 
 - type: entity
   abstract: true
   parent: BaseStructureWall
   id: BaseWall
   components:
-  - type: Occluder # Breaks on diagonal walls
+  - type: Occluder
 
 - type: entity
   abstract: true
@@ -79,6 +80,11 @@
     airBlockedDirection:
     - South
     - East
+  - type: Occluder
+    polygon:
+    - "-0.5,-0.5"
+    - "0.5,0.5"
+    - "0.5,-0.5"
   - type: Fixtures
     fixtures:
       fix1:

@@ -9,12 +9,11 @@
     state: icon
   - type: ESParasiteConverter
   - type: MeleeWeapon
+    soundHit:
+      path: "/Audio/Weapons/slash.ogg"
     damage:
       types:
-        Blunt: 0
+        Blunt: 60 # go rampage idgaf
     attackRate: 1.5
     wideAnimationRotation: -135
-  - type: StaminaDamageOnHit
-    damage: 35
-    sound: "/Audio/Weapons/slash.ogg"
   - type: Unremoveable

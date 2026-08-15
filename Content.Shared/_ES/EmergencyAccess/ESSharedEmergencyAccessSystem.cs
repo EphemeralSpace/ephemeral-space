@@ -169,9 +169,6 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
 
     private void OnExamined(Entity<ESEmergencyAccessDoorComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         using (args.PushGroup(nameof(ESEmergencyAccessDoorComponent), -1))
         {
             args.PushMarkup(Loc.GetString("es-emergency-access-door-examine", ("key", ent.Comp.Key)));

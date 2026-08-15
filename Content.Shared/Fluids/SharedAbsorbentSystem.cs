@@ -315,6 +315,15 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
 
             puddleSplit =
                 puddleSolution.SplitSolutionWithout(transferAmount, Puddle.GetAbsorbentReagents(puddleSolution));
+
+            // handle efficiency of absorber
+            if (absorber.Efficiency < 1)
+            {
+                // intentionally throw away the split portion
+                // .25 efficiency = 75% loss
+                _ = puddleSplit.SplitSolution(puddleSplit.Volume * (1 - absorber.Efficiency));
+            }
+
             var absorberSplit =
                 absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume,
                     Puddle.GetAbsorbentReagents(absorberSolution));
@@ -333,6 +342,13 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         {
             // Note: arguably shouldn't this get all solutions?
             puddleSplit = puddleSolution.SplitSolutionWithout(absorber.PickupAmount, Puddle.GetAbsorbentReagents(puddleSolution));
+            if (absorber.Efficiency < 1)
+            {
+                // intentionally throw away the split portion
+                // .25 efficiency = 75% loss
+                _ = puddleSplit.SplitSolution(puddleSplit.Volume * (1 - absorber.Efficiency));
+            }
+
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
             {

@@ -61,9 +61,6 @@ public sealed partial class LogicGateSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, LogicGateComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         args.PushMarkup(Loc.GetString("logic-gate-examine", ("gate", comp.Gate.ToString().ToUpper())));
     }
 

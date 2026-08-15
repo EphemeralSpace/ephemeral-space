@@ -33,7 +33,7 @@ station-beacon-science = Science
 station-beacon-research-and-development = Research
 station-beacon-research-server = Server
 station-beacon-research-director = RD
-station-beacon-robotics = Robotics
+station-beacon-experiment-pen = Experiment's Pen
 station-beacon-artifact-lab = Artifact
 station-beacon-anomaly-gen = Anomaly
 

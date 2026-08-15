@@ -1,4 +1,5 @@
 using Content.Server.StationEvents.Events;
+using Content.Shared._ES.Chat;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
@@ -12,16 +13,10 @@ namespace Content.Server.StationEvents.Components;
 public sealed partial class SolarFlareRuleComponent : Component
 {
     /// <summary>
-    ///     If true, only headsets affected, but e.g. handheld radio will still work
-    /// </summary>
-    [DataField("onlyJamHeadsets")]
-    public bool OnlyJamHeadsets;
-
-    /// <summary>
     ///     Channels that will be disabled for a duration of event
     /// </summary>
-    [DataField("affectedChannels", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<RadioChannelPrototype>))]
-    public HashSet<string> AffectedChannels = new();
+    [DataField]
+    public HashSet<ProtoId<ESChatChannelPrototype>> AffectedChannels = new();
 
     /// <summary>
     ///     List of extra channels that can be random disabled on top of the starting channels.
@@ -30,7 +25,7 @@ public sealed partial class SolarFlareRuleComponent : Component
     ///     Channels are not removed from this, so its possible to roll the same channel multiple times.
     /// </remarks>
     [DataField]
-    public List<ProtoId<RadioChannelPrototype>> ExtraChannels = new();
+    public List<ProtoId<ESChatChannelPrototype>> ExtraChannels = new();
 
     /// <summary>
     ///     Number of times to roll a channel from ExtraChannels.

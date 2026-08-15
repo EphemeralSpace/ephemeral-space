@@ -73,7 +73,7 @@ public sealed partial class GameTicker
 
                 if (!startAttempt.Cancelled)
                 {
-                    _chatManager.SendAdminAnnouncement(
+                    _chatManager.SendAdminMessage(
                         Loc.GetString("game-ticker-start-round-cannot-start-game-mode-fallback",
                             ("failedGameMode", presetTitle),
                             ("fallbackMode", Loc.GetString(preset))));

@@ -4,6 +4,7 @@ using Content.Server._ES.Stagehand;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -26,6 +27,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<ESPlayerKilledEvent>(OnKillReported);
+        SubscribeLocalEvent<ESSecretIdentityChangedEvent>(OnSecretIdentityChanged);
     }
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
@@ -34,6 +36,24 @@ public sealed partial class ESSuperfanSystem : EntitySystem
         if (_secretIdentity.GetOrganizationOrNull(ev.Killed) != TraitorsOrganization)
             return;
 
+        TryConvert();
+    }
+
+    private void OnSecretIdentityChanged(ref ESSecretIdentityChangedEvent ev)
+    {
+        // only check when identity is being removed
+        if (ev.NewSecretIdentity != null || ev.OldSecretIdentity == null)
+            return;
+
+        // only convert if their old one was traitor
+        if (ev.OldSecretIdentity.Organization != TraitorsOrganization)
+            return;
+
+        TryConvert();
+    }
+
+    private void TryConvert()
+    {
         if (!_masquerade.TryGetMasqueradeData(out var set))
             return; // Well, no masquerade means no conversion target.
 

@@ -1,11 +1,9 @@
+using Content.Server.Actions;
 using Content.Server.Administration;
-using Content.Server.Radio.EntitySystems;
 using Content.Shared._ES.Chat;
-using Content.Shared.Radio;
-using Content.Shared.Radio.Components;
-using Robust.Shared.Player;
+using Content.Shared.Actions.Components;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server._ES.Chat.Transponder;
 
@@ -14,41 +12,41 @@ namespace Content.Server._ES.Chat.Transponder;
 /// </summary>
 public sealed partial class ESTransponderSystem : EntitySystem
 {
-    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private QuickDialogSystem _dialog = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ActionsSystem _action = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        // only works on entities that can intrinsically receive radio (hack) (i will replcae later this is prototyping hours)
-        SubscribeLocalEvent<IntrinsicRadioReceiverComponent, ESTransponderActionEvent>(OnUseTransponder);
+        SubscribeLocalEvent<ESTransponderActionEvent>(OnUseTransponder);
     }
 
-    private void OnUseTransponder(Entity<IntrinsicRadioReceiverComponent> ent, ref ESTransponderActionEvent args)
+    private void OnUseTransponder(ESTransponderActionEvent args)
     {
-        if (!TryComp<ActiveRadioComponent>(ent, out var radio) ||
-            (!radio.Channels.Contains(args.Channel) && !radio.ReceiveAllChannels))
+        if (!_player.TryGetSessionByEntity(args.Performer, out var session))
             return;
 
-        if (!TryComp<ActorComponent>(ent, out var actor))
-            return;
-
+        var uid = args.Performer;
         var channel = args.Channel;
-        _dialog.OpenDialog<string>(actor.PlayerSession,
-            Loc.GetString("es-transponder-dialog-title"), Loc.GetString("es-transponder-dialog-prompt"),
-            (msg => SendMessage(ent, channel, msg, _timing.CurTime)));
+        var action = args.Action;
+        _dialog.OpenDialog<string>(session,
+            Loc.GetString("es-transponder-dialog-title"),
+            Loc.GetString("es-transponder-dialog-prompt"),
+            (msg => SendMessage(uid, channel, msg, action)));
 
-        args.Handled = true;
+        // we deliberately do not set handled, because we activate the usedelay when a message is actually sent
     }
 
-    private void SendMessage(EntityUid ent, ProtoId<RadioChannelPrototype> channel, string message, TimeSpan sendTime)
+    private void SendMessage(EntityUid ent, ProtoId<ESChatChannelPrototype> channel, string message, Entity<ActionComponent> action)
     {
-        // no potential cheese with dialog stuff
-        if (_timing.CurTime > (sendTime + TimeSpan.FromMinutes(1)))
+        if (_action.IsCooldownActive(action))
             return;
 
-        _radio.SendRadioMessage(ent, message, channel, ent, force: true);
+        // send chat msg
+        _chat.TrySendMessage(message, channel, ent);
+        _action.StartUseDelay(action.AsNullable());
     }
 }

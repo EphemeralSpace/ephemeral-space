@@ -807,6 +807,9 @@ namespace Content.Server.GameTicking
             {
                 _playerGameStatuses[session.UserId] = LobbyEnabled ? PlayerGameStatus.NotReadyToPlay : PlayerGameStatus.ReadyToPlay;
             }
+
+            var afterEv = new ESAfterRoundRestartCleanupEvent();
+            RaiseLocalEvent(afterEv);
         }
 
         public bool DelayStart(TimeSpan time)
@@ -820,7 +823,7 @@ namespace Content.Server.GameTicking
 
             RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
 
-            _chatManager.DispatchServerAnnouncement(Loc.GetString("game-ticker-delay-start", ("seconds", time.TotalSeconds)));
+            _chatManager.SendServerMessage(Loc.GetString("game-ticker-delay-start", ("seconds", time.TotalSeconds)));
 
             return true;
         }

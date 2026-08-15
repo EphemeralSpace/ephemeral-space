@@ -62,7 +62,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, ImplanterComponent component, ExaminedEvent args)
     {
-        if (!component.ImplanterSlot.HasItem || !args.IsInDetailsRange)
+        if (!component.ImplanterSlot.HasItem)
             return;
 
         args.PushMarkup(Loc.GetString("implanter-contained-implant-text", ("desc", component.ImplantData.Item2)));

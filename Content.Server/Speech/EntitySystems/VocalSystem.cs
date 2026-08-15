@@ -1,5 +1,5 @@
 using Content.Server.Actions;
-using Content.Server.Chat.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Humanoid;
@@ -16,7 +16,7 @@ public sealed partial class VocalSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
     [Dependency] private ActionsSystem _actions = default!;
 
     public override void Initialize()
@@ -33,7 +33,7 @@ public sealed partial class VocalSystem : EntitySystem
     /// <summary>
     /// Copy this component's datafields from one entity to another.
     /// This can't use CopyComp because of the ScreamActionEntity DataField, which should not be copied.
-    /// <summary>
+    /// </summary>
     public void CopyComponent(Entity<VocalComponent?> source, EntityUid target)
     {
         if (!Resolve(source, ref source.Comp))
@@ -121,7 +121,7 @@ public sealed partial class VocalSystem : EntitySystem
             return;
 
         // just play regular sound based on emote proto
-        args.Handled = _chat.TryPlayEmoteSound(uid, _proto.Index(sounds), args.Emote);
+        args.Handled = _emote.TryPlayEmoteSound(uid, _proto.Index(sounds), args.Emote);
     }
 
     private void OnScreamAction(EntityUid uid, VocalComponent component, ScreamActionEvent args)
@@ -129,7 +129,7 @@ public sealed partial class VocalSystem : EntitySystem
         if (args.Handled)
             return;
 
-        _chat.TryEmoteWithChat(uid, component.ScreamId);
+        _emote.TryEmoteWithChat(uid, component.ScreamId);
         args.Handled = true;
     }
 
@@ -144,7 +144,7 @@ public sealed partial class VocalSystem : EntitySystem
         if (component.EmoteSounds is not { } sounds)
             return false;
 
-        return _chat.TryPlayEmoteSound(uid, _proto.Index(sounds), component.ScreamId);
+        return _emote.TryPlayEmoteSound(uid, _proto.Index(sounds), component.ScreamId);
     }
 
     private void LoadSounds(EntityUid uid, VocalComponent component, Sex? sex = null)

@@ -1,12 +1,12 @@
 using System.Linq;
-using Content.Server.Chat.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared._Offbrand.Wounds;
 
 namespace Content.Server._Offbrand.Wounds;
 
 public sealed partial class BrainGaspThresholdsSystem : EntitySystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
 
     public override void Initialize()
     {
@@ -41,7 +41,7 @@ public sealed partial class BrainGaspThresholdsSystem : EntitySystem
         }
 
         if (message is { } msg)
-            _chat.TryEmoteWithChat(ent.Owner, msg, ignoreActionBlocker: true);
+            _emote.TryEmoteWithChat(ent.Owner, msg, ignoreActionBlocker: true);
     }
 
     private void OnAfterBrainOxygenChanged(Entity<BrainGaspThresholdsComponent> ent, ref AfterBrainOxygenChanged args)
@@ -69,6 +69,6 @@ public sealed partial class BrainGaspThresholdsSystem : EntitySystem
         }
 
         if (message is { } msg)
-            _chat.TryEmoteWithChat(ent.Owner, msg, ignoreActionBlocker: true);
+            _emote.TryEmoteWithChat(ent.Owner, msg, ignoreActionBlocker: true);
     }
 }

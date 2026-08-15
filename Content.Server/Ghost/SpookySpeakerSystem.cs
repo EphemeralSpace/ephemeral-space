@@ -1,6 +1,6 @@
-using Content.Server.Chat.Systems;
+using Content.Server._ES.Chat;
 using Content.Server.Ghost.Components;
-using Content.Shared.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -13,7 +13,7 @@ public sealed partial class SpookySpeakerSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -42,7 +42,7 @@ public sealed partial class SpookySpeakerSystem : EntitySystem
         // So this is a stupid trick to make the "...Oooo"-style messages work.
         message = '>' + message;
         // Say the message
-        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, hideChat: true);
+        _chat.TrySendMessage(message, ESSharedChatSystem.LocalChannel, entity, hideChat: true);
 
         // Set the delay for the next message
         entity.Comp.NextSpeakTime = curTime + entity.Comp.Cooldown;

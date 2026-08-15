@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 283.0.0
+  engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/01/2026 22:31:16
+  time: 08/12/2026 04:41:54
   entityCount: 14886
 maps:
 - 3
@@ -2789,6 +2789,8 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ExplosionAirtightGrid
+    - type: ChunkContainer
+      chunkEntities: []
   - uid: 3
     components:
     - type: MetaData
@@ -2799,6 +2801,8 @@ entities:
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: ChunkContainer
+      chunkEntities: []
 - proto: ActionToggleLight
   entities:
   - uid: 7345
@@ -5025,7 +5029,7 @@ entities:
   - uid: 658
     components:
     - type: MetaData
-      name: Robotics APC
+      name: Experiment's Pen APC
     - type: Transform
       parent: 2
       rot: 3.141592653589793 rad
@@ -32892,6 +32896,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -40.5,-18.5
+- proto: DefaultStationBeaconExperimentPen
+  entities:
+  - uid: 4821
+    components:
+    - type: Transform
+      parent: 2
+      pos: 4.5,-19.5
 - proto: DefaultStationBeaconGravGen
   entities:
   - uid: 4802
@@ -32956,13 +32967,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 4.5,-6.5
-- proto: DefaultStationBeaconRobotics
-  entities:
-  - uid: 4821
-    components:
-    - type: Transform
-      parent: 2
-      pos: 4.5,-19.5
 - proto: DefaultStationBeaconScience
   entities:
   - uid: 618
@@ -36515,23 +36519,27 @@ entities:
     - type: Transform
       parent: 2
       pos: 2.5,-35.5
-- proto: ESBaseComputerTerminalCryptoNuke
+- proto: ESBaseComputerTerminalCryptoNukeCaptainsOffice
   entities:
   - uid: 3834
     components:
     - type: Transform
       parent: 2
       pos: 30.5,-21.5
+- proto: ESBaseComputerTerminalCryptoNukeSecureTechStorage
+  entities:
   - uid: 5795
     components:
     - type: Transform
       parent: 2
-      pos: -9.5,8.5
-  - uid: 7743
+      pos: -19.5,-42.5
+- proto: ESBaseComputerTerminalCryptoNukeStationAdministrator
+  entities:
+  - uid: 151
     components:
     - type: Transform
       parent: 2
-      pos: -19.5,-42.5
+      pos: -9.5,8.5
 - proto: ESBaseComputerTerminalNavigation
   entities:
   - uid: 2094
@@ -41330,6 +41338,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -31.5,-47.5
+  - uid: 9521
+    components:
+    - type: Transform
+      parent: 2
+      pos: -24.5,-25.5
   - uid: 14840
     components:
     - type: Transform
@@ -47426,7 +47439,7 @@ entities:
       parent: 2
       pos: -59.5,-11.5
     - type: GasFilter
-      filteredGas: WaterVapor
+      filteredGas: Steam
   - uid: 9292
     components:
     - type: Transform
@@ -47446,7 +47459,7 @@ entities:
     - type: Transform
       parent: 2
       pos: -64.5,-8.5
-- proto: GasMinerWaterVapor
+- proto: GasMinerSteam
   entities:
   - uid: 4463
     components:
@@ -65855,11 +65868,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -22.5,-25.5
-  - uid: 9521
-    components:
-    - type: Transform
-      parent: 2
-      pos: -24.5,-25.5
 - proto: LockerStationAdminFilled
   entities:
   - uid: 358
@@ -71465,7 +71473,7 @@ entities:
   - uid: 14337
     components:
     - type: MetaData
-      name: robotics bay shutters
+      name: experiment's pen shutters
     - type: Transform
       parent: 2
       pos: 2.5,-20.5
@@ -73656,13 +73664,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -23.5,-17.5
-- proto: SpawnMobMonkeyPunpun
-  entities:
-  - uid: 151
-    components:
-    - type: Transform
-      parent: 2
-      pos: -11.5,-4.5
 - proto: SpawnMobPollyParrot
   entities:
   - uid: 4232
@@ -74493,7 +74494,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 7.5,-21.5
     - type: SurveillanceCamera
-      id: Robotics
+      id: Experiment's Pen
 - proto: SurveillanceCameraSecurity
   entities:
   - uid: 3730
@@ -75486,6 +75487,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -58.5,19.5
+  - uid: 7743
+    components:
+    - type: Transform
+      parent: 2
+      pos: -24.5,-25.5
   - uid: 7821
     components:
     - type: Transform

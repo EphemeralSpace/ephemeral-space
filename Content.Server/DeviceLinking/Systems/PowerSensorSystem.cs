@@ -62,9 +62,6 @@ public sealed partial class PowerSensorSystem : EntitySystem
 
     private void OnExamined(EntityUid uid, PowerSensorComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         args.PushMarkup(Loc.GetString("power-sensor-examine", ("output", comp.Output)));
     }
 

@@ -39,6 +39,9 @@ ui-options-restart-sounds = Round Restart Sounds
 ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
 ui-options-bwoink-sound = Play AHelp Notification Sound
+ui-options-mute-unfocused = Mute audio when unfocused
+ui-options-audio-device = Output device:
+ui-options-audio-device-default = System default
 ui-options-volume-label = Volume
 
 ## Graphics menu
@@ -377,6 +380,7 @@ ui-options-main-font = Main font
 ui-options-title-font = Title font
 ui-options-machine-title-font = Machine title font
 ui-options-monospace-font = Monospace font
+ui-options-chat-font = Chat bubble font
 
 ui-options-font-selector-default = <default>
 ui-options-font-selector-preview-text = Preview Text

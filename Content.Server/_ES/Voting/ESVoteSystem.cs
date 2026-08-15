@@ -1,14 +1,13 @@
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Voting;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared.Administration;
-using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
-using Robust.Shared.Network;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
 
@@ -18,9 +17,9 @@ namespace Content.Server._ES.Voting;
 public sealed partial class ESVoteSystem : ESSharedVoteSystem
 {
     [Dependency] private IAdminLogManager _adminLog = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
 
-    private const string VoteSound = "/Audio/Effects/voteding.ogg";
+    private static readonly SoundSpecifier VoteSound = new SoundPathSpecifier("/Audio/Effects/voteding.ogg");
 
     public override void Initialize()
     {
@@ -55,35 +54,45 @@ public sealed partial class ESVoteSystem : ESSharedVoteSystem
 
     protected override void SendVoteStartAnnouncement(Entity<ESVoteComponent> ent)
     {
-        var voters = new List<INetChannel>();
+        var voters = new List<ICommonSession>();
         var query = EntityQueryEnumerator<ESVoterComponent, ActorComponent>();
         while (query.MoveNext(out _, out _, out var actor))
         {
-            voters.Add(actor.PlayerSession.Channel);
+            voters.Add(actor.PlayerSession);
         }
 
         var msg = Loc.GetString("es-voter-chat-announce-result",
             ("query", Loc.GetString("es-voter-chat-announce-vote-start")),
             ("result", Name(ent)));
         var wrappedMsg = Loc.GetString("es-voter-chat-announce-wrap-message", ("message", msg));
-        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, ent, false, true, voters, Color.Plum, audioPath: VoteSound);
+        _chat.SendChatMessage(wrappedMsg,
+            voters,
+            IESSharedChatManager.ServerChannel,
+            null,
+            sound: VoteSound,
+            color: Color.Plum);
         _adminLog.Add(LogType.Vote, LogImpact.Medium, $"Started vote for {ToPrettyString(ent)}.");
     }
 
     protected override void SendVoteResultAnnouncement(Entity<ESVoteComponent> ent, ESVoteOption result)
     {
-        var voters = new List<INetChannel>();
+        var voters = new List<ICommonSession>();
         var query = EntityQueryEnumerator<ESVoterComponent, ActorComponent>();
         while (query.MoveNext(out _, out _, out var actor))
         {
-            voters.Add(actor.PlayerSession.Channel);
+            voters.Add(actor.PlayerSession);
         }
 
         var msg = Loc.GetString("es-voter-chat-announce-result",
             ("query", Loc.GetString(ent.Comp.QueryString)),
             ("result", result.DisplayString));
         var wrappedMsg = Loc.GetString("es-voter-chat-announce-wrap-message", ("message", msg));
-        _chat.ChatMessageToMany(ChatChannel.Server, msg, wrappedMsg, ent, false, true, voters, Color.Plum);
+        _chat.SendChatMessage(wrappedMsg,
+            voters,
+            IESSharedChatManager.ServerChannel,
+            null,
+            sound: VoteSound,
+            color: Color.Plum);
         _adminLog.Add(LogType.Vote, LogImpact.Medium, $"Finished vote for {ToPrettyString(ent)}. Vote conclusion: \"{msg}\"");
     }
 }

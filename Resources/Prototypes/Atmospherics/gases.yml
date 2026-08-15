@@ -56,8 +56,8 @@
   isFuel: true
 
 - type: gas
-  id: WaterVapor
-  name: gases-water-vapor
+  id: Steam
+  name: gases-steam
   specificHeat: 40
   heatCapacityRatio: 1.33
   molarMass: 18

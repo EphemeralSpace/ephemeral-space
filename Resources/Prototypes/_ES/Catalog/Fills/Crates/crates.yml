@@ -174,7 +174,7 @@
   parent: CrateWeaponSecure
   id: ESCrateSecurityPistols
   name: pistol crate
-  description: Contains two 9mm pistols and a spare mag for each. Requires Armory access to open.
+  description: Contains two 9mm pistols and a spare mag for each. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -190,7 +190,7 @@
   parent: CrateWeaponSecure
   id: ESCrateSecurityShotgun
   name: shotgun crate
-  description: Contains one shotgun and two boxes of shells. Requires Armory access to open.
+  description: Contains one shotgun and two boxes of shells. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill
@@ -222,7 +222,7 @@
   parent: CrateWeaponSecure
   id: ESCrateSecurityEnergyRifles
   name: energy rifle crate
-  description: Contains two energy rifles. Requires Armory access to open.
+  description: Contains two energy rifles. Requires Security access to open.
   suffix: ES
   components:
   - type: EntityTableContainerFill

@@ -4,6 +4,7 @@ using Content.Shared._ES.Nuke.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Sparks;
+using Content.Shared._ES.Stagehand;
 using Content.Shared._ES.WarpDrive;
 using Content.Shared.Examine;
 using Content.Shared.Mind;
@@ -22,6 +23,7 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
     [Dependency] private ESSparksSystem _sparks = default!;
     [Dependency] protected SharedStationSystem Station = default!;
     [Dependency] protected SharedUserInterfaceSystem UserInterface = default!;
+    [Dependency] private ESSharedStagehandNotificationsSystem _notif = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -46,7 +48,7 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
 
     private void OnExamined(Entity<ESCryptoNukeConsoleComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !ent.Comp.Compromised)
+        if (!ent.Comp.Compromised)
             return;
         args.PushMarkup(Loc.GetString("es-cryptonuke-examine-compromised"));
     }
@@ -69,6 +71,11 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
         ent.Comp.Compromised = true;
         Dirty(ent);
         UpdateUiState((ent, ent, Comp<UserInterfaceComponent>(ent)));
+        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-terminal-compromised",
+            ("player", _notif.WrapEntityName(args.Actor)),
+            ("terminal", ent.Owner)),
+            ESStagehandNotificationSeverity.High);
+
         _objective.RefreshObjectiveProgress<ESCryptoNukeHackObjectiveComponent>();
     }
 
@@ -85,13 +92,16 @@ public abstract partial class ESSharedCryptoNukeSystem : EntitySystem
         Dirty(ent);
         UpdateUiState((ent, ent, Comp<UserInterfaceComponent>(ent)));
 
+        _notif.SendStagehandNotification(Loc.GetString("es-stagehand-notification-terminal-warp-drive-override",
+            ("player", _notif.WrapEntityName(args.Actor)),
+            ("terminal", ent.Owner))); // medium intentionally, since it plays an announcement anyway
+
         var ev = new ESCryptoNukeSecurityOverridenEvent(ent.Owner, args.Actor);
         RaiseLocalEvent(ref ev);
     }
 
     protected virtual void UpdateUiState(Entity<ESCryptoNukeConsoleComponent, UserInterfaceComponent> ent)
     {
-
     }
 
     /// <summary>

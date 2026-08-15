@@ -1,12 +1,12 @@
-using Content.Server.Chat.Systems;
+using Content.Server._ES.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Chat;
 namespace Content.Server.Access.Systems;
 
 public sealed partial class IdCardSystem : SharedIdCardSystem
 {
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
     public override void ExpireId(Entity<ExpireIdCardComponent> ent)
     {
@@ -17,12 +17,10 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
 
         if (ent.Comp.ExpireMessage != null)
         {
-            _chat.TrySendInGameICMessage(
-                ent,
+            _chat.TrySendMessage(
                 Loc.GetString(ent.Comp.ExpireMessage),
-                InGameICChatType.Speak,
-                ChatTransmitRange.Normal,
-                true);
+                ESSharedChatSystem.LocalChannel,
+                ent);
         }
     }
 }

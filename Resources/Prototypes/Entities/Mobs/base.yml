@@ -32,6 +32,11 @@
     horizontalRotation: 0
   - type: DoAfter
   - type: Examiner
+  - type: ESChatPermissions
+    inherentChannels:
+    - Speak
+    - Whisper
+    - Emote
   - type: Eye
   - type: ContentEye
   - type: CameraRecoil

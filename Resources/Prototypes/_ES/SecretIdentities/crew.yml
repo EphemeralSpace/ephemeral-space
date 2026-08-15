@@ -22,6 +22,8 @@
   description: es-secret-identity-arsonist-desc
   color: red
   weight: 0.25
+  tips:
+  - ArsonistFireSources
   objectives:
     id: ESObjectiveArsonistLightFires
 

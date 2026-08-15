@@ -1,10 +1,9 @@
 using Content.Server.Administration;
-using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Server.Prayer;
 using Content.Server.Tips;
+using Content.Shared._ES.Chat;
 using Content.Shared.Administration;
-using Content.Shared.Chat;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -15,7 +14,7 @@ namespace Content.Server.Toolshed.Commands.Misc;
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed partial class MsgCommand : ToolshedCommand
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
 
     private PrayerSystem? _prayer;
     private PopupSystem? _popup;
@@ -45,7 +44,7 @@ public sealed partial class MsgCommand : ToolshedCommand
             if (!TryComp<ActorComponent>(ent, out var actor))
                 continue;
 
-            _chatManager.ChatMessageToOne(ChatChannel.Local, message, message, EntityUid.Invalid, false, actor.PlayerSession.Channel);
+            _chatManager.SendChatMessage(message, actor.PlayerSession, ESSharedChatSystem.LocalChannel, null);
             yield return ent;
         }
     }

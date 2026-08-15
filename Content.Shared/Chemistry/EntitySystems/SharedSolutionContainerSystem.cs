@@ -858,8 +858,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
     /// </summary>
     private void OnExamineSolution(Entity<ExaminableSolutionComponent> entity, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange ||
-            !CanSeeHiddenSolution(entity, args.Examiner) ||
+        if (!CanSeeHiddenSolution(entity, args.Examiner) ||
             !TryGetSolution(entity.Owner, entity.Comp.Solution, out _, out var solution))
             return;
 

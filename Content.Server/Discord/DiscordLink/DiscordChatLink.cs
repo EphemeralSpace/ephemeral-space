@@ -1,7 +1,5 @@
-﻿using Content.Server.Chat.Managers;
+﻿using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
-using NetCord;
 using NetCord.Gateway;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
@@ -12,7 +10,7 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 {
     [Dependency] private DiscordLink _discordLink = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private ITaskManager _taskManager = default!;
     [Dependency] private ILogManager _logManager = default!;
 
@@ -80,20 +78,20 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 
         if (message.ChannelId == _oocChannelId)
         {
-            _taskManager.RunOnMainThread(() => _chatManager.SendHookOOC(message.Author.Username, contents));
+            _taskManager.RunOnMainThread(() => _chatManager.SendDiscordHookMessage(ESDiscordChannel.OOC, message.Author.Username, contents));
         }
         else if (message.ChannelId == _adminChannelId)
         {
-            _taskManager.RunOnMainThread(() => _chatManager.SendHookAdmin(message.Author.Username, contents));
+            _taskManager.RunOnMainThread(() => _chatManager.SendDiscordHookMessage(ESDiscordChannel.AdminChat, message.Author.Username, contents));
         }
     }
 
-    public async void SendMessage(string message, string author, ChatChannel channel)
+    public async void SendMessage(string message, string author, ESDiscordChannel channel)
     {
         var channelId = channel switch
         {
-            ChatChannel.OOC => _oocChannelId,
-            ChatChannel.AdminChat => _adminChannelId,
+            ESDiscordChannel.OOC => _oocChannelId,
+            ESDiscordChannel.AdminChat => _adminChannelId,
             _ => throw new InvalidOperationException("Channel not linked to Discord."),
         };
 
@@ -108,7 +106,7 @@ public sealed partial class DiscordChatLink : IPostInjectInit
 
         try
         {
-            await _discordLink.SendMessageAsync(channelId.Value, $"**{channel.GetString()}**: `{author}`: {message}");
+            await _discordLink.SendMessageAsync(channelId.Value, $"**{GetString(channel)}**: `{author}`: {message}");
         }
         catch (Exception e)
         {
@@ -119,5 +117,19 @@ public sealed partial class DiscordChatLink : IPostInjectInit
     void IPostInjectInit.PostInject()
     {
         _sawmill = _logManager.GetSawmill("discord.chat");
+    }
+
+    /// <summary>
+    /// Gets a string representation of a chat channel.
+    /// </summary>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when this channel does not have a string representation set.</exception>
+    public static string GetString(ESDiscordChannel channel)
+    {
+        return channel switch
+        {
+            ESDiscordChannel.OOC => Loc.GetString("chat-channel-humanized-ooc"),
+            ESDiscordChannel.AdminChat => Loc.GetString("chat-channel-humanized-admin"),
+            _ => throw new ArgumentOutOfRangeException(nameof(channel), channel, null)
+        };
     }
 }

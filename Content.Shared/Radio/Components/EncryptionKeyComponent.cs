@@ -1,3 +1,4 @@
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -12,11 +13,11 @@ namespace Content.Shared.Radio.Components;
 public sealed partial class EncryptionKeyComponent : Component
 {
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
+    public HashSet<ProtoId<ESChatChannelPrototype>> Channels = new();
 
     /// <summary>
     ///     This is the channel that will be used when using the default/department prefix (<see cref="SharedChatSystem.DefaultChannelKey"/>).
     /// </summary>
     [DataField]
-    public ProtoId<RadioChannelPrototype>? DefaultChannel;
+    public ProtoId<ESChatChannelPrototype>? DefaultChannel;
 }

@@ -609,3 +609,17 @@ es-names-last-dataset-591 = Yalknowbouttheapple
 es-names-last-dataset-592 = Hypertext
 es-names-last-dataset-593 = Botnet
 es-names-last-dataset-594 = Greasebean
+# 2026-08
+es-names-last-dataset-595 = Farkleberry
+es-names-last-dataset-596 = Website
+es-names-last-dataset-597 = Bruisepack
+es-names-last-dataset-598 = Wave
+es-names-last-dataset-599 = Borscht
+es-names-last-dataset-600 = Otmeal
+es-names-last-dataset-601 = Snartly
+es-names-last-dataset-602 = Higgs-Boson
+es-names-last-dataset-603 = Dvorak
+es-names-last-dataset-604 = Speedrun
+es-names-last-dataset-605 = Hardball
+es-names-last-dataset-606 = Macduff
+es-names-last-dataset-607 = Ohdove

@@ -78,7 +78,7 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 
         private void OnExamined(Entity<GasPassiveGateComponent> gate, ref ExaminedEvent args)
         {
-            if (!Comp<TransformComponent>(gate).Anchored || !args.IsInDetailsRange) // Not anchored? Out of range? No status.
+            if (!Comp<TransformComponent>(gate).Anchored) // Not anchored? Out of range? No status.
                 return;
 
             var str = Loc.GetString("gas-passive-gate-examined", ("flowRate", $"{gate.Comp.FlowRate:0.#}"));

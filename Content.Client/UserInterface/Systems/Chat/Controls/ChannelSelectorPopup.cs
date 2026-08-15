@@ -1,76 +1,48 @@
-using Content.Shared.Chat;
+using System.Linq;
+using Content.Shared._ES.Chat;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
-public sealed class ChannelSelectorPopup : Popup
+public sealed partial class ChannelSelectorPopup : Popup
 {
-    // order in which the channels show up in the channel selector
-    public static readonly ChatSelectChannel[] ChannelSelectorOrder =
-    {
-        ChatSelectChannel.Local,
-        ChatSelectChannel.Whisper,
-        ChatSelectChannel.Emotes,
-        ChatSelectChannel.Radio,
-        ChatSelectChannel.LOOC,
-        ChatSelectChannel.OOC,
-        ChatSelectChannel.Dead,
-        ChatSelectChannel.Admin
-        // NOTE: Console is not in there and it can never be permanently selected.
-        // You can, however, still submit commands as console by prefixing with /.
-    };
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly BoxContainer _channelSelectorHBox;
-    private readonly Dictionary<ChatSelectChannel, ChannelSelectorItemButton> _selectorStates = new();
-    private readonly ChatUIController _chatUIController;
+    private readonly Dictionary<ProtoId<ESChatChannelPrototype>, ChannelSelectorItemButton> _selectorStates = new();
 
-    public event Action<ChatSelectChannel>? Selected;
+    public event Action<ProtoId<ESChatChannelPrototype>>? Selected;
+
+    public List<ProtoId<ESChatChannelPrototype>> Channels { get; } = new();
+
+    public ProtoId<ESChatChannelPrototype>? FirstChannel => Channels.FirstOrNull();
 
     public ChannelSelectorPopup()
     {
+        IoCManager.InjectDependencies(this);
+
         _channelSelectorHBox = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
             SeparationOverride = 1
         };
 
-        _chatUIController = UserInterfaceManager.GetUIController<ChatUIController>();
-        _chatUIController.SelectableChannelsChanged += SetChannels;
-        SetChannels(_chatUIController.SelectableChannels);
-
         AddChild(_channelSelectorHBox);
     }
 
-    public ChatSelectChannel? FirstChannel
+    public void UpdateChannels(HashSet<ProtoId<ESChatChannelPrototype>> channels)
     {
-        get
-        {
-            foreach (var selector in _selectorStates.Values)
-            {
-                if (!selector.IsHidden)
-                    return selector.Channel;
-            }
-
-            return null;
-        }
-    }
-
-    private bool IsPreferredAvailable()
-    {
-        var preferred = _chatUIController.MapLocalIfGhost(_chatUIController.GetPreferredChannel());
-        return _selectorStates.TryGetValue(preferred, out var selector) &&
-               !selector.IsHidden;
-    }
-
-    public void SetChannels(ChatSelectChannel channels)
-    {
-        var wasPreferredAvailable = IsPreferredAvailable();
-
+        Channels.Clear();
         _channelSelectorHBox.RemoveAllChildren();
 
-        foreach (var channel in ChannelSelectorOrder)
+        foreach (var channel in _prototype.EnumeratePrototypes<ESChatChannelPrototype>().OrderBy(p => p.Order))
         {
+            if (channel.Abstract)
+                continue;
+
             if (!_selectorStates.TryGetValue(channel, out var selector))
             {
                 selector = new ChannelSelectorItemButton(channel);
@@ -78,7 +50,7 @@ public sealed class ChannelSelectorPopup : Popup
                 selector.OnPressed += OnSelectorPressed;
             }
 
-            if ((channels & channel) == 0)
+            if (!channels.Contains(channel))
             {
                 if (selector.Parent == _channelSelectorHBox)
                 {
@@ -87,18 +59,9 @@ public sealed class ChannelSelectorPopup : Popup
             }
             else if (selector.IsHidden)
             {
+                Channels.Add(channel.ID);
                 _channelSelectorHBox.AddChild(selector);
             }
-        }
-
-        var isPreferredAvailable = IsPreferredAvailable();
-        if (!wasPreferredAvailable && isPreferredAvailable)
-        {
-            Select(_chatUIController.GetPreferredChannel());
-        }
-        else if (wasPreferredAvailable && !isPreferredAvailable)
-        {
-            Select(ChatSelectChannel.OOC);
         }
     }
 
@@ -108,18 +71,8 @@ public sealed class ChannelSelectorPopup : Popup
         Select(button.Channel);
     }
 
-    private void Select(ChatSelectChannel channel)
+    private void Select(ProtoId<ESChatChannelPrototype> channel)
     {
         Selected?.Invoke(channel);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (!disposing)
-            return;
-
-        _chatUIController.SelectableChannelsChanged -= SetChannels;
     }
 }

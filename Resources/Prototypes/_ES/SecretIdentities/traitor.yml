@@ -19,6 +19,7 @@
   - InfiltratorC4Deniability
   - InfiltratorRatmanDoors
   - EmagAirlockDeniability
+  - InfiltratorEmagBolt
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
@@ -88,5 +89,7 @@
   description: es-secret-identity-sleeper-agent-desc
   color: darkturquoise
   weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
+  tips:
+  - SleeperAgentBalance
   mindComponents:
   - type: ESSuperfan

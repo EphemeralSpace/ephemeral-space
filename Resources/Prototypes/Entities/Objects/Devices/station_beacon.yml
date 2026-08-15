@@ -361,11 +361,11 @@
 
 - type: entity
   parent: DefaultStationBeaconScience
-  id: DefaultStationBeaconRobotics
-  suffix: Robotics
+  id: DefaultStationBeaconExperimentPen
+  suffix: Experiment's Pen
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-robotics
+    defaultText: station-beacon-experiment-pen
 
 - type: entity
   parent: DefaultStationBeaconScience

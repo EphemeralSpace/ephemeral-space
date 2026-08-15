@@ -8,7 +8,6 @@
     FlashlightSeclite: 5
     ClothingEyesGlassesSunglasses: 2
     ClothingEyesGlassesSecurity: 4
-    RadioHandheldSecurity: 5
   # security officers need to follow a diet regimen!
   contrabandInventory:
     FoodDonutHomer: 12

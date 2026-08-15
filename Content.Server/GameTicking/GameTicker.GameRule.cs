@@ -9,7 +9,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization;
 // ES START
 using Content.Server.StationEvents.Components;
 using Content.Shared._ES.Voting.Components;
@@ -88,11 +87,11 @@ public sealed partial class GameTicker
         _adminLogger.Add(LogType.EventStarted, $"Added game rule {ToPrettyString(ruleEntity)}");
         var str = Loc.GetString("station-event-system-run-event", ("eventName", ToPrettyString(ruleEntity)));
 #if DEBUG
-        _chatManager.SendAdminAlert(str);
+        _chatManager.SendAdminMessage(str);
 #else
         if (RunLevel == GameRunLevel.InRound) // avoids telling admins the round type before it starts so that can be handled elsewhere.
         {
-            _chatManager.SendAdminAlert(str);
+            _chatManager.SendAdminMessage(str);
         }
 #endif
         Log.Info(str);
@@ -369,7 +368,7 @@ public sealed partial class GameTicker
             if (shell.Player != null)
             {
                 _adminLogger.Add(LogType.EventStarted, $"{shell.Player} tried to add game rule [{rule}] via command");
-                _chatManager.SendAdminAnnouncement(Loc.GetString("add-gamerule-admin", ("rule", rule), ("admin", shell.Player)));
+                _chatManager.SendAdminMessage(Loc.GetString("add-gamerule-admin", ("rule", rule), ("admin", shell.Player)));
             }
             else
             {

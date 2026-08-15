@@ -14,6 +14,7 @@
     # - type: EffectVisuals
     # ES END
     - type: WeaponArcVisuals
+    - type: ESViewconeOccludable
     - type: Tag
       tags:
         - HideContextMenu
@@ -30,6 +31,7 @@
     - type: EffectVisuals
     - type: WeaponArcVisuals
       fadeOut: false
+    - type: ESViewconeOccludable
 
 
 # Uses TimedDespawn instead of EffectVisuals because auto animation is easier but doesn't raise an animation complete event.

@@ -1,12 +1,12 @@
+using Content.Server._ES.Chat;
 using Content.Server.Atmos.Rotting;
-using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Server.Electrocution;
 using Content.Server.EUI;
 using Content.Server.Ghost;
 using Content.Server.Popups;
+using Content.Shared._ES.Chat;
 using Content.Shared.PowerCell;
-using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -29,7 +29,7 @@ namespace Content.Server.Medical;
 /// </summary>
 public sealed partial class DefibrillatorSystem : EntitySystem
 {
-    [Dependency] private ChatSystem _chatManager = default!;
+    [Dependency] private ESChatSystem _chatManager = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private DoAfterSystem _doAfter = default!;
     [Dependency] private ElectrocutionSystem _electrocution = default!;
@@ -208,14 +208,16 @@ public sealed partial class DefibrillatorSystem : EntitySystem
         var dead = true;
         if (_rotting.IsRotten(target))
         {
-            _chatManager.TrySendInGameICMessage(uid, Loc.GetString("defibrillator-rotten"),
-                InGameICChatType.Speak, true);
+            _chatManager.TrySendMessage(Loc.GetString("defibrillator-rotten"),
+                ESSharedChatSystem.LocalChannel,
+                uid);
         }
         // Begin offbrand
         else if (heartDefibrillatable is not null && _mobState.IsDead(target, mob))
         {
-            _chatManager.TrySendInGameICMessage(uid, Loc.GetString(heartDefibrillatable.TargetIsDead),
-                InGameICChatType.Speak, true);
+            _chatManager.TrySendMessage(Loc.GetString(heartDefibrillatable.TargetIsDead),
+                ESSharedChatSystem.LocalChannel,
+                uid);
         }
         else if (heartDefibrillatable is not null)
         {
@@ -224,7 +226,9 @@ public sealed partial class DefibrillatorSystem : EntitySystem
 
             foreach (var message in before.Messages)
             {
-                _chatManager.TrySendInGameICMessage(uid, Loc.GetString(message), InGameICChatType.Speak, true);
+                _chatManager.TrySendMessage(Loc.GetString(message),
+                    ESSharedChatSystem.LocalChannel,
+                    uid);
             }
         }
         // End Offbrand
@@ -253,8 +257,9 @@ public sealed partial class DefibrillatorSystem : EntitySystem
             }
             else
             {
-                _chatManager.TrySendInGameICMessage(uid, Loc.GetString("defibrillator-no-mind"),
-                    InGameICChatType.Speak, true);
+                _chatManager.TrySendMessage(Loc.GetString("defibrillator-no-mind"),
+                    ESSharedChatSystem.LocalChannel,
+                    uid);
             }
         }
 

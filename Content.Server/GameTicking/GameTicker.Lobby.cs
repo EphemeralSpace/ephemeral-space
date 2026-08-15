@@ -276,7 +276,7 @@ namespace Content.Server.GameTicking
 
             RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
 
-            _chatManager.DispatchServerAnnouncement(Loc.GetString(Paused
+            _chatManager.SendServerMessage(Loc.GetString(Paused
                 ? "game-ticker-pause-start"
                 : "game-ticker-pause-start-resumed"));
 

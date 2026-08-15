@@ -27,13 +27,10 @@ public sealed partial class BotanySwabSystem : EntitySystem
     /// </summary>
     private void OnExamined(EntityUid uid, BotanySwabComponent swab, ExaminedEvent args)
     {
-        if (args.IsInDetailsRange)
-        {
-            if (swab.SeedData != null)
-                args.PushMarkup(Loc.GetString("swab-used"));
-            else
-                args.PushMarkup(Loc.GetString("swab-unused"));
-        }
+        if (swab.SeedData != null)
+            args.PushMarkup(Loc.GetString("swab-used"));
+        else
+            args.PushMarkup(Loc.GetString("swab-unused"));
     }
 
     /// <summary>

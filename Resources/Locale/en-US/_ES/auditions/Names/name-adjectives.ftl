@@ -57,3 +57,5 @@ es-names-adjective-dataset-53 = Nuclear
 es-names-adjective-dataset-54 = Moldy
 es-names-adjective-dataset-55 = Pheemy
 es-names-adjective-dataset-56 = Classic
+# 2026-08
+es-names-adjective-dataset-57 = Ghastly

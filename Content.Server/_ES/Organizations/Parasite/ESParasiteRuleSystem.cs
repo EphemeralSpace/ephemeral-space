@@ -1,21 +1,22 @@
 using Content.Server._ES.SecretIdentity;
 using Content.Server._ES.Objectives;
 using Content.Server._ES.Organizations.Parasite.Components;
-using Content.Server.Chat.Managers;
+using Content.Server.Damage.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Cinematic;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.Objectives.Components;
-using Content.Shared.ActionBlocker;
-using Content.Shared.Administration.Systems;
-using Content.Shared.Chat;
+using Content.Shared._Offbrand.Wounds;
+using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
+using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Audio;
 using Robust.Server.Player;
@@ -26,19 +27,20 @@ namespace Content.Server._ES.Organizations.Parasite;
 
 public sealed partial class ESParasiteRuleSystem : EntitySystem
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ESCinematicSystem _cinematic = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private GodmodeSystem _godmode = default!;
+    [Dependency] private HealthRankingSystem _healthRanking = default!;
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private ESObjectiveSystem _objective = default!;
     [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
@@ -122,10 +124,11 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (_secretIdentity.GetOrganizationOrNull(mind.Value.AsNullable()) == ent.Comp.IgnoreOrganization)
                 continue;
 
-            if (_actionBlocker.CanMove(hit))
+            if (!_healthRanking.IsCritical(hit) || !HasComp<StunnedComponent>(hit))
                 continue;
 
-            _secretIdentity.ChangeSecretIdentity(mind.Value, ent.Comp.SecretIdentity);
+            SpawnAtPosition(ent.Comp.NestSpawn, Transform(hit).Coordinates);
+            _gibbing.Gib(hit);
             _audio.PlayPvs(ent.Comp.Sound, hit);
         }
     }
@@ -136,15 +139,18 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
         _objective.FreezeObjectives<ESParasiteWinFreezeObjectiveComponent>();
 
         var msg = Loc.GetString("es-parasite-swarm-notif");
-        var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
+
+        var sessions = new List<ICommonSession>();
         foreach (var mind in _secretIdentity.GetOrganizationMembers(ent.Owner))
         {
             if (!TryComp<MindComponent>(mind, out var mindComp) ||
                 !_playerManager.TryGetSessionById(mindComp.UserId, out var session))
                 continue;
 
-            _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.YellowGreen);
+            sessions.Add(session);
+
         }
+        _chatManager.SendServerMessage(msg, sessions, color: Color.YellowGreen);
 
         _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay, new ESParasiteSwarmTimerEvent());
         _entityTimer.SpawnTimer(ent, ent.Comp.SwarmDelay + ent.Comp.WinDelay, new ESParasiteWinCheckTimerEvent());
@@ -161,7 +167,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("es-parasite-burst-popup", ("ent", Identity.Entity(owned, EntityManager))), owned, PopupType.LargeCaution);
             _audio.PlayPvs(ent.Comp.BurstSound, owned);
 
-            _rejuvenate.PerformRejuvenate(ent);
+            _godmode.EnableGodmode(owned);
             _stationSpawning.EquipStartingGear(owned, ent.Comp.SwarmGear);
         }
     }
@@ -174,7 +180,7 @@ public sealed partial class ESParasiteRuleSystem : EntitySystem
             if (!TryComp<MindComponent>(mind, out var mindComp))
                 continue;
 
-            if (!_mind.IsCharacterDeadIc(mindComp))
+            if (!_mind.IsCharacterDeadIc(mindComp) && HasComp<ActorComponent>(mindComp.CurrentEntity))
                 ++nonOrganizationCount;
         }
 

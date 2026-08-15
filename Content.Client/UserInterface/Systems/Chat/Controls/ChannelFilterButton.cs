@@ -30,9 +30,8 @@ public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
             })
         );
 
-        _chatUIController.FilterableChannelsChanged += Popup.SetChannels;
-        _chatUIController.UnreadMessageCountsUpdated += Popup.UpdateUnread;
-        Popup.SetChannels(_chatUIController.FilterableChannels);
+        // TODO: figure out WHEN filters can change and update them then
+        Popup.SetChannels();
     }
 
     protected override UIBox2 GetPopupPosition()
@@ -46,7 +45,8 @@ public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
 
     private void UpdateChildColors()
     {
-        if (_textureRect == null) return;
+        if (_textureRect == null)
+            return;
         switch (DrawMode)
         {
             case DrawModeEnum.Normal:
@@ -85,7 +85,6 @@ public sealed class ChannelFilterButton : ChatPopupButton<ChannelFilterPopup>
         if (!disposing)
             return;
 
-        _chatUIController.FilterableChannelsChanged -= Popup.SetChannels;
         _chatUIController.UnreadMessageCountsUpdated -= Popup.UpdateUnread;
     }
 }

@@ -54,11 +54,7 @@ public sealed class SecretIdentityTests : GameTest
     // Very strong, suitable for extreme violence.
     private static readonly EntProtoId Weapon = "MeleeDebug200";
 
-    private static readonly Dictionary<ProtoId<ESSecretIdentityPrototype>, string> CannotBeAttackerIdentities =
-        new()
-        {
-            {"Host", "Has blocked hands and cannot actually pick anything up as result"},
-        };
+    private static readonly Dictionary<ProtoId<ESSecretIdentityPrototype>, string> CannotBeAttackerIdentities = [];
 
     private static IEnumerable<TestCaseData> AttackerIdentities =>
         GameDataScrounger.PrototypesOfKind<ESSecretIdentityPrototype>()

@@ -4,6 +4,7 @@ using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Sparks;
+using Content.Shared._ES.Stagehand;
 using Content.Shared.Access;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
@@ -32,6 +33,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private ESSharedStagehandNotificationsSystem _notification = default!;
 
     // TODO: This is mostly just a bad hack for the fact that you can't have a nullable value that's easily editable in VV.
     // I would like to not go insane editing all the APCs for this until we have an actual system that does it semi-reasonably.
@@ -54,7 +56,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     {
         using (args.PushGroup(nameof(ESTraitorBuggableComponent)))
         {
-            if (ent.Comp.IsBugged && args.IsInDetailsRange)
+            if (ent.Comp.IsBugged)
             {
                 var progress = _entityTimer.GetTimerProgress(ent.Comp.Timer.Value);
                 args.PushMarkup(Loc.GetString("es-bugging-progress-examine-text", ("progress", (int) (progress * 100))));
@@ -141,6 +143,12 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
         _appearance.SetData(ent, ESTraitorBugVisuals.Bugged, true);
         ent.Comp.Timer = _entityTimer.SpawnTimer(ent, ent.Comp.BugDuration, new ESTraitorBugTimerEvent());
+
+        _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-bugged",
+            ("buggable", _notification.WrapEntityName(ent.Owner)),
+            ("player", _notification.WrapEntityName(args.User))),
+            ESStagehandNotificationSeverity.Low);
+
         Dirty(ent);
 
         args.Handled = true;
@@ -150,6 +158,11 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
     {
         if (args.Cancelled)
             return;
+
+        _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-bug-removed",
+            ("buggable", _notification.WrapEntityName(ent.Owner)),
+            ("player", _notification.WrapEntityName(args.User))),
+            ESStagehandNotificationSeverity.Low);
 
         CancelBug(ent.AsNullable());
         args.Handled = true;
