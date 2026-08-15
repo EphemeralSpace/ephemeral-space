@@ -9,6 +9,11 @@
   filterCategory: Radio
   glorfAffected: true
 
+- type: esChatChannel
+  id: BaseRadioWhisper
+  parent: BaseWhisper
+  speechBubbleType: say
+
 - type: entity
   id: ESBaseRadioChatProcessor
   abstract: true
@@ -19,7 +24,7 @@
 # Channels
 ## Common
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperCommon
   name: es-chat-channel-name-radio-common
   order: 4
@@ -51,7 +56,7 @@
 
 ## Command
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperCommand
   name: es-chat-channel-name-radio-command
   order: 5
@@ -82,7 +87,7 @@
 
 ## Engineering
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperEngineering
   name: es-chat-channel-name-radio-engineering
   order: 6
@@ -113,7 +118,7 @@
 
 ## Medical
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperMedical
   name: es-chat-channel-name-radio-medical
   order: 7
@@ -144,7 +149,7 @@
 
 ## Science
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperScience
   name: es-chat-channel-name-radio-science
   order: 8
@@ -175,7 +180,7 @@
 
 ## Security
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperSecurity
   name: es-chat-channel-name-radio-security
   order: 9
@@ -206,7 +211,7 @@
 
 ## Service
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperService
   name: es-chat-channel-name-radio-service
   order: 10
@@ -237,7 +242,7 @@
 
 ## Supply
 - type: esChatChannel
-  parent: BaseWhisper
+  parent: BaseRadioWhisper
   id: RadioWhisperSupply
   name: es-chat-channel-name-radio-supply
   order: 11
