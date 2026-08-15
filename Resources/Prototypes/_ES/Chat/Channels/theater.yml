@@ -7,6 +7,7 @@
   prefixes: [ "[" ]
   filterCategory: Lobby
   speechBubbleType: say
+  glorfAffected: true
   focusKey: FocusOOCWindow
   discordRelayChannel: OOC
 
@@ -30,6 +31,7 @@
   filterCategory: Stagehand
   chatBoxLocation: Stagehand
   speechBubbleType: say
+  glorfAffected: true
   focusKey: FocusDeadChatWindow
 
 - type: entity
