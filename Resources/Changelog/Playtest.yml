@@ -1818,3 +1818,13 @@ Entries:
       message: You can now hold shift to peek at player names
   id: 191
   time: '2026-08-15T00:52:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Chat prefixes now work regardless of case.
+    - type: Fix
+      message: Fixed lobby NPCs not having names in chat bubbles.
+    - type: Tweak
+      message: Speech can no longer be heard through walls.
+  id: 192
+  time: '2026-08-15T05:16:41.0000000+00:00'
