@@ -1836,3 +1836,13 @@ Entries:
         all bleeding stopped.
   id: 193
   time: '2026-08-15T05:20:00.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Remove
+      message: Stunprods and Flashes have been removed
+    - type: Tweak
+      message: Flashbangs and Sunglasses are now found in maintenance.
+    - type: Tweak
+      message: Welding equipment and sunglasses no long protect from flashbangs.
+  id: 194
+  time: '2026-08-15T17:24:34.0000000+00:00'
