@@ -516,20 +516,29 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         ent.Comp.BleedAmount = Math.Clamp(ent.Comp.BleedAmount, 0, ent.Comp.MaxBleedAmount);
 
         DirtyField(ent, ent.Comp, nameof(BloodstreamComponent.BleedAmount));
+        UpdateBleedAlert(ent);
 
-        // Begin Offbrand
+        return true;
+    }
+
+    public void UpdateBleedAlert(Entity<BloodstreamComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
         var bleedLevel = EffectiveBleedLevel((ent, ent.Comp));
+
+        // How much we're bleeding out of the max percent.
+        var bleedPercent = bleedLevel / ent.Comp.MaxBleedAmount;
 
         if (bleedLevel == 0)
             _alertsSystem.ClearAlert(ent.Owner, ent.Comp.BleedingAlert);
         else
         {
-            var severity = (short)Math.Clamp(Math.Round(bleedLevel, MidpointRounding.ToZero), 0, 10);
+            var maxSeverity = _alertsSystem.GetMaxSeverity(ent.Comp.BleedingAlert);
+            var severity = (short) Math.Ceiling(bleedPercent * maxSeverity);
             _alertsSystem.ShowAlert(ent.Owner, ent.Comp.BleedingAlert, severity);
         }
-        // End Offbrand
-
-        return true;
     }
 
     /// <summary>
