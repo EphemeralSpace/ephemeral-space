@@ -1858,3 +1858,11 @@ Entries:
       message: Radios click when you transmit a message.
   id: 196
   time: '2026-08-15T22:29:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Parasites now have a global hivemind channel they can speak to each
+        other on.
+  id: 197
+  time: '2026-08-15T22:29:55.0000000+00:00'
