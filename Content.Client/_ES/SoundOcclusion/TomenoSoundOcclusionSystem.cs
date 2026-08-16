@@ -1,4 +1,5 @@
 using System.Numerics;
+using System.Threading;
 using Content.Client._ES.LocalPlayer;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
@@ -99,53 +100,287 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         - sound only needs to grab a new path if the soundstage gen is different
     */
 
+    public int SoundStageGeneration = 0;
 
-    public record SoundstagePathTile(float Distance, Vector2i? PreviousTile);
+    // Used for tracking significant movement updates
+    public Vector2i? LastUpdatedTile = null;
+    public EntityUid? LastGridUid = null;
+    // Used for updating paths
+    public Vector2? LastLocalPos = null;
+    // ya
+    public SoundPaths? CurrentSoundPaths = null;
 
-    public Dictionary<Vector2i, bool> Soundstage = new();
-    public Dictionary<Vector2i, SoundstagePathTile> SoundstagePaths = new();
-    public Vector2i? LocalGridTile = null;
-    public Vector2? LocalGridPos = null;
-    public EntityUid? LocalGridUid = null;
+    private bool _dirtySoundStage = true;
 
-    public override void Update(float frameTime)
+    public sealed class SoundStage
     {
-        // TODO: do stuff here
+        // occlusion data
+        public required Dictionary<Vector2i, bool> Passable { get; init; }
+
+        // grid snapshot — so a worker thread never touches components
+        public required EntityUid GridUid { get; init; }
+        public required MapId MapId { get; init; }
+
+        // Will we need this later?
+        // I guess so, in case the grid becomes invalid and the soundstage is still active
+        public required ushort TileSize { get; init; }
+        public required Matrix3x2 WorldMatrix { get; init; }
+        public required Matrix3x2 InvWorldMatrix { get; init; }
+
+        public required bool IsPlanet { get; init; }   // decides the default for unknown tiles
+
+        // listener
+        public required Vector2i ListenerTile { get; init; }
+
+        // Do we need this? We will need to update the listener pos live
+        public required Vector2 ListenerPos { get; init; }   // grid-local
+
+        public required int Generation { get; init; }
+
+        public bool IsPassable(Vector2i position)
+        {
+            return Passable.GetValueOrDefault(position, IsPlanet);
+        }
+
+        public Vector2 WorldToLocal(Vector2 posWorld)
+        {
+            return Vector2.Transform(posWorld, InvWorldMatrix);
+        }
+
+        public Vector2 LocalToWorld(Vector2 posLocal)
+        {
+            return Vector2.Transform(posLocal, WorldMatrix);
+        }
+
+        public Vector2i LocalToTile(Vector2 posLocal)
+        {
+            // honestly TileSize is a no-op 100% of the time right now (AFAIK)
+            var x = (int)Math.Floor(posLocal.X / TileSize);
+            var y = (int)Math.Floor(posLocal.Y / TileSize);
+            return new Vector2i(x, y);
+        }
+
+        public Vector2i WorldToTile(Vector2 posWorld)
+        {
+            return LocalToTile(WorldToLocal(posWorld));
+        }
+
+        // Supercover DDA
+        public bool CheckVisibility(Vector2 from, Vector2 to)
+        {
+            var t1 = to.Floored();
+
+            var dX = from.X - to.X;
+            var dY = from.Y - to.Y;
+
+            var sX = dX > 0 ? 1 : -1;
+            var sY = dY > 0 ? 1 : -1;
+
+            var tDeltaX = dX != 0 ? Math.Abs(1f / dX) : float.PositiveInfinity;
+            var tDeltaY = dY != 0 ? Math.Abs(1f / dY) : float.PositiveInfinity;
+
+            var tMaxX = dX > 0 ? ((t1.X + 1 - to.X) / dX) : (dX < 0 ? (t1.X - to.X) / dX : float.PositiveInfinity);
+            var tMaxY = dY > 0 ? ((t1.Y + 1 - to.Y) / dY) : (dY < 0 ? (t1.Y - to.Y) / dY : float.PositiveInfinity);
+
+            // If this was the proper algo then here you would check the start tile, but I think it's better if we don't
+            //   for the sake of sound emitters within walls
+
+            var steps = Math.Abs(Math.Floor(from.X) - t1.X) + Math.Abs(Math.Floor(from.Y) - t1.Y);
+            for (var i = 0; i < steps; i++)
+            {
+                if (tMaxX < tMaxY)
+                {
+                    tMaxX += tDeltaX;
+                    t1.X += sX;
+                }
+                else
+                {
+                    tMaxY += tDeltaY;
+                    t1.Y += sY;
+                }
+
+                // TODO: Abstract every instance of Soundstage.TryGetValue for planetmaps
+                if (!IsPassable(t1))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 
-    public bool IsSoundstageValid()
+    public sealed class PathResult
     {
-        return (LocalGridTile.HasValue && LocalGridPos.HasValue && LocalGridUid.HasValue);
+        // Portal locations - if they're not
+        public Vector2? EmitterPortal { get; init; }
+        public Vector2? ListenerPortal { get; init; }
+
+        // Pathed distance between Emitter and Listener portals
+        public float PortalDistance { get; init; }
+
+        // For invalidating the path
+        public int Generation { get; init; }
+        public Vector2i EmitterTile { get; init; }
+
+        // DEBUG!
+        public required List<Vector2i> Path { get; init; }
     }
 
-    public bool IsSoundPassable(Vector2i tile)
+    public sealed class SoundPaths
     {
-        // TODO: For planet maps, lack of value is true instead
-        return Soundstage.TryGetValue(tile, out var soundable) && soundable;
+        public required SoundStage Stage { get; init; }
+        public required Dictionary<Vector2i, Vector2i?> Paths { get; init; }
     }
-    public void SetupSoundstage()
+
+    public PathResult? FindPath(Vector2 emitter)
     {
-        Soundstage.Clear();
-        SoundstagePaths.Clear();
-        LocalGridTile = null;
-        LocalGridPos = null;
-        LocalGridUid = null;
+        if (CurrentSoundPaths == null || !LastLocalPos.HasValue)
+            return null;
+    
+        var emitterTile = CurrentSoundPaths.Stage.LocalToTile(emitter);
+
+        if (!CurrentSoundPaths.Stage.Passable.ContainsKey(emitterTile))
+            return null;
+
+        if (CurrentSoundPaths.Stage.CheckVisibility(emitter, LastLocalPos.Value))
+        {
+            return new PathResult
+            {
+                EmitterPortal = null,
+                ListenerPortal = null,
+                PortalDistance = 0,
+                Generation = CurrentSoundPaths.Stage.Generation,
+                EmitterTile = emitterTile,
+                Path = new List<Vector2i>(), // DEBUG!
+            };
+        }
+
+        var pathTiles = new List<Vector2i>(); // TODO: We can actually initialize this with the exact capacity
+
+        var curTile = emitterTile;
+        while (CurrentSoundPaths.Paths.TryGetValue(curTile, out var pathTile))
+        {
+            pathTiles.Add(curTile);
+
+            if (pathTile == null)
+                break;
+
+            curTile = pathTile.Value;
+        }
+
+        // Simple "portal" special cases
+        // TODO: can this be cleaned up somehow?
+        if (pathTiles.Count <= 2)
+        {
+            return new PathResult
+            {
+                EmitterPortal = null,
+                ListenerPortal = null,
+                PortalDistance = 0,
+                Generation = CurrentSoundPaths.Stage.Generation,
+                EmitterTile = emitterTile,
+                Path = pathTiles, // DEBUG!
+            };
+        }
+        else if (pathTiles.Count == 3)
+        {
+            // Middle tile is both portals
+            return new PathResult
+            {
+                EmitterPortal = pathTiles[1],
+                ListenerPortal = pathTiles[1],
+                PortalDistance = 0,
+                Generation = CurrentSoundPaths.Stage.Generation,
+                EmitterTile = emitterTile,
+                Path = pathTiles, // DEBUG!
+            };
+        }
+
+        var emitterPortalPos = 1; // Tile after emitter
+        var listenerPortalPos = pathTiles.Count - 2; // Tile before listener
+
+        // Measure span between portals
+        float portalDistance = 0;
+        Vector2i previousTile = pathTiles[emitterPortalPos] ;
+        for (var i = emitterPortalPos; i <= listenerPortalPos; i++)
+        {
+            var nextTile = pathTiles[i] ;
+            portalDistance += Vector2.Distance(previousTile, nextTile);
+            previousTile = nextTile;
+        }
+
+        return new PathResult
+        {
+            EmitterPortal = pathTiles[emitterPortalPos],
+            ListenerPortal = pathTiles[listenerPortalPos],
+            PortalDistance = portalDistance,
+            Generation = CurrentSoundPaths.Stage.Generation,
+            EmitterTile = emitterTile,
+            Path = pathTiles, // DEBUG!
+        };
+
+
+
+        // var pathPoints = new List<Vector2>();
+        // pathPoints.Add(emitter);
+        //
+        // // Time to find the "portal" for the emitter and then the listener
+        // var emitterPortalPos = 0;
+        // for (var i = 1; i < pathTiles.Count; i++)
+        // {
+        //     var nextTile = pathTiles[i];
+        //     if (CheckVisibility(nextTile + Vector2.One / 2, pos))
+        //     {
+        //         emitterPortalPos = i;
+        //     }
+        // }
+        //
+        // var listenerPortalPos = pathTiles.Count - 1;
+        // for (var i = pathTiles.Count - 1; i >= emitterPortalPos; i--)
+        // {
+        //     var nextTile = pathTiles[i];
+        //     if (CheckVisibility(nextTile + Vector2.One / 2, LastLocalPos.Value))
+        //     {
+        //         listenerPortalPos = i;
+        //     }
+        // }
+        //
+        // for (var i = emitterPortalPos; i <= listenerPortalPos; i++)
+        // {
+        //     pathPoints.Add(pathTiles[i] + Vector2.One / 2);
+        // }
+        //
+        // pathPoints.Add(LastLocalPos.Value);
+        //
+        // var rawPathDistance = pathTiles.Count;
+        // float finalDistance = 0;
+        // var lastPoint = pos;
+        // foreach (var pathPoint in pathPoints)
+        // {
+        //     finalDistance += Vector2.Distance(lastPoint, pathPoint);
+        // }
+    }
+
+    private SoundStage? SnapshotStage()
+    {
+        Dictionary<Vector2i, bool> passability = new();
 
         // Get local player
         var localQuery = EntityQueryEnumerator<ESLocalPlayerMarkerComponent>();
         if (!localQuery.MoveNext(out var localUid, out _))
-            return;
+            return null;
         localQuery.Dispose();
 
         if (!_transformQuery.TryGetComponent(localUid, out var transform))
-            return;
+            return null;
 
         EntityUid gridUid;
         if (transform.GridUid == null)
         {
             // TODO: Find the nearest grid? Only matters on planets tho, we don't have them yet
             //var mapUid = transform.MapUid;
-            return;
+            return null;
         }
         else
         {
@@ -153,24 +388,23 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         }
 
         if (!_mapGridQuery.TryGetComponent(gridUid, out var grid))
-            return;
+            return null;
 
-        LocalGridTile = _sharedMapSystem.TileIndicesFor(gridUid, grid, transform.Coordinates);
-        LocalGridPos = _sharedMapSystem.LocalToGrid(gridUid, grid, transform.Coordinates);
-        LocalGridUid = gridUid;
+        var localGridTile = _sharedMapSystem.TileIndicesFor(gridUid, grid, transform.Coordinates);
+        var localGridPos = _sharedMapSystem.LocalToGrid(gridUid, grid, transform.Coordinates);
 
-        if (!LocalGridTile.HasValue || !LocalGridPos.HasValue)
-            return;
+        // if (!LocalGridTile.HasValue || !LocalGridPos.HasValue)
+        //     return null;
 
         var soundRange = 15;
-        var tileRange = Box2.CenteredAround((Vector2)LocalGridPos, new Vector2(1 + soundRange * 2, 1 + soundRange * 2));
+        var tileRange = Box2.CenteredAround((Vector2)localGridPos, new Vector2(1 + soundRange * 2, 1 + soundRange * 2));
 
         var tilesEnumerator = _sharedMapSystem.GetLocalTilesEnumerator(gridUid, grid, tileRange, true);
 
         while (tilesEnumerator.MoveNext(out var tile))
         {
             if (!_turfSystem.IsSpace(tile.Tile))
-                Soundstage[tile.GridIndices] = true;
+                passability[tile.GridIndices] = true;
         }
 
         var airtightQuery = EntityQueryEnumerator<AirtightComponent>();
@@ -184,29 +418,50 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
             // TODO: Can these be offgrid? How does planet stuff work?
             // I think this will work, LocalToTile converts to world cords internally
-            Soundstage[_sharedMapSystem.LocalToTile(gridUid, grid, thisTransform.Coordinates)] = false;
+            passability[_sharedMapSystem.LocalToTile(gridUid, grid, thisTransform.Coordinates)] = false;
         }
 
-        // Ok babey time to get to da flodd filler
+        return new SoundStage
+        {
+            Passable = passability,
+            GridUid = gridUid,
+            MapId = transform.MapID,
+            TileSize = grid.TileSize,
+            WorldMatrix = _transformSystem.GetWorldMatrix(gridUid),
+            InvWorldMatrix = _transformSystem.GetInvWorldMatrix(gridUid),
+            IsPlanet = false,
+            ListenerTile = localGridTile,
+            ListenerPos = localGridPos,
+            Generation = (SoundStageGeneration + 1) % 256,
+        };
+    }
 
+    private SoundPaths GenerateSoundPaths(SoundStage stage, CancellationToken cancellationToken = default)
+    {
+        // TODO: what with these "constants"
         var sqrt2 = float.Sqrt(2);
         (Vector2i, float, bool)[] candidateOffsets = [
             (Vector2i.Up, 1, false), (Vector2i.Right, 1, false), (Vector2i.Down, 1, false), (Vector2i.Left, 1, false),
             (Vector2i.UpLeft, sqrt2, true), (Vector2i.UpRight, sqrt2, true), (Vector2i.DownRight, sqrt2, true), (Vector2i.DownLeft, sqrt2, true),
         ];
 
+        // init
+        Dictionary<Vector2i, Vector2i?> paths = new();
+
         var comparer = Comparer<(Vector2i?, float, Vector2i)>.Create((a, b) => -a.Item2.CompareTo(b.Item2));
         PriorityQueue<(Vector2i?, float, Vector2i)> queue = new(32, comparer);
-        queue.Add((null, 0f, LocalGridTile.Value));
+
+        paths[stage.ListenerTile] = null;
+        queue.Add((null, 0f, stage.ListenerTile));
+
         while (queue.Count > 0)
         {
             var (lastTile, distance, tile) = queue.Take();
 
-            SoundstagePathTile myStage = new(distance, lastTile);
-            SoundstagePaths[tile] = myStage;
+            paths[tile] = lastTile;
 
             // Troll physics: we are actually putting walls into the soundstage, we just don't continue spreading from them
-            if (IsSoundPassable(tile) /*&& nextDistance <= 22*/)
+            if (stage.IsPassable(tile) /*&& nextDistance <= 22*/)
             {
                 foreach (var (offset, offsetDistance, checkDiagonal) in candidateOffsets)
                 {
@@ -216,184 +471,119 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                     if (checkDiagonal)
                     {
                         // Make sure both of the cardinals are passable
-                        if (!IsSoundPassable(tile + new Vector2i(offset.X, 0)) || !IsSoundPassable(tile + new Vector2i(0, offset.Y)))
+                        if (!stage.IsPassable(tile + new Vector2i(offset.X, 0)) || !stage.IsPassable(tile + new Vector2i(0, offset.Y)))
                             continue;
                     }
 
-                    if (SoundstagePaths.ContainsKey(candidate))
-                        continue;
-
                     // insert the candidate before it's actually processed so it doesn't get queued multiple times
-                    SoundstagePaths[candidate] = new(-1, tile);
                     // TODO: refactor this to not be so dirty
-
-                    queue.Add((tile, nextDistance, candidate));
+                    if (paths.TryAdd(candidate, tile))
+                        queue.Add((tile, nextDistance, candidate));
                 }
             }
         }
+
+        return new SoundPaths
+        {
+            Stage = stage,
+            Paths = paths
+        };
     }
 
-    // Supercover DDA Algorithm
-    public bool CheckVisibility(Vector2 v2, Vector2 v1)
+    public override void Update(float frameTime)
     {
-        // var tileSize = 1f; // TODO: Properly cache grid data so we can do coordinate translations without comps
+        if (!_dirtySoundStage)
+            return;
 
-        var t1 = v1.Floored();
+        // Even if we don't actually gen a new soundstage, we want to wait until we get to make one
+        _dirtySoundStage = false;
 
-        var dX = v2.X - v1.X;
-        var dY = v2.Y - v1.Y;
+        var newSoundStage = SnapshotStage();
 
-        var sX = dX > 0 ? 1 : -1;
-        var sY = dY > 0 ? 1 : -1;
-
-        var tDeltaX = dX != 0 ? Math.Abs(1f / dX) : float.PositiveInfinity;
-        var tDeltaY = dY != 0 ? Math.Abs(1f / dY) : float.PositiveInfinity;
-
-        var tMaxX = dX > 0 ? ((t1.X + 1 - v1.X) / dX) : (dX < 0 ? (t1.X - v1.X) / dX : float.PositiveInfinity);
-        var tMaxY = dY > 0 ? ((t1.Y + 1 - v1.Y) / dY) : (dY < 0 ? (t1.Y - v1.Y) / dY : float.PositiveInfinity);
-
-        // If this was the proper algo then here you would check the start tile, but I think it's better if we don't
-        //   for the sake of sound emitters within walls
-
-        var steps = Math.Abs(Math.Floor(v2.X) - t1.X) + Math.Abs(Math.Floor(v2.Y) - t1.Y);
-        for (var i = 0; i < steps; i++)
+        if (newSoundStage == null)
         {
-            if (tMaxX < tMaxY)
-            {
-                tMaxX += tDeltaX;
-                t1.X += sX;
-            }
-            else
-            {
-                tMaxY += tDeltaY;
-                t1.Y += sY;
-            }
-
-            // TODO: Abstract every instance of Soundstage.TryGetValue for planetmaps
-            if (!IsSoundPassable(t1))
-            {
-                return false;
-            }
+            // Soundstage is invalidated
+            CurrentSoundPaths = null;
+            SoundStageGeneration = (SoundStageGeneration + 1) % 256;
+            // TODO: is the following the right thing to do here?
+            LastLocalPos = null;
+            LastUpdatedTile = null;
+            LastGridUid = null;
+            return;
         }
 
-        return true;
-    }
-
-    public (bool, float, float, List<Vector2i>?, List<Vector2>?) FindSoundPath(Vector2 pos, Vector2i tile)
-    {
-        if (!IsSoundstageValid() || LocalGridPos == null)
-            return (false, 0, 0, null, null);
-
-        if (!SoundstagePaths.TryGetValue(tile, out var startTile))
-            return (false, 0, 0, null, null);
-
-        var pathTiles = new List<Vector2i>(); // TODO: We can actually initialize this with the exact capacity
-
-        var curTile = tile;
-        while (SoundstagePaths.TryGetValue(curTile, out var pathTile))
-        {
-            pathTiles.Add(curTile);
-
-            if (pathTile.PreviousTile == null)
-                break;
-
-            curTile = pathTile.PreviousTile.Value;
-        }
-
-        var pathPoints = new List<Vector2>();
-        pathPoints.Add(pos);
-
-        // Time to find the "portal" for the emitter and then the listener
-        var emitterPortalPos = 0;
-        for (var i = 1; i < pathTiles.Count; i++)
-        {
-            var nextTile = pathTiles[i];
-            if (CheckVisibility(nextTile + Vector2.One / 2, pos))
-            {
-                emitterPortalPos = i;
-            }
-        }
-
-        var listenerPortalPos = pathTiles.Count - 1;
-        for (var i = pathTiles.Count - 1; i >= emitterPortalPos; i--)
-        {
-            var nextTile = pathTiles[i];
-            if (CheckVisibility(nextTile + Vector2.One / 2, LocalGridPos.Value))
-            {
-                listenerPortalPos = i;
-            }
-        }
-
-        for (var i = emitterPortalPos; i <= listenerPortalPos; i++)
-        {
-            pathPoints.Add(pathTiles[i] + Vector2.One / 2);
-        }
-
-        pathPoints.Add(LocalGridPos.Value);
-
-        var rawPathDistance = pathTiles.Count;
-        float finalDistance = 0;
-        var lastPoint = pos;
-        foreach (var pathPoint in pathPoints)
-        {
-            finalDistance += Vector2.Distance(lastPoint, pathPoint);
-        }
-
-        return (true, finalDistance, rawPathDistance, pathTiles, pathPoints);
+        // TODO: Multithread here
+        // Update state with new soundstage
+        CurrentSoundPaths = GenerateSoundPaths(newSoundStage);
+        SoundStageGeneration = CurrentSoundPaths.Stage.Generation;
+        LastLocalPos = CurrentSoundPaths.Stage.ListenerPos;
+        LastUpdatedTile = CurrentSoundPaths.Stage.ListenerTile;
+        LastGridUid = CurrentSoundPaths.Stage.GridUid;
     }
 
     private void OnAirtightInit(Entity<AirtightComponent> ent, ref ComponentInit args)
     {
         // add to grid map
-        SetupSoundstage();
+        _dirtySoundStage = true;
     }
 
     private void OnAirtightShutdown(Entity<AirtightComponent> ent, ref ComponentShutdown args)
     {
         // remove from grid map
-        SetupSoundstage();
+        _dirtySoundStage = true;
     }
 
     private void OnAirtightAnchorChange(Entity<AirtightComponent> ent, ref AnchorStateChangedEvent args)
     {
         // add/remove from grid map
-        SetupSoundstage();
+        _dirtySoundStage = true;
     }
 
     private void OnAirtightReAnchor(Entity<AirtightComponent> ent, ref ReAnchorEvent args)
     {
         // remove from old grid map and add to new grid map
-        SetupSoundstage();
+        _dirtySoundStage = true;
     }
 
     private void OnAirtightMove(Entity<AirtightComponent> ent, ref MoveEvent args)
     {
-        // you get the idea
-        SetupSoundstage();
+        _dirtySoundStage = true;
     }
 
     private void OnAirtightStateChange(Entity<AirtightComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         // add/remove depending on whether ent.Comp.AirBlocked is true/false now relative to its status on the grid map
-        // you get the idea
-        SetupSoundstage();
+        _dirtySoundStage = true;
     }
 
     private void OnPlayerMove(Entity<ESLocalPlayerMarkerComponent> ent, ref MoveEvent args)
     {
-        // dirty soundstage when moving between tiles or grids
-        if (!LocalGridPos.HasValue || !_mapGridQuery.TryGetComponent(LocalGridUid, out var grid))
+        var newGrid = _transformSystem.GetGrid(args.NewPosition);
+
+        var newWorldPos = _transformSystem.ToWorldPosition(args.NewPosition);
+
+        // TODO: do some stuff on map change!! Nuke everything!! RAAH
+        //if (_transformSystem.GetMapId(args.NewPosition) != _transformSystem.GetMapId(Last))
+
+        if (newGrid != LastGridUid)
         {
-            SetupSoundstage();
-            return;
+            _dirtySoundStage = true;
+        }
+        else if (!_mapGridQuery.TryGetComponent(LastGridUid, out var grid))
+        {
+            // dirty soundstage when moving between grids
+            _dirtySoundStage = true;
         }
 
-        LocalGridPos = _sharedMapSystem.LocalToGrid(LocalGridUid.Value, grid, args.NewPosition);
-        var newGridTile = _sharedMapSystem.TileIndicesFor(LocalGridUid.Value, grid, args.NewPosition);
-
-        if (newGridTile != LocalGridTile)
+        if (CurrentSoundPaths != null)
         {
-            SetupSoundstage();
+            LastLocalPos = CurrentSoundPaths.Stage.WorldToLocal(newWorldPos);
+            var newLocalTile = CurrentSoundPaths.Stage.LocalToTile(LastLocalPos.Value);
+            if (newLocalTile != LastUpdatedTile)
+            {
+                // Moved between tiles
+                _dirtySoundStage = true;
+            }
         }
     }
 }

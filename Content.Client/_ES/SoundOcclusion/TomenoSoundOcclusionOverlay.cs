@@ -16,6 +16,7 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 
     private readonly SharedMapSystem _mapSystem;
     private readonly TomenoSoundOcclusionSystem _soundSystem;
+    private readonly TransformSystem _transformSystem;
 
     private EntityQuery<MapGridComponent> _mapGridQuery;
 
@@ -24,6 +25,7 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
         IoCManager.InjectDependencies(this);
         _soundSystem = _entityManager.System<TomenoSoundOcclusionSystem>();
         _mapSystem = _entityManager.System<SharedMapSystem>();
+        _transformSystem = _entityManager.System<TransformSystem>();
 
         _mapGridQuery = _entityManager.GetEntityQuery<MapGridComponent>();
 
@@ -34,43 +36,67 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
         base.Font = new VectorFont(font, 8);
     }
 
-    private (TomenoSoundOcclusionSystem.SoundstagePathTile?, Vector2i?) PosToSoundstage(Vector2i indices, Entity<MapGridComponent> grid)
-    {
-        if (_soundSystem.IsSoundstageValid())
-        {
-            if (grid.Owner != _soundSystem.LocalGridUid)
-            {
-                if (_mapGridQuery.TryGetComponent(_soundSystem.LocalGridUid, out var soundGrid) || soundGrid == null || _soundSystem.LocalGridUid == null)
-                    return (null, null);
-
-                var finalIndices = _mapSystem.WorldToTile(_soundSystem.LocalGridUid.Value, soundGrid, _mapSystem.GridTileToWorldPos(grid.Owner, grid, indices));
-                if (_soundSystem.SoundstagePaths.TryGetValue(finalIndices, out var soundStage))
-                {
-                    return (soundStage, finalIndices);
-                }
-            }
-            else
-            {
-                if (_soundSystem.SoundstagePaths.TryGetValue(indices, out var soundStage))
-                {
-                    return (soundStage, indices);
-                }
-            }
-        }
-
-        return (null, null);
-    }
+    // private (TomenoSoundOcclusionSystem.SoundstagePathTile?, Vector2i?) PosToSoundstage(Vector2i indices, Entity<MapGridComponent> grid)
+    // {
+    //     if (_soundSystem.IsSoundstageValid())
+    //     {
+    //         if (grid.Owner != _soundSystem.LastGridUid)
+    //         {
+    //             if (_mapGridQuery.TryGetComponent(_soundSystem.LastGridUid, out var soundGrid) || soundGrid == null || _soundSystem.LastGridUid == null)
+    //                 return (null, null);
+    //
+    //             var finalIndices = _mapSystem.WorldToTile(_soundSystem.LastGridUid.Value, soundGrid, _mapSystem.GridTileToWorldPos(grid.Owner, grid, indices));
+    //             if (_soundSystem.SoundstagePaths.TryGetValue(finalIndices, out var soundStage))
+    //             {
+    //                 return (soundStage, finalIndices);
+    //             }
+    //         }
+    //         else
+    //         {
+    //             if (_soundSystem.SoundstagePaths.TryGetValue(indices, out var soundStage))
+    //             {
+    //                 return (soundStage, indices);
+    //             }
+    //         }
+    //     }
+    //
+    //     return (null, null);
+    // }
 
     protected override string? GetText(Vector2i indices, Entity<MapGridComponent> grid)
     {
-        var (soundstage, tile) = PosToSoundstage(indices, grid);
-        if (soundstage == null)
+        // var (soundstage, tile) = PosToSoundstage(indices, grid);
+        // if (soundstage == null)
+        //     return null;
+        // return $"{soundstage.Distance:N1}";
+
+        //var indiceWorld = _mapSystem.GridTileToWorldPos();
+        if (_soundSystem.CurrentSoundPaths == null)
             return null;
-        return $"{soundstage.Distance:N1}";
+
+        var world = _mapSystem.GridTileToWorldPos(grid.Owner, grid, indices);
+        var soundTile = _soundSystem.CurrentSoundPaths.Stage.WorldToTile(world);
+        if (!_soundSystem.CurrentSoundPaths.Paths.TryGetValue(soundTile, out var pathTile))
+            return null;
+        if (pathTile == null)
+            return "•";
+
+        string[,] unicodes =
+        {
+            {"/", "\u2193", "\\"},
+            {"\u2190", "•", "\u2192"},
+            {"\\", "\u2191", "/"},
+        };
+
+        var offset = pathTile.Value - soundTile + Vector2i.One;
+        return unicodes[offset.Y, offset.X];
     }
 
     protected override void DrawTooltip(DrawingHandleScreen handle)
     {
+        if (_soundSystem.CurrentSoundPaths == null)
+            return;
+
         var mousePos = Input.MouseScreenPosition;
         if (!mousePos.IsValid)
             return;
@@ -80,35 +106,74 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 
         var coords = viewport.PixelToMap(mousePos.Position);
 
-        if (!_mapSystem.TryFindGridAt(coords, out var grid, out var comp))
+        var emitterPos = _soundSystem.CurrentSoundPaths.Stage.WorldToLocal(coords.Position);
+        var emitterTile = _soundSystem.CurrentSoundPaths.Stage.LocalToTile(emitterPos);
+
+        var foundPath = _soundSystem.FindPath(emitterTile);
+        var playerPos = _soundSystem.LastLocalPos;
+
+        if (foundPath == null || !playerPos.HasValue)
             return;
 
-        var local = Map.WorldToLocal(grid, comp, coords.Position);
-        var x = (int) Math.Floor(local.X / comp.TileSize);
-        var y = (int) Math.Floor(local.Y / comp.TileSize);
-        var indices = new Vector2i(x, y);
+        var pathPositions = new List<Vector2>();
+        pathPositions.Add(emitterPos);
 
-        //DrawTooltip(handle, mousePos.Position, local, indices, (grid, comp));
-        var (valid, finalDistance, rawPathDistance, pathTiles, pathPoints) = _soundSystem.FindSoundPath(local, (x, y));
-        if (!valid || pathTiles is null || pathPoints is null)
-            return;
-
-        //var lineHeight = Font.GetLineHeight(1f);
-        //var offset = new Vector2(0, lineHeight);
-        //handle.DrawString(Font, mouseScreen - offset, text);
-        for (var i = 1; i < pathTiles.Count; i++)
+        for (var i = 1; i < foundPath.Path.Count - 1; i++)
         {
-            var v1 = viewport.WorldToScreen(Map.GridTileToWorldPos(grid, comp, pathTiles[i-1]));
-            var v2 = viewport.WorldToScreen(Map.GridTileToWorldPos(grid, comp, pathTiles[i]));
-            handle.DrawLine(v1, v2, Color.Blue);
+            pathPositions.Add(foundPath.Path[i] + Vector2.One / 2);
         }
 
-        for (var i = 1; i < pathPoints.Count; i++)
+        pathPositions.Add(playerPos.Value);
+
+        for (var i = 1; i < pathPositions.Count; i++)
         {
-            var v1 = viewport.WorldToScreen(Map.LocalToWorld(grid, comp, pathPoints[i-1] ));
-            var v2 = viewport.WorldToScreen(Map.LocalToWorld(grid, comp, pathPoints[i]));
-            handle.DrawLine(v1, v2, Color.Purple);
+            var v1 = viewport.WorldToScreen(_soundSystem.CurrentSoundPaths.Stage.LocalToWorld(pathPositions[i-1] ));
+            var v2 = viewport.WorldToScreen(_soundSystem.CurrentSoundPaths.Stage.LocalToWorld(pathPositions[i]));
+            handle.DrawLine(v1, v2, Color.Green);
         }
+
+        var distance = foundPath.PortalDistance;
+        if (foundPath.ListenerPortal.HasValue && foundPath.EmitterPortal.HasValue)
+        {
+            distance += Vector2.Distance(emitterPos, foundPath.EmitterPortal.Value);
+            distance += Vector2.Distance(playerPos.Value, foundPath.ListenerPortal.Value);
+        }
+        else
+        {
+            distance = Vector2.Distance(emitterPos, playerPos.Value);
+        }
+
+        handle.DrawString(Font, mousePos.Position + Vector2.UnitX * 8, $"{distance:N1}");
+
+        // if (!_mapSystem.TryFindGridAt(coords, out var grid, out var comp))
+        //     return;
+
+        // var local = Map.WorldToLocal(grid, comp, coords.Position);
+        // var x = (int) Math.Floor(local.X / comp.TileSize);
+        // var y = (int) Math.Floor(local.Y / comp.TileSize);
+        // var indices = new Vector2i(x, y);
+        //
+        // //DrawTooltip(handle, mousePos.Position, local, indices, (grid, comp));
+        // var (valid, finalDistance, rawPathDistance, pathTiles, pathPoints) = _soundSystem.FindSoundPath(local, (x, y));
+        // if (!valid || pathTiles is null || pathPoints is null)
+        //     return;
+        //
+        // //var lineHeight = Font.GetLineHeight(1f);
+        // //var offset = new Vector2(0, lineHeight);
+        // //handle.DrawString(Font, mouseScreen - offset, text);
+        // for (var i = 1; i < pathTiles.Count; i++)
+        // {
+        //     var v1 = viewport.WorldToScreen(Map.GridTileToWorldPos(grid, comp, pathTiles[i-1]));
+        //     var v2 = viewport.WorldToScreen(Map.GridTileToWorldPos(grid, comp, pathTiles[i]));
+        //     handle.DrawLine(v1, v2, Color.Blue);
+        // }
+        //
+        // for (var i = 1; i < pathPoints.Count; i++)
+        // {
+        //     var v1 = viewport.WorldToScreen(Map.LocalToWorld(grid, comp, pathPoints[i-1] ));
+        //     var v2 = viewport.WorldToScreen(Map.LocalToWorld(grid, comp, pathPoints[i]));
+        //     handle.DrawLine(v1, v2, Color.Purple);
+        // }
     }
 
     protected override string? GetTooltip(Vector2 mousePos, Vector2i indices, Entity<MapGridComponent> grid)
@@ -118,12 +183,24 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 
     protected override (Color Fill, Color Border)? GetColor(Vector2i indices, Entity<MapGridComponent> grid)
     {
-        var (soundstage, tile) = PosToSoundstage(indices, grid);
-        if (soundstage == null || tile == null)
+        // var (soundstage, tile) = PosToSoundstage(indices, grid);
+        // if (soundstage == null || tile == null)
+        //     return null;
+        // var soundable = _soundSystem.Soundstage.GetValueOrDefault(tile.Value, false);
+        // var outlineColor = soundable ? Color.White.WithAlpha(0.3f) : Color.Black.WithAlpha(0.6f);
+        // var fillColor = Color.FromHsv(new Vector4(0.5f - (soundstage.Distance / 30f), 1f, 1f, 0.05f));
+        // return (fillColor, outlineColor);
+        if (_soundSystem.CurrentSoundPaths == null)
             return null;
-        var soundable = _soundSystem.Soundstage.GetValueOrDefault(tile.Value, false);
-        var outlineColor = soundable ? Color.White.WithAlpha(0.3f) : Color.Black.WithAlpha(0.6f);
-        var fillColor = Color.FromHsv(new Vector4(0.5f - (soundstage.Distance / 30f), 1f, 1f, 0.05f));
-        return (fillColor, outlineColor);
+
+        var world = _mapSystem.GridTileToWorldPos(grid.Owner, grid, indices);
+        var soundTile = _soundSystem.CurrentSoundPaths.Stage.WorldToTile(world);
+        if (!_soundSystem.CurrentSoundPaths.Paths.TryGetValue(soundTile, out var pathTile))
+            return null;
+
+        if (pathTile == null)
+            return null;
+
+        return (Color.Transparent, Color.White.WithAlpha(0.25f));
     }
 }
