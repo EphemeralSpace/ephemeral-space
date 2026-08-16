@@ -289,7 +289,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 PortalDistance = 0,
                 Generation = CurrentSoundPaths.Stage.Generation,
                 EmitterTile = emitterTile,
-                Path = pathTiles, // DEBUG!
+                Path = new List<Vector2i>(), // DEBUG!
             };
         }
         else if (pathTiles.Count == 3)
@@ -302,7 +302,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 PortalDistance = 0,
                 Generation = CurrentSoundPaths.Stage.Generation,
                 EmitterTile = emitterTile,
-                Path = pathTiles, // DEBUG!
+                Path = new List<Vector2i>(), // DEBUG!
             };
         }
 
@@ -354,7 +354,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             PortalDistance = portalDistance,
             Generation = CurrentSoundPaths.Stage.Generation,
             EmitterTile = emitterTile,
-            Path = pathTiles, // DEBUG!
+            Path = pathTiles.Slice(emitterPortalPos, (listenerPortalPos - emitterPortalPos) + 1), // DEBUG!
         };
 
 

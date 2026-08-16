@@ -132,7 +132,7 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
         var emitterPos = _occlusionSystem.CurrentSoundPaths.Stage.WorldToLocal(coords.Position);
         var emitterTile = _occlusionSystem.CurrentSoundPaths.Stage.LocalToTile(emitterPos);
 
-        var foundPath = _occlusionSystem.FindPath(emitterTile);
+        var foundPath = _occlusionSystem.FindPath(emitterPos);
         var playerPos = _occlusionSystem.LastLocalPos;
 
         if (foundPath == null || !playerPos.HasValue)
@@ -141,7 +141,7 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
         var pathPositions = new List<Vector2>();
         pathPositions.Add(emitterPos);
 
-        for (var i = 1; i < foundPath.Path.Count - 1; i++)
+        for (var i = 0; i < foundPath.Path.Count; i++)
         {
             pathPositions.Add(foundPath.Path[i] + Vector2.One / 2);
         }
