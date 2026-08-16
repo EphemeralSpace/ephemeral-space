@@ -169,6 +169,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         public bool CheckVisibility(Vector2 from, Vector2 to)
         {
             var t1 = to.Floored();
+            var t2 = from.Floored();
 
             var dX = from.X - to.X;
             var dY = from.Y - to.Y;
@@ -185,7 +186,12 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             // If this was the proper algo then here you would check the start tile, but I think it's better if we don't
             //   for the sake of sound emitters within walls
 
-            var steps = Math.Abs(Math.Floor(from.X) - t1.X) + Math.Abs(Math.Floor(from.Y) - t1.Y);
+            if (!IsPassable(t2))
+            {
+                return false;
+            }
+
+            var steps = Math.Abs(t2.X - t1.X) + Math.Abs(t2.Y - t1.Y);
             for (var i = 0; i < steps; i++)
             {
                 if (tMaxX < tMaxY)
@@ -237,10 +243,10 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
     {
         if (CurrentSoundPaths == null || !LastLocalPos.HasValue)
             return null;
-    
+
         var emitterTile = CurrentSoundPaths.Stage.LocalToTile(emitter);
 
-        if (!CurrentSoundPaths.Stage.Passable.ContainsKey(emitterTile))
+        if (!CurrentSoundPaths.Stage.IsPassable(emitterTile))
             return null;
 
         if (CurrentSoundPaths.Stage.CheckVisibility(emitter, LastLocalPos.Value))
@@ -268,6 +274,9 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
             curTile = pathTile.Value;
         }
+
+        if (pathTiles.Count == 0)
+            return null;
 
         // Simple "portal" special cases
         // TODO: can this be cleaned up somehow?
@@ -297,8 +306,36 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             };
         }
 
+        /*
         var emitterPortalPos = 1; // Tile after emitter
         var listenerPortalPos = pathTiles.Count - 2; // Tile before listener
+        */
+
+        // Time to find the "portals" for the listener and then the emitter
+        var emitterPortalPos = 1; // Tile after emitter
+        var listenerPortalPos = pathTiles.Count - 2; // Tile before listener
+
+
+        // var listenerPortalPos = pathTiles.Count - 1;
+        for (var i = listenerPortalPos; i >= emitterPortalPos; i--)
+        {
+            var nextTile = pathTiles[i];
+            if (CurrentSoundPaths.Stage.CheckVisibility(nextTile + Vector2.One / 2, LastLocalPos.Value))
+            {
+                listenerPortalPos = i;
+            }
+        }
+        //
+        // var emitterPortalPos = 0;
+        for (var i = emitterPortalPos; i <= listenerPortalPos; i++)
+        {
+            var nextTile = pathTiles[i];
+            if (CurrentSoundPaths.Stage.CheckVisibility(nextTile + Vector2.One / 2, emitter))
+            {
+                emitterPortalPos = i;
+            }
+        }
+
 
         // Measure span between portals
         float portalDistance = 0;

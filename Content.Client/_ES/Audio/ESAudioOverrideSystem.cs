@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._ES.SoundOcclusion;
 using Content.Shared._ES.Audio;
 using Robust.Client;
 using Robust.Client.Audio;
@@ -26,6 +27,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IBaseClient _baseClient = default!;
+    [Dependency] private TomenoSoundOcclusionSystem _occlusion = default!;
 
     private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
 
@@ -180,13 +182,39 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     /// </summary>
     public float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt = null)
     {
+        const float maxOcclusionFactor = 1.5f;
+        const float maxOccludedDelta = 10.0f;
+
         if (distance <= 0.1)
             return 0f;
 
-        var rayLength = MathF.Min(distance, _maxRayLength);
-        var ray = new CollisionRay(listener.Position, delta / distance, _originalAudio.OcclusionCollisionMask);
-        var penetration = _physics.IntersectRayPenetration(listener.MapId, ray, rayLength, ignoredEnt);
+        if (_occlusion.CurrentSoundPaths == null)
+            return maxOcclusionFactor;
 
-        return penetration < MinOcclusionPenetration ? 0f : OccludedSoundAmount;
+        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToLocal(listener.Position);
+        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToLocal(listener.Position + delta);
+
+        var path = _occlusion.FindPath(emitterPos);
+
+        if (path == null)
+            return maxOcclusionFactor;
+
+        if (!path.ListenerPortal.HasValue && !path.EmitterPortal.HasValue)
+            return 0f;
+
+        var occludedDistance = path.PortalDistance;
+        if (path.ListenerPortal.HasValue)
+            occludedDistance += Vector2.Distance(listenerPos, path.ListenerPortal.Value);
+        if (path.EmitterPortal.HasValue)
+            occludedDistance += Vector2.Distance(emitterPos, path.EmitterPortal.Value);
+
+        // magico numero time
+        var distanceDelta = occludedDistance - distance;
+        if (distanceDelta > maxOccludedDelta)
+            return maxOcclusionFactor;
+        if (distanceDelta < 1f)
+            return 0f;
+
+        return ((distanceDelta - 1f) / maxOccludedDelta) * maxOcclusionFactor;
     }
 }
