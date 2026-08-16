@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Utility;
+﻿using System.Numerics;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Stunnable;
 
@@ -13,4 +14,13 @@ public sealed partial class StunVisualsComponent : Component
 
     [DataField]
     public string State = "stunned";
+
+    [DataField]
+    public Vector2 StartingOffset;
+
+    /// <summary>
+    /// Vector of the last Jitter so we can make sure we don't jitter in the same quadrant twice in a row.
+    /// </summary>
+    [DataField]
+    public Vector2 LastJitter;
 }

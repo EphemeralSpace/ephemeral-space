@@ -334,6 +334,23 @@
 
 - type: entity
   parent: MobStatusEffectBase
+  id: StatusEffectPainStun
+  name: pain stun
+  components:
+  - type: StunnedStatusEffect
+    seeStars: true
+  - type: KnockdownStatusEffect
+  - type: ESFatiguedAnimationStatusEffect
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPainStunCooldown
+  name: pain stun cooldown
+  components:
+  - type: ESPainStunCooldownStatusEffect
+
+- type: entity
+  parent: MobStatusEffectBase
   id: StatusEffectHeartStopped
   name: stopped heart
   components:

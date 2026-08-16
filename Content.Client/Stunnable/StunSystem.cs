@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Stunnable;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
@@ -10,7 +11,11 @@ namespace Content.Client.Stunnable;
 public sealed partial class StunSystem : SharedStunSystem
 {
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SpriteSystem _spriteSystem = default!;
+
+    private const string StaminaAnimationKey = "stamina";
 
     private readonly int[] _sign = [-1, 1];
 
@@ -20,6 +25,7 @@ public sealed partial class StunSystem : SharedStunSystem
 
         SubscribeLocalEvent<StunVisualsComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<StunVisualsComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+        SubscribeLocalEvent<StunVisualsComponent, AnimationCompletedEvent>(OnAnimationCompleted);
     }
 
     /// <summary>
@@ -47,18 +53,45 @@ public sealed partial class StunSystem : SharedStunSystem
             UpdateAppearance((entity, args.Sprite), entity.Comp.State);
     }
 
-    private void UpdateAppearance(Entity<SpriteComponent?> entity, string state)
+    private void OnAnimationCompleted(Entity<StunVisualsComponent> ent, ref AnimationCompletedEvent args)
     {
-        if (!Resolve(entity, ref entity.Comp))
+        if (args.Key != StaminaAnimationKey)
             return;
 
-        if (!_spriteSystem.LayerMapTryGet((entity, entity.Comp), StunVisualLayers.StamCrit, out var index, false))
+        _spriteSystem.SetOffset(ent.Owner, ent.Comp.StartingOffset);
+        UpdateAppearance((ent, null, ent.Comp), ent.Comp.State);
+    }
+
+    private void UpdateAppearance(Entity<SpriteComponent?, StunVisualsComponent?> entity, string state)
+    {
+        if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
             return;
 
-        var visible = Appearance.TryGetData<bool>(entity, StunVisuals.SeeingStars, out var stars) && stars;
+        if (_spriteSystem.LayerMapTryGet((entity, entity.Comp1), StunVisualLayers.StamCrit, out var index, false))
+        {
+            var visible = Appearance.TryGetData<bool>(entity, StunVisuals.SeeingStars, out var stars) && stars;
 
-        _spriteSystem.LayerSetVisible((entity, entity.Comp), index, visible);
-        _spriteSystem.LayerSetRsiState((entity, entity.Comp), index, state);
+            _spriteSystem.LayerSetVisible((entity, entity.Comp1), index, visible);
+            _spriteSystem.LayerSetRsiState((entity, entity.Comp1), index, state);
+        }
+
+        if (Appearance.TryGetData<bool>(entity, StunVisuals.Fatigue, out var fatigue) &&
+            fatigue &&
+            !_animation.HasRunningAnimation(entity, StaminaAnimationKey) &&
+            !_mobState.IsDead(entity))
+        {
+            entity.Comp2.StartingOffset = entity.Comp1.Offset;
+            var anim = GetFatigueAnimation(entity.Comp1,
+                2,
+                4,
+                0.04f * Vector2.Create(0.5f, 0.125f),
+                0.04f * Vector2.Create(1f, 0.25f),
+                0.08f,
+                entity.Comp1.Offset,
+                ref entity.Comp2.LastJitter);
+
+            _animation.Play(entity, anim, StaminaAnimationKey);
+        }
     }
 
     /// <summary>
