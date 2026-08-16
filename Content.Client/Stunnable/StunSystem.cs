@@ -15,7 +15,7 @@ public sealed partial class StunSystem : SharedStunSystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SpriteSystem _spriteSystem = default!;
 
-    private const string StaminaAnimationKey = "stamina";
+    private const string FatigueAnimationKey = "fatigue";
 
     private readonly int[] _sign = [-1, 1];
 
@@ -55,7 +55,7 @@ public sealed partial class StunSystem : SharedStunSystem
 
     private void OnAnimationCompleted(Entity<StunVisualsComponent> ent, ref AnimationCompletedEvent args)
     {
-        if (args.Key != StaminaAnimationKey)
+        if (args.Key != FatigueAnimationKey)
             return;
 
         _spriteSystem.SetOffset(ent.Owner, ent.Comp.StartingOffset);
@@ -77,7 +77,7 @@ public sealed partial class StunSystem : SharedStunSystem
 
         if (Appearance.TryGetData<bool>(entity, StunVisuals.Fatigue, out var fatigue) &&
             fatigue &&
-            !_animation.HasRunningAnimation(entity, StaminaAnimationKey) &&
+            !_animation.HasRunningAnimation(entity, FatigueAnimationKey) &&
             !_mobState.IsDead(entity))
         {
             entity.Comp2.StartingOffset = entity.Comp1.Offset;
@@ -90,7 +90,7 @@ public sealed partial class StunSystem : SharedStunSystem
                 entity.Comp1.Offset,
                 ref entity.Comp2.LastJitter);
 
-            _animation.Play(entity, anim, StaminaAnimationKey);
+            _animation.Play(entity, anim, FatigueAnimationKey);
         }
     }
 
