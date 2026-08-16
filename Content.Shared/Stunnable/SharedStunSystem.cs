@@ -4,7 +4,6 @@ using Content.Shared.Alert;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
@@ -16,7 +15,6 @@ using Content.Shared.Standing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -33,10 +31,8 @@ public abstract partial class SharedStunSystem : EntitySystem
     [Dependency] protected AlertsSystem Alerts = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
     [Dependency] protected SharedDoAfterSystem DoAfter = default!;
-    [Dependency] protected SharedStaminaSystem Stamina = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
 
     public override void Initialize()

@@ -65,7 +65,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] protected SharedPopupSystem PopupSystem = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
-    [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private DamageExamineSystem _damageExamine = default!;
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;
