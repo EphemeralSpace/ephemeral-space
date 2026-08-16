@@ -1876,3 +1876,9 @@ Entries:
         see it
   id: 198
   time: '2026-08-15T22:38:45.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Worm damage popups no longer show to everyone
+  id: 199
+  time: '2026-08-16T00:01:34.0000000+00:00'
