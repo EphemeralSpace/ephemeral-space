@@ -286,9 +286,11 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         if (msg.Source == null)
             return;
 
-        var ent = EntityManager.GetEntity(msg.Source.Value);
+        if (!EntityManager.TryGetEntity(msg.Source.Value, out var ent) ||
+            !EntityManager.EntityExists(ent))
+            return;
 
-        EnqueueSpeechBubble(ent, msg, speechType);
+        EnqueueSpeechBubble(ent.Value, msg, speechType);
     }
 
     private SpeechBubble CreateSpeechBubble(EntityUid entity, SpeechBubbleData speechData)
@@ -571,7 +573,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             _activeTypingSpeechBubble = null;
         }
 
-        if (_activeTypingSpeechBubble is not null)
+        if (_activeTypingSpeechBubble is not null && !_activeTypingSpeechBubble.Disposed)
         {
             _activeTypingSpeechBubble.RebuildBubbleContents(_activeTypingSpeechBubble.NameText, text, bubbleType);
         }
