@@ -1882,3 +1882,13 @@ Entries:
       message: Worm damage popups no longer show to everyone
   id: 199
   time: '2026-08-16T00:01:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Decreased the max chat message length to a more reasonable value.
+    - type: Fix
+      message: >-
+        The chat box will now cut off messages which are too long instead of
+        simply failing to send them.
+  id: 200
+  time: '2026-08-17T19:32:13.0000000+00:00'
