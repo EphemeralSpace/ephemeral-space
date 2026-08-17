@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Content.Shared._ES.Chat.Sanitization.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Speech.EntitySystems;
@@ -18,6 +19,7 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
     private bool _punctuate;
 
     private const string TheWordI = "i";
+    private static readonly Regex EmojiRegex = new(@"\p{Cs}");
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -35,6 +37,7 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
     private string SanitizeMessage(EntityUid source, string message, Entity<ESSanitizationChatChannelComponent> ent)
     {
         var newMessage = SanitizeMessageReplaceWords(message.Trim());
+        newMessage = SanitizeMessageEmojis(newMessage);
 
         // Sanitize it first as it might change the word order
         if (_sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out var emoteStr))
@@ -117,5 +120,10 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
         if (char.IsLetter(message[^1]))
             message += ".";
         return message;
+    }
+
+    private string SanitizeMessageEmojis(string message)
+    {
+        return EmojiRegex.Replace(message, string.Empty);
     }
 }
