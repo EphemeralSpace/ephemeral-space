@@ -48,4 +48,17 @@ public abstract partial class ESSharedChatSystem
             return (b << 16) | a;
         }
     }
+
+    /// <summary>
+    /// Returns a color to be used for outlining a name color.
+    /// Just a slightly darker version of the regular chat color.
+    /// </summary>
+    /// <param name="nameColor">The name color, ideally from <see cref="GetChatColor"/></param>
+    /// <returns>A color to use for outlining text of the name color</returns>
+    public Color GetChatOutlineColor(Color nameColor)
+    {
+        var (l, c, h, a) = Color.ToLch(Color.ToLab(nameColor));
+        l = MathF.Max(l - 0.4f, 0.2f);
+        return Color.FromLab(Color.FromLch(new(l, c, h, a)));
+    }
 }
