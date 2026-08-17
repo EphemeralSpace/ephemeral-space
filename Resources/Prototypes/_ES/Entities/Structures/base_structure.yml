@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseStructure
+  id: ESBaseStructureMachine
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Anchorable
+    delay: 2
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ESMachine
+
+- type: entity
+  id: ESBaseBreakableMachine
+  abstract: true
+  components:
+  - type: Appearance # For breakable visuals
+  - type: ESBreakable
+  - type: Repairable # More costly repair since it's a full machine and not a small structure
+    fuelCost: 25
+    doAfterDelay: 5
+
+- type: entity
+  id: ESBasePoweredMachine
+  abstract: true
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 100
+  - type: ExtensionCableReceiver
+  - type: ESSparkOnHit
+    prob: 0.25
+    tileFireChance: 0.2
+    count: 2
+  - type: LightningTarget
+    priority: 1

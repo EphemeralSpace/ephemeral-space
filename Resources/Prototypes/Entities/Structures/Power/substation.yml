@@ -73,80 +73,96 @@
 - type: entity
   abstract: true
   id: BaseSubstation
-  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine ]
+  parent: [ CoreSubstation, ESBaseStructureMachine, ESBaseBreakableMachine ]
   name: substation
   description: Reduces the voltage of electricity put into it.
   placement:
     mode: SnapgridCenter
   components:
-  # ES START
   # only re-anchorable, not un-anchorable
   - type: Anchorable
     flags: Anchorable
-  # ES END
   - type: Sprite # TODO: add sprite for maintenance panel open
-# ES START
     sprite: _ES/Structures/Power/substation.rsi
-# ES END
     snapCardinals: true
     layers:
     - state: substation
+      map: [ "base" ]
     - state: screen
       shader: unshaded
+      map: [ "screen" ]
     - state: full
       shader: unshaded
+      map: [ "light" ]
   - type: Battery
     maxCharge: 2500000
     startingCharge: 0
   - type: PointLight
-    # ES START
+    netsync: false
     radius: 2.5
     falloff: 10
     energy: 1
     color: "#ff6900"
-    # ES END
   - type: PowerMonitoringDevice
-# ES START
     sprite: _ES/Structures/Power/substation.rsi
-# ES END
     state: substation_static
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
-      - !type:ExplodeBehavior
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MachineFrameDestroyed:
-            min: 1
-            max: 1
-      - !type:SpawnGasBehavior
-        gasMixture:
-          volume: 1000
-          moles:
-            CarbonDioxide: 340.5701689 # carbon dioxide
-          temperature: 373.15
+  - type: ESBreakable
+    threshold: 100
+  - type: ESBreakableBattery
+  - type: ESBreakableActivatableUi
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "broken" }
+          False: { state: "substation" }
+        screen:
+          True: { visible: false }
+          False: { visible: true }
+        light:
+          True: { visible: false }
+          False: { visible: true }
+  - type: ESGenericPointLightVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        True: { enabled: false }
+        False: { enabled: true }
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 200
+#      behaviors:
+#      - !type:DoActsBehavior
+#        acts: [ "Destruction" ]
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 100
+#      behaviors:
+#      - !type:DoActsBehavior
+#        acts: ["Destruction"]
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: MetalGlassBreak
+#      - !type:ExplodeBehavior
+#      - !type:SpawnEntitiesBehavior
+#        spawn:
+#          MachineFrameDestroyed:
+#            min: 1
+#            max: 1
+#      - !type:SpawnGasBehavior
+#        gasMixture:
+#          volume: 1000
+#          moles:
+#            CarbonDioxide: 340.5701689 # carbon dioxide
+#          temperature: 373.15
   - type: Explosive
     explosionType: Default
     maxIntensity: 100
     intensitySlope: 2
     totalIntensity: 200
-  - type: WiresPanel
-  - type: Machine
-    board: SubstationMachineCircuitboard
+#  - type: Machine # TODO: remove associated machine board
+#    board: SubstationMachineCircuitboard
   - type: AmbientSound
     range: 3
   - type: Electrified
