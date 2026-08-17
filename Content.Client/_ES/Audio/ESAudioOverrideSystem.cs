@@ -32,7 +32,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
 
     private const float OccludedSoundAmount = 1f;
-    private const float OcclusionVolumeAdjust = -7f;
+    private const float OcclusionVolumeAdjust = -3f;
     private const float MinOcclusionPenetration = 0.8f;
 
     // ReSharper disable once InconsistentNaming
@@ -169,7 +169,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             component.Occlusion = occlusion;
             if (component.Occlusion > 0f)
             {
-                component.Volume = component.Params.Volume + OcclusionVolumeAdjust;
+                component.Volume = component.Params.Volume + (component.Occlusion * OcclusionVolumeAdjust);
             }
         }
 
@@ -184,6 +184,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     {
         const float maxOcclusionFactor = 1.5f;
         const float maxOccludedDelta = 10.0f;
+        const float minOccludedDelta = 0.5f;
 
         if (distance <= 0.1)
             return 0f;
@@ -212,9 +213,9 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         var distanceDelta = occludedDistance - distance;
         if (distanceDelta > maxOccludedDelta)
             return maxOcclusionFactor;
-        if (distanceDelta < 1f)
+        if (distanceDelta < minOccludedDelta)
             return 0f;
 
-        return ((distanceDelta - 1f) / maxOccludedDelta) * maxOcclusionFactor;
+        return ((distanceDelta - minOccludedDelta) / maxOccludedDelta) * maxOcclusionFactor;
     }
 }
