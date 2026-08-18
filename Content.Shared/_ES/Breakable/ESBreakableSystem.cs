@@ -24,7 +24,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private NameModifierSystem _nameModifier = default!;
 
-    [Dependency] private EntityQuery<ESBreakableComponent> _breakableQuery = default!;
+    [Dependency] private EntityQuery<ESBreakableComponent> _breakableQuery;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -53,7 +53,11 @@ public sealed partial class ESBreakableSystem : EntitySystem
             return;
 
         var repairQuality = _prototype.Index(repairable.QualityNeeded);
-        args.PushMarkup(Loc.GetString("es-breakable-broken-examine", ("tool", Loc.GetString(repairQuality.ToolName))));
+
+        using (args.PushGroup(nameof(ESBreakableComponent), 2))
+        {
+            args.PushMarkup(Loc.GetString("es-breakable-broken-examine", ("tool", Loc.GetString(repairQuality.ToolName))));
+        }
     }
 
     private void OnDamageChanged(Entity<ESBreakableComponent> ent, ref DamageChangedEvent args)
@@ -62,7 +66,8 @@ public sealed partial class ESBreakableSystem : EntitySystem
         if (_timing.ApplyingState)
             return;
 
-        SetBroken(ent.AsNullable(), _damageable.GetDamage((ent, args.Damageable)).GetTotal() >= ent.Comp.Threshold);
+        var broken = _damageable.GetDamage((ent, args.Damageable)).GetTotal() >= ent.Comp.Threshold;
+        SetBroken(ent.AsNullable(), broken, args.Origin);
     }
 
     private void OnOpenAttempt(Entity<ESBreakableActivatableUiComponent> ent, ref ActivatableUIOpenAttemptEvent args)
@@ -91,7 +96,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
     /// <summary>
     /// Sets the broken state of an entity with <see cref="ESBreakableComponent"/>, raising <see cref="ESBrokenStateChanged"/> if it changed.
     /// </summary>
-    public bool SetBroken(Entity<ESBreakableComponent?> ent, bool broken)
+    public bool SetBroken(Entity<ESBreakableComponent?> ent, bool broken, EntityUid? user)
     {
         if (!Resolve(ent, ref ent.Comp))
             return false;
@@ -110,7 +115,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
         _nameModifier.RefreshNameModifiers(ent.Owner);
         _appearance.SetData(ent, ESBreakableVisuals.Broken, broken);
 
-        var ev = new ESBrokenStateChanged(broken);
+        var ev = new ESBrokenStateChanged(broken, user);
         RaiseLocalEvent(ent, ref ev);
 
         return true;
@@ -131,4 +136,4 @@ public sealed partial class ESBreakableSystem : EntitySystem
 /// Event raised on an entity with <see cref="ESBreakableComponent"/> when it either breaks or is repaired.
 /// </summary>
 [ByRefEvent]
-public readonly record struct ESBrokenStateChanged(bool Broken);
+public readonly record struct ESBrokenStateChanged(bool Broken, EntityUid? User);

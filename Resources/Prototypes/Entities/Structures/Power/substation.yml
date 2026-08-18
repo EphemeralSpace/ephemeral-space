@@ -73,7 +73,7 @@
 - type: entity
   abstract: true
   id: BaseSubstation
-  parent: [ CoreSubstation, ESBaseStructureMachine, ESBaseBreakableMachine ]
+  parent: [ CoreSubstation, ESBaseStructureMachine, ESBaseBreakableMachine, ESBaseExplosiveGrenade ]
   name: substation
   description: Reduces the voltage of electricity put into it.
   placement:
@@ -156,11 +156,7 @@
 #          moles:
 #            CarbonDioxide: 340.5701689 # carbon dioxide
 #          temperature: 373.15
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 100
-    intensitySlope: 2
-    totalIntensity: 200
+  - type: ESTriggerExplosionOnBreak
 #  - type: Machine # TODO: remove associated machine board
 #    board: SubstationMachineCircuitboard
   - type: AmbientSound
