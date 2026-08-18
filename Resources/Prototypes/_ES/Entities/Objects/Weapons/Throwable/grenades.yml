@@ -1,18 +1,12 @@
 - type: entity
   name: explosive grenade
   description: Grenade that creates a small but devastating explosion.
-  parent: [VolatileGrenadeBase, GrenadeBase]
+  parent: [VolatileGrenadeBase, ESBaseExplosiveGrenade,  GrenadeBase]
   id: ExGrenade
   components:
   - type: ExplodeOnTrigger
     keysIn:
     - timer
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 10
-    intensitySlope: 3
-    totalIntensity: 120 # about a ~4 tile radius
-    canCreateVacuum: false
   - type: TimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"

@@ -139,14 +139,6 @@
     autoRechargeRate: 50000
 
 - type: entity
-  parent: BaseSubstationWall
-  id: DebugSubstationWallRecharging
-  suffix: DEBUG, AutoRecharge
-  components:
-  - type: BatterySelfRecharger
-    autoRechargeRate: 50000
-
-- type: entity
   parent: BaseAPC
   id: DebugAPCRecharging
   suffix: DEBUG, AutoRecharge

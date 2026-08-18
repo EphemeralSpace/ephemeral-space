@@ -561,6 +561,18 @@ SciFlash: null
 Stunprod: null
 BoxFlashbang: null
 
+# 2026-8-17
+BaseSubstationWall: null
+BaseSubstationWallFrame: null
+SubstationWallBasic: null
+DebugSubstationWallRecharging: null
+SubstationMachineCircuitboard: null
+WallmountSubstationElectronics: null
+SMESAdvanced: null
+SMESAdvancedEmpty: null
+SMESMachineCircuitboard: null
+SMESAdvancedMachineCircuitboard: null
+
 # ES END
 
 # 2026-01-07

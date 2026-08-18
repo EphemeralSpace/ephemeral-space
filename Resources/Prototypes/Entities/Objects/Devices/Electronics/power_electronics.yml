@@ -15,20 +15,6 @@
       chemicalComposition:
         Silicon: 20
 
-# Wallmount Substation
-- type: entity
-  id: WallmountSubstationElectronics
-  parent: BaseElectronics
-  name: wallmount substation electronics
-  description: Circuit used to construct a wallmount substation.
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/module.rsi
-      state: charger_APC
-    - type: Tag
-      tags:
-        - WallmountSubstationElectronics
-
 # Wallmount Generator
 - type: entity
   parent: BaseElectronics

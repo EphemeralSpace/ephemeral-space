@@ -1296,9 +1296,6 @@
   id: WallmountGeneratorElectronics # ConstructionGraph: WallmountGenerator
 
 - type: Tag
-  id: WallmountSubstationElectronics # ConstructionGraph: WallmountSubstation
-
-- type: Tag
   id: WeaponAntiqueLaser # Storage whitelist: GlassBoxLaser
 
 - type: Tag
