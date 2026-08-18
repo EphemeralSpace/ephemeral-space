@@ -210,7 +210,6 @@
     - id: DoorElectronics
     - id: FirelockElectronics
     - id: SignalTimerElectronics
-    - id: SMESMachineCircuitboard
     - id: BorgChargerCircuitboard
     - id: CellRechargerCircuitboard
     - id: SpaceVillainArcadeComputerCircuitboard

@@ -232,8 +232,6 @@
     - id: FoodBoxDonkpocket
     - id: MonkeyCube
 
-    - id: SMESMachineCircuitboard
-
     - group:
       - id: ClothingUniformColorRainbow
       - id: ClothingUniformJumpsuitAromantic

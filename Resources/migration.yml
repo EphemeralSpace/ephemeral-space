@@ -568,6 +568,10 @@ SubstationWallBasic: null
 DebugSubstationWallRecharging: null
 SubstationMachineCircuitboard: null
 WallmountSubstationElectronics: null
+SMESAdvanced: null
+SMESAdvancedEmpty: null
+SMESMachineCircuitboard: null
+SMESAdvancedMachineCircuitboard: null
 
 # ES END
 

@@ -16,8 +16,6 @@
     - id: AlertsComputerCircuitboard
     - id: AtmosMonitoringComputerCircuitboard
     - id: PowerComputerCircuitboard
-    - id: SMESMachineCircuitboard
-      amount: 2
     - id: CellRechargerCircuitboard
     - id: WeaponCapacitorRechargerCircuitboard
     - id: PortableGeneratorJrPacmanMachineCircuitboard
