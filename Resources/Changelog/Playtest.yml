@@ -1892,3 +1892,14 @@ Entries:
         simply failing to send them.
   id: 200
   time: '2026-08-17T19:32:13.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Substations and SMESes now enter a broken state when destroyed, allowing
+        them to be repaired with a welder. They can no longer be constructed or
+        deconstructed.
+    - type: Tweak
+      message: Made substation explosions on-par with grenades.
+  id: 201
+  time: '2026-08-18T03:28:55.0000000+00:00'
