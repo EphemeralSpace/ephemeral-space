@@ -2,29 +2,26 @@
 - type: entity
   abstract: true
   id: BaseSMES
-  parent: [ BaseMachine, ConstructibleMachine ]
+  parent: [ ESBaseStructureMachine, ESBaseBreakableMachine ]
   name: SMES
   description: A high-capacity superconducting magnetic energy storage (SMES) unit.
   placement:
     mode: SnapgridCenter
   components:
-    # ES START
     # only re-anchorable, not un-anchorable
     - type: Anchorable
       flags: Anchorable
-    # ES END
     - type: AmbientSound
       volume: -7
       range: 3
       sound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Sprite
-# ES START
       sprite: _ES/Structures/Power/smes.rsi
-# ES END
       snapCardinals: true
       layers:
         - state: smes
+          map: [ "base" ]
         - map: ["enum.SmesVisualLayers.Charge"]
           state: "smes-og1" # -og0 does not exist
           shader: unshaded
@@ -35,8 +32,6 @@
         - map: ["enum.SmesVisualLayers.Output"]
           state: "smes-op1"
           shader: unshaded
-        - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-          state: smes-open
     - type: Smes
     - type: Appearance
     - type: Battery
@@ -46,9 +41,7 @@
       # This disables prediction for this battery.
       netsync: false
       startingCharge: 0
-      # ES START
       maxCharge: 18000000
-      # ES END
     - type: ExaminableBattery
     - type: NodeContainer
       examinable: true
@@ -64,9 +57,7 @@
       sourceNode: input
       loadNode: output
       collectionName: smes
-# ES START
       sprite: _ES/Structures/Power/smes.rsi
-# ES END
       state: static
     - type: BatteryDischarger
       voltage: High
@@ -80,17 +71,30 @@
       supplyRampTolerance: 5000
       supplyRampRate: 1000
     - type: PointLight
-      # ES START
       radius: 2.3
       energy: 2
       falloff: 10
       color: "#f7a847"
       curveFactor: 1.0
-      # ES END
-    - type: WiresPanel
-    - type: WiresVisuals
-    - type: Machine
-      board: SMESMachineCircuitboard
+    - type: ESBreakableBattery
+    - type: ESBreakableActivatableUi
+    - type: GenericVisualizer
+      visuals:
+        enum.ESBreakableVisuals.Broken:
+          base:
+            True: { state: "broken" }
+            False: { state: "smes" }
+          enum.SmesVisualLayers.Charge:
+            True: { visible: false }
+            False: { visible: true }
+          enum.SmesVisualLayers.Input:
+            True: { visible: false }
+            False: { visible: true }
+          enum.SmesVisualLayers.Output:
+            True: { visible: false }
+            False: { visible: true }
+#    - type: Machine
+#      board: SMESMachineCircuitboard
     - type: StationInfiniteBatteryTarget
     - type: Electrified
       onHandInteract: false
@@ -100,7 +104,6 @@
       highVoltageNode: input
       mediumVoltageNode: output
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: StructuralMetallicStrong
     - type: BatterySensor
     - type: DeviceNetwork

@@ -31,6 +31,7 @@
   components:
   - type: Appearance # For breakable visuals
   - type: ESBreakable
+    threshold: 100
   - type: Repairable # More costly repair since it's a full machine and not a small structure
     fuelCost: 25
     doAfterDelay: 5
