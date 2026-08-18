@@ -82,7 +82,7 @@
   # only re-anchorable, not un-anchorable
   - type: Anchorable
     flags: Anchorable
-  - type: Sprite # TODO: add sprite for maintenance panel open
+  - type: Sprite
     sprite: _ES/Structures/Power/substation.rsi
     snapCardinals: true
     layers:
@@ -127,38 +127,7 @@
       enum.ESBreakableVisuals.Broken:
         True: { enabled: false }
         False: { enabled: true }
-#  - type: Destructible
-#    thresholds:
-#    - trigger:
-#        !type:DamageTrigger
-#        damage: 200
-#      behaviors:
-#      - !type:DoActsBehavior
-#        acts: [ "Destruction" ]
-#    - trigger:
-#        !type:DamageTrigger
-#        damage: 100
-#      behaviors:
-#      - !type:DoActsBehavior
-#        acts: ["Destruction"]
-#      - !type:PlaySoundBehavior
-#        sound:
-#          collection: MetalGlassBreak
-#      - !type:ExplodeBehavior
-#      - !type:SpawnEntitiesBehavior
-#        spawn:
-#          MachineFrameDestroyed:
-#            min: 1
-#            max: 1
-#      - !type:SpawnGasBehavior
-#        gasMixture:
-#          volume: 1000
-#          moles:
-#            CarbonDioxide: 340.5701689 # carbon dioxide
-#          temperature: 373.15
   - type: ESTriggerExplosionOnBreak
-#  - type: Machine # TODO: remove associated machine board
-#    board: SubstationMachineCircuitboard
   - type: AmbientSound
     range: 3
   - type: Electrified
@@ -168,80 +137,6 @@
     requirePower: true
     highVoltageNode: input
     mediumVoltageNode: output
-
-# Compact Wall Substation Base
-- type: entity
-  id: BaseSubstationWall
-  parent: CoreSubstation
-  categories: [ HideSpawnMenu ]
-  name: wallmount substation
-  description: A substation designed for compact shuttles and spaces.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: AmbientSound
-    range: 2
-  - type: PointLight
-    radius: 1.5
-    energy: 1
-    color: "#ff6900"
-    netsync: false
-    castShadows: false
-    offset: 0, -0.2
-  - type: Clickable
-  - type: ContainerFill
-    containers:
-      board: [ WallmountSubstationElectronics ]
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-    canCollide: false
-  - type: Fixtures
-  - type: Transform
-    anchored: true
-  - type: Sprite # TODO: add sprite for maintenance panel open
-    drawdepth: WallMountedItems
-    sprite: Structures/Power/substation.rsi
-    layers:
-    - state: substation_wall
-    - state: screen_wall
-      shader: unshaded
-  - type: Battery
-    maxCharge: 2000000
-    startingCharge: 0
-  - type: PowerMonitoringDevice
-    sprite: Structures/Power/substation.rsi
-    state: substation_wall_static
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:ExplodeBehavior
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
-  - type: Construction
-    graph: WallmountSubstation
-    node: substation
-  - type: Explosive
-    explosionType: Default
-    maxIntensity: 50
-    intensitySlope: 2
-    totalIntensity: 100
-  - type: WallMount
 
 # Substations in use
 
@@ -261,49 +156,3 @@
   components:
   - type: Battery
     startingCharge: 0
-
-- type: entity
-  parent: BaseSubstationWall
-  id: SubstationWallBasic
-  suffix: Basic, 2MJ
-  components:
-  - type: Battery
-    maxCharge: 2000000
-    startingCharge: 2000000
-  - type: ContainerFill
-    containers:
-      board: [ WallmountSubstationElectronics ]
-      manipulator: [ MicroManipulatorStockPart ]
-      powercell: [ PowerCellSmall ]
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-      manipulator: !type:Container
-      powercell: !type:Container
-
-      # Construction Frame
-- type: entity
-  id: BaseSubstationWallFrame
-  categories: [ HideSpawnMenu ]
-  name: wallmount substation frame
-  description: A substation frame for construction.
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Physics
-    bodyType: Static
-    canCollide: false
-  - type: Fixtures
-  - type: Transform
-    anchored: true
-  - type: Sprite
-    drawdepth: WallMountedItems
-    sprite: Structures/Power/substation.rsi
-    layers:
-    - state: substation_wall
-  - type: Construction
-    graph: WallmountSubstation
-    node: frame
-  - type: WallMount

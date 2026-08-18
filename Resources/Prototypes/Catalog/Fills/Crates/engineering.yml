@@ -211,7 +211,6 @@
     - id: FirelockElectronics
     - id: SignalTimerElectronics
     - id: SMESMachineCircuitboard
-    - id: SubstationMachineCircuitboard
     - id: BorgChargerCircuitboard
     - id: CellRechargerCircuitboard
     - id: SpaceVillainArcadeComputerCircuitboard

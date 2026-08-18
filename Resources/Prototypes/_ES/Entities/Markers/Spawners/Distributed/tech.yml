@@ -20,8 +20,6 @@
       amount: 2
     - id: CellRechargerCircuitboard
     - id: WeaponCapacitorRechargerCircuitboard
-    - id: SubstationMachineCircuitboard
-      amount: 2
     - id: PortableGeneratorJrPacmanMachineCircuitboard
     - id: StationRecordsComputerCircuitboard
     - id: OperatingTableCircuitboard

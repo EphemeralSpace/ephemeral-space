@@ -421,28 +421,6 @@
       Plastic: 30
 
 - type: entity
-  id: SubstationMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: substation machine board
-  description: A machine printed circuit board for a substation.
-  components:
-    - type: MachineBoard
-      prototype: SubstationBasicEmpty
-      stackRequirements:
-        Manipulator: 1
-        CableMV: 5
-        CableHV: 5
-      componentRequirements:
-        PowerCell:
-          amount: 1
-          defaultPrototype: PowerCellSmall
-    - type: PhysicalComposition
-      materialComposition:
-        Glass: 200
-      chemicalComposition:
-        Silicon: 20
-
-- type: entity
   parent: BaseMachineCircuitboard
   id: DawInstrumentMachineCircuitboard
   name: digital audio workstation machine board

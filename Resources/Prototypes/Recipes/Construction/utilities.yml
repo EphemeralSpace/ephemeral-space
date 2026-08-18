@@ -33,16 +33,6 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: WallmountSubstation
-  graph: WallmountSubstation
-  startNode: start
-  targetNode: substation
-  category: construction-category-utilities
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: true
-
-- type: construction
   id: WallmountGenerator
   graph: WallmountGenerator
   startNode: start
