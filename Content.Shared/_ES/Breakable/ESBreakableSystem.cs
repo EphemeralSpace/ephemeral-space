@@ -107,7 +107,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
     /// </summary>
     public bool IsBroken(Entity<ESBreakableComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!_breakableQuery.Resolve(ent, ref ent.Comp, false))
             return false;
 
         return ent.Comp.Broken;
@@ -118,7 +118,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
     /// </summary>
     public bool SetBroken(Entity<ESBreakableComponent?> ent, bool broken, EntityUid? user)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!_breakableQuery.Resolve(ent, ref ent.Comp))
             return false;
 
         if (ent.Comp.Broken == broken)
