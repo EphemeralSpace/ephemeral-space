@@ -80,8 +80,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#85b6fe"
-  - type: Computer
-    board: MedicalRecordsComputerCircuitboard
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity
@@ -109,8 +107,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#e9755e"
-  - type: Computer
-    board: CriminalRecordsComputerCircuitboard
   - type: AccessReader
     access: [["Security"]]
   - type: ESSabotageTarget
@@ -133,8 +129,6 @@
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
     color: "#70ff67"
-  - type: Computer
-    board: StationRecordsComputerCircuitboard
   - type: GuideHelp
     guides:
     - Forensics
@@ -155,8 +149,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#85b6fe"
-  - type: Computer
-    board: CrewMonitoringComputerCircuitboard
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
   - type: UserInterface
@@ -200,8 +192,6 @@
       state: cameras
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: SurveillanceCameraMonitorCircuitboard
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: SurveillanceCamera
@@ -238,8 +228,6 @@
       state: cameras
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: SurveillanceWirelessCameraMonitorCircuitboard
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera

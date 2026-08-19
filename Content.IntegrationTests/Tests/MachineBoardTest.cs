@@ -59,44 +59,6 @@ public sealed class MachineBoardTest : GameTest
     /// is a computer that can be properly deconstructed to the correct board
     /// </summary>
     [Test]
-    public async Task TestComputerBoardHasValidComputer()
-    {
-        var pair = Pair;
-        var server = pair.Server;
-
-        var protoMan = server.ResolveDependency<IPrototypeManager>();
-        var compFact = server.ResolveDependency<IComponentFactory>();
-
-        await server.WaitAssertion(() =>
-        {
-            foreach (var p in protoMan.EnumeratePrototypes<EntityPrototype>()
-                         .Where(p => !p.Abstract)
-                         .Where(p => !pair.IsTestPrototype(p))
-                         .Where(p => !_ignoredPrototypes.Contains(p.ID)))
-            {
-                if (!p.TryGetComponent<ComputerBoardComponent>(out var cbc, compFact))
-                    continue;
-                var cId = cbc.Prototype;
-
-                Assert.Multiple(() =>
-                {
-                    Assert.That(cId, Is.Not.Null, $"Computer board \"{p.ID}\" does not have a corresponding computer.");
-                    Assert.That(protoMan.TryIndex<EntityPrototype>(cId, out var cProto),
-                        $"Computer board \"{p.ID}\"'s corresponding computer has an invalid prototype.");
-                    Assert.That(cProto.TryGetComponent<ComputerComponent>(out var cComp, compFact),
-                        $"Computer board {p.ID}'s corresponding computer \"{cId}\" does not have ComputerComponent");
-                    Assert.That(cComp.BoardPrototype, Is.EqualTo(p.ID),
-                        $"Computer \"{cId}\"'s BoardPrototype is not equal to it's corresponding computer board, \"{p.ID}\"");
-                });
-            }
-        });
-    }
-
-    /// <summary>
-    /// Ensures that every single computer board's corresponding entity
-    /// is a computer that can be properly deconstructed to the correct board
-    /// </summary>
-    [Test]
     public async Task TestValidateBoardComponentRequirements()
     {
         var pair = Pair;

@@ -18,6 +18,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private ActivatableUISystem _activatableUi = default!;
     [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -37,6 +38,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
         SubscribeLocalEvent<ESBreakableComponent, DamageChangedEvent>(OnDamageChanged);
 
         SubscribeLocalEvent<ESBreakableActivatableUiComponent, ActivatableUIOpenAttemptEvent>(OnOpenAttempt);
+        SubscribeLocalEvent<ESBreakableActivatableUiComponent, ESBrokenStateChanged>(OnActivatableUiBrokenStateChanged);
         SubscribeLocalEvent<ESBreakableDeviceNetworkComponent, BeforePacketSentEvent>(OnBeforePacketSent);
         SubscribeLocalEvent<ESBreakablePointLightComponent, MapInitEvent>(OnPointLightMapInit);
         SubscribeLocalEvent<ESBreakablePointLightComponent, ESBrokenStateChanged>(OnPointLightBrokenStateChanged);
@@ -86,6 +88,12 @@ public sealed partial class ESBreakableSystem : EntitySystem
     {
         if (IsBroken(ent.Owner))
             args.Cancel();
+    }
+
+    private void OnActivatableUiBrokenStateChanged(Entity<ESBreakableActivatableUiComponent> ent, ref ESBrokenStateChanged args)
+    {
+        if (args.Broken)
+            _activatableUi.CloseAll(ent);
     }
 
     private void OnBeforePacketSent(Entity<ESBreakableDeviceNetworkComponent> ent, ref BeforePacketSentEvent args)

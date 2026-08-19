@@ -13,15 +13,15 @@
   - type: ESDistributedSpawner
     id: ESSpawnerTechStorage
     tables:
-    - id: AlertsComputerCircuitboard
-    - id: AtmosMonitoringComputerCircuitboard
-    - id: PowerComputerCircuitboard
+#    - id: AlertsComputerCircuitboard
+#    - id: AtmosMonitoringComputerCircuitboard
+#    - id: PowerComputerCircuitboard
     - id: CellRechargerCircuitboard
     - id: WeaponCapacitorRechargerCircuitboard
     - id: PortableGeneratorJrPacmanMachineCircuitboard
-    - id: StationRecordsComputerCircuitboard
+#    - id: StationRecordsComputerCircuitboard
     - id: OperatingTableCircuitboard
-    - id: SurveillanceCameraMonitorCircuitboard
+#    - id: SurveillanceCameraMonitorCircuitboard
     - id: MicrowaveMachineCircuitboard
     - id: JukeboxCircuitBoard
 

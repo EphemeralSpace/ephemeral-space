@@ -212,8 +212,6 @@
     - id: SignalTimerElectronics
     - id: BorgChargerCircuitboard
     - id: CellRechargerCircuitboard
-    - id: SpaceVillainArcadeComputerCircuitboard
-    - id: BlockGameArcadeComputerCircuitboard
 
 - type: entity
   parent: ToteBase

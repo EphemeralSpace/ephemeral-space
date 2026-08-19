@@ -12,8 +12,11 @@
       state: television
     - map: ["computerLayerScreen"]
       state: detective_television
-  - type: Computer
-    board: ComputerTelevisionCircuitboard
+  - type: ESBreakableVisuals # TODO: no broken visuals for these yet
+    brokenLayers:
+      computerLayerBody:
+        sprite: Structures/Machines/computers.rsi
+        state: television
   - type: PointLight
     radius: 1.25
     energy: 50

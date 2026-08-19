@@ -92,6 +92,7 @@
   - type: ESBreakableActivatableUi
   - type: ESSparkWhileBroken
     tileFireChance: 0.025 # Don't leave it sitting around too long
+    count: 2
   - type: ESSparkOnHit
     prob: 0.25
     tileFireChance: 0.2

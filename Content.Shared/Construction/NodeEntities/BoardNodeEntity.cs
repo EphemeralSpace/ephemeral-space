@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Construction.NodeEntities;
 
 /// <summary>
-///     Works for both <see cref="ComputerBoardComponent"/> and <see cref="MachineBoardComponent"/>
+///     Works for <see cref="MachineBoardComponent"/>
 ///     because duplicating code just for this is really stinky.
 /// </summary>
 [UsedImplicitly]
@@ -38,15 +38,6 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
         // There should not be a case where more than one of these components exist on the same entity
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))
             return machine.Prototype;
-
-// ES START
-        if (args.EntityManager.TryGetComponent(board, out ComputerBoardComponent? computer))
-        {
-            if (AlternateComputerTag is { } tag && computer.AlternatePrototype.TryGetValue(tag, out var proto))
-                return proto;
-            return computer.Prototype;
-        }
-// ES END
 
         return null;
     }
