@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
+  category: Grid
   engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/19/2026 16:38:32
-  entityCount: 909
-maps:
-- 18
+  time: 08/19/2026 21:49:52
+  entityCount: 910
+maps: []
 grids:
 - 1
-orphans: []
+orphans:
+- 1
 nullspace: []
 tilemap:
   3: Space
@@ -32,7 +32,7 @@ entities:
     - type: MetaData
       name: test_ship
     - type: Transform
-      parent: 18
+      parent: invalid
       pos: -5.321541,-10.87529
     - type: MapGrid
       chunks:
@@ -479,18 +479,6 @@ entities:
     - type: ExplosionAirtightGrid
     - type: ChunkContainer
       chunkEntities: []
-  - uid: 18
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: Broadphase
-    - type: ChunkContainer
-      chunkEntities: []
-    - type: OccluderTree
 - proto: AirlockEngineering
   entities:
   - uid: 601
@@ -1634,6 +1622,16 @@ entities:
       pos: 8.5,-11.5
 - proto: CableHV
   entities:
+  - uid: 18
+    components:
+    - type: Transform
+      parent: 1
+      pos: -3.5,-11.5
+  - uid: 122
+    components:
+    - type: Transform
+      parent: 1
+      pos: -4.5,-11.5
   - uid: 123
     components:
     - type: Transform
@@ -1648,12 +1646,12 @@ entities:
     components:
     - type: Transform
       parent: 1
-      pos: -6.5,-11.5
+      pos: -5.5,-11.5
   - uid: 130
     components:
     - type: Transform
       parent: 1
-      pos: -5.5,-11.5
+      pos: -6.5,-11.5
   - uid: 205
     components:
     - type: Transform
@@ -1663,17 +1661,17 @@ entities:
     components:
     - type: Transform
       parent: 1
-      pos: -10.5,-7.5
+      pos: -8.5,-6.5
   - uid: 286
     components:
     - type: Transform
       parent: 1
-      pos: -10.5,-8.5
+      pos: -9.5,-6.5
   - uid: 394
     components:
     - type: Transform
       parent: 1
-      pos: -10.5,-9.5
+      pos: -7.5,-11.5
   - uid: 433
     components:
     - type: Transform
@@ -1858,17 +1856,17 @@ entities:
     components:
     - type: Transform
       parent: 1
-      pos: -10.5,-10.5
+      pos: -10.5,-11.5
   - uid: 470
     components:
     - type: Transform
       parent: 1
-      pos: -10.5,-11.5
+      pos: -8.5,-11.5
   - uid: 471
     components:
     - type: Transform
       parent: 1
-      pos: -8.5,-11.5
+      pos: -10.5,-8.5
   - uid: 472
     components:
     - type: Transform
@@ -1878,17 +1876,17 @@ entities:
     components:
     - type: Transform
       parent: 1
-      pos: -7.5,-11.5
+      pos: -10.5,-10.5
   - uid: 474
     components:
     - type: Transform
       parent: 1
-      pos: -3.5,-11.5
-  - uid: 475
+      pos: -10.5,-9.5
+  - uid: 476
     components:
     - type: Transform
       parent: 1
-      pos: -4.5,-11.5
+      pos: -10.5,-7.5
 - proto: CableMV
   entities:
   - uid: 16
@@ -1928,11 +1926,6 @@ entities:
       pos: -10.5,-4.5
 - proto: CableTerminal
   entities:
-  - uid: 122
-    components:
-    - type: Transform
-      parent: 1
-      pos: -7.5,-3.5
   - uid: 301
     components:
     - type: Transform
@@ -1951,6 +1944,11 @@ entities:
       parent: 1
       rot: 1.5707963267948966 rad
       pos: -0.5,-16.5
+  - uid: 475
+    components:
+    - type: Transform
+      parent: 1
+      pos: -7.5,-3.5
 - proto: CaptainIDCard
   entities:
   - uid: 67
