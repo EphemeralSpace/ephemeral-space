@@ -68,28 +68,8 @@ public record struct StandUpAttemptEvent(bool Autostand)
 public record struct GetStandUpTimeEvent(TimeSpan DoAfterTime);
 
 /// <summary>
-/// Raised when an entity is forcing itself to stand, allows for the stamina damage it is taking to be modified.
-/// This is raised before the stamina damage is taken so it can still fail if the entity does not have enough stamina.
-/// </summary>
-/// <param name="Stamina">The stamina damage the entity will take when it forces itself to stand.</param>
-[ByRefEvent]
-public record struct TryForceStandEvent(float Stamina);
-
-/// <summary>
-///     Raised when you click on the Knocked Down Alert
-/// </summary>
-public sealed partial class KnockedDownAlertEvent : BaseAlertEvent;
-
-/// <summary>
 /// The DoAfterEvent for trying to stand the slow and boring way.
 /// </summary>
 [ByRefEvent]
 [Serializable, NetSerializable]
 public sealed partial class TryStandDoAfterEvent : SimpleDoAfterEvent;
-
-/// <summary>
-/// An event sent by the client to the server to ask it very nicely to perform a forced stand-up.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class ForceStandUpEvent : EntityEventArgs;
-

@@ -4,7 +4,6 @@ using Content.Shared.Alert;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
@@ -16,7 +15,6 @@ using Content.Shared.Standing;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Throwing;
 using Content.Shared.Whitelist;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -33,10 +31,8 @@ public abstract partial class SharedStunSystem : EntitySystem
     [Dependency] protected AlertsSystem Alerts = default!;
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
     [Dependency] protected SharedDoAfterSystem DoAfter = default!;
-    [Dependency] protected SharedStaminaSystem Stamina = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
 
     public override void Initialize()
@@ -66,6 +62,9 @@ public abstract partial class SharedStunSystem : EntitySystem
 
         SubscribeLocalEvent<KnockdownStatusEffectComponent, StatusEffectAppliedEvent>(OnKnockdownStatusApplied);
         SubscribeLocalEvent<KnockdownStatusEffectComponent, StatusEffectRelayedEvent<StandUpAttemptEvent>>(OnStandUpAttempt);
+
+        SubscribeLocalEvent<ESFatiguedAnimationStatusEffectComponent, StatusEffectAppliedEvent>(OnFatigueStatusApplied);
+        SubscribeLocalEvent<ESFatiguedAnimationStatusEffectComponent, StatusEffectRemovedEvent>(OnFatigueStatusRemoved);
 
         // Stun Appearance Data
         InitializeKnockdown();
@@ -335,6 +334,8 @@ public abstract partial class SharedStunSystem : EntitySystem
             return;
 
         EnsureComp<StunnedComponent>(args.Target);
+        if (entity.Comp.SeeStars)
+            TrySeeingStars(args.Target);
     }
 
     private void OnStunStatusRemoved(Entity<StunnedStatusEffectComponent> entity, ref StatusEffectRemovedEvent args)
@@ -372,6 +373,16 @@ public abstract partial class SharedStunSystem : EntitySystem
         var ev = args.Args;
         ev.Cancelled = true;
         args.Args = ev;
+    }
+
+    private void OnFatigueStatusApplied(Entity<ESFatiguedAnimationStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        Appearance.SetData(args.Target, StunVisuals.Fatigue, true);
+    }
+
+    private void OnFatigueStatusRemoved(Entity<ESFatiguedAnimationStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        Appearance.SetData(args.Target, StunVisuals.Fatigue, _status.HasEffectComp<ESFatiguedAnimationStatusEffectComponent>(args.Target));
     }
 
     #region Attempt Event Handling

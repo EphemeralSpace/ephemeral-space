@@ -1,7 +1,4 @@
 using Content.Shared.Alert;
-using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -32,7 +29,6 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] protected SharedPopupSystem Popup = default!;
-    [Dependency] private SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {
@@ -253,12 +249,6 @@ public abstract partial class SharedEnsnareableSystem : EntitySystem
             return false;
 
         Container.Insert(ensnare, ensnareable.Container);
-
-        // Apply stamina damage to target
-        if (TryComp<StaminaComponent>(target, out var stamina))
-        {
-            _stamina.TakeStaminaDamage(target, component.StaminaDamage, with: ensnare, component: stamina);
-        }
 
         component.Ensnared = target;
         ensnareable.IsEnsnared = true;

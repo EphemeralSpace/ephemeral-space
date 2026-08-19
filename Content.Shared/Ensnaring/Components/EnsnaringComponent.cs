@@ -33,12 +33,6 @@ public sealed partial class EnsnaringComponent : Component
     public float SprintSpeed = 0.9f;
 
     /// <summary>
-    /// How much stamina does the ensnare sap
-    /// </summary>
-    [DataField]
-    public float StaminaDamage = 55f;
-
-    /// <summary>
     /// How many times can the ensnare be applied to the same target?
     /// </summary>
     [DataField]

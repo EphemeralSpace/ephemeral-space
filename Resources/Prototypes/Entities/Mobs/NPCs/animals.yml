@@ -112,9 +112,6 @@
     thresholds:
       0: Alive
       10: Dead
-  - type: Stamina
-    baseCritThreshold: 10
-    animationThreshold: 1
   - type: DamageStateVisuals
     states:
       Alive:
