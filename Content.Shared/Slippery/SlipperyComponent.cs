@@ -35,12 +35,6 @@ namespace Content.Shared.Slippery
         public TimeSpan FrictionStatusTime = TimeSpan.FromSeconds(0.5f);
 
         /// <summary>
-        /// How much stamina damage should this component do on slip?
-        /// </summary>
-        [DataField, AutoNetworkedField]
-        public float StaminaDamage = 25f;
-
-        /// <summary>
         /// Loads the data needed to determine how slippery something is.
         /// </summary>
         [DataField, AutoNetworkedField]

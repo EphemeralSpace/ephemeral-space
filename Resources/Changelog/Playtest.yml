@@ -1903,3 +1903,9 @@ Entries:
       message: Made substation explosions on-par with grenades.
   id: 201
   time: '2026-08-18T03:28:55.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Emojis can no longer be sent in in-character chat messages.
+  id: 202
+  time: '2026-08-19T16:03:20.0000000+00:00'
