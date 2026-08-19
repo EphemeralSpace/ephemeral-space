@@ -577,6 +577,8 @@ SMESAdvancedMachineCircuitboard: null
 # 2026-8-19
 ComputerFrame: null
 ESTabletopComputerFrame: null
+ComputerBroken: null
+ESTabletopComputerBroken: null
 
 # ES END
 

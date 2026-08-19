@@ -24,11 +24,3 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: ESComputer
-
-- type: entity
-  parent: BaseComputer
-  id: ComputerBroken
-  description: This computer has seen better days.
-  components:
-  - type: ESBreakable
-    broken: true

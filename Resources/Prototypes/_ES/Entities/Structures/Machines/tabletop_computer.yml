@@ -65,14 +65,6 @@
     layoutId: ComputerAi
 
 - type: entity
-  parent: ESBaseTabletopComputer
-  id: ESTabletopComputerBroken
-  description: This computer has seen better days.
-  components:
-  - type: ESBreakable
-    broken: true
-
-- type: entity
   parent: ESBaseTabletopComputerAiAccess
   id: ESComputerMedicalRecordsTabletop
   name: medical records computer

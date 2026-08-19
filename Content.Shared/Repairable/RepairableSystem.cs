@@ -1,4 +1,3 @@
-using Content.Shared._ES.Breakable;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -14,7 +13,6 @@ namespace Content.Shared.Repairable;
 public sealed partial class RepairableSystem : EntitySystem
 {
     [Dependency] private SharedToolSystem _toolSystem = default!;
-    [Dependency] private ESBreakableSystem _breakable = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
