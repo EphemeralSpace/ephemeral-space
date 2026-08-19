@@ -63,48 +63,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
         _overlayManager.RemoveOverlay<TomenoSoundOcclusionOverlay>();
     }
-
-    /* TODO list:
-    - X PVS-sized, grid-aligned object tilemap for pathfinding data, boolean tilemap for airtight
-        - X should we just use a Vector2i dictionary for occlusion and query for all airtight?
-    - X Fill boolean tilemap with airtight data
-        - X should i just grab all the airtight in pvs and slot it in?
-        - X how to handle offgrid? multigrid?
-            - X offgrid - space is occluded, planet is not
-            - X multigrid - translate to local grid coordinates - good enough for docked shuttles
-    - X make an overlay for this data
-    -- Algorithm
-    - X Flood fill from the listener pos
-        - X breadth-first
-        - X pathfinding data?
-            - X coordinates to previous tile?
-    - X tracing against the tilemap/checking "los" - we use supercover dda
-    - X pathfinding sounds
-        - check los first
-    - shorten path - X mostly done - doesn't matter for now
-        - X from either side with sound traces? should be fine to step across the path for now - since we use diagonals, yes
-            - maybe binary search or smt later
-            - last visible tile from hearer/listener becomes the "portal" - for updating gotten paths later
-            - shorten from listener first
-    -- Final stretch
-    - cleanup! make structures instead of system vars! split stuff!
-    - when the soundstage becomes dirty (airtights move, etc), mark it as dirty and update on next client tick (Update)
-    - this means we will need to snapshot all grid coordinate system info alongside the soundstage?
-    - when a new soundstage is generated, schedule a background task thread to calculate the new paths
-        - schedule using System.Threading.Tasks, save it
-            - for cancellation, getting the
-        - we can only update the sounds/soundpaths up to 20 times a second - don't gen stages faster than this!
-    - on next update, if the task is finished, it returns a new floodfill - push it into the system as new state
-        - track "soundstage generation", every time theres a new one we increment this
-    - SoundStage - basic occlusion data structure, includes grid info
-    - SoundPaths - structure returned by the floodfiller, includes SoundStage
-    - UpdatablePath
-        - emitterPortal, listenerPortal, portalDistance - distance between portals, soundstage generation
-        - new occluded dist: emitter-eportal + portaldistance + listener-lportal
-        - only 1 portal -> both distances from portals? no portal -> no occlusion
-        - sound only needs to grab a new path if the soundstage gen is different
-    */
-
+    
     public int SoundStageGeneration = 0;
 
     // Used for tracking significant movement updates
@@ -144,23 +103,38 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         // Do we need this? We will need to update the listener pos live
         public required Vector2 ListenerPos { get; init; }   // grid-local
 
+        //
         public required int Generation { get; init; }
 
+        /// <summary>
+        /// Returns the passability value of a stage tile. True for tiles that are passable, false for impassable.
+        /// Passability of tiles that haven't been recorded is decided based on map type.
+        ///     Planets are passable, space is impassable.
+        /// </summary>
         public bool IsPassable(Vector2i position)
         {
             return Passable.GetValueOrDefault(position, IsPlanet);
         }
 
+        /// <summary>
+        /// Converts world coordinates to stage coordinates.
+        /// </summary>
         public Vector2 WorldToStage(Vector2 posWorld)
         {
             return Vector2.Transform(posWorld, InvWorldMatrix);
         }
 
+        /// <summary>
+        /// Converts stage coordinates to world coordinates.
+        /// </summary>
         public Vector2 StageToWorld(Vector2 posStage)
         {
             return Vector2.Transform(posStage, WorldMatrix);
         }
 
+        /// <summary>
+        /// Converts stage coordinates to a stage tile.
+        /// </summary>
         public Vector2i StageToTile(Vector2 posStage)
         {
             // honestly TileSize is a no-op 100% of the time right now (AFAIK)
@@ -169,12 +143,17 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             return new Vector2i(x, y);
         }
 
+        /// <summary>
+        /// Converts world coordinates to a stage tile.
+        /// </summary>
         public Vector2i WorldToTile(Vector2 posWorld)
         {
             return StageToTile(WorldToStage(posWorld));
         }
 
-        // Supercover DDA algorithm
+        /// <summary>
+        /// Checks for sound-visibility on the soundstage using "Supercover DDA".
+        /// </summary>
         public bool CheckVisibility(Vector2 from, Vector2 to)
         {
             var t1 = to.Floored();
@@ -192,13 +171,8 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             var tMaxX = dX > 0 ? ((t1.X + 1 - to.X) / dX) : (dX < 0 ? (t1.X - to.X) / dX : float.PositiveInfinity);
             var tMaxY = dY > 0 ? ((t1.Y + 1 - to.Y) / dY) : (dY < 0 ? (t1.Y - to.Y) / dY : float.PositiveInfinity);
 
-            // If this was the proper algo then here you would check the start tile, but I think it's better if we don't
-            //   for the sake of sound emitters within walls
-
             if (!IsPassable(t2))
-            {
                 return false;
-            }
 
             var steps = Math.Abs(t2.X - t1.X) + Math.Abs(t2.Y - t1.Y);
             for (var i = 0; i < steps; i++)
@@ -227,7 +201,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
     public sealed class PathResult
     {
-        // Portal locations - if they're not
+        // Portal locations - if they're null, that means we have a direct path.
         public Vector2? EmitterPortal { get; init; }
         public Vector2? ListenerPortal { get; init; }
 
@@ -248,6 +222,12 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         public required Dictionary<Vector2i, Vector2i?> Paths { get; init; }
     }
 
+    /// <summary>
+    /// Finds a path from an emitter position to the listener in the current active SoundPaths.
+    /// If a path is not found, returns null.
+    /// If a direct path is found, returns a PathResult with no portals.
+    /// If a path is found, returns a PathResult.
+    /// </summary>
     public PathResult? FindPath(Vector2 emitter)
     {
         if (CurrentSoundPaths == null || !LastLocalPos.HasValue)
@@ -418,6 +398,9 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         };
     }
 
+    /// <summary>
+    /// Records the nearby tiles and Airtight entities into a new SoundStage object.
+    /// </summary>
     private SoundStage? SnapshotStage()
     {
         Dictionary<Vector2i, bool> passability = new();
@@ -455,6 +438,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         var soundRange = 15;
         var tileRange = Box2.CenteredAround((Vector2)localGridPos, new Vector2(1 + soundRange * 2, 1 + soundRange * 2));
 
+        // TODO: this is obsolete
         var tilesEnumerator = _sharedMapSystem.GetLocalTilesEnumerator(gridUid, grid, tileRange, true);
 
         while (tilesEnumerator.MoveNext(out var tile))
@@ -492,6 +476,9 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         };
     }
 
+    /// <summary>
+    /// Checks whether a PathResult is up-to-date and can be reused.
+    /// </summary>
     public bool IsPathValid(PathResult path, Vector2 emitterPos)
     {
         if (CurrentSoundPaths == null)
@@ -531,7 +518,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             paths[tile] = lastTile;
 
             // Troll physics: we are actually putting walls into the soundstage, we just don't continue spreading from them
-            if (stage.IsPassable(tile) || lastTile == null) // if we are starting from inside a wall/airlock...
+            if (stage.IsPassable(tile) || lastTile == null) // Actually continue if we are starting from inside a wall/airlock...
             {
                 foreach (var (offset, offsetDistance, checkDiagonal) in candidateOffsets)
                 {
@@ -546,7 +533,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                     }
 
                     // insert the candidate before it's actually processed so it doesn't get queued multiple times
-                    // TODO: refactor this to not be so dirty
+                    // TODO: refactor this to not be so dirty?
                     if (paths.TryAdd(candidate, tile))
                         queue.Add((tile, nextDistance, candidate));
                 }
@@ -618,9 +605,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             return;
         }
 
-        // TODO: Multithread here
-        // Update state with new soundstage
-        //CurrentSoundPaths = GenerateSoundPaths(newSoundStage);
         SoundPathsTask = Task.Run(() => GenerateSoundPaths(newSoundStage));
     }
 
