@@ -129,8 +129,8 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 
         var coords = viewport.PixelToMap(mousePos.Position);
 
-        var emitterPos = _occlusionSystem.CurrentSoundPaths.Stage.WorldToLocal(coords.Position);
-        var emitterTile = _occlusionSystem.CurrentSoundPaths.Stage.LocalToTile(emitterPos);
+        var emitterPos = _occlusionSystem.CurrentSoundPaths.Stage.WorldToStage(coords.Position);
+        var emitterTile = _occlusionSystem.CurrentSoundPaths.Stage.StageToTile(emitterPos);
 
         var foundPath = _occlusionSystem.FindPath(emitterPos);
         var playerPos = _occlusionSystem.LastLocalPos;
@@ -150,8 +150,8 @@ public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
 
         for (var i = 1; i < pathPositions.Count; i++)
         {
-            var v1 = viewport.WorldToScreen(_occlusionSystem.CurrentSoundPaths.Stage.LocalToWorld(pathPositions[i-1] ));
-            var v2 = viewport.WorldToScreen(_occlusionSystem.CurrentSoundPaths.Stage.LocalToWorld(pathPositions[i]));
+            var v1 = viewport.WorldToScreen(_occlusionSystem.CurrentSoundPaths.Stage.StageToWorld(pathPositions[i-1] ));
+            var v2 = viewport.WorldToScreen(_occlusionSystem.CurrentSoundPaths.Stage.StageToWorld(pathPositions[i]));
             handle.DrawLine(v1, v2, Color.Green);
         }
 

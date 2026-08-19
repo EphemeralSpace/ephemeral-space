@@ -61,8 +61,10 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         base.Initialize();
 
         _originalAudio.ProcessStreamOverride += ProcessStream;
-        _originalAudio.GetOcclusionOverride += GetOcclusion;
+        //_originalAudio.GetOcclusionOverride += GetOcclusion;
         _baseClient.RunLevelChanged += OnRunLevelChanged;
+
+        //SubscribeLocalEvent<AudioComponent, ComponentShutdown>(OnAudioShutdown);
 
         Subs.CVar(_cfg, CVars.AudioRaycastLength, OnRaycastLengthChanged, true);
     }
@@ -165,7 +167,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         }
         else
         {
-            var occlusion = GetOcclusion(listener, delta, distance, parentUid);
+            var occlusion = GetPathedOcclusion(listener, delta, distance, component);
             component.Occlusion = occlusion;
             if (component.Occlusion > 0f)
             {
@@ -177,10 +179,12 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         component.Position = worldPos;
     }
 
+    private Dictionary<AudioComponent, TomenoSoundOcclusionSystem.PathResult> _pathCache = new();
+
     /// <summary>
     /// Gets the audio occlusion from the target audio entity to the listener's position.
     /// </summary>
-    public float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt = null)
+    public float GetPathedOcclusion(MapCoordinates listener, Vector2 delta, float distance, AudioComponent component)
     {
         const float maxOcclusionFactor = 1.5f;
         const float maxOccludedDelta = 10.0f;
@@ -192,10 +196,18 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         if (_occlusion.CurrentSoundPaths == null)
             return maxOcclusionFactor;
 
-        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToLocal(listener.Position);
-        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToLocal(listener.Position + delta);
+        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
+        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
 
-        var path = _occlusion.FindPath(emitterPos);
+        TomenoSoundOcclusionSystem.PathResult? path;
+
+        // No path found in cache / Found path is invalid (out of date)
+        if (!_pathCache.TryGetValue(component, out path) || !_occlusion.IsPathValid(path, emitterPos))
+        {
+            path = _occlusion.FindPath(emitterPos);
+            if (path != null)
+                _pathCache[component] = path;
+        }
 
         if (path == null)
             return maxOcclusionFactor;
@@ -217,5 +229,11 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             return 0f;
 
         return ((distanceDelta - minOccludedDelta) / maxOccludedDelta) * maxOcclusionFactor;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnAudioShutdown(EntityUid uid, AudioComponent component, ComponentShutdown args)
+    {
+        _pathCache.Remove(component);
     }
 }

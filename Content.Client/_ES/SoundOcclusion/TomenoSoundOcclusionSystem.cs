@@ -151,30 +151,30 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             return Passable.GetValueOrDefault(position, IsPlanet);
         }
 
-        public Vector2 WorldToLocal(Vector2 posWorld)
+        public Vector2 WorldToStage(Vector2 posWorld)
         {
             return Vector2.Transform(posWorld, InvWorldMatrix);
         }
 
-        public Vector2 LocalToWorld(Vector2 posLocal)
+        public Vector2 StageToWorld(Vector2 posStage)
         {
-            return Vector2.Transform(posLocal, WorldMatrix);
+            return Vector2.Transform(posStage, WorldMatrix);
         }
 
-        public Vector2i LocalToTile(Vector2 posLocal)
+        public Vector2i StageToTile(Vector2 posStage)
         {
             // honestly TileSize is a no-op 100% of the time right now (AFAIK)
-            var x = (int)Math.Floor(posLocal.X / TileSize);
-            var y = (int)Math.Floor(posLocal.Y / TileSize);
+            var x = (int)Math.Floor(posStage.X / TileSize);
+            var y = (int)Math.Floor(posStage.Y / TileSize);
             return new Vector2i(x, y);
         }
 
         public Vector2i WorldToTile(Vector2 posWorld)
         {
-            return LocalToTile(WorldToLocal(posWorld));
+            return StageToTile(WorldToStage(posWorld));
         }
 
-        // Supercover DDA
+        // Supercover DDA algorithm
         public bool CheckVisibility(Vector2 from, Vector2 to)
         {
             var t1 = to.Floored();
@@ -253,7 +253,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (CurrentSoundPaths == null || !LastLocalPos.HasValue)
             return null;
 
-        var emitterTile = CurrentSoundPaths.Stage.LocalToTile(emitter);
+        var emitterTile = CurrentSoundPaths.Stage.StageToTile(emitter);
 
         if (!CurrentSoundPaths.Paths.ContainsKey(emitterTile))
             return null;
@@ -382,7 +382,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         for (var i = listenerPortalPos; i >= emitterPortalPos; i--)
         {
             var nextTile = pathTiles[i];
-            if (CurrentSoundPaths.Stage.CheckVisibility(nextTile + Vector2.One / 2, CurrentSoundPaths.Stage.LocalToTile(LastLocalPos.Value) + Vector2.One / 2))
+            if (CurrentSoundPaths.Stage.CheckVisibility(nextTile + Vector2.One / 2, CurrentSoundPaths.Stage.StageToTile(LastLocalPos.Value) + Vector2.One / 2))
             {
                 listenerPortalPos = i;
             }
@@ -490,6 +490,20 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             ListenerPos = localGridPos,
             Generation = (SoundStageGeneration + 1) % 256,
         };
+    }
+
+    public bool IsPathValid(PathResult path, Vector2 emitterPos)
+    {
+        if (CurrentSoundPaths == null)
+            return false;
+
+        if (path.Generation != CurrentSoundPaths.Stage.Generation)
+            return false;
+
+        if (path.EmitterTile != emitterPos.Floored())
+            return false;
+
+        return true;
     }
 
     private SoundPaths GenerateSoundPaths(SoundStage stage, CancellationToken cancellationToken = default)
@@ -678,9 +692,9 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (CurrentSoundPaths != null && LastLocalPos != null)
         {
             var newWorldPos = _transformSystem.ToWorldPosition(args.NewPosition);
-            var lastTile = CurrentSoundPaths.Stage.LocalToTile(LastLocalPos.Value);
-            LastLocalPos = CurrentSoundPaths.Stage.WorldToLocal(newWorldPos);
-            if (CurrentSoundPaths.Stage.LocalToTile(LastLocalPos.Value) != lastTile)
+            var lastTile = CurrentSoundPaths.Stage.StageToTile(LastLocalPos.Value);
+            LastLocalPos = CurrentSoundPaths.Stage.WorldToStage(newWorldPos);
+            if (CurrentSoundPaths.Stage.StageToTile(LastLocalPos.Value) != lastTile)
             {
                 // Moved between tiles
                 Log.Info($"OnPlayerMove tilemove {_dirtySoundStage} {_gameTiming.LastRealTick}");
