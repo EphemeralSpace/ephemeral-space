@@ -27,7 +27,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ComputerVisuals.Powered:
+      enum.PowerDeviceVisuals.Powered:
         computerLayerScreen:
           True: { visible: true, shader: unshaded }
           False: { visible: false }

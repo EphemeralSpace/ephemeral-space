@@ -21,7 +21,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ComputerVisuals.Powered:
+      enum.PowerDeviceVisuals.Powered:
         computerLayerScreen:
           True: { visible: true, shader: unshaded }
           False: { visible: false }
@@ -29,21 +29,20 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
-      enum.ConstructionVisuals.Key:
-        enum.ConstructionVisuals.Layer:
-          frameUnsecured: { state: 0 }
-          boardUnsecured: { state: 1 }
-          missingWires: { state: 2 }
-          monitorMissing: { state: 3 }
-          monitorUnsecured: { state: 4 }
+  - type: ESBreakableVisuals
+    brokenLayers:
+      computerLayerBody:
+        sprite: _ES/Structures/Machines/tabletop_computer.rsi
+        state: broken
+      computerLayerScreen:
+        sprite: _ES/Structures/Machines/tabletop_computer.rsi
+        state: screen_broken
   - type: PointLight
     radius: 1.3
     energy: 40
     falloff: 6.8
     enabled: true
     color: "#00b000"
-  - type: Construction
-    graph: ESTabletopComputer
   - type: Fixtures
     fixtures:
       fix1:
@@ -85,8 +84,6 @@
           missingWires: { state: tabletop_2 }
           monitorMissing: { state: tabletop_3 }
           monitorUnsecured: { state: tabletop_4 }
-  - type: Construction
-    graph: ESTabletopComputer
   - type: Fixtures
     fixtures:
       fix1:
@@ -106,8 +103,6 @@
   components:
   - type: Sprite
     sprite: _ES/Structures/Machines/tabletop_computer.rsi
-  - type: Construction
-    graph: ESTabletopComputer
   - type: Fixtures
     fixtures:
       fix1:
