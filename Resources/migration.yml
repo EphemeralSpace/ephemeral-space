@@ -574,6 +574,10 @@ SMESAdvancedEmpty: null
 SMESMachineCircuitboard: null
 SMESAdvancedMachineCircuitboard: null
 
+# 2026-8-19
+ComputerFrame: null
+ESTabletopComputerFrame: null
+
 # ES END
 
 # 2026-01-07

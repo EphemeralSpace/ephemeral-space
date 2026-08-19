@@ -65,55 +65,12 @@
     layoutId: ComputerAi
 
 - type: entity
-  parent: ComputerFrame
-  id: ESTabletopComputerFrame
-  name: tabletop computer frame
-  description: A tabletop computer under construction.
-  components:
-  - type: Sprite
-    layers:
-    - state: tabletop_0
-      map: [ "enum.ConstructionVisuals.Layer" ]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ConstructionVisuals.Key:
-        enum.ConstructionVisuals.Layer:
-          frameUnsecured: { state: tabletop_0 }
-          boardUnsecured: { state: tabletop_1 }
-          missingWires: { state: tabletop_2 }
-          monitorMissing: { state: tabletop_3 }
-          monitorUnsecured: { state: tabletop_4 }
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.10,-0.10,0.10,0.10"
-        density: 500
-        mask:
-        - TabletopMachineMask
-        layer:
-        - BulletImpassable
-
-- type: entity
-  parent: ComputerBroken
+  parent: ESBaseTabletopComputer
   id: ESTabletopComputerBroken
-  name: broken tabletop computer
+  description: This computer has seen better days.
   components:
-  - type: Sprite
-    sprite: _ES/Structures/Machines/tabletop_computer.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.10,-0.10,0.10,0.10"
-        density: 500
-        mask:
-        - TabletopMachineMask
-        layer:
-        - BulletImpassable
+  - type: ESBreakable
+    broken: true
 
 - type: entity
   parent: ESBaseTabletopComputerAiAccess
