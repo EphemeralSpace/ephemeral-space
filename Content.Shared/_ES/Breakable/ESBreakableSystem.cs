@@ -18,6 +18,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
@@ -36,6 +37,8 @@ public sealed partial class ESBreakableSystem : EntitySystem
 
         SubscribeLocalEvent<ESBreakableActivatableUiComponent, ActivatableUIOpenAttemptEvent>(OnOpenAttempt);
         SubscribeLocalEvent<ESBreakableDeviceNetworkComponent, BeforePacketSentEvent>(OnBeforePacketSent);
+        SubscribeLocalEvent<ESBreakablePointLightComponent, MapInitEvent>(OnPointLightMapInit);
+        SubscribeLocalEvent<ESBreakablePointLightComponent, ESBrokenStateChanged>(OnPointLightBrokenStateChanged);
     }
 
     private void OnRefreshNameModifiers(Entity<ESBreakableComponent> ent, ref RefreshNameModifiersEvent args)
@@ -80,6 +83,23 @@ public sealed partial class ESBreakableSystem : EntitySystem
     {
         if (IsBroken(ent.Owner))
             args.Cancel();
+    }
+
+    private void OnPointLightMapInit(Entity<ESBreakablePointLightComponent> ent, ref MapInitEvent args)
+    {
+        if (_pointLight.TryGetLight(ent, out var light))
+        {
+            ent.Comp.BaseColor = light.Color;
+            Dirty(ent);
+        }
+    }
+
+    private void OnPointLightBrokenStateChanged(Entity<ESBreakablePointLightComponent> ent, ref ESBrokenStateChanged args)
+    {
+        _pointLight.SetColor(ent, args.Broken ? ent.Comp.BrokenColor : ent.Comp.BaseColor);
+
+        if (ent.Comp.DisableOnBroken)
+            _pointLight.SetEnabled(ent, !args.Broken);
     }
 
     /// <summary>

@@ -26,22 +26,20 @@
     drawdepth: Objects
   - type: Damageable
     damageContainer: StructuralInorganic
-# ES Start
     damageModifierSet: ESComputer
-# ES End
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-      - !type:ChangeConstructionNodeBehavior
-        node: monitorBroken
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 100
+#      behaviors:
+#      - !type:PlaySoundBehavior
+#        sound:
+#          collection: GlassBreak
+#      - !type:ChangeConstructionNodeBehavior
+#        node: monitorBroken
+#      - !type:DoActsBehavior
+#        acts: ["Destruction"]
 
 - type: entity
   id: ComputerFrame

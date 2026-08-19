@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStructureComputer
+  parent: [ ESBaseBreakableMachine, BaseStructureComputer ]
   id: BaseComputer
   name: computer
   placement:
@@ -84,6 +84,20 @@
     boardName: wires-board-name-computer
     layoutId: Computer
 # ES Start
+  - type: ESBreakable
+    sound:
+      collection: GlassBreak
+  - type: ESBreakablePointLight
+    brokenColor: blue #BSOD
+  - type: ESBreakableVisuals
+    brokenLayers:
+      computerLayerBody:
+        sprite: Structures/Machines/computers.rsi
+        state: broken
+      computerLayerScreen:
+        sprite: Structures/Machines/computers.rsi
+        state: screen_broken
+  - type: ESBreakableActivatableUi
   - type: ESSparkOnHit
     prob: 0.25
     tileFireChance: 0.2
