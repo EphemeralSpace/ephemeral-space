@@ -2,6 +2,7 @@ using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
@@ -21,6 +22,7 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
@@ -139,6 +141,8 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
         PredictedQueueDel(ent);
         _popup.PopupEntity(Loc.GetString("es-ceiling-cache-popup"), ent);
         _audio.PlayPredicted(ent.Comp.RevealSound, pos, user, ent.Comp.RevealSound?.Params.WithMaxDistance(1.5f).WithVolume(-3f));
+        if (user.HasValue)
+            _hands.TryPickupAnyHand(user.Value, cache, animate: false);
 
         if (ent.Comp.MindId.HasValue)
         {
