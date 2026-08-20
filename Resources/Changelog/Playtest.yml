@@ -1909,3 +1909,11 @@ Entries:
       message: Emojis can no longer be sent in in-character chat messages.
   id: 202
   time: '2026-08-19T16:03:20.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: APCs now use a cable terminal to get power.
+    - type: Tweak
+      message: EVA storage can now be accessed by anyone.
+  id: 203
+  time: '2026-08-20T20:45:47.0000000+00:00'
