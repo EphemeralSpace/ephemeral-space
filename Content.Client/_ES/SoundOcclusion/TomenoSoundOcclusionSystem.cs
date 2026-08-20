@@ -4,10 +4,12 @@ using System.Threading.Tasks;
 using Content.Client._ES.LocalPlayer;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
+using Content.Shared.Wall;
 using Robust.Client.GameObjects;
 using Robust.Client.GameStates;
 using Robust.Client.Graphics;
 using Robust.Client.Timing;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -63,22 +65,22 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
         _overlayManager.RemoveOverlay<TomenoSoundOcclusionOverlay>();
     }
-    
+
     public int SoundStageGeneration = 0;
 
     // Used for tracking significant movement updates
-    public Vector2i? LastUpdatedTile = null;
     public EntityUid? LastGridUid = null;
     // Used for updating paths
     public Vector2? LastLocalPos = null;
-    // ya
+
     public SoundPaths? CurrentSoundPaths = null;
 
     private bool _dirtySoundStage = true;
 
-    private Task<SoundPaths>? SoundPathsTask = null;
+    private Task<SoundPaths>? _soundPathsTask = null;
     private long _lastUpdateTicks = 0;
-    private const long _updateIntervalTicks = TimeSpan.TicksPerMillisecond * 50;
+
+    private const long UpdateIntervalTicks = TimeSpan.TicksPerMillisecond * 50;
 
     public sealed class SoundStage
     {
@@ -238,66 +240,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (!CurrentSoundPaths.Paths.ContainsKey(emitterTile))
             return null;
 
-        // for sounds coming from inside occluders:
-        // middle of the tile: follow soundpath
-        // else: nearest unoccluded tile
-        if (!CurrentSoundPaths.Stage.IsPassable(emitterTile))
-        {
-            var emitterCenterDelta = (emitterTile + Vector2.One / 2) - emitter;
-            var newEmitterTile = CurrentSoundPaths.Paths[emitterTile];
-            // var newEmitterPos = emitter;
-
-            if (newEmitterTile != null)
-            {
-                if (emitterCenterDelta.X >= -0.25f && emitterCenterDelta.X <= 0.25f
-                    && emitterCenterDelta.Y >= -0.25f && emitterCenterDelta.Y <= 0.25f)
-                {
-                    emitterTile = newEmitterTile.Value;
-                }
-                else
-                {
-                    var bestDistance = float.MaxValue;
-                    Func<Vector2i, bool> checkCandidate = (candidateDir) =>
-                    {
-                        var candidate = emitterTile + candidateDir;
-                        if (CurrentSoundPaths.Stage.IsPassable(candidate))
-                        {
-                            var candidateDistance = ((candidate + Vector2.One / 2f) - emitter).Length();
-                            if (candidateDistance < bestDistance)
-                            {
-                                bestDistance = candidateDistance;
-                                newEmitterTile = candidate;
-                                // if (candidateDir.X != 0)
-                                //     newEmitterPos.X = emitterTile.X + 0.5f + (candidateDir.X * 0.50001f);
-                                // if (candidateDir.Y != 0)
-                                //     newEmitterPos.Y = emitterTile.Y + 0.5f + (candidateDir.Y * 0.50001f);
-                                return true;
-                            }
-                        }
-                        return false;
-                    };
-                    checkCandidate(Vector2i.Up);
-                    checkCandidate(Vector2i.Right);
-                    checkCandidate(Vector2i.Down);
-                    checkCandidate(Vector2i.Left);
-
-                    if (!CurrentSoundPaths.Paths.ContainsKey(newEmitterTile.Value))
-                        return null;
-
-                    emitterTile = newEmitterTile.Value;
-                }
-                //emitter = newEmitterPos;
-                if (emitterTile.X > emitter.X)
-                    emitter.X = emitterTile.X + 0.0001f; // fudge factor
-                if (emitterTile.Y > emitter.Y)
-                    emitter.Y = emitterTile.Y + 0.0001f;
-                if (emitterTile.X < emitter.X)
-                    emitter.X = emitterTile.X + 0.9999f;
-                if (emitterTile.Y < emitter.Y)
-                    emitter.Y = emitterTile.Y + 0.9999f;
-            }
-        }
-
         if (CurrentSoundPaths.Stage.CheckVisibility(emitter, LastLocalPos.Value))
         {
             return new PathResult
@@ -341,23 +283,23 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 Path = new List<Vector2i>(), // DEBUG!
             };
         }
-        else if (pathTiles.Count == 3)
-        {
-            // Middle tile is both portals
-            return new PathResult
-            {
-                EmitterPortal = pathTiles[1],
-                ListenerPortal = pathTiles[1],
-                PortalDistance = 0,
-                Generation = CurrentSoundPaths.Stage.Generation,
-                EmitterTile = emitterTile,
-                Path = new List<Vector2i>(), // DEBUG!
-            };
-        }
+        // else if (pathTiles.Count == 3)
+        // {
+        //     // Middle tile is both portals
+        //     return new PathResult
+        //     {
+        //         EmitterPortal = pathTiles[1],
+        //         ListenerPortal = pathTiles[1],
+        //         PortalDistance = 0,
+        //         Generation = CurrentSoundPaths.Stage.Generation,
+        //         EmitterTile = emitterTile,
+        //         Path = new List<Vector2i>(), // DEBUG!
+        //     };
+        // }
 
         // Time to find the "portals" for the listener and then the emitter
-        var emitterPortalPos = 1; // Tile after emitter
-        var listenerPortalPos = pathTiles.Count - 2; // Tile before listener
+        var emitterPortalPos = 0;
+        var listenerPortalPos = pathTiles.Count - 1;
 
         for (var i = listenerPortalPos; i >= emitterPortalPos; i--)
         {
@@ -396,6 +338,121 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             EmitterTile = emitterTile,
             Path = pathTiles.Slice(emitterPortalPos, (listenerPortalPos - emitterPortalPos) + 1), // DEBUG!
         };
+    }
+
+    private readonly Dictionary<AudioComponent, PathResult> _pathCache = new();
+
+    /// <summary>
+    /// Finds a path from an entity to the listener in the current active SoundPaths.
+    /// The position will be modified based on the components present on the entity.
+    /// The path may be cached, keyed to an AudioComponent, if it is passed.
+    /// If a path is not found, returns null.
+    /// If a direct path is found, returns a PathResult with no portals.
+    /// If a path is found, returns a PathResult.
+    /// </summary>
+    public PathResult? FindEntityPath(EntityUid entity, Vector2? position, AudioComponent? audio)
+    {
+        if (CurrentSoundPaths == null || !LastLocalPos.HasValue)
+            return null;
+
+        if (!_entityManager.TryGetComponent<TransformComponent>(entity, out var transformComponent))
+            return null;
+
+        var emitter = position ?? CurrentSoundPaths.Stage.WorldToStage(_transformSystem.GetWorldPosition(transformComponent));
+        var emitterTile = CurrentSoundPaths.Stage.StageToTile(emitter);
+
+        // No path found in cache / Found path is invalid (out of date)
+        if (audio != null && _pathCache.TryGetValue(audio, out var path))
+        {
+            if (IsPathValid(path, emitterTile))
+                return path;
+
+            _pathCache.Remove(audio);
+        }
+
+        if (!CurrentSoundPaths.Paths.ContainsKey(emitterTile))
+            return null;
+
+        // for sounds coming from inside occluders:
+        // middle of the tile: follow soundpath
+        // else: nearest unoccluded tile
+        if (!CurrentSoundPaths.Stage.IsPassable(emitterTile))
+        {
+            var emitterCenterDelta = (emitterTile + Vector2.One / 2) - emitter;
+            var newEmitterTile = CurrentSoundPaths.Paths[emitterTile];
+            // var newEmitterPos = emitter;
+
+            if (newEmitterTile != null)
+            {
+                if (emitterCenterDelta.X >= -0.1f && emitterCenterDelta.X <= 0.1f
+                    && emitterCenterDelta.Y >= -0.1f && emitterCenterDelta.Y <= 0.1f)
+                {
+                    var grid = _transformSystem.GetGrid(entity);
+                    if (transformComponent.ParentUid.IsValid() && _entityManager.TryGetComponent<WallMountComponent>(transformComponent.ParentUid, out var wallMount))
+                    {
+                        if (grid == null)
+                            return null;
+
+                        var (_, emitterRotation) = _transformSystem.GetRelativePositionRotation(transformComponent, grid.Value);
+                        emitterRotation += wallMount.Direction;
+                        var emitterRotVector = emitterRotation.ToWorldVec();
+
+                        if (Math.Abs(emitterRotVector.X) > Math.Abs(emitterRotVector.Y))
+                            emitterTile += emitterRotVector.X > 0 ? Vector2i.Right : Vector2i.Left;
+                        else
+                            emitterTile += emitterRotVector.Y > 0 ? Vector2i.Up : Vector2i.Down;
+                    }
+                    else
+                    {
+                        emitterTile = newEmitterTile.Value;
+                    }
+                }
+                else
+                {
+                    var bestDistance = float.MaxValue;
+                    Func<Vector2i, bool> checkCandidate = (candidateDir) =>
+                    {
+                        var candidate = emitterTile + candidateDir;
+                        if (CurrentSoundPaths.Stage.IsPassable(candidate))
+                        {
+                            var candidateDistance = ((candidate + Vector2.One / 2f) - emitter).Length();
+                            if (candidateDistance < bestDistance)
+                            {
+                                bestDistance = candidateDistance;
+                                newEmitterTile = candidate;
+                                return true;
+                            }
+                        }
+                        return false;
+                    };
+                    checkCandidate(Vector2i.Up);
+                    checkCandidate(Vector2i.Right);
+                    checkCandidate(Vector2i.Down);
+                    checkCandidate(Vector2i.Left);
+
+                    if (!CurrentSoundPaths.Paths.ContainsKey(newEmitterTile.Value))
+                        return null;
+
+                    emitterTile = newEmitterTile.Value;
+                }
+                //emitter = newEmitterPos;
+                if (emitterTile.X > emitter.X)
+                    emitter.X = emitterTile.X + 0.0001f; // fudge factor
+                if (emitterTile.Y > emitter.Y)
+                    emitter.Y = emitterTile.Y + 0.0001f;
+                if (emitterTile.X < emitter.X)
+                    emitter.X = emitterTile.X + 0.9999f;
+                if (emitterTile.Y < emitter.Y)
+                    emitter.Y = emitterTile.Y + 0.9999f;
+            }
+        }
+
+        var result = FindPath(emitter);
+
+        if (audio != null && result != null)
+            _pathCache.Add(audio, result);
+
+        return result;
     }
 
     /// <summary>
@@ -549,25 +606,25 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        if (SoundPathsTask != null)
+        if (_soundPathsTask != null)
         {
-            if (SoundPathsTask.IsCompleted)
+            if (_soundPathsTask.IsCompleted)
             {
 #pragma warning disable RA0004
-                CurrentSoundPaths = SoundPathsTask.Result;
+                CurrentSoundPaths = _soundPathsTask.Result;
 #pragma warning restore RA0004
                 SoundStageGeneration = CurrentSoundPaths.Stage.Generation;
                 LastLocalPos = CurrentSoundPaths.Stage.ListenerPos;
-                LastUpdatedTile = CurrentSoundPaths.Stage.ListenerTile;
                 LastGridUid = CurrentSoundPaths.Stage.GridUid;
-                SoundPathsTask.Dispose();
-                SoundPathsTask = null;
+                _pathCache.Clear();
+                _soundPathsTask.Dispose();
+                _soundPathsTask = null;
             }
-            else if (SoundPathsTask.IsFaulted || SoundPathsTask.IsCanceled)
+            else if (_soundPathsTask.IsFaulted || _soundPathsTask.IsCanceled)
             {
-                SoundPathsTask.Dispose();
+                _soundPathsTask.Dispose();
                 CurrentSoundPaths = null;
-                SoundPathsTask = null;
+                _soundPathsTask = null;
             }
             else
             {
@@ -582,7 +639,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (!_gameTiming.IsFirstTimePredicted)
             return;
 
-        if (_gameTiming.ServerTime.Ticks < _lastUpdateTicks + _updateIntervalTicks)
+        if (_gameTiming.ServerTime.Ticks < _lastUpdateTicks + UpdateIntervalTicks)
             return;
 
         Log.Info("Update");
@@ -605,7 +662,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             return;
         }
 
-        SoundPathsTask = Task.Run(() => GenerateSoundPaths(newSoundStage));
+        _soundPathsTask = Task.Run(() => GenerateSoundPaths(newSoundStage));
     }
 
     private void OnAirtightInit(Entity<AirtightComponent> ent, ref ComponentInit args)

@@ -35,6 +35,10 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     private const float OcclusionVolumeAdjust = -3f;
     private const float MinOcclusionPenetration = 0.8f;
 
+    private const float MaxOcclusionFactor = 1.5f;
+    private const float MaxOccludedDeltaDistance = 10.0f;
+    private const float MinOccludedDeltaDistance = 0.5f;
+
     // ReSharper disable once InconsistentNaming
     // for vv testing purposes
     [ViewVariables(VVAccess.ReadWrite)]
@@ -61,7 +65,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         base.Initialize();
 
         _originalAudio.ProcessStreamOverride += ProcessStream;
-        //_originalAudio.GetOcclusionOverride += GetOcclusion;
+        _originalAudio.GetOcclusionOverride += GetOcclusion;
         _baseClient.RunLevelChanged += OnRunLevelChanged;
 
         //SubscribeLocalEvent<AudioComponent, ComponentShutdown>(OnAudioShutdown);
@@ -167,7 +171,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         }
         else
         {
-            var occlusion = GetPathedOcclusion(listener, delta, distance, component);
+            var occlusion = GetPathedEntityOcclusion(listener, delta, distance, entity, component);
             component.Occlusion = occlusion;
             if (component.Occlusion > 0f)
             {
@@ -179,41 +183,36 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         component.Position = worldPos;
     }
 
-    private Dictionary<AudioComponent, TomenoSoundOcclusionSystem.PathResult> _pathCache = new();
-
     /// <summary>
     /// Gets the audio occlusion from the target audio entity to the listener's position.
     /// </summary>
-    public float GetPathedOcclusion(MapCoordinates listener, Vector2 delta, float distance, AudioComponent component)
+    public float GetPathedEntityOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid entity, AudioComponent component)
     {
-        const float maxOcclusionFactor = 1.5f;
-        const float maxOccludedDelta = 10.0f;
-        const float minOccludedDelta = 0.5f;
-
         if (distance <= 0.1)
             return 0f;
 
         if (_occlusion.CurrentSoundPaths == null)
-            return maxOcclusionFactor;
+            return MaxOcclusionFactor;
 
         var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
         var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
 
-        TomenoSoundOcclusionSystem.PathResult? path;
+        var path = _occlusion.FindEntityPath(entity, emitterPos, component);
 
-        // No path found in cache / Found path is invalid (out of date)
-        if (!_pathCache.TryGetValue(component, out path) || !_occlusion.IsPathValid(path, emitterPos))
-        {
-            path = _occlusion.FindPath(emitterPos);
-            if (path != null)
-                _pathCache[component] = path;
-        }
+        return CalculatePathOcclusion(path, listenerPos, emitterPos);
+    }
 
+    private float CalculatePathOcclusion(TomenoSoundOcclusionSystem.PathResult? path,
+        Vector2 listenerPos,
+        Vector2 emitterPos)
+    {
         if (path == null)
-            return maxOcclusionFactor;
+            return MaxOcclusionFactor;
 
         if (!path.ListenerPortal.HasValue && !path.EmitterPortal.HasValue)
             return 0f;
+
+        var directDistance = (listenerPos - emitterPos).Length();
 
         var occludedDistance = path.PortalDistance;
         if (path.ListenerPortal.HasValue)
@@ -221,19 +220,30 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         if (path.EmitterPortal.HasValue)
             occludedDistance += Vector2.Distance(emitterPos, path.EmitterPortal.Value);
 
-        // magico numero time
-        var distanceDelta = occludedDistance - distance;
-        if (distanceDelta > maxOccludedDelta)
-            return maxOcclusionFactor;
-        if (distanceDelta < minOccludedDelta)
+        var distanceDelta = occludedDistance - directDistance;
+
+        if (distanceDelta > MaxOccludedDeltaDistance)
+            return MaxOcclusionFactor;
+        if (distanceDelta < MinOccludedDeltaDistance)
             return 0f;
 
-        return ((distanceDelta - minOccludedDelta) / maxOccludedDelta) * maxOcclusionFactor;
+        return ((distanceDelta - MinOccludedDeltaDistance) / MaxOccludedDeltaDistance) * MaxOcclusionFactor;
     }
 
-    [SubscribeLocalEvent]
-    private void OnAudioShutdown(EntityUid uid, AudioComponent component, ComponentShutdown args)
+    public float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? entity)
     {
-        _pathCache.Remove(component);
+        if (distance <= 0.1)
+            return 0f;
+
+        if (_occlusion.CurrentSoundPaths == null)
+            return MaxOcclusionFactor;
+
+        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
+        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
+
+        // TODO: this should be cached too... maybe we need the cache to be keyed by Object?
+        var path = _occlusion.FindPath(emitterPos);
+
+        return CalculatePathOcclusion(path, listenerPos, emitterPos);
     }
 }
