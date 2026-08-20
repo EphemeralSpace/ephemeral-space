@@ -3,6 +3,7 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.Radio.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -54,10 +55,11 @@ public sealed partial class ESRadioSystem : EntitySystem
 
     private void OnSendChatMessageAttempt(Entity<ESRadioChatChannelComponent> ent, ref ESSendChatMessageAttemptEvent args)
     {
+        var source = Transform(args.Source);
         var channel = _chat.GetChannel(ent.Owner);
 
         var needsServer = !_exemptQuery.HasComp(args.Source) && !ent.Comp.RequireServer;
-        if (!needsServer && !HasActiveServer(channel))
+        if (!needsServer && !HasActiveServer(channel, source.MapID))
         {
             args.Cancel();
             return;
@@ -118,10 +120,13 @@ public sealed partial class ESRadioSystem : EntitySystem
     /// <summary>
     /// Checks if a given chat channel has a corresponding telecom server.
     /// </summary>
-    public bool HasActiveServer(ProtoId<ESChatChannelPrototype> channelId)
+    public bool HasActiveServer(ProtoId<ESChatChannelPrototype> channelId, MapId map)
     {
-        foreach (var (uid, _, keys) in EntityQueryEnumerator<TelecomServerComponent, EncryptionKeyHolderComponent>())
+        foreach (var (uid, _, keys, xform) in EntityQueryEnumerator<TelecomServerComponent, EncryptionKeyHolderComponent, TransformComponent>())
         {
+            if (xform.MapID != map)
+                continue;
+
             if (_powerReceiver.IsPowered(uid) &&
                 keys.Channels.Contains(channelId))
             {
