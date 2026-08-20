@@ -35,8 +35,8 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     private const float OcclusionVolumeAdjust = -3f;
     private const float MinOcclusionPenetration = 0.8f;
 
-    private const float MaxOcclusionFactor = 1.5f;
-    private const float MaxOccludedDeltaDistance = 10.0f;
+    private const float MaxOcclusionFactor = 2.0f;
+    private const float MaxOccludedDeltaDistance = 15.0f;
     private const float MinOccludedDeltaDistance = 0.5f;
 
     // ReSharper disable once InconsistentNaming

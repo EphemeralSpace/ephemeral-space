@@ -657,7 +657,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             SoundStageGeneration = (SoundStageGeneration + 1) % 256;
             // TODO: is the following the right thing to do here?
             LastLocalPos = null;
-            LastUpdatedTile = null;
             LastGridUid = null;
             return;
         }
