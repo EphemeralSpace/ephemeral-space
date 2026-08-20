@@ -18,3 +18,16 @@
       visible: false
   - type: ESPoster
     state: ratman
+
+- type: entity
+  parent: PosterBase
+  id: PosterCigAd
+  name: "spessman smokes"
+  description: "Feel the cool drag from this bold cig."
+  components:
+  - type: ESPoster
+    state: cigposter
+    layers:
+    - map: [ "enum.ESPosterVisuals.Base" ]
+      sprite: _ES/Structures/Wallmounts/posters.rsi
+      state: cigposter
