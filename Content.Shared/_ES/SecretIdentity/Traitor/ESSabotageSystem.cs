@@ -36,8 +36,11 @@ public sealed partial class ESSabotageSystem : EntitySystem
     ///     Returns true if the user should be capable of sabotaging the given target.
     /// </summary>
     [PublicAPI]
-    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent> target)
+    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent?> target, bool ignoreCompletion = false)
     {
+        if (!Resolve(target, ref target.Comp))
+            return false;
+
         // for localhost debugging
         if (_admin.HasAdminFlag(user, AdminFlags.Debug))
             return true;
@@ -51,9 +54,13 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
         foreach (var objective in _objective.GetObjectives<ESSabotageConditionComponent>(mind))
         {
-            if (_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target) &&
-                !_objective.IsCompleted(objective.Owner))
-                return true;
+            if (!_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target))
+                continue;
+
+            if (!ignoreCompletion && _objective.IsCompleted(objective.Owner))
+                continue;
+
+            return true;
         }
 
         return false;
@@ -61,7 +68,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
     private void OnGetVerbs(Entity<ESSabotageTargetComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!CanSabotage(args.User, ent))
+        if (!CanSabotage(args.User, ent.AsNullable()))
             return;
 
         var user = args.User;
@@ -96,7 +103,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!CanSabotage(args.User, ent))
+        if (!CanSabotage(args.User, ent.AsNullable()))
             return;
 
         _degradation.Degrade(ent, args.User);
@@ -109,7 +116,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
     private void OnExamined(Entity<ESSabotageTargetComponent> ent, ref ExaminedEvent args)
     {
-        if (!CanSabotage(args.Examiner, ent))
+        if (!CanSabotage(args.Examiner, ent.AsNullable()))
             return;
 
         args.PushMarkup(Loc.GetString("es-sabotage-examine-text"));

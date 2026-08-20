@@ -1,5 +1,6 @@
 using Content.Shared._ES.Degradation;
 using Content.Shared._ES.Radio.Components;
+using Content.Shared._ES.SecretIdentity.Traitor;
 using Content.Shared._ES.Sparks;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -11,6 +12,7 @@ public sealed partial class ESRadioScramblerSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ESSabotageSystem _sabotage = default!;
     [Dependency] private ESSparksSystem _sparks = default!;
 
     /// <inheritdoc/>
@@ -39,11 +41,13 @@ public sealed partial class ESRadioScramblerSystem : EntitySystem
             return;
 
         var user = args.User;
+        var canSabo = _sabotage.CanSabotage(args.User, ent.Owner, ignoreCompletion: true);
 
         args.Verbs.Add(new AlternativeVerb
         {
             Text = Loc.GetString("es-radio-scrambler-repair-verb"),
-            Disabled = !ent.Comp.Hacked,
+            Disabled = !ent.Comp.Hacked || canSabo,
+            Message = ent.Comp.Hacked && canSabo ? Loc.GetString("es-radio-scrambler-repair-verb-blocked") : null,
             Act = () =>
             {
                 _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.RepairDelay, new ESRepairRadioScramblerDoAfterEvent(), ent, ent)
