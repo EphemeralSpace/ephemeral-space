@@ -22,12 +22,18 @@
 - type: entity
   parent: PosterBase
   id: PosterCigAd
-  name: "spessman smokes"
+  name: "Spessman Smokes"
   description: "Feel the cool drag from this bold cig."
   components:
-  - type: ESPoster
-    state: cigposter
+  - type: Sprite
     layers:
     - map: [ "enum.ESPosterVisuals.Base" ]
       sprite: _ES/Structures/Wallmounts/posters.rsi
       state: cigposter
+    - map: [ "directional" ]
+      sprite: _ES/Markers/spawners.rsi
+      state: directional
+      renderingStrategy: Default
+      visible: false
+  - type: ESPoster
+    state: cigposter
