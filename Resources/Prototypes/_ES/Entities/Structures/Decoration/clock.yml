@@ -19,6 +19,7 @@
         base:
           True: { state: "clock-broken" }
           False: { state: "clock" }
+  - type: ESGrandfatherClock
   - type: Clock # Same sprite used for hours and minutes due to scale
     hoursBase: "hand_"
     minutesBase: "hand_"
@@ -46,6 +47,6 @@
     damageContainer: StructuralInorganic
   - type: RequireProjectileTarget
   - type: ESBreakable
-    threshold: 100
+    threshold: 50
     sound:
       collection: WoodDestroyHeavy

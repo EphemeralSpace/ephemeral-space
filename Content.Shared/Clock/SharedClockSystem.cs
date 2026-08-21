@@ -44,9 +44,18 @@ public abstract partial class SharedClockSystem : EntitySystem
         }
     }
 
-    private TimeSpan GetGlobalTime()
+    public TimeSpan GetGlobalTime()
     {
         return (EntityQuery<GlobalTimeManagerComponent>().FirstOrDefault()?.TimeOffset ?? TimeSpan.Zero) + _ticker.RoundDuration();
+    }
+
+    public void SetGlobalTime(TimeSpan time)
+    {
+        if (!TrySingle<GlobalTimeManagerComponent>(out var manager))
+            return;
+
+        manager.Value.Comp.TimeOffset = time - _ticker.RoundDuration();
+        Dirty(manager.Value);
     }
 
     public TimeSpan GetClockTime(Entity<ClockComponent> ent)
