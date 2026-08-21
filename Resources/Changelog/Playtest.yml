@@ -1923,3 +1923,9 @@ Entries:
       message: Pronouns are now shown beneath the names of characters.
   id: 204
   time: '2026-08-21T04:47:36.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Equipment caches now come in the form of duffel bags instead of crates.
+  id: 205
+  time: '2026-08-21T04:49:45.0000000+00:00'
