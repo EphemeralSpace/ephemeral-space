@@ -63,15 +63,6 @@
   canBuildInImpassable: false
 
 - type: construction
-  id: MailingUnit
-  graph: DisposalMachine
-  startNode: start
-  targetNode: mailing_unit
-  category: construction-category-utilities
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-
-- type: construction
   id: DisposalPipe
   graph: DisposalPipe
   startNode: start
