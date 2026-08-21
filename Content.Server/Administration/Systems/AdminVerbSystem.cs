@@ -10,19 +10,16 @@ using Content.Shared.Administration;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Configurable;
 using Content.Shared.Database;
 using Content.Shared.Disposal.Tube;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
-using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Server.Console;
 using Robust.Server.GameObjects;
-using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
@@ -33,7 +30,6 @@ using Robust.Shared.Toolshed;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Server.GameTicking;
-using static Content.Shared.Configurable.ConfigurationComponent;
 
 namespace Content.Server.Administration.Systems
 {
@@ -52,7 +48,6 @@ namespace Content.Server.Administration.Systems
         [Dependency] private DisposalTubeSystem _disposalTubes = default!;
         [Dependency] private EuiManager _euiManager = default!;
         [Dependency] private GhostRoleSystem _ghostRoleSystem = default!;
-        [Dependency] private UserInterfaceSystem _uiSystem = default!;
         [Dependency] private PrayerSystem _prayerSystem = default!;
         [Dependency] private MindSystem _mindSystem = default!;
         [Dependency] private ToolshedManager _toolshed = default!;
@@ -508,19 +503,6 @@ namespace Content.Server.Administration.Systems
                 // Where is the national park service icon for haunted forests?
                 verb.Act = () => _ghostRoleSystem.OpenMakeGhostRoleEui(player, args.Target);
                 verb.Impact = LogImpact.Medium;
-                args.Verbs.Add(verb);
-            }
-
-            if (_groupController.CanAdminMenu(player) &&
-                TryComp(args.Target, out ConfigurationComponent? config))
-            {
-                Verb verb = new()
-                {
-                    Text = Loc.GetString("configure-verb-get-data-text"),
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
-                    Category = VerbCategory.Debug,
-                    Act = () => _uiSystem.OpenUi(args.Target, ConfigurationUiKey.Key, actor.PlayerSession)
-                };
                 args.Verbs.Add(verb);
             }
 
