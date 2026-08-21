@@ -11,7 +11,7 @@ public sealed class ESChatSheetlet : Sheetlet<PalettedStylesheet>
 {
     public override StyleRule[] GetRules(PalettedStylesheet sheet, object config)
     {
-        var small = sheet.Fonts.GetFont(StandardFontType.Chat, 10);
+        var small = sheet.Fonts.GetFont(StandardFontType.ChatWhisper, 12);
         var medium = sheet.Fonts.GetFont(StandardFontType.Chat, 12);
 
         return
