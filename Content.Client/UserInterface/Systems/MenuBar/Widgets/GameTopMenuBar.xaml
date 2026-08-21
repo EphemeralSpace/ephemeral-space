@@ -64,16 +64,6 @@
         AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
     <ui:MenuButton
-        Name="ActionButton"
-        Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/fist.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenActionsMenu}"
-        ToolTip="{Loc 'game-hud-open-actions-menu-button-tooltip'}"
-        MinSize="42 64"
-        HorizontalExpand="True"
-        AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
-        />
-    <ui:MenuButton
         Name="AdminButton"
         Access="Internal"
         Icon="{xe:Tex '/Textures/Interface/gavel.svg.192dpi.png'}"
