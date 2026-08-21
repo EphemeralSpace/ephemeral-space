@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Shared._ES.Breakable;
+using Content.Shared.Audio;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 
@@ -7,16 +9,25 @@ namespace Content.Shared.Clock;
 public abstract partial class SharedClockSystem : EntitySystem
 {
     [Dependency] private SharedGameTicker _ticker = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<ClockComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<ClockComponent, ESBrokenStateChanged>(OnBrokenStateChanged);
     }
 
     private void OnExamined(Entity<ClockComponent> ent, ref ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("clock-examine", ("time", GetClockTimeText(ent))));
+    }
+
+    private void OnBrokenStateChanged(Entity<ClockComponent> ent, ref ESBrokenStateChanged args)
+    {
+        _ambientSound.SetAmbience(ent, !args.Broken);
+        ent.Comp.StuckTime = args.Broken ? GetClockTime(ent) : null;
+        Dirty(ent);
     }
 
     public string GetClockTimeText(Entity<ClockComponent> ent)
