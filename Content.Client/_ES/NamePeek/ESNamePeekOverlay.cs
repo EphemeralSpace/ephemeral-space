@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Client._ES.Chat;
 using Content.Client.Examine;
+using Content.Shared._ES.Auditions;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
@@ -28,6 +30,7 @@ public sealed partial class NamePeekOverlay : Overlay
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private readonly ExamineSystem _examineSystem;
@@ -46,6 +49,7 @@ public sealed partial class NamePeekOverlay : Overlay
     private readonly HashSet<Entity<MobStateComponent>> _nearbyEntities = new();
 
     private readonly Font _font;
+    private readonly Font _smallFont;
 
     //Maybe change to WorldSpace if DrawString gets added to WorldHandle for lighting on tag
     public override OverlaySpace Space => OverlaySpace.ScreenSpace;
@@ -79,6 +83,7 @@ public sealed partial class NamePeekOverlay : Overlay
         _shader = _prototypeManager.Index(UnshadedShader).Instance();
         var cache = IoCManager.Resolve<IResourceCache>();
         _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
+        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Small.ttf"), 12);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -178,6 +183,17 @@ public sealed partial class NamePeekOverlay : Overlay
             var outline = new TextOutline(2f, outlineColor);
 
             handle.DrawString(_font, drawPosition, text, scale, color, outline);
+
+            if (_entityManager.TryGetComponent<HumanoidAppearanceComponent>(ent, out var humanoid))
+            {
+                var pronouns = humanoid.Gender.GetPronounString(_loc);
+
+                var pronounDimensions = handle.GetDimensions(_smallFont, pronouns, scale);
+                var pronounsDrawPosition = pos - pronounDimensions / 2f;
+                pronounsDrawPosition.Y += dimensions.Y;
+
+                handle.DrawString(_smallFont, pronounsDrawPosition, pronouns, scale, color, outline);
+            }
         }
 
         args.DrawingHandle.UseShader(null);

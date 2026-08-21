@@ -2,3 +2,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Created by Grand Chaos and licensed under Creative Commons. Edited by sowelipililimute (GitHub) to alter metrics and add new glyphs."
   source: "https://github.com/EphemeralSpace/worm-fonts/"
+
+- files: ["Wormtown9k-Small"]
+  license: "Custom"
+  copyright: "Licensed under OFL-1.1. Created by sowelipililimute (GitHub)."
+  source: "https://github.com/EphemeralSpace/worm-fonts/"
