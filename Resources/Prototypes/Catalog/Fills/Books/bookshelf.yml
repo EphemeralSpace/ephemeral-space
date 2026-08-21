@@ -13,10 +13,6 @@
   id: BookshelfEntityTable
   table: !type:AllSelector
     children:
-    # Randomly generated books
-    - id: BookRandomStory
-      amount: !type:RangeNumberSelector
-        range: 0, 8
     # Guidebooks
     - !type:NestedSelector
       rolls: !type:RangeNumberSelector
@@ -86,7 +82,6 @@
   id: RandomBookTable
   table: !type:GroupSelector
     children:
-    - id: BookRandomStory
     - !type:NestedSelector
       tableId: RandomGuidebookTable
     - !type:NestedSelector

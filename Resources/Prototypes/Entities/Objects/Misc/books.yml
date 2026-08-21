@@ -421,14 +421,6 @@
           overlay_null: ""
 
 - type: entity
-  parent: BookRandom
-  id: BookRandomStory
-  suffix: random visual, random story
-  components:
-  - type: PaperRandomStory
-    template: GenericStory
-
-- type: entity
   parent: BookBase
   id: BookAtmosDistro
   name: "Newton's Guide to Atmos: The Distro"
