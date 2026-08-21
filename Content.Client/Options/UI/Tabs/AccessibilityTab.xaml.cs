@@ -34,6 +34,8 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionFontFamilyName(FontCVars.MonospaceFamilyName, MonospaceFontSelector);
         Control.AddOptionFontScale(FontCVars.ChatScale, ChatFontSelector);
         Control.AddOptionFontFamilyName(FontCVars.ChatFamilyName, ChatFontSelector);
+        Control.AddOptionFontScale(FontCVars.ChatWhisperScale, ChatWhisperFontSelector);
+        Control.AddOptionFontFamilyName(FontCVars.ChatWhisperFamilyName, ChatWhisperFontSelector);
 
         Control.Initialize();
     }
