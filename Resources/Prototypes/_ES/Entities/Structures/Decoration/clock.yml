@@ -31,6 +31,8 @@
   - type: InteractionOutline
   - type: Transform
     anchored: true
+  - type: Physics
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
