@@ -1917,3 +1917,9 @@ Entries:
       message: EVA storage can now be accessed by anyone.
   id: 203
   time: '2026-08-20T20:45:47.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Pronouns are now shown beneath the names of characters.
+  id: 204
+  time: '2026-08-21T04:47:36.0000000+00:00'
