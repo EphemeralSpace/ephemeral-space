@@ -48,7 +48,7 @@ public sealed partial class CableSystem
             if (_whitelistSystem.IsWhitelistPass(component.Blacklist, anchored))
                 return;
 
-            if (_physics.GetHardCollision(anchored).Layer == (int)placer.Comp.BlockingLayer) // To stop placing wires under walls
+            if (_physics.GetHardCollision(anchored).Layer & (int)placer.Comp.BlockingLayer != 0) // To stop placing wires under walls
                 return;
 
             if (TryComp<CableComponent>(anchored, out var wire) && wire.CableType == component.BlockingCableType)
