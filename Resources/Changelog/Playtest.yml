@@ -1943,3 +1943,17 @@ Entries:
       message: The vendomat now stocks powered cells.
   id: 206
   time: '2026-08-22T21:24:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Radios are no longer available in arrivals or on the warp drive.
+    - type: Tweak
+      message: >-
+        Command members no longer get access to all radio channels, now they
+        only receive common and command.
+    - type: Tweak
+      message: >-
+        Players with objectives to sabotage the telecomms processor can no
+        longer repair it.
+  id: 207
+  time: '2026-08-22T21:37:39.0000000+00:00'
