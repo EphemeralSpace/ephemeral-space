@@ -1,3 +1,4 @@
+using Content.Shared.Physics;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Power;
@@ -31,5 +32,8 @@ namespace Content.Server.Power.Components
         /// </summary>
         [DataField]
         public bool OverTile;
+
+        [DataField]
+        public CollisionGroup BlockingLayer = CollisionGroup.WallLayer;
     }
 }
