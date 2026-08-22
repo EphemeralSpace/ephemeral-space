@@ -18,6 +18,8 @@ public sealed partial class ESBreakableSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private ActivatableUISystem _activatableUi = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
@@ -29,13 +31,22 @@ public sealed partial class ESBreakableSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ESBreakableComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ESBreakableComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
         SubscribeLocalEvent<ESBreakableComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<ESBreakableComponent, DamageChangedEvent>(OnDamageChanged);
 
         SubscribeLocalEvent<ESBreakableActivatableUiComponent, ActivatableUIOpenAttemptEvent>(OnOpenAttempt);
+        SubscribeLocalEvent<ESBreakableActivatableUiComponent, ESBrokenStateChanged>(OnActivatableUiBrokenStateChanged);
         SubscribeLocalEvent<ESBreakableDeviceNetworkComponent, BeforePacketSentEvent>(OnBeforePacketSent);
+        SubscribeLocalEvent<ESBreakablePointLightComponent, MapInitEvent>(OnPointLightMapInit);
+        SubscribeLocalEvent<ESBreakablePointLightComponent, ESBrokenStateChanged>(OnPointLightBrokenStateChanged);
+    }
+
+    private void OnMapInit(Entity<ESBreakableComponent> ent, ref MapInitEvent args)
+    {
+        SetBroken(ent.AsNullable(), ent.Comp.Broken, null, silent: true);
     }
 
     private void OnRefreshNameModifiers(Entity<ESBreakableComponent> ent, ref RefreshNameModifiersEvent args)
@@ -67,6 +78,9 @@ public sealed partial class ESBreakableSystem : EntitySystem
             return;
 
         var broken = _damageable.GetDamage((ent, args.Damageable)).GetTotal() >= ent.Comp.Threshold;
+        if (ent.Comp.Broken == broken)
+            return;
+
         SetBroken(ent.AsNullable(), broken, args.Origin);
     }
 
@@ -76,10 +90,33 @@ public sealed partial class ESBreakableSystem : EntitySystem
             args.Cancel();
     }
 
+    private void OnActivatableUiBrokenStateChanged(Entity<ESBreakableActivatableUiComponent> ent, ref ESBrokenStateChanged args)
+    {
+        if (args.Broken)
+            _activatableUi.CloseAll(ent);
+    }
+
     private void OnBeforePacketSent(Entity<ESBreakableDeviceNetworkComponent> ent, ref BeforePacketSentEvent args)
     {
         if (IsBroken(ent.Owner))
             args.Cancel();
+    }
+
+    private void OnPointLightMapInit(Entity<ESBreakablePointLightComponent> ent, ref MapInitEvent args)
+    {
+        if (_pointLight.TryGetLight(ent, out var light))
+        {
+            ent.Comp.BaseColor = light.Color;
+            Dirty(ent);
+        }
+    }
+
+    private void OnPointLightBrokenStateChanged(Entity<ESBreakablePointLightComponent> ent, ref ESBrokenStateChanged args)
+    {
+        _pointLight.SetColor(ent, args.Broken ? ent.Comp.BrokenColor : ent.Comp.BaseColor);
+
+        if (ent.Comp.DisableOnBroken)
+            _pointLight.SetEnabled(ent, !args.Broken);
     }
 
     /// <summary>
@@ -87,7 +124,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
     /// </summary>
     public bool IsBroken(Entity<ESBreakableComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp, false))
+        if (!_breakableQuery.Resolve(ent, ref ent.Comp, false))
             return false;
 
         return ent.Comp.Broken;
@@ -96,12 +133,9 @@ public sealed partial class ESBreakableSystem : EntitySystem
     /// <summary>
     /// Sets the broken state of an entity with <see cref="ESBreakableComponent"/>, raising <see cref="ESBrokenStateChanged"/> if it changed.
     /// </summary>
-    public bool SetBroken(Entity<ESBreakableComponent?> ent, bool broken, EntityUid? user)
+    public bool SetBroken(Entity<ESBreakableComponent?> ent, bool broken, EntityUid? user, bool silent = false)
     {
-        if (!Resolve(ent, ref ent.Comp))
-            return false;
-
-        if (ent.Comp.Broken == broken)
+        if (!_breakableQuery.Resolve(ent, ref ent.Comp))
             return false;
 
         ent.Comp.Broken = broken;
@@ -109,7 +143,7 @@ public sealed partial class ESBreakableSystem : EntitySystem
 
         // TODO: Because audio prediction is hacky garbage i'm going to do this.
         // Otherwise, every single unpredicted damage source is going to not play audio properly.
-        if (broken && _net.IsServer)
+        if (!silent && broken && _net.IsServer)
             _audio.PlayPvs(ent.Comp.Sound, Transform(ent).Coordinates);
 
         _nameModifier.RefreshNameModifiers(ent.Owner);

@@ -574,6 +574,40 @@ SMESAdvancedEmpty: null
 SMESMachineCircuitboard: null
 SMESAdvancedMachineCircuitboard: null
 
+# 2026-8-19
+ComputerFrame: null
+ESTabletopComputerFrame: null
+ComputerBroken: null
+ESTabletopComputerBroken: null
+ESComputerWarehouseManifestCircuitBoard: null
+ESComputerAnomalyCircuitBoard: null
+ESComputerSupplyRequestCircuitBoard: null
+ESComputerSupplyRequestMasterCircuitBoard: null
+AlertsComputerCircuitboard: null
+AtmosMonitoringComputerCircuitboard: null
+PowerComputerCircuitboard: null
+MedicalRecordsComputerCircuitboard: null
+CriminalRecordsComputerCircuitboard: null
+StationRecordsComputerCircuitboard: null
+SurveillanceCameraMonitorCircuitboard: null
+SurveillanceWirelessCameraMonitorCircuitboard: null
+ComputerTelevisionCircuitboard: null
+CrewMonitoringComputerCircuitboard: null
+IDComputerCircuitboard: null
+BodyScannerComputerCircuitboard: null
+CommsComputerCircuitboard: null
+CentcommCommsComputerCircuitboard: null
+RadarConsoleCircuitboard: null
+SolarControlComputerCircuitboard: null
+SpaceVillainArcadeComputerCircuitboard: null
+BlockGameArcadeComputerCircuitboard: null
+ShuttleConsoleCircuitboard: null
+CloningConsoleComputerCircuitboard: null
+ComputerIFFCircuitboard: null
+ComputerMassMediaCircuitboard: null
+SensorConsoleCircuitboard: null
+CrateTechBoardRandom: null
+
 # 2026-8-22
 ClothingHandsGlovesColorYellow: ClothingHandsGlovesInsulated
 
