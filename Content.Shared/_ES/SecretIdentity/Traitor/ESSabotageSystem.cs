@@ -36,7 +36,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
     ///     Returns true if the user should be capable of sabotaging the given target.
     /// </summary>
     [PublicAPI]
-    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent?> target, bool ignoreCompletion = false)
+    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent?> target)
     {
         if (!Resolve(target, ref target.Comp))
             return false;
@@ -48,6 +48,11 @@ public sealed partial class ESSabotageSystem : EntitySystem
         if (_mind.GetMind(user) is not { } mind)
             return false;
 
+        var ev = new ESSabotageAttemptEvent(user);
+        RaiseLocalEvent(target, ref ev);
+        if (ev.Cancelled)
+            return false;
+
         // overriding, for vandal etc
         if (HasComp<ESCanAlwaysSabotageComponent>(user) || HasComp<ESCanAlwaysSabotageComponent>(mind))
             return true;
@@ -57,7 +62,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
             if (!_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target))
                 continue;
 
-            if (!ignoreCompletion && _objective.IsCompleted(objective.Owner))
+            if (_objective.IsCompleted(objective.Owner))
                 continue;
 
             return true;
@@ -76,6 +81,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
         {
             Priority = 1,
             Text = Loc.GetString("es-sabotage-verb-text"),
+            Disabled = !args.CanAccess || !args.CanInteract,
             DoContactInteraction = true,
             Act = () =>
             {
@@ -124,13 +130,16 @@ public sealed partial class ESSabotageSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ESSabotageDoAfterEvent : DoAfterEvent
-{
-    public override DoAfterEvent Clone() => this;
-}
+public sealed partial class ESSabotageDoAfterEvent : SimpleDoAfterEvent;
 
 /// <summary>
 /// Event broadcast whenever a sabotage is completed successfully.
 /// </summary>
 [ByRefEvent]
 public readonly record struct ESSabotageCompletedEvent(EntityUid User, EntityUid Target);
+
+/// <summary>
+/// Event raised on a sabotage target to check whether it can currently be sabotaged.
+/// </summary>
+[ByRefEvent]
+public record struct ESSabotageAttemptEvent(EntityUid User, bool Cancelled = false);
