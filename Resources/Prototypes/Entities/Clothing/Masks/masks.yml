@@ -55,6 +55,8 @@
     sprite: Clothing/Mask/breath.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: IdentityBlocker
+    coverage: MOUTH
   - type: Tag
     tags:
     - PetWearable
