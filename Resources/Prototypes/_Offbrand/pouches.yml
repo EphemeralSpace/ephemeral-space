@@ -15,7 +15,7 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,2,2
+    - 0,0,2,2 #ES
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
