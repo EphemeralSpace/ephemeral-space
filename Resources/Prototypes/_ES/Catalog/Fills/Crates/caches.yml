@@ -51,6 +51,7 @@
       - id: ClothingHandsChameleon
       - id: ClothingHeadsetChameleon
       - id: ClothingShoesChameleon
+      - id: ClothingMaskGasVoiceChameleon
       - id: ESChameleonControllerImplanter
     - id: ESEmag
     - id: C4
@@ -74,7 +75,7 @@
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
     - id: ESWeaponKnife
-    - id: StimulantPen
+    - id: ExGrenade
 
 # Subverter
 - type: entity
