@@ -53,7 +53,7 @@ public sealed partial class CastCommand : ToolshedCommand
             throw new Exception($"Entity {castMember} did not have character component!");
         }
 
-        var gender = Loc.GetString($"humanoid-profile-editor-pronouns-{character.Profile.Gender.ToString().ToLower()}-text");
+        var gender = character.Profile.Gender.GetPronounString(Loc);
         yield return
             $"{character.Name} ({gender}), {character.Profile.Age} years old ({character.DateOfBirth.ToShortDateString()})\n" +
             $"\t{_auditions.GetCharacterPrompt((castMember, character))}\n" +

@@ -47,7 +47,6 @@ public sealed partial class GameTopMenuBarUIController : UIController
         _admin.UnloadButton();
         _crafting.UnloadButton();
         _ahelp.UnloadButton();
-        _action.UnloadButton();
         _sandbox.UnloadButton();
         _emotes.UnloadButton();
 // ES START
@@ -62,7 +61,6 @@ public sealed partial class GameTopMenuBarUIController : UIController
         _admin.LoadButton();
         _crafting.LoadButton();
         _ahelp.LoadButton();
-        _action.LoadButton();
         _sandbox.LoadButton();
         _emotes.LoadButton();
 // ES START

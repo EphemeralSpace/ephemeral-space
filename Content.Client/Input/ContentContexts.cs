@@ -93,9 +93,6 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
 
-            // actions should be common (for ghosts, mobs, etc)
-            common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
-
             foreach (var boundKey in ContentKeyFunctions.GetHotbarBoundKeys())
             {
                 common.AddFunction(boundKey);

@@ -1909,3 +1909,51 @@ Entries:
       message: Emojis can no longer be sent in in-character chat messages.
   id: 202
   time: '2026-08-19T16:03:20.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: APCs now use a cable terminal to get power.
+    - type: Tweak
+      message: EVA storage can now be accessed by anyone.
+  id: 203
+  time: '2026-08-20T20:45:47.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Pronouns are now shown beneath the names of characters.
+  id: 204
+  time: '2026-08-21T04:47:36.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Equipment caches now come in the form of duffel bags instead of crates.
+  id: 205
+  time: '2026-08-21T04:49:45.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: Girders now have some flat resistance to attacks.
+    - type: Tweak
+      message: breath masks now block the lower face identity.
+    - type: Tweak
+      message: Topicals now only stack to 5.
+    - type: Tweak
+      message: Pouches no longer have a whitelist, and are 2x2 grids.
+    - type: Fix
+      message: The vendomat now stocks powered cells.
+  id: 206
+  time: '2026-08-22T21:24:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Radios are no longer available in arrivals or on the warp drive.
+    - type: Tweak
+      message: >-
+        Command members no longer get access to all radio channels, now they
+        only receive common and command.
+    - type: Tweak
+      message: >-
+        Players with objectives to sabotage the telecomms processor can no
+        longer repair it.
+  id: 207
+  time: '2026-08-22T21:37:39.0000000+00:00'

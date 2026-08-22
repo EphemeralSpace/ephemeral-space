@@ -98,7 +98,7 @@
       - all:
         - id: ExperimentCardEngineering
         - id: ClothingUniformJumpsuitExperimentEngi
-        - id: ClothingHandsGlovesColorYellow
+        - id: ClothingHandsGlovesInsulated
         - id: ClothingBeltUtilityEngineering
         - id: trayScanner
         - id: ClothingMaskGas

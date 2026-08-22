@@ -12,7 +12,7 @@
     examineString: es-summonable-examine-arms-dealer
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
-      id: ESCrateCacheCrewArmsDealer
+      id: ESCacheCrewArmsDealer
       amount: 3
 
 - type: esSecretIdentity
@@ -97,7 +97,7 @@
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
-      id: ESCrateCacheCrewMercenary
+      id: ESCacheCrewMercenary
 
 - type: esSecretIdentity
   id: Nobleman
