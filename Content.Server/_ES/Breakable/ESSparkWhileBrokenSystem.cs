@@ -8,8 +8,19 @@ namespace Content.Server._ES.Breakable;
 public sealed partial class ESSparkWhileBrokenSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ESBreakableSystem _breakable = default!;
     [Dependency] private ESSparksSystem _sparks = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<ESSparkWhileBrokenComponent, ESBrokenStateChanged>(OnBrokenStateChanged);
+    }
+
+    private void OnBrokenStateChanged(Entity<ESSparkWhileBrokenComponent> ent, ref ESBrokenStateChanged args)
+    {
+        ent.Comp.Enabled = args.Broken;
+    }
 
     public override void Update(float frameTime)
     {
@@ -17,10 +28,10 @@ public sealed partial class ESSparkWhileBrokenSystem : EntitySystem
 
         foreach (var ent in EntityQueryEnumerator<ESSparkWhileBrokenComponent>())
         {
-            if (!_random.Prob(ent.Comp.SparkChancePerSecond * frameTime))
+            if (!ent.Comp.Enabled)
                 continue;
 
-            if (!_breakable.IsBroken(ent.Owner))
+            if (!_random.Prob(ent.Comp.SparkChancePerSecond * frameTime))
                 continue;
 
             _sparks.DoSparks(ent);

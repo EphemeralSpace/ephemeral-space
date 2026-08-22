@@ -8,4 +8,7 @@ public sealed partial class ESSparkWhileBrokenComponent : ESBaseSparkConfigurati
 {
     [DataField]
     public float SparkChancePerSecond = 0.016f;
+
+    [DataField]
+    public bool Enabled;
 }
