@@ -1957,3 +1957,9 @@ Entries:
         longer repair it.
   id: 207
   time: '2026-08-22T21:37:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Replaced the marauder's stimulant pen with an explosive grenade.
+  id: 208
+  time: '2026-08-22T22:20:39.0000000+00:00'
