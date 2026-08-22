@@ -10,12 +10,12 @@
   - type: Item
     size: Small
     shape:
-    - 0,0,1,0
+    - 0,0,1,1 #ES
     heldPrefix: basic
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,2,2 #ES
+    - 0,0,1,1 #ES - matches container outward size
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
