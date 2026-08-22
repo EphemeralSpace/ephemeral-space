@@ -210,7 +210,7 @@
     - id: PowerCellMedium
     - id: PowerCellHigh
       weight: 0.5
-    - id: BoxHug
+    - id: ESBoxHug
 
     - group:
       - id: Brutepack
