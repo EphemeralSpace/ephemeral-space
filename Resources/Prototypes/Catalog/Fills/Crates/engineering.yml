@@ -18,7 +18,7 @@
           amount: 2
         - id: ClothingOuterVestHazard
           amount: 3
-        - id: ClothingHandsGlovesColorYellow
+        - id: ClothingHandsGlovesInsulated
           amount: 2
 
 - type: entity
@@ -113,7 +113,7 @@
         children:
         - id: ToolboxElectricalFilled
           amount: 2
-        - id: ClothingHandsGlovesColorYellow
+        - id: ClothingHandsGlovesInsulated
           amount: 2
 
 - type: entity

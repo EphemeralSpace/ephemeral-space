@@ -42,7 +42,7 @@
             state: wall_girder
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESMachine
   - type: ESBreakable
     threshold: 50
     sound:

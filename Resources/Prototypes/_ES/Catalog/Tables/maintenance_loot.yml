@@ -92,7 +92,7 @@
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
-    - id: ClothingHandsGlovesColorYellowBudget
+    - id: ClothingHandsGlovesInsulatedBudget
     - id: ClothingMaskGas
     - id: ClothingShoesColorBlack
     - id: ClothingOuterVestHazard
@@ -210,7 +210,7 @@
     - id: PowerCellMedium
     - id: PowerCellHigh
       weight: 0.5
-    - id: BoxHug
+    - id: ESBoxHug
 
     - group:
       - id: Brutepack
@@ -280,7 +280,7 @@
     - id: ESKitSecretDoor
 
     - id: ClothingEyesHudSecurity
-    - id: ClothingHandsGlovesColorYellow
+    - id: ClothingHandsGlovesInsulated
 
     - all: # Russian Outfit
       - id: ESClothingHeadUshanka
