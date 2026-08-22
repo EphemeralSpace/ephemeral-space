@@ -1963,3 +1963,11 @@ Entries:
       message: Replaced the marauder's stimulant pen with an explosive grenade.
   id: 208
   time: '2026-08-22T22:20:39.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Computers now have a broken state and cannot be destroyed fully or
+        deconstructed.
+  id: 209
+  time: '2026-08-22T22:21:10.0000000+00:00'
