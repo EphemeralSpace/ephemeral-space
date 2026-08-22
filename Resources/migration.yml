@@ -560,6 +560,7 @@ Flash: null
 SciFlash: null
 Stunprod: null
 BoxFlashbang: null
+Stunbaton: ESWeaponBlackjack
 
 # 2026-8-17
 BaseSubstationWall: null

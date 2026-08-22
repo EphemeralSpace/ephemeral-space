@@ -5,8 +5,6 @@
   components:
   - type: DisarmMalus
     malus: -0.3 # Easy to disarm for epic reversals
-  - type: StaminaDamageOnHit
-    damage: 8 # Too small for real combat, but allows for foam fights to have a conclusion
   - type: MeleeWeapon
     damage:
       types:

@@ -50,6 +50,9 @@
         powerMV:
           !type:CableTerminalNode
           nodeGroupID: MVPower
+        apc: #ES: for APC terms because wires under walls are icky
+          !type:CableTerminalNode
+          nodeGroupID: apc #what if we just call this node group something different for no reason
 
 - type: entity
   id: CableTerminalUncuttable

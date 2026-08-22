@@ -78,7 +78,6 @@
   - type: Damageable
     damageContainer: Biological
   - type: RadiationReceiver
-  - type: Stamina
   - type: StunVisuals
   - type: MobState
   - type: MobThresholds

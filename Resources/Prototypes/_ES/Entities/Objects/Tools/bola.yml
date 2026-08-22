@@ -44,7 +44,6 @@
     breakoutTime: 1.5 #all bola should generally be fast to remove
     walkSpeed: 0.5 #makeshift bola shouldn't slow too much
     sprintSpeed: 0.5
-    staminaDamage: 0 # anything but this is gamebreaking
     canThrowTrigger: true
     canMoveBreakout: true
     maxEnsnares: 1

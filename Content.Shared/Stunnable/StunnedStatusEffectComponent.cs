@@ -6,4 +6,8 @@ namespace Content.Shared.Stunnable;
 /// Stun as a status effect.
 /// </summary>
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedStunSystem))]
-public sealed partial class StunnedStatusEffectComponent : Component;
+public sealed partial class StunnedStatusEffectComponent : Component
+{
+    [DataField]
+    public bool SeeStars;
+}

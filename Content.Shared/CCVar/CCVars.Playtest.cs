@@ -83,12 +83,4 @@ public sealed partial class CCVars
         [CVarControl(AdminFlags.VarEdit)]
         public static readonly CVarDef<float> PlaytestMobDamageModifier =
             CVarDef.Create("playtest.mob_damage_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
-
-        /// <summary>
-        ///     Scales the stamina damage dealt the game.
-        /// </summary>
-        [CVarControl(AdminFlags.VarEdit)]
-        public static readonly CVarDef<float> PlaytestStaminaDamageModifier =
-            CVarDef.Create("playtest.stamina_damage_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
-
 }

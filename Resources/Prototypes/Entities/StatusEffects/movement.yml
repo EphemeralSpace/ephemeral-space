@@ -49,11 +49,6 @@
   id: FlashSlowdownStatusEffect
   name: affected by flash slowdown
 
-- type: entity
-  parent: StatusEffectSlowdown
-  id: StatusEffectStaminaLow
-  name: stamina low
-
 # Makes you more slippery, or perhaps less slippery.
 - type: entity
   parent: MobStatusEffectDebuff # Debatable if this should be MobStatusEffectBase or not
