@@ -3,8 +3,10 @@ using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
+using Content.Shared.Physics;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Power.EntitySystems;
@@ -15,6 +17,7 @@ public sealed partial class CableSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
 
     private void InitializeCablePlacer()
     {
@@ -43,6 +46,9 @@ public sealed partial class CableSystem
         foreach (var anchored in _map.GetAnchoredEntities((gridUid, grid), snapPos))
         {
             if (_whitelistSystem.IsWhitelistPass(component.Blacklist, anchored))
+                return;
+
+            if (_physics.GetHardCollision(anchored).Layer == (int)CollisionGroup.WallLayer) // To stop placing wires under walls
                 return;
 
             if (TryComp<CableComponent>(anchored, out var wire) && wire.CableType == component.BlockingCableType)
