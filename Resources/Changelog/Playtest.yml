@@ -1929,3 +1929,17 @@ Entries:
       message: Equipment caches now come in the form of duffel bags instead of crates.
   id: 205
   time: '2026-08-21T04:49:45.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: Girders now have some flat resistance to attacks.
+    - type: Tweak
+      message: breath masks now block the lower face identity.
+    - type: Tweak
+      message: Topicals now only stack to 5.
+    - type: Tweak
+      message: Pouches no longer have a whitelist, and are 2x2 grids.
+    - type: Fix
+      message: The vendomat now stocks powered cells.
+  id: 206
+  time: '2026-08-22T21:24:15.0000000+00:00'
