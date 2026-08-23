@@ -8,9 +8,7 @@
     sprite: _ES/Objects/Specific/Medical/pouch.rsi
     state: basic
   - type: Item
-    size: Small
-    shape:
-    - 0,0,1,1 #ES
+    size: Normal
     heldPrefix: basic
   - type: Storage
     maxItemSize: Small
