@@ -34,6 +34,6 @@ namespace Content.Server.Power.Components
         public bool OverTile;
 
         [DataField]
-        public CollisionGroup BlockingLayer = CollisionGroup.WallLayer;
+        public CollisionGroup BlockingLayer = CollisionGroup.Impassable;
     }
 }
