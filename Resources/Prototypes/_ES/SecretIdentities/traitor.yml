@@ -87,6 +87,8 @@
   name: es-secret-identity-sleeper-agent-name
   description: es-secret-identity-sleeper-agent-desc
   color: darkturquoise
+  modifiers:
+    { }
   weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
   tips:
   - SleeperAgentBalance

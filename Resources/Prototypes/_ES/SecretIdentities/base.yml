@@ -20,7 +20,7 @@
   id: ESBaseCrew
   organization: Crew
   abstract: true
-  modifierChance: 0.085
+  modifierChance: 0.066
   modifiers:
     ExSyndicate: 1
 
