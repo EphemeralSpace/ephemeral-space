@@ -8,14 +8,12 @@
     sprite: _ES/Objects/Specific/Medical/pouch.rsi
     state: basic
   - type: Item
-    size: Small
-    shape:
-    - 0,0,1,0
+    size: Normal
     heldPrefix: basic
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,2,2 #ES
+    - 0,0,1,1 #ES - matches container outward size
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
