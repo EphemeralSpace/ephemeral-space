@@ -20,6 +20,9 @@
   id: ESBaseCrew
   organization: Crew
   abstract: true
+  modifierChance: 1 # TODO TESTING ONLY 0.066 # 1 / 15
+  modifiers:
+    ExSyndicate: 1
 
 - type: esSecretIdentity
   parent: ESBaseCommandRestricted
