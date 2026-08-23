@@ -104,7 +104,8 @@ public sealed partial class FollowerSystem : EntitySystem
                 Act = () => StartFollowingEntity(ev.User, ev.Target),
                 Impact = LogImpact.Low,
                 Text = Loc.GetString("verb-follow-text"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png"))
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
+                DoContactInteraction = false,
             };
             ev.Verbs.Add(verb);
         }
@@ -121,6 +122,7 @@ public sealed partial class FollowerSystem : EntitySystem
                 Impact = LogImpact.Low,
                 Text = Loc.GetString("verb-follow-me-text"),
                 Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/close.svg.192dpi.png")),
+                DoContactInteraction = false,
             };
 
             ev.Verbs.Add(verb);
