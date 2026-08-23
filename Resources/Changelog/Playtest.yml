@@ -1983,3 +1983,9 @@ Entries:
       message: you can no longer place wires underneath walls.
   id: 211
   time: '2026-08-23T14:23:32.0000000+00:00'
+- author: gradientvera
+  changes:
+    - type: Tweak
+      message: When mopping, clicking a tile now cleans any puddles present.
+  id: 212
+  time: '2026-08-23T17:47:06.0000000+00:00'
