@@ -2,3 +2,6 @@
   id: ExSyndicate
   name: es-secret-identity-modifier-ex-syndicate
   color: red
+  event: !type:ESAddCacheSecretIdentityModifierEvent
+    cacheProto:
+      tableId: ESTraitorCaches

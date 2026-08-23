@@ -272,7 +272,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         if (applyModifiers)
         {
-            ApplySecretIdentityModifiers(mind, secretIdentity, role.Value);
+            ApplySecretIdentityModifier(mind, secretIdentity, role.Value);
             if (role.Value.Comp2.Modifier is { } modifier)
             {
                 // stick modifier out front.
@@ -306,7 +306,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         }
     }
 
-    private void ApplySecretIdentityModifiers(
+    private void ApplySecretIdentityModifier(
         Entity<MindComponent> mind,
         ESSecretIdentityPrototype secretIdentity,
         Entity<MindRoleComponent, ESSecretIdentityRoleComponent> role)
@@ -316,8 +316,11 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
             return;
 
         var modifierId = _random.Pick(secretIdentity.Modifiers);
+        var modifier = PrototypeManager.Index(modifierId);
         role.Comp2.Modifier = modifierId;
         Dirty(role, role.Comp2);
+
+        RaiseLocalEvent(mind, (object) modifier.Event);
     }
 
     public override void RemoveSecretIdentity(Entity<MindComponent> mind)

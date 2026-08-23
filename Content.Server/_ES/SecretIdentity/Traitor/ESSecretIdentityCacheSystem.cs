@@ -6,6 +6,7 @@ using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared._ES.SpawnRegion;
 using Content.Shared.EntityTable;
 using Content.Shared.Localizations;
+using Content.Shared.Mind;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -16,6 +17,7 @@ public sealed partial class ESSecretIdentityCacheSystem : ESSharedSecretIdentity
 {
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private ESSharedSpawnRegionSystem _spawnRegion = default!;
 
     /// <inheritdoc/>
@@ -23,7 +25,22 @@ public sealed partial class ESSecretIdentityCacheSystem : ESSharedSecretIdentity
     {
         base.Initialize();
 
+        SubscribeLocalEvent<MindComponent, ESAddCacheSecretIdentityModifierEvent>(OnAddCacheModifier);
         SubscribeLocalEvent<ESSecretIdentityCacheSpawnerComponent, MapInitEvent>(OnMapInit);
+    }
+
+    private void OnAddCacheModifier(Entity<MindComponent> ent, ref ESAddCacheSecretIdentityModifierEvent args)
+    {
+        if (!TryComp<ESCharacterComponent>(ent, out var character))
+            return;
+
+        var comp = EnsureComp<ESSecretIdentityCacheSpawnerComponent>(ent);
+
+        foreach (var cache in _entityTable.GetSpawns(args.CacheProto))
+        {
+            TrySpawnCache((ent, comp), cache, args.Region, character.Station, out _);
+        }
+        _secretIdentity.RefreshCharacterInfoBlurb(ent.AsNullable());
     }
 
     private void OnMapInit(Entity<ESSecretIdentityCacheSpawnerComponent> ent, ref MapInitEvent args)
@@ -31,34 +48,24 @@ public sealed partial class ESSecretIdentityCacheSystem : ESSharedSecretIdentity
         if (!TryComp<ESCharacterComponent>(ent, out var character))
             return;
 
-        var coords = new List<EntityCoordinates>();
         foreach (var cache in _entityTable.GetSpawns(ent.Comp.CacheProto))
         {
-            if (TrySpawnCache(ent, (ent, character), cache, out var c))
-                coords.Add(c.Value);
+            TrySpawnCache(ent, cache, ent.Comp.Region, character.Station, out _);
         }
 
-        var locationStrings = new List<string>();
-        foreach (var coord in coords)
-        {
-            var mapCoord = TransformSystem.ToMapCoordinates(coord);
-            var (x, y) = (Vector2i) mapCoord.Position.Rounded();
-            var loc = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(mapCoord));
-
-            locationStrings.Add(Loc.GetString("es-ceiling-cache-location-format", ("location", loc), ("x", x), ("y", y)));
-        }
-
-        ent.Comp.LocationString = Loc.GetString("es-ceiling-cache-location-briefing",
-            ("locations", ContentLocalizationManager.FormatList(locationStrings)),
-            ("count", locationStrings.Count));
-        Dirty(ent);
+        _secretIdentity.RefreshCharacterInfoBlurb(ent.Owner);
     }
 
-    private bool TrySpawnCache(Entity<ESSecretIdentityCacheSpawnerComponent> ent, Entity<ESCharacterComponent> character, EntProtoId cache, [NotNullWhen(true)] out EntityCoordinates? coords)
+    public bool TrySpawnCache(
+        Entity<ESSecretIdentityCacheSpawnerComponent> ent,
+        EntProtoId cache,
+        ProtoId<ESSpawnRegionPrototype> region,
+        EntityUid station,
+        [NotNullWhen(true)] out EntityCoordinates? coords)
     {
         if (!_spawnRegion.TryGetRandomCoordsInRegion(
-                ent.Comp.Region,
-                character.Comp.Station,
+                region,
+                station,
                 out coords,
                 checkPlayerLOS: false,
                 minPlayerDistance: 0f))
@@ -72,6 +79,18 @@ public sealed partial class ESSecretIdentityCacheSystem : ESSharedSecretIdentity
         comp.MindId = ent;
         comp.CacheLoot = cache;
         Dirty(spawner, comp);
+
+        // Update Briefing
+        var mapCoord = TransformSystem.ToMapCoordinates(coords.Value);
+        var (x, y) = (Vector2i) mapCoord.Position.Rounded();
+        var loc = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(mapCoord));
+
+        ent.Comp.Locations.Add(Loc.GetString("es-ceiling-cache-location-format", ("location", loc), ("x", x), ("y", y)));
+
+        ent.Comp.LocationString = Loc.GetString("es-ceiling-cache-location-briefing",
+            ("locations", ContentLocalizationManager.FormatList(ent.Comp.Locations)),
+            ("count", ent.Comp.Locations.Count));
+        Dirty(ent);
 
         return true;
     }

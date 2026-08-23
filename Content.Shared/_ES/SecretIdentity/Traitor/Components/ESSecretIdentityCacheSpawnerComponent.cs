@@ -13,7 +13,10 @@ public sealed partial class ESSecretIdentityCacheSpawnerComponent : Component
     public ProtoId<ESSpawnRegionPrototype> Region = "ESMaintenance";
 
     [DataField(required: true)]
-    public EntityTableSelector CacheProto;
+    public EntityTableSelector CacheProto = new NoneSelector();
+
+    [DataField]
+    public List<string> Locations = [];
 
     [DataField, AutoNetworkedField]
     public string LocationString = string.Empty;

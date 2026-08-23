@@ -20,7 +20,7 @@
   id: ESBaseCrew
   organization: Crew
   abstract: true
-  modifierChance: 1 # TODO TESTING ONLY 0.066 # 1 / 15
+  modifierChance: 0.085
   modifiers:
     ExSyndicate: 1
 

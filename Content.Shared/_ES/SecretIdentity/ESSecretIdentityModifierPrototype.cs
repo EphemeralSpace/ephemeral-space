@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.SecretIdentity;
 
@@ -23,4 +24,11 @@ public sealed partial class ESSecretIdentityModifierPrototype : IPrototype
     /// </summary>
     [DataField]
     public Color Color = Color.White;
+
+    [DataField(required: true)]
+    public ESSecretIdentifierModifierEvent Event = default!;
 }
+
+[Serializable, NetSerializable]
+[ImplicitDataDefinitionForInheritors]
+public abstract partial class ESSecretIdentifierModifierEvent : EntityEventArgs;
