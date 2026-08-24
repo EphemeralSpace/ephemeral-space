@@ -1,3 +1,4 @@
+ESjob-name-animal-control = Animal Control
 ESjob-name-assistant = Assistant
 ESjob-name-atmostech = Atmospheric Technician
 ESjob-name-bartender = Bartender
@@ -8,6 +9,7 @@ ESjob-name-coroner = Coroner
 ESjob-name-detective = Detective
 ESjob-name-doctor = Doctor
 ESjob-name-experiment = Experiment
+ESjob-name-hazmat = Hazardous Materials Responder
 ESjob-name-janitor = Janitor
 ESjob-name-paramedic = Paramedic
 ESjob-name-ratman = Ratman
@@ -19,6 +21,7 @@ ESjob-name-station-admin = Station Administrator
 ESjob-name-quartermaster = Quartermaster
 
 # Role timers - Make these alphabetical or I cut you
+ESJobAnimalControl = Animal Control
 ESJobAssistant = Assistant
 ESJobAtmosphericTechnician = Atmospheric Technician
 ESJobBartender = Bartender
@@ -28,6 +31,7 @@ ESJobChemist = Chemist
 ESJobClown = Clown
 ESJobCoroner = Coroner
 ESJobDetective = Detective
+EsJobHazmat = Hazardous Materials Responder
 ESJobJanitor = Janitor
 ESJobDoctor = Doctor
 ESJobExperiment = Experiment

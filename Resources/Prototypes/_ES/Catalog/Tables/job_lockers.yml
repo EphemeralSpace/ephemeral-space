@@ -145,6 +145,35 @@
     - id: Plunger
     - id: WireBrush
 
+# Custodial
+
+- type: entityTable
+  id: LockerFillAnimalControl
+  table:
+    all:
+    - id: RatPoisonShaker
+      amount: 2
+    - id: WeaponDartRifle
+    - id: BoxAnimalTranq
+    - id: BugSpray
+    - id: BearTrap
+      amount: 2
+    - id: BoxMousetrap
+    - id: ClothingBeltJanitorFilled
+
+- type: entityTable
+  id: LockerFillHazmat
+  table:
+    all:
+    - id: WeaponMachette
+    - id: WeaponForceGun
+    - id: SanitationChip
+      amount: 2
+    - id: ClothingBeltJanitorFilled
+    - id: ClothingShoesGaloshes
+    - id: ClothingOuterHazmatSuit
+
+
 # Civilian
 - type: entityTable
   id: LockerFillClown

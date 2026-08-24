@@ -123,3 +123,45 @@
       color: "#A59584"
   - type: PresetIdCard
     job: ESRatman
+
+- type: entity
+  parent: IDCardStandard
+  id: AnimalControlCard
+  name: animal control ID card
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color: &color-custodial-1 "6d3c7c"
+    - state: icon_2
+      color: &color-custodial-2 "532f5d"
+    - state: icon_3
+      color: &color-custodial-3 "391e41"
+    - state: strip
+      color: "e7c701"
+  - type: PresetIdCard
+    job: ESAnimalControl
+
+
+- type: entity
+  parent: IDCardStandard
+  id: HazmatCard
+  name: hazardous materials responder ID card
+  suffix: ES
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color: *color-custodial-1
+    - state: icon_2
+      color: *color-custodial-2
+    - state: icon_3
+      color: *color-custodial-3
+    - state: strip
+      color: "e6e2d1"
+  - type: PresetIdCard
+    job: ESHazmat
+

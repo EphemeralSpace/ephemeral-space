@@ -27,6 +27,12 @@
         },
         {
             "name": "ratman"
+        },
+        {
+            "name": "animalcontrol"
+        },
+        {
+            "name": "hazmat"
         }
     ]
 }

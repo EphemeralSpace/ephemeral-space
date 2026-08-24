@@ -1,3 +1,14 @@
+# Animal Control
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerAnimalControl
+  name: animal control's locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/animalcontrol.rsi
+  - type: ESPersonalLocker
+    job: ESAnimalControl
+
 # Chef
 - type: entity
   parent: [ LockerBaseSecurePersonal, LockerBase ]
@@ -44,6 +55,17 @@
     sprite: _ES/Structures/Storage/Closets/experiment.rsi
   - type: ESPersonalLocker
     job: ESExperiment
+
+# Hazmat
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerHazmat
+  name: hazardous material responder's locker
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/hazmat.rsi
+  - type: ESPersonalLocker
+    job: ESHazmat
 
 # Janitor
 - type: entity
