@@ -1989,3 +1989,9 @@ Entries:
       message: When mopping, clicking a tile now cleans any puddles present.
   id: 212
   time: '2026-08-23T17:47:06.0000000+00:00'
+- author: jessicamaybe
+  changes:
+    - type: Tweak
+      message: Stagehands no longer show an interaction particle when starting a follow
+  id: 213
+  time: '2026-08-24T02:04:07.0000000+00:00'
