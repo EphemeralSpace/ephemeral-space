@@ -170,7 +170,6 @@
     - id: SanitationChip
       amount: 2
     - id: ClothingBeltJanitorFilled
-    - id: ClothingShoesGaloshes
     - id: ClothingOuterHazmatSuit
 
 

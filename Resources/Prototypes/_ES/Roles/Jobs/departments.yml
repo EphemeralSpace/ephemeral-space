@@ -7,6 +7,16 @@
   - ESQuartermaster
 
 - type: department
+  id: ESCustodial
+  name: department-Custodial
+  description: department-Custodial-description
+  color: "#6d3c7c"
+  roles:
+  - ESJanitor
+  - ESAnimalControl
+  - ESHazmat
+
+- type: department
   id: ESOther
   name: department-Other
   description: department-Other-description
@@ -18,7 +28,6 @@
   - ESReporter
   - ESBartender
   - ESChef
-  - ESJanitor
   - ESRatman
 
 - type: department
