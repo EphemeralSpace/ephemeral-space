@@ -1,12 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Text;
 using Content.Server.GameTicking.Rules;
-using Content.Server.MassMedia.Systems;
 using Content.Server.Mind;
 using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.Chat;
-using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.SecretIdentity.Masquerades;
@@ -15,7 +12,6 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
-using Content.Shared.Station.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -23,8 +19,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server._ES.SecretIdentity.Masquerades;
-
-// MISC TODO: Remove news integration and unused report type stuff
 
 /// <summary>
 ///     This handles masquerade management and how they influence game flow.
@@ -35,10 +29,8 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private MindSystem _mind = default!;
-    [Dependency] private NewsSystem _news = default!;
 
     // Icky global state.
     private ProtoId<ESMasqueradePrototype>? _forcedMasquerade;
@@ -229,56 +221,6 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         {
             GameTicker.StartGameRule(rule);
         }
-
-        // If we do news, run the news.
-        if (masquerade.StartupNewsArticleTime is { } time)
-        {
-            _ = _timer.SpawnMethodTimer(time,
-                () =>
-                {
-                    // Find The Station. Only one.
-                    // and other places I wish the game had a Single<>() helper for "I really want to assume singleton".
-                    var query = EntityQueryEnumerator<StationDataComponent>();
-
-                    if (!query.MoveNext(out var ent, out _))
-                        return;
-
-                    if (component.Deleted)
-                        return;
-
-                    if (component.AssignedSecretIdentities == null)
-                        return;
-
-                    var report = new StringBuilder();
-
-                    foreach (var secretIdentities in component.AssignedSecretIdentities.GroupBy(m => _proto.Index(m).Organization))
-                    {
-                        var organization = _proto.Index(secretIdentities.Key);
-
-                        // If we need to obscure the secretIdentity name, do it here then don't list individual secretIdentity names
-                        if (organization.DisguisedSecretIdentityName is { } disguisedSecretIdentityName)
-                        {
-                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleSecretIdentityEntry,
-                                ("count", secretIdentities.Count()),
-                                ("secretIdentity", Loc.GetString(disguisedSecretIdentityName))));
-                            continue;
-                        }
-
-                        foreach (var (secretIdentityId, count) in secretIdentities.CountBy(x => x))
-                        {
-                            report.AppendLine(Loc.GetString(masquerade.StartupNewsArticleSecretIdentityEntry,
-                                ("count", count),
-                                ("secretIdentity", Loc.GetString(_proto.Index(secretIdentityId).Name))));
-                        }
-                    }
-
-                    _news.TryAddNews(ent,
-                        Loc.GetString(masquerade.StartupNewsArticleTitle),
-                        Loc.GetString(masquerade.StartupNewsArticleContents, ("secretIdentityEntries", report)),
-                        out _,
-                        enforceLimits: false);
-                });
-        }
     }
 
     private ESMasqueradePrototype? SelectMasquerade(int players)
@@ -299,29 +241,6 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
 
             return _random.Pick(weighted);
         }
-    }
-
-    /// <summary>
-    /// For a given masquerade at a specified playercount and random seed, returns the organizations that will be present.
-    /// </summary>
-    public HashSet<ProtoId<ESOrganizationPrototype>> GetOrganizationsFromMasquerade(ESMasqueradePrototype masquerade, int playerCount, IRobustRandom random)
-    {
-        // Try and get the unique secretIdentities we'll have at this pop level for this seed
-        if (!masquerade.Masquerade.TryGetSecretIdentities(playerCount, random, _proto,  out var secretIdentities))
-            return [];
-
-        foreach (var secretIdentity in masquerade.Masquerade.DefaultSecretIdentity.PickSecretIdentities(random, _proto))
-        {
-            secretIdentities.Add(secretIdentity);
-        }
-
-        var organizations = new HashSet<ProtoId<ESOrganizationPrototype>>();
-        foreach (var secretIdentity in secretIdentities)
-        {
-            organizations.Add(_proto.Index(secretIdentity).Organization);
-        }
-
-        return organizations;
     }
 
     public bool TryGetMasqueradeData([NotNullWhen(true)] out MasqueradeRoleSet? set)
