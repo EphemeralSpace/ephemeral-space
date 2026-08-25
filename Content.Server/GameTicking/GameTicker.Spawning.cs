@@ -93,14 +93,14 @@ namespace Content.Server.GameTicking
             var secretIdentities = _masquerade.AssignMasquerade(profiles);
 
             var spawnableStations = GetSpawnableStations();
-            var assignedJobs = _stationJobs.AssignJobs(profiles, spawnableStations);
+            var assignedJobs = _stationJobs.AssignJobs(profiles, secretIdentities, spawnableStations);
 
             // LEGACY IMPLEMENTATION NOTE
             // As of right now, jobs are ALWAYS assigned to players and they will never fail to spawn.
             // This code has a lot of assumptions built around people staying in the lobby. we should
             // ideally clean those up at some point as it significantly complicates the logical flow
             // and is no longer a design concern. -emo
-            _stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, spawnableStations);
+            _stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, secretIdentities, spawnableStations);
 
             // Calculate extended access for stations.
             var stationJobCounts = spawnableStations.ToDictionary(e => e, _ => 0);
