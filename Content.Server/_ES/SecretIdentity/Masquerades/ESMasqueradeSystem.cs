@@ -10,10 +10,13 @@ using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.SecretIdentity.Masquerades;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
+using Content.Shared.Preferences;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Station.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -21,12 +24,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._ES.SecretIdentity.Masquerades;
 
+// MISC TODO: Remove news integration and unused report type stuff
+
 /// <summary>
 ///     This handles masquerade management and how they influence game flow.
 /// </summary>
 public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRuleComponent>
 {
     [Dependency] private IESSharedChatManager _chat = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ESEntityTimerSystem _timer = default!;
@@ -44,101 +50,94 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
     {
         base.Initialize();
 
-        SubscribeLocalEvent<AssignLatejoinerToOrganizationEvent>(OnAssignLatejoiner);
-        SubscribeLocalEvent<AssignPlayersToOrganizationEvent>(OnAssignPlayers);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
     }
 
-    private void OnAssignPlayers(ref AssignPlayersToOrganizationEvent ev)
+    public Dictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>> AssignMasquerade(
+        Dictionary<NetUserId, HumanoidCharacterProfile> profiles)
     {
-        var rule = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault();
+        if (!TrySingle<ESMasqueradeRuleComponent>(out var rule) ||
+            rule.Value.Comp.Masquerade is not { } masquerade)
+        {
+            return [];
+        }
 
-        if (rule?.Masquerade is null)
+        var random = rule.Value.Comp.Rng;
+
+        var playerCount = profiles.Count;
+        var roleSet = masquerade.Masquerade;
+
+        if (!roleSet.TryGetSecretIdentities(playerCount, random, _proto, out var secretIdentities))
+        {
+            Log.Error($"Failed to assign secret identities for masquerade {masquerade.ID}!");
+            return [];
+        }
+
+        DebugTools.AssertEqual(secretIdentities.Count, playerCount, "Player count mismatched identity count, shit broke.");
+
+        var players = new List<NetUserId>(profiles.Keys);
+        random.Shuffle(players);
+
+        var assignments = new Dictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>>();
+        foreach (var secretIdentityId in secretIdentities)
+        {
+            var secretIdentity = _proto.Index(secretIdentityId);
+
+            var validPlayers = players
+                .Where(u => _secretIdentity.CanAssignSecretIdentity(u, secretIdentity))
+                .ToList();
+
+            // If there's no valid players, just pick someone random out of the pool.
+            // SId restrictions are weakly binding. They have priority over basically
+            // everything in terms of assignment.
+            var player = validPlayers.Count == 0
+                ? random.Pick(players)
+                : random.Pick(validPlayers);
+
+            assignments.Add(player, secretIdentity);
+            players.Remove(player);
+        }
+
+        return assignments;
+    }
+
+    public void InitializeMasquerade(Dictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>> secretIdentities)
+    {
+        if (!TrySingle<ESMasqueradeRuleComponent>(out var rule))
             return;
 
-        var set = rule.Masquerade.Masquerade;
+        var random = rule.Value.Comp.Rng;
 
-        if (!set.TryGetSecretIdentities(ev.Players.Count, rule.Rng, _proto, out var secretIdentities))
-        {
-            Log.Error($"Failed to assign secret identities for masquerade {rule.Masquerade!.ID}!");
-            return;
-        }
+        var players = new List<NetUserId>(secretIdentities.Keys);
+        random.Shuffle(players);
 
-        if (rule.Masquerade.ImpersonateMasquerade is { } impersonate)
-        {
-            var proto = _proto.Index(impersonate);
-
-            if (!proto.Masquerade.TryGetSecretIdentities(ev.Players.Count, rule.Rng, _proto, out var impersonationSecretIdentities))
-            {
-                Log.Error($"Failed to assign impersonation identities for masquerade {rule.Masquerade!.ID}!");
-                return;
-            }
-
-            rule.AssignedSecretIdentities = impersonationSecretIdentities;
-        }
-        else
-        {
-            rule.AssignedSecretIdentities = secretIdentities.ShallowClone();
-        }
-
-        DebugTools.AssertEqual(secretIdentities.Count, ev.Players.Count, "Player count mismatched identity count, shit broke.");
-
-        ev.Handled = true;
+        var organizationRules = new List<EntityUid>();
+        var organizationIds = secretIdentities.Values
+            .Select(_proto.Index)
+            .Select(p => p.Organization)
+            .ToHashSet();
 
         // Add all of our game rules ahead of time so that they don't get started inside ApplySecretIdentity
         // This is because they may have logic that is dependent on having members assigned when they start.
-        var organizationRules = new List<EntityUid>();
-        foreach (var organizationId in GetOrganizationsFromMasquerade(rule.Masquerade, ev.Players.Count, rule.Seed.IntoRandomizer()))
+        foreach (var organizationId in organizationIds)
         {
             var organization = _proto.Index(organizationId);
             organizationRules.Add(GameTicker.AddGameRule(organization.GameRule));
         }
 
-        // Ensure no funny business with the player list, as the order masquerades output secret identities isn't random.
-        rule.Rng.Shuffle(ev.Players);
+        var orderedSecretIdentities = secretIdentities
+            .OrderBy(m => _proto.Index(m.Value).AssignmentOrder);
 
-        var players = ev.Players;
-
-        var secretIdentitiesEnum = secretIdentities
-            .OrderBy(m => _proto.Index(m).AssignmentOrder)
-            .ThenByDescending(SecretIdentityOrder);
-
-        foreach (var secretIdentityId in secretIdentitiesEnum)
+        foreach (var (user, secretIdentityId) in orderedSecretIdentities)
         {
-            var secretIdentity = _proto.Index(secretIdentityId);
-            for (var i = 0; i < players.Count; i++)
+            var session = _player.GetSessionById(user);
+            if (!TryGetMindOrLog(session, out var mind))
             {
-                var player = players[i];
-                if (!TryGetMindOrLog(player, out var mind))
-                    continue;
-
-                if (!_secretIdentity.IsPlayerValid(secretIdentity, player))
-                    continue;
-
-                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
-
-                players.RemoveAt(i);
-                goto exit; // escape to next identity.
+                Log.Warning($"Failed to get mind for session {session}!");
+                return;
             }
 
-            // Ah hell, no dice, just take someone.
-
-            for (var i = 0; i < players.Count; i++)
-            {
-                var player = players[i];
-                if (!TryGetMindOrLog(player, out var mind))
-                    continue;
-
-                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
-
-                players.RemoveAt(i);
-                goto exit; // escape to next identity.
-            }
-
-            // Fuuuck okay fine don't assign.
-
-            Log.Error($"Was unable to assign {secretIdentityId} to any player.");
-
-            exit: ;
+            _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
         }
 
         // Now that all of our roles have been assigned, we can start the rules
@@ -149,23 +148,27 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         }
     }
 
-    private int SecretIdentityOrder(ProtoId<ESSecretIdentityPrototype> secretIdentityId)
+    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
     {
-        var secretIdentity = _proto.Index(secretIdentityId);
-
-        return secretIdentity.ProhibitedJobs.Count; // The tighter the prohibition list, the more careful we are.
-    }
-
-    private void OnAssignLatejoiner(ref AssignLatejoinerToOrganizationEvent ev)
-    {
-        var rule = EntityQuery<ESMasqueradeRuleComponent>().SingleOrDefault();
-
-        if (rule?.Masquerade is null)
+        if (!ev.LateJoin)
             return;
 
-        var secretIdentity = rule.Masquerade.Masquerade.DefaultSecretIdentity.PickSecretIdentities(rule.Rng, _proto).Single();
+        ApplyLateJoinSecretIdentity(ev.Player);
+    }
 
-        if (!TryGetMindOrLog(ev.Victim, out var mind))
+    public void ApplyLateJoinSecretIdentity(ICommonSession session)
+    {
+        if (!TrySingle<ESMasqueradeRuleComponent>(out var rule) ||
+            rule.Value.Comp.Masquerade is not { } masquerade)
+        {
+            return;
+        }
+
+        var random = rule.Value.Comp.Rng;
+
+        var secretIdentity = masquerade.Masquerade.DefaultSecretIdentity.PickSecretIdentities(random, _proto).Single();
+
+        if (!TryGetMindOrLog(session, out var mind))
             return;
 
         if (!TryGetOrganizationForSecretIdentityOrLog(secretIdentity, rule, out var organization))
