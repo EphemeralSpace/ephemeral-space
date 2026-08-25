@@ -6,7 +6,7 @@
   startingGear: ESJanitorGear
   icon: "ESJobIconJanitor"
   access:
-  - Service
+  - Custodial
   - Janitor
   - Maintenance
   special:

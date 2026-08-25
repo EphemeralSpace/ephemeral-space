@@ -1,0 +1,4 @@
+- type: accessLevel
+  id: Custodial
+  name: id-card-access-level-custodial
+  canAddToIdCard: true
