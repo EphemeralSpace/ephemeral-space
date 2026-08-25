@@ -122,11 +122,9 @@ public sealed partial class ESCharacterWindow : FancyWindow
         // with the organization guide as the root
         if (_secretIdentity.TryGetSecretIdentity((mind, mindComp), out var secretIdentityId)
             && _prototype.Index(secretIdentityId.Value) is { } secretIdentity
-            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.ID)
-            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.Organization.Id))
+            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.ID))
         {
-            var rootEntries = new List<ProtoId<GuideEntryPrototype>>() { secretIdentity.Organization.Id };
-            _guidebook.OpenGuidebook(rootEntries: rootEntries, selected: secretIdentity.ID);
+            _guidebook.OpenGuidebook(selected: secretIdentity.ID);
         }
     }
 
