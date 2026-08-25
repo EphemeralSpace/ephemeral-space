@@ -131,6 +131,8 @@
     - tableId: ESMaintLootWorthless
       rolls: 3
 
+# Custodial
+
 - type: entityTable
   id: LockerFillJanitor
   table:
@@ -144,8 +146,6 @@
     - id: TrashBag
     - id: Plunger
     - id: WireBrush
-
-# Custodial
 
 - type: entityTable
   id: LockerFillAnimalControl

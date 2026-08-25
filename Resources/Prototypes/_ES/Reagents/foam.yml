@@ -1,0 +1,29 @@
+- type: reagent
+  id: SanitizationFoam
+  name: es-reagent-name-sanitization-foam
+  desc: es-reagent-desc-sanitization-foam
+  physicalDesc: es-reagent-physical-desc-alkaline
+  flavor: burning
+  puddleSpriteSet: Shiny
+  color: "#c581d980"
+  recognizable: true
+  boilingPoint: 900
+  meltingPoint: -200
+  tileReactions:
+    - !type:CleanTileReaction {}
+    - !type:CleanDecalsReaction {}
+    # gas scrubbing should be added to the foam entity when used
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 2
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "es-generic-reagent-effect-burning-skin" ]
+        probability: 0.1
