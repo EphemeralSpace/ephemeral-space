@@ -5,7 +5,7 @@
   physicalDesc: es-reagent-physical-desc-alkaline
   flavor: burning
   puddleSpriteSet: Shiny
-  color: "#c581d980"
+  color: "#6f377fb0"
   recognizable: true
   boilingPoint: 900
   meltingPoint: -200
@@ -21,7 +21,7 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 2
+            Caustic: 0.2
       - !type:PopupMessage
         type: Local
         visualType: Large
