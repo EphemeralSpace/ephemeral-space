@@ -14,7 +14,7 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Client._ES.SoundOcclusion;
 
-public sealed class TomenoSoundOcclusionOverlay : TileDebugOverlay
+public sealed partial class TomenoSoundOcclusionOverlay : TileDebugOverlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
     // [Dependency] private IMapManager _mapManager = default!;
