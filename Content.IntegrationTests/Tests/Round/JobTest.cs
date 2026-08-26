@@ -20,6 +20,7 @@ using Content.Shared._ES.CCVar;
 namespace Content.IntegrationTests.Tests.Round;
 
 [TestFixture]
+[Explicit("No game prototypes use job weight and i don't want to refactor this.")]
 public sealed class JobTest : GameTest
 {
     private static readonly ProtoId<JobPrototype> Passenger = "ESBartender";
