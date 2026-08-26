@@ -21,6 +21,9 @@
   id: ESBaseParasite
   organization: Parasite
   abstract: true
+  actions:
+    all:
+    - id: ESActionParasiteWormTalk
   components:
   - type: ESOrganizationFactionIcon
     icon: ESParasite
