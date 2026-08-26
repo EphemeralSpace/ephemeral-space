@@ -3,6 +3,7 @@
   parent: BaseStructure
   name: standing microphone
   description: They're all listening!
+  suffix: ES, Lobby
   components:
   - type: Sprite
     noRot: true
@@ -10,3 +11,5 @@
     state: microphone
     drawdepth: Mobs
   - type: Fixtures
+  - type: Physics
+    canCollide: false

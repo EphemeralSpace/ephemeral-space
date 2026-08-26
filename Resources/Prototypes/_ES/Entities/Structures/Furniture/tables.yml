@@ -2,8 +2,8 @@
   parent: TableBase
   id: TableRound
   name: round wood table
-  suffix: ES
   description: It seems like it's made from a single piece of wood. You've definitely already lost count of the growth rings...
+  suffix: ES, Lobby
   components:
   - type: Sprite
     sprite: _ES/Structures/Furniture/Tables/round.rsi

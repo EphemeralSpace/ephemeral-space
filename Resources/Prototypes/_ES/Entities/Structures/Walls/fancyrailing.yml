@@ -4,10 +4,10 @@
   abstract: true
   name: fancy railing
   description: The wood supporting it still seems to be growing. The only synthetic feeling thing about it is the soft covering on the top.
-  suffix: ES
+  suffix: ES, Lobby
   components:
   - type: Sprite
-    drawdepth: SmallObjects
+    drawdepth: Mobs
     sprite: _ES/Structures/Walls/fancyrailing.rsi
   - type: Icon
     sprite: _ES/Structures/Walls/fancyrailing.rsi
