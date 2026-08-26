@@ -114,7 +114,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!_secretIdentity.IsPlayerValid(secretIdentity, player))
                     continue;
 
-                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
+                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId, applyModifiers: true);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next identity.
@@ -128,7 +128,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 if (!TryGetMindOrLog(player, out var mind))
                     continue;
 
-                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
+                _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId, applyModifiers: true);
 
                 players.RemoveAt(i);
                 goto exit; // escape to next identity.
@@ -171,7 +171,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         if (!TryGetOrganizationForSecretIdentityOrLog(secretIdentity, rule, out var organization))
             return;
 
-        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, organization.Value);
+        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, organization.Value, applyModifiers: true);
     }
 
     private bool TryGetOrganizationForSecretIdentityOrLog(ProtoId<ESSecretIdentityPrototype> secretIdentity,

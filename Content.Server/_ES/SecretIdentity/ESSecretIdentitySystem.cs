@@ -13,10 +13,12 @@ using Content.Shared.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server._ES.SecretIdentity;
@@ -25,6 +27,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 {
     [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private GameTicker _gameTicker = default!;
@@ -116,28 +119,32 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
             return Loc.GetString("generic-unknown-title");
 
         // You should always have SOME identity
-        DebugTools.Assert(mind.Comp.SecretIdentities.Count != 0);
+        DebugTools.Assert(mind.Comp.Memories.Count != 0);
 
-        var firstSecretIdentity = PrototypeManager.Index(mind.Comp.SecretIdentities.First());
-
-        var outString = Loc.GetString("es-roundend-secret-identity-fmt",
-            ("name", Loc.GetString(firstSecretIdentity.Name)),
-            ("color", firstSecretIdentity.Color));
-
-        for (var i = 1; i < mind.Comp.SecretIdentities.Count; ++i)
+        var identities = new List<string>();
+        foreach (var memory in mind.Comp.Memories)
         {
-            var secretIdentity = PrototypeManager.Index(mind.Comp.SecretIdentities[i]);
-            var secretIdentityString = Loc.GetString("es-roundend-secret-identity-fmt",
-                ("name", Loc.GetString(secretIdentity.Name)),
-                ("color", secretIdentity.Color));
+            var secretIdentity = PrototypeManager.Index(memory.Identity);
 
-            // Chain all the identities together.
-            outString = Loc.GetString("es-roundend-secret-identity-link-fmt",
-                ("secretIdentity1", outString),
-                ("secretIdentity2", secretIdentityString));
+            string secretIdentityString;
+            if (PrototypeManager.TryIndex(memory.Modifier, out var modifier))
+            {
+                secretIdentityString = Loc.GetString("es-roundend-secret-identity-modifier-fmt",
+                    ("name", Loc.GetString(secretIdentity.Name)),
+                    ("color", secretIdentity.Color),
+                    ("modifierName", Loc.GetString(modifier.Name)),
+                    ("modifierColor", modifier.Color));
+            }
+            else
+            {
+                secretIdentityString = Loc.GetString("es-roundend-secret-identity-fmt",
+                    ("name", Loc.GetString(secretIdentity.Name)),
+                    ("color", secretIdentity.Color));
+            }
+            identities.Add(secretIdentityString);
         }
 
-        return outString;
+        return string.Join(Loc.GetString("es-roundend-secret-identity-link"), identities);
     }
 
     private void OnGameRuleStarted(Entity<ESOrganizationRuleComponent> ent, ref GameRuleStartedEvent args)
@@ -206,7 +213,10 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         return true;
     }
 
-    public override void ApplySecretIdentity(Entity<MindComponent> mind, ProtoId<ESSecretIdentityPrototype> secretIdentityId, Entity<ESOrganizationRuleComponent>? organization = null)
+    public override void ApplySecretIdentity(Entity<MindComponent> mind,
+        ProtoId<ESSecretIdentityPrototype> secretIdentityId,
+        Entity<ESOrganizationRuleComponent>? organization = null,
+        bool applyModifiers = false)
     {
         var secretIdentity = PrototypeManager.Index(secretIdentityId);
 
@@ -239,15 +249,6 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
                 Loc.GetString("es-objective-tooltip-secret-identity"));
         }
 
-        var msg = Loc.GetString("es-secret-identity-selected-chat-message",
-            ("role", Loc.GetString(secretIdentity.Name)),
-            ("description", Loc.GetString(secretIdentity.Description)));
-
-        if (_player.TryGetSessionById(mind.Comp.UserId, out var session))
-        {
-            _chat.SendServerMessage(msg, session, Color.Plum);
-        }
-
         if (mind.Comp.OwnedEntity is { } ownedEntity)
         {
             _stationSpawning.EquipStartingGear(ownedEntity, secretIdentity.Gear);
@@ -264,11 +265,28 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         }
         EntityManager.AddComponents(mind, secretIdentity.MindComponents);
 
-        var memoryComponent = EnsureComp<ESSecretIdentityMemoryComponent>(mind);
-        memoryComponent.SecretIdentities.Add(secretIdentity);
-
         organization.Value.Comp.OrganizationMemberMinds.Add(mind);
         Objective.RegenerateObjectiveList(mind.Owner);
+
+        var roleName = Loc.GetString(secretIdentity.Name);
+
+        if (applyModifiers)
+        {
+            ApplySecretIdentityModifier(mind, secretIdentity, role.Value);
+            if (role.Value.Comp2.Modifier is { } modifier)
+            {
+                // stick modifier out front.
+                var modifierPrototype = PrototypeManager.Index(modifier);
+                roleName = $"{Loc.GetString(modifierPrototype.Name)} {roleName}";
+            }
+        }
+
+        var memoryComponent = EnsureComp<ESSecretIdentityMemoryComponent>(mind);
+        memoryComponent.Memories.Add(new ESSecretIdentityMemory()
+        {
+            Identity = secretIdentityId,
+            Modifier = role.Value.Comp2.Modifier,
+        });
 
         // Our rule was only added in the beginning, now we should start it properly.
         if (!ruleExists)
@@ -278,6 +296,31 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         var ev = new ESSecretIdentityChangedEvent(mind, secretIdentity, null);
         RaiseLocalEvent(organization.Value, ref ev, true);
+
+        if (_player.TryGetSessionById(mind.Comp.UserId, out var session))
+        {
+            var msg = Loc.GetString("es-secret-identity-selected-chat-message",
+                ("role", roleName),
+                ("description", Loc.GetString(secretIdentity.Description)));
+            _chat.SendServerMessage(msg, session, Color.Plum);
+        }
+    }
+
+    private void ApplySecretIdentityModifier(
+        Entity<MindComponent> mind,
+        ESSecretIdentityPrototype secretIdentity,
+        Entity<MindRoleComponent, ESSecretIdentityRoleComponent> role)
+    {
+        if (!_random.Prob(secretIdentity.ModifierChance) ||
+            secretIdentity.Modifiers.Count == 0)
+            return;
+
+        var modifierId = _random.Pick(secretIdentity.Modifiers);
+        var modifier = PrototypeManager.Index(modifierId);
+        role.Comp2.Modifier = modifierId;
+        Dirty(role, role.Comp2);
+
+        RaiseLocalEvent(mind, (object) modifier.Event);
     }
 
     public override void RemoveSecretIdentity(Entity<MindComponent> mind)
@@ -330,8 +373,8 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         if (eraseHistory)
         {
             var comp = EnsureComp<ESSecretIdentityMemoryComponent>(mind);
-            if (comp.SecretIdentities.Count != 0)
-                comp.SecretIdentities.RemoveAt(comp.SecretIdentities.Count - 1);
+            if (comp.Memories.Count != 0)
+                comp.Memories.RemoveAt(comp.Memories.Count - 1);
         }
         ApplySecretIdentity(mind, secretIdentityId, organization);
 
