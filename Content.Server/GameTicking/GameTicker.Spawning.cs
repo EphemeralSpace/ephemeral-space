@@ -22,6 +22,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._ES.Auditions;
+using Content.Server._ES.SecretIdentity.Masquerades;
 using Content.Shared._ES.Auditions.Components;
 
 namespace Content.Server.GameTicking
@@ -32,6 +33,7 @@ namespace Content.Server.GameTicking
         [Dependency] private SharedJobSystem _jobs = default!;
         [Dependency] private AdminSystem _admin = default!;
         [Dependency] private ESAuditionsSystem _esAuditions = default!;
+        [Dependency] private ESMasqueradeSystem _masquerade = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -86,10 +88,19 @@ namespace Content.Server.GameTicking
                 }
             }
 
-            var spawnableStations = GetSpawnableStations();
-            var assignedJobs = _stationJobs.AssignJobs(profiles, spawnableStations);
+            // Assigns SIds to players before any character generation occurs.
+            // This only matches players to roles and does not set up any data.
+            var secretIdentities = _masquerade.AssignMasquerade(profiles);
 
-            _stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, spawnableStations);
+            var spawnableStations = GetSpawnableStations();
+            var assignedJobs = _stationJobs.AssignJobs(profiles, secretIdentities, spawnableStations);
+
+            // LEGACY IMPLEMENTATION NOTE
+            // As of right now, jobs are ALWAYS assigned to players and they will never fail to spawn.
+            // This code has a lot of assumptions built around people staying in the lobby. we should
+            // ideally clean those up at some point as it significantly complicates the logical flow
+            // and is no longer a design concern. -emo
+            _stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, secretIdentities, spawnableStations);
 
             // Calculate extended access for stations.
             var stationJobCounts = spawnableStations.ToDictionary(e => e, _ => 0);
@@ -119,6 +130,9 @@ namespace Content.Server.GameTicking
 
                 SpawnPlayer(_playerManager.GetSessionById(player), profiles[player], station, job, false);
             }
+
+            // Actually assign SIds to minds and initialize objectives now that we have created all the player entities.
+            _masquerade.InitializeMasquerade(secretIdentities);
 
             RefreshLateJoinAllowed();
 
