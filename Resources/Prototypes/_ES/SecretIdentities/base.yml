@@ -17,6 +17,14 @@
   - ESDetective
 
 - type: esSecretIdentity
+  id: ESBaseCrew
+  organization: Crew
+  abstract: true
+  modifierChance: 0.066
+  modifiers:
+    ExSyndicate: 1
+
+- type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: ESBaseParasite
   organization: Parasite

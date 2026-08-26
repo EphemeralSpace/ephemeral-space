@@ -129,7 +129,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
                 return;
             }
 
-            _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId);
+            _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId, applyModifiers: true);
         }
 
         // Now that all of our roles have been assigned, we can start the rules
@@ -166,7 +166,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         if (!TryGetOrganizationForSecretIdentityOrLog(secretIdentity, rule, out var organization))
             return;
 
-        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, organization.Value);
+        _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentity, organization.Value, applyModifiers: true);
     }
 
     private bool TryGetOrganizationForSecretIdentityOrLog(ProtoId<ESSecretIdentityPrototype> secretIdentity,

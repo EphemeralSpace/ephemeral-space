@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/cd1bb1c991320575efa0688bd3ecfdbbe2d4a6d3/icons/obj/objects.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "clock",
+      "delays": [
+        [
+          0.2,
+          0.1,
+          0.1,
+          0.5,
+          0.1,
+          0.1,
+          0.2,
+          0.1,
+          0.1,
+          0.5,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "clock-broken"
+    },
+    {
+      "name": "hand_0"
+    },
+    {
+      "name": "hand_1"
+    },
+    {
+      "name": "hand_2"
+    },
+    {
+      "name": "hand_3"
+    },
+    {
+      "name": "hand_4"
+    },
+    {
+      "name": "hand_5"
+    },
+    {
+      "name": "hand_6"
+    },
+    {
+      "name": "hand_7"
+    },
+    {
+      "name": "hand_8"
+    },
+    {
+      "name": "hand_9"
+    },
+    {
+      "name": "hand_10"
+    },
+    {
+      "name": "hand_11"
+    }
+  ]
+}

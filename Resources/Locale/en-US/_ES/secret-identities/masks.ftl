@@ -87,6 +87,9 @@ es-secret-identity-leapleech-desc = As a Leapleech, take damage from multiple cr
 es-secret-identity-sleeper-agent-name = Sleeper Agent
 es-secret-identity-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them. When a traitor dies, you have a chance to switch sides and gain a new secret identity.
 
+# Modifiers
+es-secret-identity-modifier-ex-syndicate = Ex-Syndie
+
 # Meta
 es-objective-issuer-secret-identity = Secret Identity
 
