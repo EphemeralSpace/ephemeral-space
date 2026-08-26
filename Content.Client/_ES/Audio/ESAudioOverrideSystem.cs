@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client._ES.SoundOcclusion;
 using Content.Shared._ES.Audio;
+using Content.Shared._ES.CCVar;
 using Robust.Client;
 using Robust.Client.Audio;
 using Robust.Shared;
@@ -31,11 +32,10 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
 
     private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
 
-
-    private const float OccludedSoundAmount = 2.0f;
-    private const float OcclusionVolumeAdjust = -3f;
-    private const float MaxOcclusionDeltaDistance = 15.0f;
-    private const float MinOcclusionDeltaDistance = 0.5f;
+    private float _occlusionMaxOcclusion = 2.0f;
+    private float _occlusionVolumeAdjust = -3f;
+    private float _occlusionMaxDeltaDistance = 15f;
+    private float _occlusionMinDeltaDistance = 0.5f;
 
     // ReSharper disable once InconsistentNaming
     // for vv testing purposes
@@ -67,6 +67,12 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         _baseClient.RunLevelChanged += OnRunLevelChanged;
 
         Subs.CVar(_cfg, CVars.AudioRaycastLength, OnRaycastLengthChanged, true);
+
+        // Occlusion scaling CVars
+        Subs.CVar(_cfg, ESCVars.OcclusionMaxOcclusion, OnMaxOcclusionChanged, true);
+        Subs.CVar(_cfg, ESCVars.OcclusionVolumeAdjust, OnOcclusionVolumeAdjustChanged, true);
+        Subs.CVar(_cfg, ESCVars.OcclusionMaxDeltaDistance, OnMaxOcclusionDeltaDistanceChanged, true);
+        Subs.CVar(_cfg, ESCVars.OcclusionMinDeltaDistance, OnMinOcclusionDeltaDistanceChanged, true);
     }
 
     private void OnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
@@ -87,6 +93,27 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     {
         _maxRayLength = value;
     }
+
+    private void OnMaxOcclusionChanged(float value)
+    {
+        _occlusionMaxOcclusion = value;
+    }
+
+    private void OnOcclusionVolumeAdjustChanged(float value)
+    {
+        _occlusionVolumeAdjust = value;
+    }
+
+    private void OnMaxOcclusionDeltaDistanceChanged(float value)
+    {
+        _occlusionMaxDeltaDistance = value;
+    }
+
+    private void OnMinOcclusionDeltaDistanceChanged(float value)
+    {
+        _occlusionMinDeltaDistance = value;
+    }
+
 
     private void ProcessStream(EntityUid entity, AudioComponent component, TransformComponent xform, MapCoordinates listener)
     {
@@ -171,7 +198,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             component.Occlusion = occlusion;
             if (component.Occlusion > 0f)
             {
-                component.Volume = component.Params.Volume + (component.Occlusion * OcclusionVolumeAdjust);
+                component.Volume = component.Params.Volume + (component.Occlusion * _occlusionVolumeAdjust);
             }
         }
 
@@ -187,7 +214,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         Vector2 emitterPos)
     {
         if (path == null)
-            return OccludedSoundAmount;
+            return _occlusionMaxOcclusion;
 
         if (!path.ListenerPortal.HasValue && !path.EmitterPortal.HasValue)
             return 0f;
@@ -202,12 +229,12 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
 
         var distanceDelta = occludedDistance - directDistance;
 
-        if (distanceDelta > MaxOcclusionDeltaDistance)
-            return OccludedSoundAmount;
-        if (distanceDelta < MinOcclusionDeltaDistance)
+        if (distanceDelta > _occlusionMaxDeltaDistance)
+            return _occlusionMaxOcclusion;
+        if (distanceDelta < _occlusionMinDeltaDistance)
             return 0f;
 
-        return ((distanceDelta - MinOcclusionDeltaDistance) / MaxOcclusionDeltaDistance) * OccludedSoundAmount;
+        return ((distanceDelta - _occlusionMinDeltaDistance) / _occlusionMaxDeltaDistance) * _occlusionMaxOcclusion;
     }
 
     /// <summary>
@@ -219,7 +246,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             return 0f;
 
         if (_occlusion.CurrentSoundPaths == null)
-            return OccludedSoundAmount;
+            return _occlusionMaxOcclusion;
 
         var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
         var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
@@ -238,7 +265,7 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
             return 0f;
 
         if (_occlusion.CurrentSoundPaths == null)
-            return OccludedSoundAmount;
+            return _occlusionMaxOcclusion;
 
         var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
         var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
