@@ -384,8 +384,6 @@ public sealed partial class StationJobsSystem
 
         foreach (var (player, profile) in profiles)
         {
-            var session = _player.GetSessionById(player);
-
             var profileJobs = profile.JobPriorities.Keys.Select(k => new ProtoId<JobPrototype>(k)).ToList();
             var ev = new StationJobsGetCandidatesEvent(player, profileJobs);
             RaiseLocalEvent(ref ev);
@@ -410,7 +408,8 @@ public sealed partial class StationJobsSystem
                     _prototypeManager.Index(secretIdentityId).ProhibitedJobs.Contains(jobId))
                     continue;
 
-                if (_banManager.IsRoleBanned(session, [jobId]))
+                if (_player.TryGetSessionById(player, out var session) &&
+                    _banManager.IsRoleBanned(session, [jobId]))
                     continue;
 
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);
