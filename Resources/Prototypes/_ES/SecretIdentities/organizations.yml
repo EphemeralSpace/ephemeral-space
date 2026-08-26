@@ -16,6 +16,7 @@
   color: red
   metaIcon: ESTraitor
   gameRule: ESOrganizationRuleTraitor
+  disguisedSecretIdentityName: es-news-disguise-traitors
   tips:
   - TraitorNukeTerminalPower
   - TraitorSabotageWithoutPower

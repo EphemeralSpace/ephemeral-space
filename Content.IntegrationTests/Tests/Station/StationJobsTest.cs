@@ -3,7 +3,6 @@ using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._ES.SecretIdentity;
 using Content.Shared.Maps;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -120,7 +119,7 @@ public sealed class StationJobsTest : GameTest
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(fakePlayers, new Dictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>>(), stations);
+            var assigned = stationJobs.AssignJobs(fakePlayers, stations);
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");

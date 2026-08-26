@@ -5,6 +5,7 @@
   playTimeTracker: ESJobStationAdmin
   startingGear: ESStationAdminGear
   icon: "JobIconStationAdmin"
+  canBeAntag: false
   overrideConsoleVisibility: false
   access:
   - Command
