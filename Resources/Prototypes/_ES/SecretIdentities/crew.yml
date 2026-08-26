@@ -92,6 +92,7 @@
   name: es-secret-identity-mercenary-name
   description: es-secret-identity-mercenary-desc
   color: ruber
+  weight: 0.25
   objectives:
     id: ESObjectiveKillNonCrew
   mindComponents:
@@ -129,7 +130,7 @@
   name: es-secret-identity-pickpocket-name
   description: es-secret-identity-pickpocket-desc
   color: olivedrab
-  weight: 0.75
+  weight: 0.1
   actions:
     all:
     - id: ActionSecretIdentityPickpocketSnatch
@@ -185,7 +186,6 @@
   organization: Crew
   description: es-secret-identity-vandal-desc
   color: tomato
-  weight: 0.75
   objectives:
     all:
     - pick:
