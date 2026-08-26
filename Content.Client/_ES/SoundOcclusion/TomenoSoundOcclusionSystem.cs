@@ -18,12 +18,12 @@ using YamlDotNet.Core.Tokens;
 
 namespace Content.Client._ES.SoundOcclusion;
 
-public sealed class TomenoSoundOcclusionSystem : EntitySystem
+public sealed partial class TomenoSoundOcclusionSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IOverlayManager _overlayManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
     // Prediction checks, realtime update choking
-    [Dependency] private readonly IClientGameTiming _gameTiming = default!;
+    [Dependency] private IClientGameTiming _gameTiming = default!;
 
     private SharedMapSystem _sharedMapSystem = default!;
     private TransformSystem _transformSystem = default!;
