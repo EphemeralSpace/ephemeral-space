@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._ES.Stagehand;
 using Content.Server.Actions;
 using Content.Server.GameTicking;
+using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Chat;
@@ -9,12 +10,12 @@ using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Stagehand;
 using Content.Shared.EntityTable;
+using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Components;
 using Robust.Server.Player;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -30,6 +31,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private JobSystem _job = default!;
     [Dependency] private ESStagehandNotificationsSystem _stagehandNotifications = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
@@ -43,6 +45,9 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
 
         SubscribeLocalEvent<ESOrganizationRuleComponent, GameRuleStartedEvent>(OnGameRuleStarted);
+
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+        SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnRulePlayerJobsAssigned);
     }
 
     private void OnRoundEndTextAppend(RoundEndTextAppendEvent ev)
@@ -144,7 +149,38 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
     private void OnGameRuleStarted(Entity<ESOrganizationRuleComponent> ent, ref GameRuleStartedEvent args)
     {
-        InitializeOrganizationObjectives(ent);
+        if (_gameTicker.RunLevel == GameRunLevel.InRound)
+            InitializeOrganizationObjectives(ent);
+    }
+
+    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
+    {
+        if (!ev.LateJoin)
+            return;
+
+        var ev2 = new AssignLatejoinerToOrganizationEvent(false, ev.Player);
+        RaiseLocalEvent(ref ev2);
+    }
+
+    private void OnRulePlayerJobsAssigned(RulePlayerJobsAssignedEvent args)
+    {
+        AssignPlayersToOrganization(args.Players.ToList());
+        InitializeOrganizationObjectives();
+    }
+
+    public void AssignPlayersToOrganization(List<ICommonSession> players)
+    {
+        var ev = new AssignPlayersToOrganizationEvent(false, players);
+        RaiseLocalEvent(ref ev);
+    }
+
+    public void InitializeOrganizationObjectives()
+    {
+        var query = EntityQueryEnumerator<ESOrganizationRuleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            InitializeOrganizationObjectives((uid, comp));
+        }
     }
 
     public void InitializeOrganizationObjectives(Entity<ESOrganizationRuleComponent> rule)
@@ -163,12 +199,17 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         }
     }
 
-    /// <summary>
-    /// Checks if a given player is able to be assigned a secret identity.
-    /// </summary>
-    public bool CanAssignSecretIdentity(NetUserId user, ESSecretIdentityPrototype prototype)
+    public bool IsPlayerValid(ESSecretIdentityPrototype secretIdentity, ICommonSession player)
     {
-        // Stub
+        if (!Mind.TryGetMind(player, out var mind, out _))
+            return false;
+
+        if (_job.MindTryGetJobId(mind, out var job) && secretIdentity.ProhibitedJobs.Contains(job.Value))
+            return false;
+
+        if (player.AttachedEntity is null)
+            return false;
+
         return true;
     }
 
@@ -358,3 +399,17 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 /// </remarks>
 [ByRefEvent]
 public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? NewSecretIdentity, ESSecretIdentityPrototype? OldSecretIdentity);
+
+/// <summary>
+///     Fired when players are being assigned to a organization. Old random assignment algorithm kicks in
+///     if not handled. (This is a mild hack.)
+/// </summary>
+[ByRefEvent]
+public record struct AssignPlayersToOrganizationEvent(bool Handled, List<ICommonSession> Players);
+
+/// <summary>
+///     Fired when players are latejoining. Old random assignment algorithm kicks in
+///     if not handled. (This is a mild hack.)
+/// </summary>
+[ByRefEvent]
+public record struct AssignLatejoinerToOrganizationEvent(bool Handled, ICommonSession Victim);
