@@ -2007,3 +2007,11 @@ Entries:
       message: adds various objects for theatre
   id: 215
   time: '2026-08-26T01:13:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Crew roles (barring sleeper agent) now have the chance to spawn as
+        "Ex-Syndicate" variants, giving them an additional equipment cache.
+  id: 216
+  time: '2026-08-26T16:13:09.0000000+00:00'
