@@ -55,15 +55,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         _airtightQuery = GetEntityQuery<AirtightComponent>();
         _transformQuery = GetEntityQuery<TransformComponent>();
         _mapGridQuery = GetEntityQuery<MapGridComponent>();
-
-        _overlayManager.AddOverlay(new TomenoSoundOcclusionOverlay());
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-
-        _overlayManager.RemoveOverlay<TomenoSoundOcclusionOverlay>();
     }
 
     public int SoundStageGeneration = 0;
@@ -213,9 +204,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         // For invalidating the path
         public int Generation { get; init; }
         public Vector2i EmitterTile { get; init; }
-
-        // DEBUG!
-        public required List<Vector2i> Path { get; init; }
     }
 
     public sealed class SoundPaths
@@ -249,11 +237,10 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 PortalDistance = 0,
                 Generation = CurrentSoundPaths.Stage.Generation,
                 EmitterTile = emitterTile,
-                Path = new List<Vector2i>(), // DEBUG!
             };
         }
 
-        var pathTiles = new List<Vector2i>(); // TODO: We can actually initialize this with the exact capacity
+        var pathTiles = new List<Vector2i>();
 
         var curTile = emitterTile;
         while (CurrentSoundPaths.Paths.TryGetValue(curTile, out var pathTile))
@@ -269,8 +256,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (pathTiles.Count == 0)
             return null;
 
-        // Simple "portal" special cases
-        // TODO: can this be cleaned up somehow?
         if (pathTiles.Count <= 2)
         {
             return new PathResult
@@ -280,22 +265,8 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
                 PortalDistance = 0,
                 Generation = CurrentSoundPaths.Stage.Generation,
                 EmitterTile = emitterTile,
-                Path = new List<Vector2i>(), // DEBUG!
             };
         }
-        // else if (pathTiles.Count == 3)
-        // {
-        //     // Middle tile is both portals
-        //     return new PathResult
-        //     {
-        //         EmitterPortal = pathTiles[1],
-        //         ListenerPortal = pathTiles[1],
-        //         PortalDistance = 0,
-        //         Generation = CurrentSoundPaths.Stage.Generation,
-        //         EmitterTile = emitterTile,
-        //         Path = new List<Vector2i>(), // DEBUG!
-        //     };
-        // }
 
         // Time to find the "portals" for the listener and then the emitter
         var emitterPortalPos = 0;
@@ -331,12 +302,11 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
         return new PathResult
         {
-            EmitterPortal = pathTiles[emitterPortalPos],
-            ListenerPortal = pathTiles[listenerPortalPos],
+            EmitterPortal = pathTiles[emitterPortalPos] + new Vector2(0.5f, 0.5f),
+            ListenerPortal = pathTiles[listenerPortalPos] + new Vector2(0.5f, 0.5f),
             PortalDistance = portalDistance,
             Generation = CurrentSoundPaths.Stage.Generation,
             EmitterTile = emitterTile,
-            Path = pathTiles.Slice(emitterPortalPos, (listenerPortalPos - emitterPortalPos) + 1), // DEBUG!
         };
     }
 
@@ -373,8 +343,10 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (!CurrentSoundPaths.Paths.ContainsKey(emitterTile))
             return null;
 
-        // for sounds coming from inside occluders:
-        // middle of the tile: follow soundpath
+        // For sounds coming from inside occluders:
+        // center of the tile:
+        //   wallmount: tile the wallmount faces
+        //   else: follow soundpath
         // else: nearest unoccluded tile
         if (!CurrentSoundPaths.Stage.IsPassable(emitterTile))
         {
@@ -435,9 +407,9 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
                     emitterTile = newEmitterTile.Value;
                 }
-                //emitter = newEmitterPos;
+                // Offset the sound pos into the neighboring tile to make sure that it's always traceable
                 if (emitterTile.X > emitter.X)
-                    emitter.X = emitterTile.X + 0.0001f; // fudge factor
+                    emitter.X = emitterTile.X + 0.0001f;
                 if (emitterTile.Y > emitter.Y)
                     emitter.Y = emitterTile.Y + 0.0001f;
                 if (emitterTile.X < emitter.X)
@@ -475,7 +447,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (transform.GridUid == null)
         {
             // TODO: Find the nearest grid? Only matters on planets tho, we don't have them yet
-            //var mapUid = transform.MapUid;
             return null;
         }
         else
@@ -488,9 +459,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
         var localGridTile = _sharedMapSystem.TileIndicesFor(gridUid, grid, transform.Coordinates);
         var localGridPos = _sharedMapSystem.LocalToGrid(gridUid, grid, transform.Coordinates);
-
-        // if (!LocalGridTile.HasValue || !LocalGridPos.HasValue)
-        //     return null;
 
         var soundRange = 15;
         var tileRange = Box2.CenteredAround((Vector2)localGridPos, new Vector2(1 + soundRange * 2, 1 + soundRange * 2));
@@ -550,6 +518,9 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         return true;
     }
 
+    /// <summary>
+    /// Generate new SoundPaths for the passed SoundStage.
+    /// </summary>
     private SoundPaths GenerateSoundPaths(SoundStage stage, CancellationToken cancellationToken = default)
     {
         // TODO: what with these "constants"
@@ -574,7 +545,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
             paths[tile] = lastTile;
 
-            // Troll physics: we are actually putting walls into the soundstage, we just don't continue spreading from them
+            // We are actually pathing into walls, we just don't continue pathing from them
             if (stage.IsPassable(tile) || lastTile == null) // Actually continue if we are starting from inside a wall/airlock...
             {
                 foreach (var (offset, offsetDistance, checkDiagonal) in candidateOffsets)
@@ -584,7 +555,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
                     if (checkDiagonal)
                     {
-                        // Make sure both of the cardinals are passable
+                        // Make sure both of the cardinals are passable for diagonals
                         if (!stage.IsPassable(tile + new Vector2i(offset.X, 0)) || !stage.IsPassable(tile + new Vector2i(0, offset.Y)))
                             continue;
                     }
@@ -642,8 +613,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
         if (_gameTiming.ServerTime.Ticks < _lastUpdateTicks + UpdateIntervalTicks)
             return;
 
-        Log.Info("Update");
-
         // Even if we don't actually gen a new soundstage, we want to wait until we get to make one
         _dirtySoundStage = false;
         _lastUpdateTicks = _gameTiming.ServerTime.Ticks;
@@ -655,7 +624,7 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             // Soundstage is invalidated
             CurrentSoundPaths = null;
             SoundStageGeneration = (SoundStageGeneration + 1) % 256;
-            // TODO: is the following the right thing to do here?
+            // is the following the right thing to do here?
             LastLocalPos = null;
             LastGridUid = null;
             return;
@@ -667,41 +636,35 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
     private void OnAirtightInit(Entity<AirtightComponent> ent, ref ComponentInit args)
     {
         // add to grid map
-        Log.Info($"OnAirtightInit {_dirtySoundStage} {_gameTiming.LastRealTick}");
         _dirtySoundStage = true;
     }
 
     private void OnAirtightShutdown(Entity<AirtightComponent> ent, ref ComponentShutdown args)
     {
         // remove from grid map
-        Log.Info($"OnAirtightShutdown {_dirtySoundStage} {_gameTiming.LastRealTick}");
         _dirtySoundStage = true;
     }
 
     private void OnAirtightAnchorChange(Entity<AirtightComponent> ent, ref AnchorStateChangedEvent args)
     {
         // add/remove from grid map
-        Log.Info($"OnAirtightAnchorChange {_dirtySoundStage} {_gameTiming.LastRealTick}");
         _dirtySoundStage = true;
     }
 
     private void OnAirtightReAnchor(Entity<AirtightComponent> ent, ref ReAnchorEvent args)
     {
         // remove from old grid map and add to new grid map
-        Log.Info($"OnAirtightReAnchor {_dirtySoundStage} {_gameTiming.LastRealTick}");
         _dirtySoundStage = true;
     }
 
     private void OnAirtightMove(Entity<AirtightComponent> ent, ref MoveEvent args)
     {
-        Log.Info($"OnAirtightMove {_dirtySoundStage} {_gameTiming.LastRealTick}");
         _dirtySoundStage = true;
     }
 
     private void OnAirtightStateChange(Entity<AirtightComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         // add/remove depending on whether ent.Comp.AirBlocked is true/false now relative to its status on the grid map
-        Log.Info($"OnAirtightStateChange {_dirtySoundStage} {_gameTiming.LastRealTick}");
         _dirtySoundStage = true;
     }
 
@@ -719,13 +682,11 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
 
         if (newGrid != LastGridUid)
         {
-            Log.Info($"OnPlayerMove gridchange {_dirtySoundStage} {_gameTiming.LastRealTick}");
             _dirtySoundStage = true;
         }
         else if (!_mapGridQuery.TryGetComponent(LastGridUid, out var grid))
         {
             // dirty soundstage when moving between grids
-            Log.Info($"OnPlayerMove gridchange2 {_dirtySoundStage} {_gameTiming.LastRealTick}");
             _dirtySoundStage = true;
         }
 
@@ -737,7 +698,6 @@ public sealed class TomenoSoundOcclusionSystem : EntitySystem
             if (CurrentSoundPaths.Stage.StageToTile(LastLocalPos.Value) != lastTile)
             {
                 // Moved between tiles
-                Log.Info($"OnPlayerMove tilemove {_dirtySoundStage} {_gameTiming.LastRealTick}");
                 _dirtySoundStage = true;
             }
         }
