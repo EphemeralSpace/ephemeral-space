@@ -21,7 +21,6 @@ namespace Content.Client._ES.SoundOcclusion;
 public sealed partial class TomenoSoundOcclusionSystem : EntitySystem
 {
     [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IOverlayManager _overlayManager = default!;
     // Prediction checks, realtime update choking
     [Dependency] private IClientGameTiming _gameTiming = default!;
 
