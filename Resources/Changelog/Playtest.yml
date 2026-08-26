@@ -2001,3 +2001,9 @@ Entries:
       message: Fixed the guidebook sometimes hiding articles and not showing them.
   id: 214
   time: '2026-08-25T15:07:25.0000000+00:00'
+- author: piskaczek
+  changes:
+    - type: Add
+      message: adds various objects for theatre
+  id: 215
+  time: '2026-08-26T01:13:00.0000000+00:00'
