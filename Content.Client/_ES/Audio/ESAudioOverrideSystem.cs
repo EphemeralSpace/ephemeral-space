@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._ES.SoundOcclusion;
 using Content.Shared._ES.Audio;
 using Robust.Client;
 using Robust.Client.Audio;
@@ -26,12 +27,15 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IBaseClient _baseClient = default!;
+    [Dependency] private TomenoSoundOcclusionSystem _occlusion = default!;
 
     private ProtoId<AudioPresetPrototype> _reverbPreset = "Room";
 
-    private const float OccludedSoundAmount = 1f;
-    private const float OcclusionVolumeAdjust = -7f;
-    private const float MinOcclusionPenetration = 0.8f;
+
+    private const float OccludedSoundAmount = 2.0f;
+    private const float OcclusionVolumeAdjust = -3f;
+    private const float MaxOcclusionDeltaDistance = 15.0f;
+    private const float MinOcclusionDeltaDistance = 0.5f;
 
     // ReSharper disable once InconsistentNaming
     // for vv testing purposes
@@ -163,11 +167,11 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         }
         else
         {
-            var occlusion = GetOcclusion(listener, delta, distance, parentUid);
+            var occlusion = GetPathedEntityOcclusion(listener, delta, distance, entity, component);
             component.Occlusion = occlusion;
             if (component.Occlusion > 0f)
             {
-                component.Volume = component.Params.Volume + OcclusionVolumeAdjust;
+                component.Volume = component.Params.Volume + (component.Occlusion * OcclusionVolumeAdjust);
             }
         }
 
@@ -176,17 +180,72 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
     }
 
     /// <summary>
+    /// Calculates the audio occlusion factor from a path result.
+    /// </summary>
+    private float CalculatePathOcclusion(TomenoSoundOcclusionSystem.PathResult? path,
+        Vector2 listenerPos,
+        Vector2 emitterPos)
+    {
+        if (path == null)
+            return OccludedSoundAmount;
+
+        if (!path.ListenerPortal.HasValue && !path.EmitterPortal.HasValue)
+            return 0f;
+
+        var directDistance = (listenerPos - emitterPos).Length();
+
+        var occludedDistance = path.PortalDistance;
+        if (path.ListenerPortal.HasValue)
+            occludedDistance += Vector2.Distance(listenerPos, path.ListenerPortal.Value);
+        if (path.EmitterPortal.HasValue)
+            occludedDistance += Vector2.Distance(emitterPos, path.EmitterPortal.Value);
+
+        var distanceDelta = occludedDistance - directDistance;
+
+        if (distanceDelta > MaxOcclusionDeltaDistance)
+            return OccludedSoundAmount;
+        if (distanceDelta < MinOcclusionDeltaDistance)
+            return 0f;
+
+        return ((distanceDelta - MinOcclusionDeltaDistance) / MaxOcclusionDeltaDistance) * OccludedSoundAmount;
+    }
+
+    /// <summary>
     /// Gets the audio occlusion from the target audio entity to the listener's position.
     /// </summary>
-    public float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? ignoredEnt = null)
+    public float GetPathedEntityOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid entity, AudioComponent component)
     {
         if (distance <= 0.1)
             return 0f;
 
-        var rayLength = MathF.Min(distance, _maxRayLength);
-        var ray = new CollisionRay(listener.Position, delta / distance, _originalAudio.OcclusionCollisionMask);
-        var penetration = _physics.IntersectRayPenetration(listener.MapId, ray, rayLength, ignoredEnt);
+        if (_occlusion.CurrentSoundPaths == null)
+            return OccludedSoundAmount;
 
-        return penetration < MinOcclusionPenetration ? 0f : OccludedSoundAmount;
+        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
+        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
+
+        var path = _occlusion.FindEntityPath(entity, emitterPos, component);
+
+        return CalculatePathOcclusion(path, listenerPos, emitterPos);
+    }
+
+    /// <summary>
+    /// Gets the audio occlusion from the target coordinates to the listener's position.
+    /// </summary>
+    public float GetOcclusion(MapCoordinates listener, Vector2 delta, float distance, EntityUid? entity)
+    {
+        if (distance <= 0.1)
+            return 0f;
+
+        if (_occlusion.CurrentSoundPaths == null)
+            return OccludedSoundAmount;
+
+        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
+        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
+
+        // TODO: this should be cached too... maybe we need the cache to be keyed by Object?
+        var path = _occlusion.FindPath(emitterPos);
+
+        return CalculatePathOcclusion(path, listenerPos, emitterPos);
     }
 }
