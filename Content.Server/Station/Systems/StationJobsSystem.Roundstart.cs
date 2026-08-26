@@ -1,11 +1,10 @@
 using System.Linq;
 using Content.Server.Administration.Managers;
-using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -44,6 +43,7 @@ public sealed partial class StationJobsSystem
     /// This does NOT change the slots on the station, only figures out where each player should go.
     /// </summary>
     /// <param name="profiles">The profiles to use for selection.</param>
+    /// <param name="secretIdentities">Assigned secret identities to players</param>
     /// <param name="stations">List of stations to assign for.</param>
     /// <param name="useRoundStartJobs">Whether or not to use the round-start jobs for the stations instead of their current jobs.</param>
     /// <returns>List of players and their assigned jobs.</returns>
@@ -52,7 +52,11 @@ public sealed partial class StationJobsSystem
     /// as there may end up being more round-start slots than available slots, which can cause weird behavior.
     /// A warning to all who enter ye cursed lands: This function is long and mildly incomprehensible. Best used without touching.
     /// </remarks>
-    public Dictionary<NetUserId, (ProtoId<JobPrototype>?, EntityUid)> AssignJobs(Dictionary<NetUserId, HumanoidCharacterProfile> profiles, IReadOnlyList<EntityUid> stations, bool useRoundStartJobs = true)
+    public Dictionary<NetUserId, (ProtoId<JobPrototype>?, EntityUid)> AssignJobs(
+        Dictionary<NetUserId, HumanoidCharacterProfile> profiles,
+        IReadOnlyDictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>> secretIdentities,
+        IReadOnlyList<EntityUid> stations,
+        bool useRoundStartJobs = true)
     {
         DebugTools.Assert(stations.Count > 0);
 
@@ -107,7 +111,7 @@ public sealed partial class StationJobsSystem
                 if (profiles.Count == 0)
                     goto endFunc;
 
-                var candidates = GetPlayersJobCandidates(weight, selectedPriority, profiles);
+                var candidates = GetPlayersJobCandidates(weight, selectedPriority, profiles, secretIdentities);
 
                 var optionsRemaining = 0;
 
@@ -272,11 +276,13 @@ public sealed partial class StationJobsSystem
     /// <param name="assignedJobs">All assigned jobs.</param>
     /// <param name="allPlayersToAssign">All players that might need an overflow assigned.</param>
     /// <param name="profiles">Player character profiles.</param>
+    /// <param name="secretIdentities"></param>
     /// <param name="stations">The stations to consider for spawn location.</param>
     public void AssignOverflowJobs(
         ref Dictionary<NetUserId, (ProtoId<JobPrototype>?, EntityUid)> assignedJobs,
         IEnumerable<NetUserId> allPlayersToAssign,
         IReadOnlyDictionary<NetUserId, HumanoidCharacterProfile> profiles,
+        IReadOnlyDictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>> secretIdentities,
         IReadOnlyList<EntityUid> stations)
     {
         var givenStations = stations.ToList();
@@ -307,36 +313,40 @@ public sealed partial class StationJobsSystem
         }
 
         // For players without jobs, give them the overflow job if they have that set...
-        foreach (var player in allPlayersToAssign)
+        foreach (var player in allPlayersToAssign.Except(assignedJobs.Keys))
         {
-            if (assignedJobs.ContainsKey(player))
+            var session = _player.GetSessionById(player);
+            var secretIdentity = _prototypeManager.Index(secretIdentities[player]);
+            var station = _random.Pick(givenStations);
+
+            var validJobs = new List<ProtoId<JobPrototype>>();
+            foreach (var jobCandidate in stationJobs[station])
             {
-                continue;
+                if (_banManager.IsRoleBanned(session, [jobCandidate]))
+                    continue;
+
+                if (secretIdentity.ProhibitedJobs.Contains(jobCandidate))
+                    continue;
+
+                validJobs.Add(jobCandidate);
             }
 
-            _random.Shuffle(givenStations);
-
-            foreach (var station in givenStations)
+            if (validJobs.Count == 0)
             {
-                if (stationJobs[station].Count == 0)
-                {
-                    var overflows = GetOverflowJobs(station).ToList();
-
-                    // Stations with no overflow slots should simply get skipped over.
-                    if (overflows.Count == 0)
-                        continue;
-
-                    // If the overflow exists, put them in as it.
-                    assignedJobs.Add(player, (_random.Pick(overflows), station));
-                    break;
-                }
-
-                var job = _random.PickAndTake(stationJobs[station]);
+                var overflows = GetOverflowJobs(station).ToList();
+                DebugTools.Assert(overflows.Count > 0, $"Station {ToPrettyString(station)} does not have overflow jobs to assign!");
 
                 // If the overflow exists, put them in as it.
-                assignedJobs.Add(player, (job, station));
+                assignedJobs.Add(player, (_random.Pick(overflows), station));
                 break;
             }
+
+            var job = _random.Pick(validJobs);
+            stationJobs[station].Remove(job);
+
+            // If the overflow exists, put them in as it.
+            assignedJobs.Add(player, (job, station));
+            break;
         }
     }
 
@@ -362,14 +372,18 @@ public sealed partial class StationJobsSystem
     /// <param name="weight">Weight to find, if any.</param>
     /// <param name="selectedPriority">Priority to find, if any.</param>
     /// <param name="profiles">Profiles to look in.</param>
+    /// <param name="secretIdentities"></param>
     /// <returns>Players and a list of their matching jobs.</returns>
-    private Dictionary<NetUserId, List<string>> GetPlayersJobCandidates(int? weight, JobPriority? selectedPriority, Dictionary<NetUserId, HumanoidCharacterProfile> profiles)
+    private Dictionary<NetUserId, List<string>> GetPlayersJobCandidates(
+        int? weight,
+        JobPriority? selectedPriority,
+        Dictionary<NetUserId, HumanoidCharacterProfile> profiles,
+        IReadOnlyDictionary<NetUserId, ProtoId<ESSecretIdentityPrototype>> secretIdentities)
     {
         var outputDict = new Dictionary<NetUserId, List<string>>(profiles.Count);
 
         foreach (var (player, profile) in profiles)
         {
-            var roleBans = _banManager.GetJobBans(player);
             var profileJobs = profile.JobPriorities.Keys.Select(k => new ProtoId<JobPrototype>(k)).ToList();
             var ev = new StationJobsGetCandidatesEvent(player, profileJobs);
             RaiseLocalEvent(ref ev);
@@ -386,13 +400,16 @@ public sealed partial class StationJobsSystem
                 if (!_prototypeManager.Resolve(jobId, out var job))
                     continue;
 
-                if (!job.CanBeAntag && (!_player.TryGetSessionById(player, out var session)))
-                    continue;
-
                 if (weight is not null && job.Weight != weight.Value)
                     continue;
 
-                if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
+                // Ensure role isn't blocked by secret identity.
+                if (secretIdentities.TryGetValue(player, out var secretIdentityId) &&
+                    _prototypeManager.Index(secretIdentityId).ProhibitedJobs.Contains(jobId))
+                    continue;
+
+                if (_player.TryGetSessionById(player, out var session) &&
+                    _banManager.IsRoleBanned(session, [jobId]))
                     continue;
 
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);
