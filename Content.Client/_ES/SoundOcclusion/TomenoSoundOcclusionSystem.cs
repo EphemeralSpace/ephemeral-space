@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -309,7 +310,7 @@ public sealed partial class TomenoSoundOcclusionSystem : EntitySystem
         };
     }
 
-    private readonly Dictionary<AudioComponent, PathResult> _pathCache = new();
+    private readonly ConcurrentDictionary<AudioComponent, PathResult> _pathCache = new();
 
     /// <summary>
     /// Finds a path from an entity to the listener in the current active SoundPaths.
@@ -336,7 +337,7 @@ public sealed partial class TomenoSoundOcclusionSystem : EntitySystem
             if (IsPathValid(path, emitterTile))
                 return path;
 
-            _pathCache.Remove(audio);
+            _pathCache.TryRemove(audio, out _);
         }
 
         if (!CurrentSoundPaths.Paths.ContainsKey(emitterTile))
@@ -421,7 +422,7 @@ public sealed partial class TomenoSoundOcclusionSystem : EntitySystem
         var result = FindPath(emitter);
 
         if (audio != null && result != null)
-            _pathCache.Add(audio, result);
+            _pathCache.TryAdd(audio, result);
 
         return result;
     }
