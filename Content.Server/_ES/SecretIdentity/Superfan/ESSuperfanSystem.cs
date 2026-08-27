@@ -47,7 +47,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
         var fanQuery = EntityQueryEnumerator<ESSuperfanComponent, MindComponent>();
         while (fanQuery.MoveNext(out var ent, out var comp, out var mind))
         {
-            if (organization != comp.TargetOrganization)
+            if (organization != comp.TargetOrganization || comp.TargetSecretIdentity is null)
                 continue;
 
             var total = 0;

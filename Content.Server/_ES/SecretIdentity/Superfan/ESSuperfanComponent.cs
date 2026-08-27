@@ -15,5 +15,5 @@ public sealed partial class ESSuperfanComponent : Component
     public ProtoId<ESOrganizationPrototype> TargetOrganization;
 
     [DataField(required: true)]
-    public MasqueradeEntry TargetSecretIdentity;
+    public MasqueradeEntry? TargetSecretIdentity;
 }
