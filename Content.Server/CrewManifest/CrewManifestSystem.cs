@@ -246,6 +246,11 @@ public sealed partial class CrewManifestSystem : EntitySystem
 
         entries.Entries = entriesSort.Select(x => x.entry).ToArray();
         _cachedEntries[station] = entries;
+
+        // store results on the station entity and replicate to clients
+        var comp = EnsureComp<CrewManifestComponent>(station);
+        comp.Entries = entries;
+        Dirty(station, comp);
     }
 }
 

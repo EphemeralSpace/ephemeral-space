@@ -1,19 +1,19 @@
-using Content.Server.CrewManifest;
-using Content.Server.Station.Systems;
+using Content.Server.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CCVar;
+using Content.Shared.CrewManifest;
+using Content.Shared.Station;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.CartridgeLoader.Cartridges;
+namespace Content.Shared.CartridgeLoader.Cartridges;
 
 public sealed partial class CrewManifestCartridgeSystem : EntitySystem
 {
     [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
-    [Dependency] private CrewManifestSystem _crewManifest = default!;
-    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private SharedStationSystem _stationSystem = default!;
 
     private static readonly EntProtoId CartridgePrototypeName = "CrewManifestCartridge";
 
@@ -61,7 +61,11 @@ public sealed partial class CrewManifestCartridgeSystem : EntitySystem
         if (owningStation is null)
             return;
 
-        var (stationName, entries) = _crewManifest.GetCrewManifest(owningStation.Value);
+        if (!TryComp<CrewManifestComponent>(owningStation, out var manifestComp))
+            return;
+
+        var stationName = MetaData(owningStation.Value).EntityName;
+        var entries = manifestComp.Entries;
 
         var state = new CrewManifestUiState(stationName, entries);
         _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);

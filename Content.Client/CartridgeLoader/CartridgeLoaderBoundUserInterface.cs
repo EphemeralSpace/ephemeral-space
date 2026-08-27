@@ -1,6 +1,7 @@
 using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader;
 using Robust.Client.UserInterface;
+using Robust.Shared.Timing;
 
 namespace Content.Client.CartridgeLoader;
 
@@ -17,10 +18,12 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
     private Control? _activeUiFragment;
 
     private IEntityManager _entManager;
+    private IGameTiming _timing;
 
     protected CartridgeLoaderBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         _entManager = IoCManager.Resolve<IEntityManager>();
+        _timing = IoCManager.Resolve<IGameTiming>();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -132,7 +135,8 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
     private void SendCartridgeUiReadyEvent(EntityUid cartridgeUid)
     {
         var message = new CartridgeLoaderUiMessage(_entManager.GetNetEntity(cartridgeUid), CartridgeUiMessageAction.UIReady);
-        SendMessage(message);
+        if (_timing.IsFirstTimePredicted)
+            SendPredictedMessage(message);
     }
 
     private UIFragment? RetrieveCartridgeUI(EntityUid? cartridgeUid)
