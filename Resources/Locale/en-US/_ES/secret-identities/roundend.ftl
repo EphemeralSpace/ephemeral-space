@@ -8,7 +8,8 @@ es-roundend-secret-identity-player-summary = {$name} [color=gray]({$username})[/
     *[Other] with the following objectives:
 }
 es-roundend-secret-identity-fmt = [color={$color}][bold]{$name}[/bold][/color]
-es-roundend-secret-identity-link-fmt = {$secretIdentity1}-turned-{$secretIdentity2}
+es-roundend-secret-identity-modifier-fmt = [bold][color={$modifierColor}]{$modifierName}[/color] [color={$color}]{$name}[/color][/bold]
+es-roundend-secret-identity-link = -turned-
 es-roundend-secret-identity-player-group = [font size=14][color={$color}][bold]{$name}[/bold][/color][/font]
 
 es-roundend-masquerade-reveal = [font size=16]Annnd that's a wrap! Today's show was themed "{$masquerade}", which {$description}.[/font]

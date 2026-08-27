@@ -1,0 +1,76 @@
+- type: entity
+  parent: BaseWallmount
+  id: ESBaseWallmountClock
+  name: clock
+  description: Before the wheel was invented these used to be rectangular.
+  abstract: true
+  components:
+  - type: Sprite
+    snapCardinals: true
+    granularLayersRendering: true
+    sprite: _ES/Structures/Wallmounts/Decoration/clock.rsi
+  - type: Marker
+    layers: ["directional"]
+  - type: Appearance
+  - type: Clock
+  - type: AmbientSound
+    volume: -7
+    range: 5
+    sound:
+      path: /Audio/_ES/Ambience/Objects/clock-ticking.ogg
+  - type: Damageable
+    damageModifierSet: ESMachine
+    damageContainer: StructuralInorganic
+  - type: ESBreakable
+    threshold: 10
+    sound:
+      collection: MetalBreak
+
+- type: entity
+  parent: ESBaseWallmountClock
+  id: ESWallmountClock
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - map: [ "enum.ClockVisualLayers.MinuteHand"]
+    - map: [ "enum.ClockVisualLayers.HourHand"]
+    - map: ["directional"]
+      sprite: _ES/Markers/spawners.rsi
+      state: directional
+      renderingStrategy: Default
+      visible: false
+
+- type: entity
+  parent: ESBaseWallmountClock
+  id: ESWallmountClockWood
+  suffix: Wood
+  components:
+  - type: Sprite
+    layers:
+    - state: woodbase
+    - map: [ "enum.ClockVisualLayers.MinuteHand"]
+    - map: [ "enum.ClockVisualLayers.HourHand"]
+    - map: ["directional"]
+      sprite: _ES/Markers/spawners.rsi
+      state: directional
+      renderingStrategy: Default
+      visible: false
+
+- type: entity
+  parent: ESBaseWallmountClock
+  id: ESWallmountClockRetro
+  name: retro clock
+  description: See?
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Wallmounts/Decoration/retroclock.rsi
+    layers:
+    - state: base
+    - map: [ "enum.ClockVisualLayers.MinuteHand"]
+    - map: [ "enum.ClockVisualLayers.HourHand"]
+    - map: ["directional"]
+      sprite: _ES/Markers/spawners.rsi
+      state: directional
+      renderingStrategy: Default
+      visible: false

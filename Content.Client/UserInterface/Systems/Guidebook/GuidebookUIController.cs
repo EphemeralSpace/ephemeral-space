@@ -210,16 +210,7 @@ public sealed partial class GuidebookUIController : UIController, IOnStateEntere
             }
         }
 
-        var changed = _guideWindow.UpdateGuides(guides, rootEntries, forceRoot, selected);
-
-        // ES START
-        // only expand to depth 1
-        // Expand up to depth-2.
-        if (changed)
-        {
-            _guideWindow.Tree.SetAllExpanded(false);
-            _guideWindow.Tree.SetAllExpanded(true, 0);
-        }
+        _guideWindow.UpdateGuides(guides, rootEntries, forceRoot, selected);
 
         _guideWindow.OpenCenteredRight();
     }

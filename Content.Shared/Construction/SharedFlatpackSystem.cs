@@ -48,9 +48,6 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
         if (HasComp<MachineBoardComponent>(args.Item))
             return;
 
-        if (TryComp<ComputerBoardComponent>(args.Item, out var computer) && computer.Prototype != null)
-            return;
-
         args.Cancelled = true;
     }
 

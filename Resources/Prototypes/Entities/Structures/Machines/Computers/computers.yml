@@ -4,8 +4,6 @@
   name: atmospheric alerts computer
   description: Used to access the station's atmospheric automated alert system.
   components:
-  - type: Computer
-    board: AlertsComputerCircuitboard
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -20,7 +18,7 @@
       state: generic_panel_open
   - type: GenericVisualizer
     visuals:
-      enum.ComputerVisuals.Powered:
+      enum.PowerDeviceVisuals.Powered:
         computerLayerScreen:
           True: { visible: true, shader: unshaded }
           False: { visible: false }
@@ -60,8 +58,6 @@
   name: atmospheric network monitor
   description: Used to monitor the station's atmospheric networks.
   components:
-  - type: Computer
-    board: AtmosMonitoringComputerCircuitboard
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -170,8 +166,6 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: ShuttleConsoleCircuitboard
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -201,8 +195,6 @@
           type: IFFConsoleBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
-  - type: Computer
-    board: ComputerIFFCircuitboard
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -224,8 +216,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#c9c042"
-  - type: Computer
-    board: PowerComputerCircuitboard
   - type: PowerMonitoringConsole
   - type: PowerMonitoringCableNetworks
   - type: NodeContainer
@@ -264,8 +254,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#85b6fe"
-  - type: Computer
-    board: MedicalRecordsComputerCircuitboard
 
 - type: entity
   # ES START
@@ -303,15 +291,7 @@
       state: generic_panel_open
   - type: PointLight
     color: "#e9755e"
-  - type: Computer
-    board: CriminalRecordsComputerCircuitboard
-# ES Start
-#  - type: AccessReader
-#    access: [["Security"]]
-# ES End
-# ES START
   - type: ESSabotageTarget
-# ES END
   - type: ESAmbientMusicMarkerSecurity
 
 - type: entity
@@ -331,8 +311,6 @@
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
     color: "#70ff67"
-  - type: Computer
-    board: StationRecordsComputerCircuitboard
   - type: GuideHelp
     guides:
     - Forensics
@@ -357,8 +335,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#85b6fe"
-  - type: Computer
-    board: CrewMonitoringComputerCircuitboard
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
   - type: UserInterface
@@ -403,8 +379,6 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
-  - type: Computer
-    board: IDComputerCircuitboard
   - type: PointLight
     color: "#4ba5d9"
   - type: ItemSlots
@@ -459,8 +433,6 @@
     # ES START
     powerLoad: 200
     # ES END
-  - type: Computer
-    board: BodyScannerComputerCircuitboard
   - type: PointLight
     color: "#1f8c28"
 
@@ -504,8 +476,6 @@
         type: CommunicationsConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Computer
-    board: CommsComputerCircuitboard
   - type: PointLight
     color: "#4ba5d9"
   - type: Damageable
@@ -542,8 +512,6 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
-  - type: Computer
-    board: CentcommCommsComputerCircuitboard
   - type: PointLight
     color: "#00FF00"
 
@@ -574,8 +542,6 @@
         type: SolarControlConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Computer
-    board: SolarControlComputerCircuitboard
   - type: PointLight
     color: "#d3e840"
   - type: GuideHelp
@@ -610,8 +576,6 @@
           type: RadarConsoleBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
-  - type: Computer
-    board: RadarConsoleCircuitboard
   - type: PointLight
     color: "#e6e227"
 
@@ -639,8 +603,6 @@
       state: generic_panel_open
   - type: ApcPowerReceiver
     powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
-  - type: Computer
-    board: CloningConsoleComputerCircuitboard
   - type: PointLight
     color: "#1f8c28"
   - type: DeviceLinkSource
@@ -681,8 +643,6 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: SurveillanceCameraMonitorCircuitboard
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: SurveillanceCamera
@@ -723,8 +683,6 @@
       state: tech_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: SurveillanceWirelessCameraMonitorCircuitboard
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera
@@ -769,14 +727,8 @@
 # ES END
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: ComputerMassMediaCircuitboard
   - type: DeviceNetworkRequiresPower
   - type: NewsWriter
-# ES Start
-#  - type: AccessReader
-#    access: [[ "Service" ]]
-# ES End
   - type: ActivatableUI
     key: enum.NewsWriterUiKey.Key
   - type: ActivatableUIRequiresVision
@@ -790,4 +742,3 @@
           type: NewsWriterBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
-

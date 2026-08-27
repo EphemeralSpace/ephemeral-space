@@ -73,7 +73,6 @@
         whitelist:
           components:
           - MachineBoard
-          - ComputerBoard
   - type: ContainerContainer
     containers:
       machine_board: !type:Container

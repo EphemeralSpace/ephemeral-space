@@ -1929,3 +1929,99 @@ Entries:
       message: Equipment caches now come in the form of duffel bags instead of crates.
   id: 205
   time: '2026-08-21T04:49:45.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: Girders now have some flat resistance to attacks.
+    - type: Tweak
+      message: breath masks now block the lower face identity.
+    - type: Tweak
+      message: Topicals now only stack to 5.
+    - type: Tweak
+      message: Pouches no longer have a whitelist, and are 2x2 grids.
+    - type: Fix
+      message: The vendomat now stocks powered cells.
+  id: 206
+  time: '2026-08-22T21:24:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Radios are no longer available in arrivals or on the warp drive.
+    - type: Tweak
+      message: >-
+        Command members no longer get access to all radio channels, now they
+        only receive common and command.
+    - type: Tweak
+      message: >-
+        Players with objectives to sabotage the telecomms processor can no
+        longer repair it.
+  id: 207
+  time: '2026-08-22T21:37:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Replaced the marauder's stimulant pen with an explosive grenade.
+  id: 208
+  time: '2026-08-22T22:20:39.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Computers now have a broken state and cannot be destroyed fully or
+        deconstructed.
+  id: 209
+  time: '2026-08-22T22:21:10.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: pouches are Actually the right size
+  id: 210
+  time: '2026-08-23T13:55:54.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: you can no longer place wires underneath walls.
+  id: 211
+  time: '2026-08-23T14:23:32.0000000+00:00'
+- author: gradientvera
+  changes:
+    - type: Tweak
+      message: When mopping, clicking a tile now cleans any puddles present.
+  id: 212
+  time: '2026-08-23T17:47:06.0000000+00:00'
+- author: jessicamaybe
+  changes:
+    - type: Tweak
+      message: Stagehands no longer show an interaction particle when starting a follow
+  id: 213
+  time: '2026-08-24T02:04:07.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the guidebook sometimes hiding articles and not showing them.
+  id: 214
+  time: '2026-08-25T15:07:25.0000000+00:00'
+- author: piskaczek
+  changes:
+    - type: Add
+      message: adds various objects for theatre
+  id: 215
+  time: '2026-08-26T01:13:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Crew roles (barring sleeper agent) now have the chance to spawn as
+        "Ex-Syndicate" variants, giving them an additional equipment cache.
+  id: 216
+  time: '2026-08-26T16:13:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Secret Identities are now selected before jobs on round start. This
+        means that 
+    - type: Tweak
+      message: Captain is no longer selected before other jobs.
+  id: 217
+  time: '2026-08-26T16:36:48.0000000+00:00'

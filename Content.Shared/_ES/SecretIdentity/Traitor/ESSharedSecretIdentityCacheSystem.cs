@@ -1,7 +1,9 @@
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Traitor.Components;
+using Content.Shared._ES.SpawnRegion;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
+using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -136,7 +138,7 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        var pos = Transform(ent).Coordinates;
+        var pos = user.HasValue ? Transform(user.Value).Coordinates : Transform(ent).Coordinates;
         var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
         _popup.PopupEntity(Loc.GetString("es-ceiling-cache-popup"), ent);
@@ -150,6 +152,16 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
             RaiseLocalEvent(ent.Comp.MindId.Value, ref ev);
         }
     }
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ESAddCacheSecretIdentityModifierEvent : ESSecretIdentifierModifierEvent
+{
+    [DataField]
+    public ProtoId<ESSpawnRegionPrototype> Region = "ESMaintenance";
+
+    [DataField]
+    public EntityTableSelector CacheProto = new NoneSelector();
 }
 
 [Serializable, NetSerializable]

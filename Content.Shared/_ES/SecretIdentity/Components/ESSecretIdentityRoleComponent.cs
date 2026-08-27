@@ -18,6 +18,12 @@ public sealed partial class ESSecretIdentityRoleComponent : Component
     public ProtoId<ESSecretIdentityPrototype>? SecretIdentity;
 
     /// <summary>
+    /// Modifier applied to this secret identity.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<ESSecretIdentityModifierPrototype>? Modifier;
+
+    /// <summary>
     /// Actions added to the entity from the secret identity.
     /// </summary>
     [DataField]

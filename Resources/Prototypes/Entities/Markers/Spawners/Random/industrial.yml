@@ -50,7 +50,7 @@
         - WelderIndustrial
         - PowerCellHigh
         - PowerCellSmall
-        - ClothingHandsGlovesColorYellowBudget
+        - ClothingHandsGlovesInsulatedBudget
       rareChance: 0.2
       prototypes:
         - ClothingHeadHatWelding

@@ -1,27 +1,6 @@
-﻿### ES-specific
-- type: construction
-  id: ESTabletopComputer
-  hide: false
-  graph: ESTabletopComputer
-  startNode: start
-  targetNode: computer
-  category: construction-category-machines
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-
-###
+﻿###
 ### Upstream inherited
 ###
-
-- type: construction
-  id: ESComputer
-  hide: false
-  graph: Computer
-  startNode: start
-  targetNode: computer
-  category: construction-category-machines
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
 
 - type: construction
   id: ESMachineFrame

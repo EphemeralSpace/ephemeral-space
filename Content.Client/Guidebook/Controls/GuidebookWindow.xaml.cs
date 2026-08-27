@@ -159,41 +159,42 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
     /// Updates the guides used in the window.
     /// Returns whether the guides changed.
     /// </summary>
-    public bool UpdateGuides(
+    public void UpdateGuides(
         Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> entries,
         List<ProtoId<GuideEntryPrototype>>? rootEntries = null,
         ProtoId<GuideEntryPrototype>? forceRoot = null,
         ProtoId<GuideEntryPrototype>? selected = null)
     {
-        // check if old and new entries are equal
-        var sameAsLastUpdate = entries.Count != _entries.Count || !entries.All(_entries.Contains);
-        if (sameAsLastUpdate)
+        _entries = entries;
+        RepopulateTree(rootEntries, forceRoot);
+        Split.State = SplitContainer.SplitState.Auto;
+        if (entries.Count == 1)
         {
-            _entries = entries;
-            RepopulateTree(rootEntries, forceRoot);
-            Split.State = SplitContainer.SplitState.Auto;
-            if (entries.Count == 1)
-            {
-                TreeBox.Visible = false;
-                Split.ResizeMode = SplitContainer.SplitResizeMode.NotResizable;
-                selected = entries.Keys.First();
-            }
-            else
-            {
-                TreeBox.Visible = true;
-                Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
-            }
+            TreeBox.Visible = false;
+            Split.ResizeMode = SplitContainer.SplitResizeMode.NotResizable;
+            selected = entries.Keys.First();
         }
+        else
+        {
+            TreeBox.Visible = true;
+            Split.ResizeMode = SplitContainer.SplitResizeMode.RespectChildrenMinSize;
+        }
+
+        // only expand to depth 1
+        Tree.SetAllExpanded(false);
+        Tree.SetAllExpanded(true, 0);
 
         if (selected == null)
             ClearSelectedGuide();
         else
         {
             var item = Tree.Items.FirstOrDefault(x => x.Metadata is GuideEntry entry && entry.Id == selected);
-            Tree.SetSelectedIndex(item?.Index);
+            if (item != null)
+            {
+                Tree.ExpandParentEntries(item.Index);
+                Tree.SetSelectedIndex(item.Index);
+            }
         }
-
-        return sameAsLastUpdate;
     }
 
     private IEnumerable<GuideEntry> GetSortedEntries(List<ProtoId<GuideEntryPrototype>>? rootEntries)

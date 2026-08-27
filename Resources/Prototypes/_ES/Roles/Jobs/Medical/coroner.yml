@@ -29,7 +29,7 @@
     back: ClothingBackpack
   storage:
     back:
-    - ESBoxSurvivalMedical
+    - ESBoxSurvival
 
 - type: chameleonOutfit
   id: ESCoroner

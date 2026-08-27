@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/19/2026 16:42:24
-  entityCount: 14814
+  time: 08/22/2026 23:52:47
+  entityCount: 14803
 maps:
 - 3
 grids:
@@ -8356,11 +8356,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 10.5,-20.5
-  - uid: 2638
-    components:
-    - type: Transform
-      parent: 2
-      pos: 11.5,-34.5
   - uid: 2640
     components:
     - type: Transform
@@ -14101,11 +14096,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 17.5,-30.5
-  - uid: 9838
-    components:
-    - type: Transform
-      parent: 2
-      pos: -2.5,-9.5
   - uid: 9839
     components:
     - type: Transform
@@ -22219,11 +22209,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -15.5,-42.5
-  - uid: 2641
-    components:
-    - type: Transform
-      parent: 2
-      pos: 11.5,-34.5
   - uid: 2642
     components:
     - type: Transform
@@ -23889,6 +23874,16 @@ entities:
     - type: Transform
       parent: 2
       pos: 23.5,-28.5
+  - uid: 4623
+    components:
+    - type: Transform
+      parent: 2
+      pos: -1.5,-9.5
+  - uid: 4675
+    components:
+    - type: Transform
+      parent: 2
+      pos: -1.5,-11.5
   - uid: 4719
     components:
     - type: Transform
@@ -24014,6 +24009,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -52.5,-7.5
+  - uid: 5184
+    components:
+    - type: Transform
+      parent: 2
+      pos: -1.5,-10.5
   - uid: 5194
     components:
     - type: Transform
@@ -26029,16 +26029,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -5.5,-11.5
-  - uid: 9836
-    components:
-    - type: Transform
-      parent: 2
-      pos: -2.5,-10.5
-  - uid: 9837
-    components:
-    - type: Transform
-      parent: 2
-      pos: -2.5,-9.5
   - uid: 9909
     components:
     - type: Transform
@@ -26693,6 +26683,18 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -35.5,-37.5
+  - uid: 2638
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: -1.5,-9.5
+  - uid: 2641
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 12.5,-34.5
   - uid: 3144
     components:
     - type: Transform
@@ -31753,7 +31755,7 @@ entities:
     - type: Transform
       parent: 2
       pos: -38.497643,-24.81277
-- proto: ClothingHandsGlovesColorYellow
+- proto: ClothingHandsGlovesInsulated
   entities:
   - uid: 7721
     components:
@@ -32229,41 +32231,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 25.5,-38.5
-- proto: ComputerFrame
-  entities:
-  - uid: 7576
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -35.5,-32.5
-  - uid: 7736
-    components:
-    - type: Transform
-      parent: 2
-      pos: -52.5,24.5
-  - uid: 7952
-    components:
-    - type: Transform
-      parent: 2
-      pos: -51.5,-40.5
-  - uid: 8466
-    components:
-    - type: Transform
-      parent: 2
-      pos: 32.5,-3.5
-  - uid: 8901
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 8.5,18.5
-  - uid: 14196
-    components:
-    - type: Transform
-      parent: 2
-      rot: 3.141592653589793 rad
-      pos: 20.5,-42.5
 - proto: ComputerMassMedia
   entities:
   - uid: 3261
@@ -45277,38 +45244,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -19.5,-23.5
-- proto: ESTabletopComputerBroken
-  entities:
-  - uid: 5184
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: -20.5,6.5
-  - uid: 14197
-    components:
-    - type: Transform
-      parent: 2
-      rot: 3.141592653589793 rad
-      pos: 17.5,-42.5
-- proto: ESTabletopComputerFrame
-  entities:
-  - uid: 4623
-    components:
-    - type: Transform
-      parent: 2
-      pos: 25.5,-5.5
-  - uid: 4675
-    components:
-    - type: Transform
-      parent: 2
-      pos: -67.5,9.5
-  - uid: 13253
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: -14.5,20.5
 - proto: ESTelecomProcessor
   entities:
   - uid: 4800

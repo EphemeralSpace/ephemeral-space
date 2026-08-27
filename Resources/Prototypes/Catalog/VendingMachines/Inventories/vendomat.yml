@@ -7,7 +7,7 @@
     Screwdriver: 2
     CableApcStack: 2
     FlashlightLantern: 2
-    PowerCellSmallPrinted: 3
+    PowerCellSmall: 3
     MicroManipulatorStockPart: 12
   contrabandInventory:
     ProximitySensor: 1
