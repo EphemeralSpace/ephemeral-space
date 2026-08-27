@@ -684,12 +684,10 @@ public sealed partial class TomenoSoundOcclusionSystem : EntitySystem
         if (newGrid != LastGridUid)
         {
             _dirtySoundStage = true;
-            return;
         }
         else if (!_mapGridQuery.TryGetComponent(LastGridUid, out var grid))
         {
             _dirtySoundStage = true;
-            return;
         }
 
         if (CurrentSoundPaths != null && LastLocalPos != null)
