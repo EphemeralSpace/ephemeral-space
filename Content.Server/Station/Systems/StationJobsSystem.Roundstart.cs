@@ -313,8 +313,11 @@ public sealed partial class StationJobsSystem
         }
 
         // For players without jobs, give them the overflow job if they have that set...
-        foreach (var player in allPlayersToAssign.Except(assignedJobs.Keys))
+        foreach (var player in allPlayersToAssign)
         {
+            if (assignedJobs.ContainsKey(player))
+                continue;
+
             var session = _player.GetSessionById(player);
             var secretIdentity = _prototypeManager.Index(secretIdentities[player]);
             var station = _random.Pick(givenStations);
@@ -338,15 +341,16 @@ public sealed partial class StationJobsSystem
 
                 // If the overflow exists, put them in as it.
                 assignedJobs.Add(player, (_random.Pick(overflows), station));
-                break;
             }
+            else
+            {
+                // pick random valid job option
+                var job = _random.Pick(validJobs);
 
-            var job = _random.Pick(validJobs);
-            stationJobs[station].Remove(job);
-
-            // If the overflow exists, put them in as it.
-            assignedJobs.Add(player, (job, station));
-            break;
+                // Remove job from pool and assign it to player
+                stationJobs[station].Remove(job);
+                assignedJobs.Add(player, (job, station));
+            }
         }
     }
 

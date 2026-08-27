@@ -124,10 +124,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         {
             var session = _player.GetSessionById(user);
             if (!TryGetMindOrLog(session, out var mind))
-            {
-                Log.Warning($"Failed to get mind for session {session}!");
-                return;
-            }
+                continue;
 
             _secretIdentity.ApplySecretIdentity(mind.Value, secretIdentityId, applyModifiers: true);
         }
