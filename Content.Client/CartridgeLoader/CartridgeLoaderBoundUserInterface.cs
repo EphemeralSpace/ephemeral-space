@@ -36,6 +36,9 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
             return;
         }
 
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
         // TODO move this to a component state and ensure the net ids.
         var programs = GetCartridgeComponents(_entManager.GetEntityList(loaderUiState.Programs));
         UpdateAvailablePrograms(programs);
@@ -135,8 +138,7 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
     private void SendCartridgeUiReadyEvent(EntityUid cartridgeUid)
     {
         var message = new CartridgeLoaderUiMessage(_entManager.GetNetEntity(cartridgeUid), CartridgeUiMessageAction.UIReady);
-        if (_timing.IsFirstTimePredicted)
-            SendPredictedMessage(message);
+        SendPredictedMessage(message);
     }
 
     private UIFragment? RetrieveCartridgeUI(EntityUid? cartridgeUid)
