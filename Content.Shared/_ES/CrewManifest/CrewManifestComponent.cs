@@ -1,7 +1,7 @@
 using Content.Shared.CrewManifest;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.CrewManifest;
+namespace Content.Shared._ES.CrewManifest;
 
 /// <summary>
 /// Component which replicates the crew manifest onto clients.
