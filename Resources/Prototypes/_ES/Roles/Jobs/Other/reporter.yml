@@ -7,7 +7,6 @@
   icon: "JobIconReporter"
   access:
   - Service
-  - Maintenance
 
 - type: startingGear
   id: ESReporterGear

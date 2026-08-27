@@ -7,7 +7,6 @@
   icon: "JobIconClown"
   access:
   - Theatre
-  - Maintenance
   special:
   - !type:AddComponentSpecial
     components:

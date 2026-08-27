@@ -10,7 +10,6 @@
   access:
   - Command
   - StationAdmin
-  - Maintenance
   - External
 
 - type: startingGear

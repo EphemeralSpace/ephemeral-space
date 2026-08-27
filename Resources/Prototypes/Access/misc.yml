@@ -23,7 +23,6 @@
   - Cargo
   - Research
   - Service
-  - Maintenance
   - External
   - Janitor
   - Theatre
@@ -38,5 +37,4 @@
 
 - type: accessGroup
   id: General
-  tags:
-  - Maintenance
+  tags: [ ]

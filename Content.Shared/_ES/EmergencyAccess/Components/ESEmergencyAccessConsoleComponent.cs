@@ -26,9 +26,6 @@ public sealed partial class ESEmergencyAccessConsoleComponent : Component
 
     [DataField]
     public int DegradationDoorSabotageCount = 10;
-
-    [DataField]
-    public HashSet<ProtoId<AccessLevelPrototype>> IgnoredAccessList = ["Maintenance"];
 }
 
 [Serializable, NetSerializable]

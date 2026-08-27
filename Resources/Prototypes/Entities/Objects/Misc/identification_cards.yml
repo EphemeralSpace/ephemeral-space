@@ -397,8 +397,6 @@
   suffix: Agent
   components:
   - type: Access
-    tags:
-    - Maintenance
   - type: AgentIDCard
   - type: UIRequiresLock
   - type: ActivatableUI

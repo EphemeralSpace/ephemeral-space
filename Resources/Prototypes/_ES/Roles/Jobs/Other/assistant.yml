@@ -6,8 +6,7 @@
   weight: -99999 # pick these guys last we don't need more of them.
   startingGear: ESAssistantGear
   icon: "JobIconPassenger"
-  access:
-  - Maintenance
+  access: [ ]
 
 - type: startingGear
   id: ESAssistantGear

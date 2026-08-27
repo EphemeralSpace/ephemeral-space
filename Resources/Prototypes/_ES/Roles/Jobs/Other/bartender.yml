@@ -7,7 +7,6 @@
   icon: "JobIconBartender"
   access:
   - Service
-  - Maintenance
   - Bar
   extendedAccess:
   - Kitchen
