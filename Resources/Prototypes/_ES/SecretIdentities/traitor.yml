@@ -89,8 +89,10 @@
   color: darkturquoise
   modifiers:
     { }
-  weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
+  weight: 0 # otherwise it can roll in randomasquerades with no traitors.
   tips:
   - SleeperAgentBalance
   mindComponents:
   - type: ESSuperfan
+    targetOrganization: Traitor
+    targetSecretIdentity: "#Traitors"

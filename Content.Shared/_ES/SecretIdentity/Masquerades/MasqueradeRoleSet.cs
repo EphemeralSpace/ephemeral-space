@@ -23,9 +23,6 @@ public sealed partial class MasqueradeRoleSet
     [DataField(readOnly: true, required: true)]
     public MasqueradeEntry DefaultSecretIdentity { get; set; } = default!;
 
-    [DataField(readOnly: true)]
-    public MasqueradeEntry? SuperfanTarget { get; set; } = default!;
-
     /// <summary>
     ///     All the roles in this masquerade at given population levels, baked into something easy to use by the game.
     /// </summary>
@@ -172,8 +169,6 @@ public sealed partial class MasqueradeRoleSet
         DebugTools.Assert(minPlayers == MinPlayers, $"Minimum players should match the first specified set of entries (expected {MinPlayers}, found {minPlayers})");
 
         DebugTools.AssertEqual(DefaultSecretIdentity.Count, 1);
-        if (SuperfanTarget is not null)
-            DebugTools.AssertEqual(SuperfanTarget.Count, 1);
 
         var lastAt = minPlayers;
 

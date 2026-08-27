@@ -7,7 +7,6 @@
   gameRules: []
   masquerade:
     defaultSecretIdentity: "#AllCrew"
-    superfanTarget: "#Traitors"
     roles:
       8: ["Marauder", "#Traitors", "Vandal", "#Targeters", "ArmsDealer"] # 2 traitors
       10: ["Infiltrator"] # 3 traitors.

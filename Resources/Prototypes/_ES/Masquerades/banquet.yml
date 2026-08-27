@@ -7,7 +7,6 @@
   gameRules: []
   masquerade:
     defaultSecretIdentity: "Cannibal"
-    superfanTarget: "#Traitors"
     roles:
       6: ["#Traitors(2)", "#AllCrew", "Cannibal", "Vandal", "#Targeters"] # 2 traitors
       7: ["#AllCrew"]

@@ -1,10 +1,8 @@
 using System.Linq;
-using Content.Server._ES.SecretIdentity.Masquerades;
 using Content.Server._ES.Stagehand;
 using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.SecretIdentity;
-using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -15,13 +13,10 @@ namespace Content.Server._ES.SecretIdentity.Superfan;
 public sealed partial class ESSuperfanSystem : EntitySystem
 {
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
-    [Dependency] private ESMasqueradeSystem _masquerade = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private ESStagehandNotificationsSystem _stagehandNotifications = default!;
-
-    private static readonly ProtoId<ESOrganizationPrototype> TraitorsOrganization = "Traitor";
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -32,11 +27,10 @@ public sealed partial class ESSuperfanSystem : EntitySystem
 
     private void OnKillReported(ref ESPlayerKilledEvent ev)
     {
-        // Only activate if our target organization died.
-        if (_secretIdentity.GetOrganizationOrNull(ev.Killed) != TraitorsOrganization)
+        if (!_secretIdentity.TryGetOrganization(ev.Killed, out var organization))
             return;
 
-        TryConvert();
+        TryConvert(organization.Value);
     }
 
     private void OnSecretIdentityChanged(ref ESSecretIdentityChangedEvent ev)
@@ -45,42 +39,32 @@ public sealed partial class ESSuperfanSystem : EntitySystem
         if (ev.NewSecretIdentity != null || ev.OldSecretIdentity == null)
             return;
 
-        // only convert if their old one was traitor
-        if (ev.OldSecretIdentity.Organization != TraitorsOrganization)
-            return;
-
-        TryConvert();
+        TryConvert(ev.OldSecretIdentity.Organization);
     }
 
-    private void TryConvert()
+    private void TryConvert(ProtoId<ESOrganizationPrototype> organization)
     {
-        if (!_masquerade.TryGetMasqueradeData(out var set))
-            return; // Well, no masquerade means no conversion target.
-
-        if (set.SuperfanTarget is not { } entry)
-        {
-            // Fail silently, we were never configured to begin with. See #1079
-            return;
-        }
-
-        var total = 0;
-        var dead = 0;
-        foreach (var member in _secretIdentity.GetOrganizationMembers(TraitorsOrganization))
-        {
-            total += 1;
-
-            if (_mind.IsCharacterDeadIc(Comp<MindComponent>(member)))
-                dead += 1;
-        }
-
-        // Chance to be converted is proportional to the number of dead organization members.
-        var prob = total != 0
-            ? (float)dead / total
-            : 1;
-
         var fanQuery = EntityQueryEnumerator<ESSuperfanComponent, MindComponent>();
-        while (fanQuery.MoveNext(out var ent, out _, out var mind))
+        while (fanQuery.MoveNext(out var ent, out var comp, out var mind))
         {
+            if (organization != comp.TargetOrganization)
+                continue;
+
+            var total = 0;
+            var dead = 0;
+            foreach (var member in _secretIdentity.GetOrganizationMembers(comp.TargetOrganization))
+            {
+                total += 1;
+
+                if (_mind.IsCharacterDeadIc(Comp<MindComponent>(member)))
+                    dead += 1;
+            }
+
+            // Chance to be converted is proportional to the number of dead organization members.
+            var prob = total != 0
+                ? (float)dead / total
+                : 1;
+
             if (!_random.Prob(prob))
                 continue;
 
@@ -94,7 +78,7 @@ public sealed partial class ESSuperfanSystem : EntitySystem
                 _stagehandNotifications.SendStagehandNotification(msg);
             }
 
-            _secretIdentity.ChangeSecretIdentity((ent, mind), entry.PickSecretIdentities(_random, _proto).Single());
+            _secretIdentity.ChangeSecretIdentity((ent, mind), comp.TargetSecretIdentity.PickSecretIdentities(_random, _proto).Single());
         }
     }
 }

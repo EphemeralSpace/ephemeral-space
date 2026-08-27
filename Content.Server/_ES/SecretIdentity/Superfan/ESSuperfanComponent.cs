@@ -1,13 +1,19 @@
+using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Masquerades;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server._ES.SecretIdentity.Superfan;
 
 /// <summary>
-///     This is used for the syndie superfan and their conversion on traitor loss.
+/// Used for a secret identity that converts to a separate set of
+/// secret identities when one of their organization members are killed or converted.
 /// </summary>
-/// <remarks>
-///     Deliberately not generalized, as writing general code here is a bunch of extra tests and work that may never
-///     be used. I like it when my language can do the typechecking for me instead of needing to test for it.
-///
-///     If we ever need equivalents for like, nihlings, this should not be hard to rewrite.
-/// </remarks>
 [RegisterComponent]
-public sealed partial class ESSuperfanComponent : Component;
+public sealed partial class ESSuperfanComponent : Component
+{
+    [DataField(required: true)]
+    public ProtoId<ESOrganizationPrototype> TargetOrganization;
+
+    [DataField(required: true)]
+    public MasqueradeEntry TargetSecretIdentity;
+}

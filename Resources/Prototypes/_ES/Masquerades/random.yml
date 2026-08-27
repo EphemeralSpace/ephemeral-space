@@ -7,7 +7,6 @@
   gameRules: []
   masquerade:
     defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors gets random crew identities.
-    superfanTarget: "#AllTraitors"
     roles:
       1: [] # Greenshift.
       4: ["#AllTraitors"]
@@ -45,7 +44,6 @@
   gameRules: []
   masquerade:
     defaultSecretIdentity: "#AllCrew" # Everyone besides the traitors+parasites gets random crew identities.
-    superfanTarget: "#AllTraitors"
     roles:
       1: []
       4: ["#AllTraitors", "#AllParasites"]
