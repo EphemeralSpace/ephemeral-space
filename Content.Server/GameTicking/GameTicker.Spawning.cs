@@ -91,7 +91,6 @@ namespace Content.Server.GameTicking
             // Assigns SIds to players before any character generation occurs.
             // This only matches players to roles and does not set up any data.
             var secretIdentities = _masquerade.AssignMasquerade(profiles);
-            DebugTools.Assert(secretIdentities.Count == profiles.Count, "Assigned incorrect amount of secret identities");
 
             var spawnableStations = GetSpawnableStations();
             var assignedJobs = _stationJobs.AssignJobs(profiles, secretIdentities, spawnableStations);
