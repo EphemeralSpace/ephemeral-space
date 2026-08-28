@@ -1,6 +1,6 @@
 - type: entity
   parent: ESBaseClothingBack
-  id: ClothingBackFireightingPack
+  id: ClothingBackFirefightingPack
   name: firefighting pack
   description: A heavy tank with an attached nozzle for fighting fires. Never seems to run out, though the weight might be a problem.
   components:

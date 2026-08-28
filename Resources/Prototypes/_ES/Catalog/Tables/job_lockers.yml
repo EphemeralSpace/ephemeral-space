@@ -123,6 +123,18 @@
         - id: ClothingHeadsetSecurity
 
 - type: entityTable
+  id: LockerFillFirefighter
+  table:
+    all:
+    - id: ESClothingOuterSuitFire
+    - id: ESClothingHeadHelmetFire
+    - id: ClothingMaskGas
+    - id: ClothingBackFirefightingPack
+    - id: ClothingBeltUtilityEngineering
+    - id: MedkitBurnFilled
+    - id: FireExtinguisher
+
+- type: entityTable
   id: LockerFillRatman
   table:
     all:
