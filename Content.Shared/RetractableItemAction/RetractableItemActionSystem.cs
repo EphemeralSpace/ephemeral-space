@@ -26,6 +26,7 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<RetractableItemActionComponent, MapInitEvent>(OnActionInit);
+        SubscribeLocalEvent<RetractableItemActionComponent, ActionGotRemovedEvent>(OnActionGotRemoved);
         SubscribeLocalEvent<RetractableItemActionComponent, OnRetractableItemActionEvent>(OnRetractableItemAction);
 
         SubscribeLocalEvent<ActionRetractableItemComponent, ComponentShutdown>(OnActionSummonedShutdown);
@@ -37,6 +38,14 @@ public sealed partial class RetractableItemActionSystem : EntitySystem
         _containers.EnsureContainer<Container>(ent, RetractableItemActionComponent.ContainerId);
 
         PopulateActionItem(ent.Owner);
+    }
+
+    private void OnActionGotRemoved(Entity<RetractableItemActionComponent> ent, ref ActionGotRemovedEvent args)
+    {
+        Log.Debug("got event!");
+
+        if (ent.Comp.ActionItemUid is { } item && !TerminatingOrDeleted(item))
+            RetractRetractableItem(args.OldOwner, item, ent.AsNullable());
     }
 
     private void OnRetractableItemAction(Entity<RetractableItemActionComponent> ent, ref OnRetractableItemActionEvent args)

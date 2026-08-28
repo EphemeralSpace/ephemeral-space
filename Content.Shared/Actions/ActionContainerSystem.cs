@@ -381,3 +381,36 @@ public readonly struct ActionRemovedEvent
         Component = component;
     }
 }
+
+/// <summary>
+/// Raised directed at an action entity when it's added to a container.
+/// </summary>
+[ByRefEvent]
+public readonly struct ActionGotAddedEvent
+{
+    public readonly EntityUid Action;
+    public readonly EntityUid NewOwner;
+
+    public ActionGotAddedEvent(EntityUid action, EntityUid newOwner)
+    {
+        Action = action;
+        NewOwner = newOwner;
+    }
+}
+
+
+/// <summary>
+/// Raised directed at an action entity when it's removed from a container.
+/// </summary>
+[ByRefEvent]
+public readonly struct ActionGotRemovedEvent
+{
+    public readonly EntityUid Action;
+    public readonly EntityUid OldOwner;
+
+    public ActionGotRemovedEvent(EntityUid action, EntityUid oldOwner)
+    {
+        Action = action;
+        OldOwner = oldOwner;
+    }
+}
