@@ -25,9 +25,9 @@
 - type: entity
   parent: ClothingUniformBase
   id: ESClothingUniformJumpsuitFirefighter
-  name: firefighter jumpsuit
+  name: firefighter smock
   suffix: ES
-  description: A brown jumpsuit with a red flame emblazoned on the back. It's covered in an unwashable layer of soot.
+  description: A brown covering with a red flame emblazoned on the back. It's covered in an unwashable layer of soot.
   components:
   - type: Sprite
     sprite: _ES/Clothing/Uniforms/Jumpsuit/firefighter.rsi
