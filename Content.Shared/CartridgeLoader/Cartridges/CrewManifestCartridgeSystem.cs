@@ -3,7 +3,6 @@ using Content.Shared._ES.CrewManifest;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CCVar;
-using Content.Shared.CrewManifest;
 using Content.Shared.Station;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
