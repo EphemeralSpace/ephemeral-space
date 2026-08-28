@@ -264,6 +264,13 @@
     id: EngineeringIDCard
 
 - type: entity
+  parent: BasePDA
+  id: ESFirefighterPDA
+  components:
+  - type: Pda
+    id: ESFirefighterIDCard
+
+- type: entity
   parent: BaseMedicalPDA
   id: MedicalPDA
   name: PDA

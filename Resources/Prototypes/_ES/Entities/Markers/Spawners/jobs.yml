@@ -179,6 +179,20 @@
       - state: green
       - state: atmospherics
 
+- type: entity
+  id: ESSpawnPointFirefighter
+  parent: SpawnPointJobBase
+  name: firefighter
+  suffix: ES
+  components:
+  - type: SpawnPoint
+    job_id: ESFirefighter
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _ES/Markers/job.rsi
+      state: firefighter
+
 # Medical
 
 - type: entity
