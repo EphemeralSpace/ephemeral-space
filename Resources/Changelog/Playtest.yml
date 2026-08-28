@@ -2025,3 +2025,9 @@ Entries:
       message: Captain is no longer selected before other jobs.
   id: 217
   time: '2026-08-26T16:36:48.0000000+00:00'
+- author: Tomeno
+  changes:
+    - type: Tweak
+      message: Occlusion (ominous)
+  id: 218
+  time: '2026-08-28T17:03:55.0000000+00:00'
