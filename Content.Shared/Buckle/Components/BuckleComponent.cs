@@ -26,6 +26,7 @@ public sealed partial class BuckleComponent : Component
     /// True if the entity is buckled, false otherwise.
     /// </summary>
     [MemberNotNullWhen(true, nameof(BuckledTo))]
+    [MemberNotNullWhen(true, nameof(BuckleIndex))]
     public bool Buckled => BuckledTo != null;
 
     /// <summary>
@@ -58,6 +59,13 @@ public sealed partial class BuckleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? BuckledTo;
+
+    /// <summary>
+    /// The index this buckle has in the strap's list of buckled entities.
+    /// The first entity to be buckled would be 0, the second 1, and so on.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public int? BuckleIndex;
 
     /// <summary>
     /// Used for client rendering

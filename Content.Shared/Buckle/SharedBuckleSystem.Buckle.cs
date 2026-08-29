@@ -136,7 +136,11 @@ public abstract partial class SharedBuckleSystem
             return;
         }
 
-        var delta = (xform.LocalPosition - strapComp.BuckleOffset).LengthSquared();
+        var buckleOffset = Vector2.Zero;
+        if (buckle.Comp.BuckleIndex is { } index)
+            buckleOffset = strapComp.StrapPoints[index].BuckleOffset;
+
+        var delta = (xform.LocalPosition - buckleOffset).LengthSquared();
         if (delta > 1e-5)
             Unbuckle(buckle, (strapUid, strapComp), null);
     }
@@ -194,12 +198,14 @@ public abstract partial class SharedBuckleSystem
 
         if (strap is {} strapEnt && Resolve(strapEnt.Owner, ref strapEnt.Comp))
         {
+            buckle.Comp.BuckleIndex = strapEnt.Comp.BuckledEntities.Count;
             strapEnt.Comp.BuckledEntities.Add(buckle);
             Dirty(strapEnt);
             _alerts.ShowAlert(buckle.Owner, strapEnt.Comp.BuckledAlertType);
         }
         else
         {
+            buckle.Comp.BuckleIndex = null;
             _alerts.ClearAlertCategory(buckle.Owner, BuckledAlertCategory);
         }
 
@@ -351,6 +357,36 @@ public abstract partial class SharedBuckleSystem
         return true;
     }
 
+    /// <summary>
+    /// Finds the buckle offset of a buckle should have based on its index in the strap.
+    /// </summary>
+    public Vector2 GetBuckleOffset(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap)
+    {
+        var result = Vector2.Zero;
+        if (buckle.Comp.BuckleIndex is { } index)
+            result = strap.Comp.StrapPoints[index].BuckleOffset;
+        return result;
+    }
+
+    /// <summary>
+    /// Finds the strap position of a buckle should have based on its index in the strap.
+    /// </summary>
+    public StrapPosition GetStrapPosition(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap)
+    {
+        var result = StrapPosition.None;
+        if (buckle.Comp.BuckleIndex is { } index)
+            result = strap.Comp.StrapPoints[index].Position;
+        return result;
+    }
+
+    public Angle GetRotation(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap)
+    {
+        var result = Angle.Zero;
+        if (buckle.Comp.BuckleIndex is { } index)
+            result = strap.Comp.StrapPoints[index].Rotation;
+        return result;
+    }
+
     private void Buckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
         if (user == buckle.Owner)
@@ -364,15 +400,16 @@ public abstract partial class SharedBuckleSystem
         Appearance.SetData(strap, StrapVisuals.State, true);
         Appearance.SetData(buckle, BuckleVisuals.Buckled, true);
 
-        _rotationVisuals.SetHorizontalAngle(buckle.Owner, strap.Comp.Rotation);
+        _rotationVisuals.SetHorizontalAngle(buckle.Owner, GetRotation(buckle, strap));
 
         var xform = Transform(buckle);
-        var coords = new EntityCoordinates(strap, strap.Comp.BuckleOffset);
+
+        var coords = new EntityCoordinates(strap, GetBuckleOffset(buckle, strap));
         _transform.SetCoordinates(buckle, xform, coords, rotation: Angle.Zero);
 
         _joints.SetRelay(buckle, strap);
 
-        switch (strap.Comp.Position)
+        switch (GetStrapPosition(buckle, strap))
         {
             case StrapPosition.Stand:
                 _standing.Stand(buckle, force: true);
@@ -465,9 +502,9 @@ public abstract partial class SharedBuckleSystem
             _transform.SetWorldRotationNoLerp((buckle, buckleXform), oldBuckledToWorldRot);
 
             // TODO: This is doing 4 moveevents this is why I left the warning in, if you're going to remove it make it only do 1 moveevent.
-            if (strap.Comp.BuckleOffset != Vector2.Zero)
+            if (GetBuckleOffset(buckle, strap) != Vector2.Zero)
             {
-                _transform.SetCoordinates(buckle, buckleXform, oldBuckledXform.Coordinates.Offset(strap.Comp.BuckleOffset));
+                _transform.SetCoordinates(buckle, buckleXform, oldBuckledXform.Coordinates.Offset(GetBuckleOffset(buckle, strap)));
             }
         }
 

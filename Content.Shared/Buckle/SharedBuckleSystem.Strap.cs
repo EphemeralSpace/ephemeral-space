@@ -72,7 +72,7 @@ public abstract partial class SharedBuckleSystem
         if (!Resolve(strapUid, ref strapComp, false))
             return false;
 
-        return strapComp.Size < strapComp.BuckledEntities.Count;
+        return strapComp.BuckledEntities.Count < strapComp.StrapPoints.Count;
     }
 
     /// <summary>

@@ -23,8 +23,9 @@
     sprite: Structures/Furniture/chairs.rsi
     noRot: true
   - type: Strap
-    position: Stand
-    buckleOffset: "0,-0.05"
+    strapPoints:
+    - position: Stand
+      buckleOffset: "0,-0.05"
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic
@@ -170,6 +171,21 @@
   - type: Construction
     graph: Seat
     node: chairComfy
+
+- type: entity
+  name: two-seater
+  id: DoubleComfyCHair
+  parent: ComfyChair
+  description: The standard chair has been greatly improved by adding a second spot for your best friend to sit.
+  components:
+  - type: Sprite
+    state: double-comfy
+  - type: Strap
+    strapPoints:
+    - position: Stand
+      buckleOffset: "-0.3,-0.05"
+    - position: Stand
+      buckleOffset: "0.3,-0.05"
 
 - type: entity
   name: pilot seat
