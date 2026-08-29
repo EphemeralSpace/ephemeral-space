@@ -21,7 +21,7 @@ public sealed partial class ESBarnacleComponent : Component
 [RegisterComponent]
 public sealed partial class ESBarnacleMobComponent : Component
 {
-    public new Entity<ESBarnacleComponent, MindComponent> Owner;
+    public Entity<ESBarnacleComponent, MindComponent> BarnacleOwner;
 }
 
 [RegisterComponent]
