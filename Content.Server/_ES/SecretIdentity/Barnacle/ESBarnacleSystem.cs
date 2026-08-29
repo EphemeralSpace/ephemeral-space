@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using Content.Server._ES.SecretIdentity.Hemophage.Components;
 using Content.Server._ES.SecretIdentity.Parasite;
+using Content.Server.Pinpointer;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._ES.Breakable;
 using Content.Shared._ES.SecretIdentity.Barnacle;
@@ -25,6 +26,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
 
     public override void Initialize()
     {
@@ -136,7 +138,8 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
             if (comp.BarnacleOwner.Comp2.CurrentEntity is not { } owned)
                 return;
 
-            _popup.PopupEntity(Loc.GetString("barnacle-destroyed"), owned, owned, PopupType.MediumCaution);
+            var msg = Loc.GetString("barnacle-destroyed", ("location", _navMap.GetNearestBeaconString(uid)));
+            _popup.PopupEntity(msg, owned, owned, PopupType.MediumCaution);
         }
     }
 

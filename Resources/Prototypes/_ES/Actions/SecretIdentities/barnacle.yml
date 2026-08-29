@@ -6,11 +6,11 @@
   components:
   - type: Action
     icon:
-      sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
-      state: pickpocket
+      sprite: _ES/Structures/Specific/barnacle.rsi
+      state: barnacledead
     iconOn:
-      sprite: _ES/Actions/SecretIdentity/pickpocket.rsi
-      state: pickpocket-on
+      sprite: _ES/Structures/Specific/barnacle.rsi
+      state: barnacle
     useDelay: 1m
   - type: TargetAction
   - type: WorldTargetAction
