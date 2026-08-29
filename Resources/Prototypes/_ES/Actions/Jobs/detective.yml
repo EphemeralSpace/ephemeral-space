@@ -1,0 +1,16 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionJobHunch
+  name: Hunch
+  description: Choose someone who you are going to stalk.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/Job/hunch.rsi
+      state: icon
+    iconOn:
+      sprite: _ES/Actions/Job/hunch.rsi
+      state: icon-on
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ESHunchActionEvent
