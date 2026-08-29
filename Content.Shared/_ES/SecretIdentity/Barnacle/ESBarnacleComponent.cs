@@ -38,7 +38,7 @@ public sealed partial class ESBarnacleProjectileComponent : Component
     /// The entity who the projectile will stop when touching
     /// </summary>
     [DataField]
-    public EntityUid GoalVector;
+    public EntityUid GoalEntity;
 
     /// <summary>
     /// How close you can get to the entity before it counts as touching

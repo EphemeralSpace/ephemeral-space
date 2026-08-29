@@ -54,10 +54,16 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         var query = AllEntityQuery<ESBarnacleProjectileComponent, PhysicsComponent>();
         while (query.MoveNext(out var uid, out var projectile, out var physics))
         {
+            if (TerminatingOrDeleted(projectile.GoalEntity))
+            {
+                QueueDel(uid);
+                continue;
+            }
+
             var newVelocity = physics.LinearVelocity + Vector2.Normalize(physics.LinearVelocity) * projectile.AccelerationRate;
             _physics.SetLinearVelocity(uid, newVelocity);
 
-            if (_transform.GetWorldPosition(uid).EqualsApprox(_transform.GetWorldPosition(projectile.GoalVector), projectile.Tolerance) || _transform.GetGrid(uid) == null)
+            if (_transform.GetWorldPosition(uid).EqualsApprox(_transform.GetWorldPosition(projectile.GoalEntity), projectile.Tolerance) || _transform.GetGrid(uid) == null)
             {
                 SpawnNextToOrDrop(projectile.BarnacleDead, uid);
                 QueueDel(uid);
@@ -198,7 +204,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 
         var projectile = SpawnNextToOrDrop(comp.ProjectileId, uid);
         var projectileComp = EnsureComp<ESBarnacleProjectileComponent>(projectile);
-        projectileComp.GoalVector = owned;
+        projectileComp.GoalEntity = owned;
 
         _gun.ShootProjectile(projectile, direction, Vector2.Zero, uid, uid, 0.01f);
     }
