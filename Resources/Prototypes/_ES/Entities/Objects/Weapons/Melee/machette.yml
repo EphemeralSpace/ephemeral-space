@@ -1,0 +1,28 @@
+- type: entity
+  parent: BaseItem
+  id: WeaponMachette
+  name: machette
+  description: A tungsten-carbide machette built to cut through tough exteriors and keep its shape after hours of heavy-duty slicing. You have to put your weight behind each swing.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Melee/machette.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    attackRate: 0.8
+    damage:
+      types:
+        Slash: 18
+    soundHit:
+      collection: MetalThud
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Tag
+    tags:
+    - Machette
+
+

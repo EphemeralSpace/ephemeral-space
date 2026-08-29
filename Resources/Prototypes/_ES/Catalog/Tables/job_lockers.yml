@@ -166,7 +166,7 @@
   table:
     all:
     - id: WeaponMachette
-    - id: WeaponForceGun
+    - id: WeaponTetherGun
     - id: SanitationChip
       amount: 2
     - id: ClothingBeltJanitorFilled
