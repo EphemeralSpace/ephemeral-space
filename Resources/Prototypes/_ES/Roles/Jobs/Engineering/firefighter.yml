@@ -9,6 +9,10 @@
   - Engineering
   - Atmospherics
   - External
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: ESPyroeuphoric
 
 - type: startingGear
   id: ESFirefighterGear
