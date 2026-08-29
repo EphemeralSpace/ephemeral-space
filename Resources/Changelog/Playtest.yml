@@ -2031,3 +2031,11 @@ Entries:
       message: Occlusion (ominous)
   id: 218
   time: '2026-08-28T17:03:55.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: >-
+        Removed maintenance access. Maintenance doors are now unlocked and can
+        be opened by anyone.
+  id: 219
+  time: '2026-08-29T13:49:04.0000000+00:00'
