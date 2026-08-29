@@ -1,3 +1,3 @@
-﻿detective-hunch = You can tell the person that kill them had {$clue}
-detective-hunch-fail = They died of natural causes!
-detective-hunch-empty = You couldnt determine what they died of.
+﻿detective-hunch = I have a hunch {POSS-ADJ($target)} killer had {$clue}!
+detective-hunch-fail = I have a hunch {SUBJECT($target)} died of natural causes...
+detective-hunch-empty = I have a hunch {SUBJECT($target)} were killed!

@@ -1,11 +1,12 @@
-﻿using Content.Shared._ES.Auditions;
-using Content.Shared.Actions;
+﻿using Content.Shared.Actions;
 
-namespace Content.Shared._ES.Detective;
+namespace Content.Shared._ES.Detective.Components;
 
 [RegisterComponent]
+[Access(typeof(ESHunchSystem))]
 public sealed partial class ESHunchComponent : Component
 {
+    [DataField]
     public Dictionary<EntityUid, string> BodyClue = new ();
 }
 
