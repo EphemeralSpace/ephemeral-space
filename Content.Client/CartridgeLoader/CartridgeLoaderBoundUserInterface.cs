@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 namespace Content.Client.CartridgeLoader;
 
 
-public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
+public abstract partial class CartridgeLoaderBoundUserInterface : BoundUserInterface
 {
     [ViewVariables]
     private EntityUid? _activeProgram;
