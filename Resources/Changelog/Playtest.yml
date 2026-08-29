@@ -2059,3 +2059,9 @@ Entries:
       message: Crew manifest is now predicted
   id: 222
   time: '2026-08-29T19:11:07.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Adds the barnacle, a new worm mask that does things that are, barnacely
+  id: 223
+  time: '2026-08-29T19:19:15.0000000+00:00'
