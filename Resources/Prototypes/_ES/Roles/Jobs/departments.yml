@@ -41,6 +41,7 @@
   roles:
   - ESAtmosphericTechnician
   - ESStationEngineer
+  - ESFirefighter
 
 - type: department
   id: ESMedical
