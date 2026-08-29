@@ -51,10 +51,10 @@ public sealed partial class StrapComponent : Component
     public Angle Rotation;
 
     /// <summary>
-    /// The size of the strap which is compared against when buckling entities
+    /// The number of buckling entities this strap can hold at once.
     /// </summary>
     [DataField]
-    public int Size = 100;
+    public int Size = 1;
 
     /// <summary>
     /// If disabled, nothing can be buckled on this object, and it will unbuckle anything that's already buckled

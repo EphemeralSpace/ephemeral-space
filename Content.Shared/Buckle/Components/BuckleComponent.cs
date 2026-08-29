@@ -60,13 +60,6 @@ public sealed partial class BuckleComponent : Component
     public EntityUid? BuckledTo;
 
     /// <summary>
-    /// The amount of space that this entity occupies in a
-    /// <see cref="StrapComponent"/>.
-    /// </summary>
-    [DataField]
-    public int Size = 100;
-
-    /// <summary>
     /// Used for client rendering
     /// </summary>
     [ViewVariables] public int? OriginalDrawDepth;
