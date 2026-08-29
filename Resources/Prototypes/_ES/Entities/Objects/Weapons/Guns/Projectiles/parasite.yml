@@ -56,7 +56,7 @@
     rotation: 270
     noRot: false
     layers:
-    - state: projectile
+    - state: projectilebarnacle
   - type: ESSecretIdentityConversionProjectile
     secretIdentity: Barnacle
   - type: Projectile
@@ -74,7 +74,7 @@
   components:
   - type: Sprite
     sprite: _ES/Objects/Weapons/Projectiles/worm.rsi
-    state: dead
+    state: barnacledead
   - type: Item
     storedRotation: -90
   - type: Tag

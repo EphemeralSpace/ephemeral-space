@@ -1,0 +1,28 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by Flareguy",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "barnacle"
+    },
+    {
+      "name": "barnacledead"
+    },
+    {
+      "name": "barnacletile",
+      "delays": [
+        [
+          0.3,
+          0.3,
+          0.3,
+          0.3
+        ]
+      ]
+    }
+  ]
+}

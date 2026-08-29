@@ -60,9 +60,9 @@
   components:
   - type: Sprite
     drawdepth: OverMobs
-    sprite: _ES/Structures/Specific/worm.rsi
+    sprite: _ES/Structures/Specific/barnacle.rsi
     layers:
-    - state: nest
+    - state: barnacle
       map: [ "nest" ]
   - type: InteractionOutline
   - type: Physics
@@ -75,11 +75,11 @@
       enum.ESBreakableVisuals.Broken:
         nest:
           True:
-            sprite: _ES/Structures/Specific/worm.rsi
-            state: worm
+            sprite: _ES/Structures/Specific/barnacle.rsi
+            state: barnacledead
           False:
-            sprite: _ES/Structures/Specific/worm.rsi
-            state: nest
+            sprite: _ES/Structures/Specific/barnacle.rsi
+            state: barnacle
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -97,8 +97,8 @@
   - type: Sprite
     drawdepth: FloorTiles
     layers:
-    - sprite: _ES/Structures/Specific/worm.rsi
-      state: worm
+    - sprite: _ES/Structures/Specific/barnacle.rsi
+      state: barnacletile
   - type: InteractionOutline
   - type: Physics
     canCollide: true

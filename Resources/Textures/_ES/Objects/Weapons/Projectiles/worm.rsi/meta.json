@@ -11,6 +11,9 @@
             "name": "dead"
         },
         {
+          "name": "barnacledead"
+        },
+        {
             "name": "projectile",
             "delays": [
                 [
@@ -22,6 +25,17 @@
                     0.03
                 ]
             ]
-        }
+        },
+        {
+            "name": "projectilebarnacle",
+            "delays": [
+              [
+                    0.04,
+                    0.04,
+                    0.04,
+                    0.04
+            ]
+          ]
+      }
     ]
 }
