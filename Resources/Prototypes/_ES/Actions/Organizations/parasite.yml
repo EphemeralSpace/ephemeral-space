@@ -1,0 +1,14 @@
+- type: entity
+  parent: BaseMentalAction
+  id: ESActionParasiteWormTalk
+  name: "[color=yellowgreen]Parasite Hivemind[/color]"
+  description: Send a message to other parasites through the psychic wormlink.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/SecretIdentity/parasite.rsi
+      state: icon
+    clientExclusive: true
+  - type: InstantAction
+    event: !type:ESChatFocusChannelActionEvent
+      channel: ParasiteHivemind
