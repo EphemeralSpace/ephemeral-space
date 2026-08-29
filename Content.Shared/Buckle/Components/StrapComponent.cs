@@ -36,7 +36,7 @@ public sealed partial class StrapComponent : Component
     /// A list of different points an entity can be buckled to.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public List<StrapPoint> StrapPoints = [new StrapPoint()];
+    public List<StrapPoint> StrapPoints = new() { new StrapPoint() };
 
     /// <summary>
     /// If disabled, nothing can be buckled on this object, and it will unbuckle anything that's already buckled
