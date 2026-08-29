@@ -6,7 +6,6 @@
   playTimeTracker: ESJobSecurityOfficer
   startingGear: ESSecurityOfficerGear
   icon: "JobIconSecurityOfficer"
-  canBeAntag: false
   access:
   - Security
   - Brig

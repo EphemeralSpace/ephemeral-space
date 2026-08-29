@@ -6,7 +6,6 @@
   playTimeTracker: ESJobDetective
   startingGear: ESDetectiveGear
   icon: "JobIconDetective"
-  canBeAntag: false
   access:
   - Security
   - Brig
