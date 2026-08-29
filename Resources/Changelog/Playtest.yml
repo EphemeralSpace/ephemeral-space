@@ -2065,3 +2065,9 @@ Entries:
       message: Adds the barnacle, a new worm mask that does things that are, barnacely
   id: 223
   time: '2026-08-29T19:19:15.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Detective can now examine dead bodies to get clues about their killers.
+  id: 224
+  time: '2026-08-29T21:58:25.0000000+00:00'
