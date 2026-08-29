@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: BaseAction
   id: ActionSecretIdentityBarnacle
-  name: "[color=orange]Plant Barnacle[/color]"
+  name: "[color=salmon]Plant Barnacle[/color]"
   description: Slowly plant a barnacle onto the ground. When you die, it'll shoot out a burrower that infects people.
   components:
   - type: Action

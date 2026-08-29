@@ -6,20 +6,24 @@ using Content.Server.Pinpointer;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._ES.Breakable;
 using Content.Shared._ES.SecretIdentity.Barnacle;
+using Content.Shared.Alert;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server._ES.SecretIdentity.Barnacle;
 
 public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleComponent>
 {
     [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
@@ -36,6 +40,9 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 
         SubscribeLocalEvent<ESBarnacleActionEvent>(OnBarnacleAction);
         SubscribeLocalEvent<ESBarnacleDoAfterEvent>(OnBarnacleDoAfter);
+        SubscribeLocalEvent<ESBarnacleComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<ESBarnacleComponent, MindGotAddedEvent>(OnGotAdded);
+        SubscribeLocalEvent<ESBarnacleComponent, MindGotRemovedEvent>(OnGotRemoved);
         SubscribeLocalEvent<ESBarnacleMobComponent, ESBrokenStateChanged>(OnBarnacleDestroyed);
         SubscribeLocalEvent<ESBarnacleMobComponent, ESBarnacleDiedEvent>(OnBarnacleDied);
     }
@@ -83,6 +90,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         comp.BarnacleOwner = ev.Performer.Owner;
 
         ev.Performer.Comp2.Barnacles.Add(mob);
+        UpdateAlert((ev.Performer, ev.Performer.Comp2, ev.Performer.Comp1));
 
         _actions.StartUseDelay(ev.Action);
         ev.Handled = true;
@@ -141,6 +149,21 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         }
     }
 
+    private void OnStartup(Entity<ESBarnacleComponent> ent, ref ComponentStartup args)
+    {
+        UpdateAlert((ent, ent, null));
+    }
+
+    private void OnGotAdded(Entity<ESBarnacleComponent> ent, ref MindGotAddedEvent args)
+    {
+        UpdateAlert((ent, ent, null));
+    }
+
+    private void OnGotRemoved(Entity<ESBarnacleComponent> ent, ref MindGotRemovedEvent args)
+    {
+        _alerts.ClearAlert(args.Container.Owner, ent.Comp.BarnacleAlert);
+    }
+
     private void OnBarnacleDestroyed(EntityUid uid, ESBarnacleMobComponent comp, ESBrokenStateChanged ev)
     {
         if (!ev.Broken)
@@ -155,8 +178,9 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         if (mind.CurrentEntity is not { } owned)
             return;
 
-        var msg = Loc.GetString("barnacle-destroyed", ("location", _navMap.GetNearestBeaconString(uid)));
+        var msg = Loc.GetString("barnacle-destroyed", ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(uid))));
         _popup.PopupEntity(msg, owned, owned, PopupType.MediumCaution);
+        UpdateAlert((comp.BarnacleOwner, barnacle, mind));
     }
 
     private void OnBarnacleDied(EntityUid uid, ESBarnacleMobComponent comp , ESBarnacleDiedEvent ev)
@@ -177,5 +201,17 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         projectileComp.GoalVector = owned;
 
         _gun.ShootProjectile(projectile, direction, Vector2.Zero, uid, uid, 0.01f);
+    }
+
+    private void UpdateAlert(Entity<ESBarnacleComponent?, MindComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2))
+            return;
+
+        if (ent.Comp2.CurrentEntity is not { } owned)
+            return;
+
+        var severity = _alerts.ClampSeverity(ent.Comp1.BarnacleAlert, (short) ent.Comp1.Barnacles.Count);
+        _alerts.ShowAlert(owned, ent.Comp1.BarnacleAlert, severity);
     }
 }

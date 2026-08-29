@@ -41,7 +41,7 @@
   id: Barnacle
   name: es-secret-identity-barnacle-name
   description: es-secret-identity-barnacle-desc
-  color: orange
+  color: salmon
   actions:
     all:
     - id: ESActionParasiteWormTalk # needed from ESBaseParasite

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Actions;
+using Content.Shared.Alert;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind;
 using Robust.Shared.Map;
@@ -10,6 +11,9 @@ namespace Content.Shared._ES.SecretIdentity.Barnacle;
 [RegisterComponent]
 public sealed partial class ESBarnacleComponent : Component
 {
+    [DataField]
+    public ProtoId<AlertPrototype> BarnacleAlert = "ESBarnacleCounter";
+
     [DataField]
     public List<EntityUid> Barnacles = new ();
 
