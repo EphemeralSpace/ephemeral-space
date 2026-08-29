@@ -1,16 +1,17 @@
 ﻿<Document>
   <ESGuideSecretIdentityEmbed SecretIdentity="Barnacle"/>
 
-  The Leapleech is a member of the parasites focused on placing barnacles to send out flying burrowers when they die
-  When they are killed, burrowers will come out of the barnacles will fly towards the body and keep going till they reach the body or space
+  The Barnacle is a member of the parasites focused on planting hidden barnacles in secret places.
+  When they're killed, burrowers will burst out of all unbroken barnacles and begin flying towards the body in a straight line, gaining speed over time.
+  If someone is in the path of the burrower, they will be turned into a Barnacle.
 
   <Box>
     <GuideEntityEmbed Entity="ESBarnacle"/>
     <GuideEntityEmbed Entity="ESProjectileBarnacle"/>
   </Box>
 
-  These barnacles are sturdy, but can be destroyed if people manage to find them.
-  Burrowers leave a small infection trail behind them that will convert anyone who steps on them
+  However, the individual barnacles are fairly weak and can be destroyed if found.
+  Try to hide them behind secret walls and other barriers so that unsuspecting maints prowlers don't come upon them.
 
   <ESGuideTipsEmbed SecretIdentity="Barnacle"/>
 </Document>
