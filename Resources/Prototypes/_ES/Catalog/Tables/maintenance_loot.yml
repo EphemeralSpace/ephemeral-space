@@ -101,7 +101,6 @@
     - id: ClothingHeadsetGrey
     - group:
       - id: ClothingBackpack
-      - id: ClothingBackpackSatchel
       - id: ClothingBackpackDuffel
     - id: CableApcStack
     - id: CableMVStack
@@ -202,7 +201,6 @@
     - id: ClothingBeltUtility
       weight: 2
     - id: ESClothingHeadHelmetSecurity
-    - id: ClothingBackpackSatchelSmugglerUnanchored
 
     - id: DefaultStationBeaconUnanchored
     - tableId: ESSoap
