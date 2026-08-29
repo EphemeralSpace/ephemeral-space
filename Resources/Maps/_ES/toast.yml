@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 08/22/2026 23:52:47
-  entityCount: 14803
+  time: 08/29/2026 03:08:01
+  entityCount: 14800
 maps:
 - 3
 grids:
@@ -26501,26 +26501,11 @@ entities:
       pos: -48.5,30.5
 - proto: CableMVStack1
   entities:
-  - uid: 319
-    components:
-    - type: Transform
-      parent: 2
-      pos: -13.5,-12.5
-  - uid: 343
-    components:
-    - type: Transform
-      parent: 2
-      pos: -15.5,-12.5
   - uid: 4151
     components:
     - type: Transform
       parent: 2
       pos: -17.5,-11.5
-  - uid: 4226
-    components:
-    - type: Transform
-      parent: 2
-      pos: -12.5,-11.5
 - proto: CableTerminal
   entities:
   - uid: 388
@@ -32710,6 +32695,13 @@ entities:
     - type: Transform
       parent: 2
       pos: -59.5,-30.5
+- proto: CryogasCanister
+  entities:
+  - uid: 3800
+    components:
+    - type: Transform
+      parent: 2
+      pos: -52.5,-9.5
 - proto: CryoPod
   entities:
   - uid: 1267
@@ -37418,11 +37410,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -35.5,-12.5
-  - uid: 3797
-    components:
-    - type: Transform
-      parent: 2
-      pos: -37.5,-12.5
 - proto: ESLockerCoronerFilled
   entities:
   - uid: 1379
@@ -44656,11 +44643,6 @@ entities:
       pos: -18.5,-34.5
 - proto: ESSpawnPointAtmos
   entities:
-  - uid: 195
-    components:
-    - type: Transform
-      parent: 2
-      pos: -36.5,-13.5
   - uid: 4935
     components:
     - type: Transform
@@ -44715,6 +44697,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 5.5,-19.5
+- proto: ESSpawnPointFirefighter
+  entities:
+  - uid: 3797
+    components:
+    - type: Transform
+      parent: 2
+      pos: -36.5,-13.5
 - proto: ESSpawnPointJanitor
   entities:
   - uid: 6815
@@ -45207,11 +45196,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -35.5,-13.5
-  - uid: 856
-    components:
-    - type: Transform
-      parent: 2
-      pos: -37.5,-13.5
   - uid: 1482
     components:
     - type: Transform
@@ -46349,6 +46333,13 @@ entities:
       - 2840
     - type: Fixtures
       fixtures: {}
+- proto: FireExtinguisher
+  entities:
+  - uid: 319
+    components:
+    - type: Transform
+      parent: 2
+      pos: -37.5,-14.5
 - proto: Firelock
   entities:
   - uid: 740
@@ -46868,6 +46859,11 @@ entities:
     - type: Transform
       parent: 2
       pos: -6.5,0.5
+    - type: Door
+      state: Closing
+      secondsUntilStateChange: -353.56494
+    - type: Physics
+      canCollide: True
     - type: DeviceNetwork
       deviceLists:
       - 4919
@@ -65198,6 +65194,13 @@ entities:
     - type: Transform
       parent: 2
       pos: 7.5,-15.5
+- proto: LockerFirefighterFilled
+  entities:
+  - uid: 856
+    components:
+    - type: Transform
+      parent: 2
+      pos: -37.5,-12.5
 - proto: LockerFreezer
   entities:
   - uid: 210
@@ -68114,6 +68117,11 @@ entities:
       pos: 6.5,-20.5
 - proto: Rack
   entities:
+  - uid: 195
+    components:
+    - type: Transform
+      parent: 2
+      pos: -37.5,-14.5
   - uid: 297
     components:
     - type: Transform
@@ -68226,11 +68234,6 @@ entities:
     - type: Transform
       parent: 2
       pos: 7.5,-44.5
-  - uid: 3800
-    components:
-    - type: Transform
-      parent: 2
-      pos: -37.5,-14.5
   - uid: 3847
     components:
     - type: Transform
@@ -68713,13 +68716,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -47.5,-24.5
-- proto: RCD
-  entities:
-  - uid: 3866
-    components:
-    - type: Transform
-      parent: 2
-      pos: -37.5,-14.5
 - proto: ReagentContainerFlour
   entities:
   - uid: 3712
@@ -73417,11 +73413,6 @@ entities:
       pos: -15.5,6.5
 - proto: StorageCanister
   entities:
-  - uid: 4173
-    components:
-    - type: Transform
-      parent: 2
-      pos: -52.5,-9.5
   - uid: 4174
     components:
     - type: Transform
@@ -87483,6 +87474,11 @@ entities:
       pos: 12.5,-47.5
 - proto: WaterTankHighCapacity
   entities:
+  - uid: 343
+    components:
+    - type: Transform
+      parent: 2
+      pos: -37.5,-13.5
   - uid: 6972
     components:
     - type: Transform
