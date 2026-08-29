@@ -37,8 +37,6 @@ id-card-access-level-theatre = Theatre
 id-card-access-level-chapel = Chapel
 id-card-access-level-lawyer = Lawyer
 
-id-card-access-level-maintenance = Maintenance
-
 id-card-access-level-external = External
 
 id-card-access-level-nuclear-operative = Nuclear Operative

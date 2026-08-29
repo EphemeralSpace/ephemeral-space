@@ -9,7 +9,6 @@
   access:
   - Security
   - Brig
-  - Maintenance
   - External
 
 - type: startingGear

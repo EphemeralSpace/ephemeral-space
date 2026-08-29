@@ -7,7 +7,6 @@
   startingGear: ESStationEngineerGear
   icon: "JobIconStationEngineer"
   access:
-  - Maintenance
   - Engineering
   - External
   - Atmospherics
