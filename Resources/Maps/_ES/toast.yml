@@ -46859,11 +46859,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -6.5,0.5
-    - type: Door
-      state: Closing
-      secondsUntilStateChange: -353.56494
-    - type: Physics
-      canCollide: True
     - type: DeviceNetwork
       deviceLists:
       - 4919
