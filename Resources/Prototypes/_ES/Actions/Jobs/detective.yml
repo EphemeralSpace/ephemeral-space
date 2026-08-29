@@ -1,0 +1,16 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionJobHunch
+  name: "[color=lightblue]Hunch[/color]"
+  description: Use your sleuthing skills to discover a clue about a dead body's killer.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Actions/Job/hunch.rsi
+      state: icon
+    iconOn:
+      sprite: _ES/Actions/Job/hunch.rsi
+      state: icon-on
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:ESHunchActionEvent
