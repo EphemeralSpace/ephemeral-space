@@ -85,7 +85,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 
         var BarnacleMob = SpawnAtPosition("ESBarnacle", ev.TargetCoord.SnapToGrid(EntityManager));
         var Comp = EnsureComp<ESBarnacleMobComponent>(BarnacleMob);
-        Comp.Owner = (ev.Preformer.Owner, ev.Preformer.Comp2, ev.Preformer.Comp1);
+        Comp.BarnacleOwner = (ev.Preformer.Owner, ev.Preformer.Comp2, ev.Preformer.Comp1);
 
         ev.Preformer.Comp2.Barnacles.Add(BarnacleMob);
 
@@ -131,9 +131,9 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
     {
         if (ev.Broken)
         {
-            comp.Owner.Comp1.Barnacles.Remove(uid);
+            comp.BarnacleOwner.Comp1.Barnacles.Remove(uid);
 
-            if (comp.Owner.Comp2.CurrentEntity is not { } owned)
+            if (comp.BarnacleOwner.Comp2.CurrentEntity is not { } owned)
                 return;
 
             _popup.PopupEntity(Loc.GetString("barnacle-destroyed"), owned, owned, PopupType.MediumCaution);
@@ -142,7 +142,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 
     private void OnBarnacleDied(EntityUid uid, ESBarnacleMobComponent comp , ESBarnacleDiedEvent ev)
     {
-        if (comp.Owner.Comp2.CurrentEntity is not { } owned)
+        if (comp.BarnacleOwner.Comp2.CurrentEntity is not { } owned)
             return;
 
         if (_transform.GetGrid(uid) != _transform.GetGrid(owned)) // Makes sure barnacle and killed are on same grid
