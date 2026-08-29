@@ -174,7 +174,7 @@
 
 - type: entity
   name: two-seater
-  id: DoubleComfyCHair
+  id: DoubleComfyChair
   parent: ComfyChair
   description: The standard chair has been greatly improved by adding a second spot for your best friend to sit.
   components:
