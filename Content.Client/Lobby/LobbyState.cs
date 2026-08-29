@@ -79,9 +79,6 @@ namespace Content.Client.Lobby
             _contentAudioSystem.LobbySoundtrackChanged += UpdateLobbySoundtrackInfo;
 
             chatController.SetMainChat(true);
-            // ES START
-            Lobby.Chat.SafelySelectChannel(ChatSelectChannel.OOC);
-            // ES END
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
 
             _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);

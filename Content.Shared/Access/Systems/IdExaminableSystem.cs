@@ -20,7 +20,6 @@ public sealed partial class IdExaminableSystem : EntitySystem
 
     private void OnGetExamineVerbs(EntityUid uid, IdExaminableComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);
         var info = GetMessage(uid);
 
         var verb = new ExamineVerb
@@ -33,8 +32,7 @@ public sealed partial class IdExaminableSystem : EntitySystem
             },
             Text = Loc.GetString("id-examinable-component-verb-text"),
             Category = VerbCategory.Examine,
-            Disabled = !detailsRange,
-            Message = detailsRange ? null : Loc.GetString("id-examinable-component-verb-disabled"),
+            Message = Loc.GetString("id-examinable-component-verb-disabled"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/character.svg.192dpi.png"))
         };
 

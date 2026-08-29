@@ -69,7 +69,7 @@ namespace Content.Server.GameTicking
                     var firstConnection = record != null &&
                                           Math.Abs((record.FirstSeenTime - record.LastSeenTime).TotalMinutes) < 1;
 
-                    _chatManager.SendAdminAnnouncement(firstConnection
+                    _chatManager.SendAdminMessage(firstConnection
                         ? Loc.GetString("player-first-join-message", ("name", args.Session.Name))
                         : Loc.GetString("player-join-message", ("name", args.Session.Name)));
 
@@ -137,7 +137,7 @@ namespace Content.Server.GameTicking
 
                 case SessionStatus.Disconnected:
                 {
-                    _chatManager.SendAdminAnnouncement(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
+                    _chatManager.SendAdminMessage(Loc.GetString("player-leave-message", ("name", args.Session.Name)));
                     if (mindId != null)
                     {
                         _pvsOverride.RemoveSessionOverride(mindId.Value, session);
@@ -210,7 +210,7 @@ namespace Content.Server.GameTicking
         public void PlayerJoinGame(ICommonSession session, bool silent = false)
         {
             if (!silent)
-                _chatManager.DispatchServerMessage(session, Loc.GetString("game-ticker-player-join-game-message"));
+                _chatManager.SendServerMessage(Loc.GetString("game-ticker-player-join-game-message"), session);
 // ES START
             _joinedPlayers.Add(session.UserId);
 // ES SEND
@@ -222,7 +222,7 @@ namespace Content.Server.GameTicking
                 if (_allPreviousGameRules.Count > 0)
                 {
                     var rulesMessage = GetGameRulesListMessage(true);
-                    _chatManager.SendAdminAnnouncementMessage(session, Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)));
+                    _chatManager.SendAdminMessage(Loc.GetString("starting-rule-selected-preset", ("preset", rulesMessage)), session);
                 }
             }
 

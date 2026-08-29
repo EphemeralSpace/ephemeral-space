@@ -14,7 +14,6 @@ namespace Content.Server.Weapons.Melee;
 
 public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
-    [Dependency] private ChatSystem _chat = default!;
     [Dependency] private LagCompensationSystem _lag = default!;
     [Dependency] private SharedColorFlashEffectSystem _color = default!;
 

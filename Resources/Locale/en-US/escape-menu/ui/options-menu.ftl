@@ -380,6 +380,7 @@ ui-options-main-font = Main font
 ui-options-title-font = Title font
 ui-options-machine-title-font = Machine title font
 ui-options-monospace-font = Monospace font
+ui-options-chat-font = Chat bubble font
 
 ui-options-font-selector-default = <default>
 ui-options-font-selector-preview-text = Preview Text

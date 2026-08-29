@@ -2,7 +2,7 @@
     <ESGuideSecretIdentityEmbed SecretIdentity="Hater"/>
 
     Haters function as the evil version of the [textlink="Secretary" link="Secretary"], being assigned to a random person to ensure that they do not complete all of their objectives.
-    Like the Secretary, they only target masks which have personal objectives.
+    Like the Secretary, they only target secret identities which have personal objectives.
 
     <Box>
         <ESGuideObjectiveEmbed Objective="ESObjectiveHaterHate"/>

@@ -1,0 +1,13 @@
+<mapping:ESMappingControls xmlns="https://spacestation14.io"
+                           xmlns:mapping="clr-namespace:Content.Client._ES.Mapping"
+                           HorizontalAlignment="Center">
+    <VFillStack>
+        <HStack Margin="3">
+            <RadioController Name="SelectionState" Group="{EButtonGroup False}" FromRelatives="True" />
+
+            <IconButton Name="MoveButton" StyleClasses="OpenBoth" Icon="{Icon 'mouse-pointer'}" />
+            <IconButton Name="SelectButton" StyleClasses="OpenBoth" Icon="{Icon 'square-dashed'}" />
+        </HStack>
+    </VFillStack>
+
+</mapping:ESMappingControls>

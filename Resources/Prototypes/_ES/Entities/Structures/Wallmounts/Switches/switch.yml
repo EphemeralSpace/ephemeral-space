@@ -13,7 +13,7 @@
     color: "#fc9928"
     castShadows: false
     netsync: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     falloff: 20
     curveFactor: 1.0
     autoRot: true

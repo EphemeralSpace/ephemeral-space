@@ -6,6 +6,7 @@
 [audio]
 attenuation = 4 # inversedistanceclamped 1 << 2, see audioparams.cs
 z_offset = -2
+doppler_factor = 0
 lobby_music_collection = "ESLobbyMusic"
 
 [ambience]
@@ -23,9 +24,6 @@ crawling = false
 mob_pushing = true
 penetration_cap = 0.35
 push_mass_cap = 1.2
-
-[looc]
-enabled = false
 
 # LINDAfy
 [atmos]

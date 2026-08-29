@@ -1,17 +1,14 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.Animals.Components;
 using Content.Server.Mind;
-using Content.Server.Popups;
-using Content.Server.Radio;
 using Content.Server.Vocalization.Systems;
+using Content.Shared._ES.Chat;
 using Content.Shared.Animals.Components;
 using Content.Shared.Animals.Systems;
 using Content.Shared.Database;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Speech;
-using Content.Shared.Speech.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
@@ -43,10 +40,9 @@ public sealed partial class ParrotMemorySystem : SharedParrotMemorySystem
         // ES START
         // removed mapinit event (useless)
         // + event for regular radio relay
-        SubscribeLocalEvent<ParrotListenerComponent, RadioReceiveEvent>(OnRadioReceive);
+        SubscribeLocalEvent<ParrotListenerComponent, ESChatMessageReceivedEvent>(OnRadioReceive);
         // ES END
         SubscribeLocalEvent<ParrotListenerComponent, ListenEvent>(OnListen);
-        SubscribeLocalEvent<ParrotListenerComponent, HeadsetRadioReceiveRelayEvent>(OnHeadsetReceive);
 
         SubscribeLocalEvent<ParrotMemoryComponent, TryVocalizeEvent>(OnTryVocalize);
     }
@@ -62,18 +58,10 @@ public sealed partial class ParrotMemorySystem : SharedParrotMemorySystem
         TryLearn(entity.Owner, args.Message, args.Source);
     }
 
-    private void OnHeadsetReceive(Entity<ParrotListenerComponent> entity, ref HeadsetRadioReceiveRelayEvent args)
-    {
-        var message = args.RelayedEvent.Message;
-        var source = args.RelayedEvent.MessageSource;
-
-        TryLearn(entity.Owner, message, source);
-    }
-
     // ES START
-    private void OnRadioReceive(Entity<ParrotListenerComponent> ent, ref RadioReceiveEvent args)
+    private void OnRadioReceive(Entity<ParrotListenerComponent> ent, ref ESChatMessageReceivedEvent args)
     {
-        TryLearn((ent.Owner, null, ent.Comp), args.Message, args.MessageSource);
+        TryLearn((ent.Owner, null, ent.Comp), args.Content, args.Source);
     }
     // ES END
 

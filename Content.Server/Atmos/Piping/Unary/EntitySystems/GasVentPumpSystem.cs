@@ -342,12 +342,10 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         {
             if (!TryComp<GasVentPumpComponent>(uid, out var pumpComponent))
                 return;
-            if (args.IsInDetailsRange)
+
+            if (pumpComponent.PumpDirection == VentPumpDirection.Releasing & pumpComponent.UnderPressureLockout & !pumpComponent.PressureLockoutOverride & !pumpComponent.IsPressureLockoutManuallyDisabled)
             {
-                if (pumpComponent.PumpDirection == VentPumpDirection.Releasing & pumpComponent.UnderPressureLockout & !pumpComponent.PressureLockoutOverride & !pumpComponent.IsPressureLockoutManuallyDisabled)
-                {
-                    args.PushMarkup(Loc.GetString("gas-vent-pump-uvlo"));
-                }
+                args.PushMarkup(Loc.GetString("gas-vent-pump-uvlo"));
             }
         }
 

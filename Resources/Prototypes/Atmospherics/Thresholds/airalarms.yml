@@ -72,7 +72,7 @@
 
 # this is a hack, but 150% means never danger on water, but warn at 75%
 - type: alarmThreshold
-  id: stationWaterVapor
+  id: stationSteam
   upperBound: !type:AlarmThresholdSetting
     threshold: 1.5
   upperWarnAround: !type:AlarmThresholdSetting

@@ -45,7 +45,6 @@
 - type: latheRecipePack
   id: ESElectronicsStatic
   recipes:
-  - IntercomElectronics
   - FirelockElectronics
   - DoorElectronics
   - AirAlarmElectronics
@@ -98,7 +97,6 @@
   id: ESSecurityEquipmentStatic
   recipes:
   - Handcuffs
-  - Flash
 
 # Service
 - type: latheRecipePack

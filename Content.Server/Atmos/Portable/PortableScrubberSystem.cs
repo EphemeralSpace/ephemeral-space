@@ -112,11 +112,8 @@ namespace Content.Server.Atmos.Portable
         /// </summary>
         private void OnExamined(EntityUid uid, PortableScrubberComponent component, ExaminedEvent args)
         {
-            if (args.IsInDetailsRange)
-            {
-                var percentage = Math.Round(((component.Air.Pressure) / component.MaxPressure) * 100);
-                args.PushMarkup(Loc.GetString("portable-scrubber-fill-level", ("percent", percentage)));
-            }
+            var percentage = Math.Round(((component.Air.Pressure) / component.MaxPressure) * 100);
+            args.PushMarkup(Loc.GetString("portable-scrubber-fill-level", ("percent", percentage)));
         }
 
         /// <summary>

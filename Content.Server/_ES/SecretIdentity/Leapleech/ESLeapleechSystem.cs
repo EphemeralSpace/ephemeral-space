@@ -1,4 +1,5 @@
 ﻿using Content.Server._ES.SecretIdentity.Leapleech.Components;
+using Content.Server._ES.SecretIdentity.Objectives.Components;
 using Content.Server._ES.SecretIdentity.Objectives.Relays;
 using Content.Server._ES.SecretIdentity.Objectives.Relays.Components;
 using Content.Server._ES.SecretIdentity.Parasite;
@@ -26,6 +27,7 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
     [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private ThrowingSystem _throwingSystem = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
 
     public override void Initialize()
     {
@@ -90,6 +92,13 @@ public sealed partial class ESLeapleechSystem : ESBaseParasiteSystem<ESLeapleech
 
         var level = Math.Clamp(ent.Comp.LeechCount, 0, _alerts.GetMaxSeverity(ent.Comp.Alert));
         _alerts.ShowAlert(args.Body, ent.Comp.Alert, (short) level);
+
+        // rewrite obj description so stagehands can see it
+        // (and also so its in char menu)
+        foreach (var obj in Objectives.GetObjectives<ESBeKilledObjectiveComponent>(ent.Owner))
+        {
+            _metadata.SetEntityDescription(obj, Loc.GetString("es-parasite-objective-die-leapleech-desc", ("leeches", level)));
+        }
     }
 
     protected override void OnValidParasiteKill(Entity<ESLeapleechComponent> ent,

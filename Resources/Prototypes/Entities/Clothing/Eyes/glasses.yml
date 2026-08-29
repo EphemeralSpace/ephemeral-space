@@ -76,7 +76,6 @@
     sprite: Clothing/Eyes/Glasses/sunglasses.rsi
   - type: IdentityBlocker
     coverage: EYES
-  - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
   - type: Tag
@@ -95,7 +94,6 @@
     sprite: Clothing/Eyes/Glasses/secglasses.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/secglasses.rsi
-  - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
   - type: Construction

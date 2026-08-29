@@ -95,6 +95,12 @@ internal sealed partial class FontSelectionManager : IFontSelectionManager, IPos
             FontCVars.MonospaceFamilyName,
             FontCVars.MonospaceScale);
 
+        InitializeFont(
+            StandardFontType.Chat,
+            DefaultFontChat,
+            FontCVars.ChatFamilyName,
+            FontCVars.ChatScale);
+
         return;
 
         void InitializeFont(

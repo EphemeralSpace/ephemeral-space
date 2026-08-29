@@ -56,4 +56,11 @@ public sealed partial class AbsorbentComponent : Component
     /// </summary>
     [DataField]
     public bool UseAbsorberSolution = true;
+
+    /// <summary>
+    /// How much reagent is actually absorbed vs being deleted. 1 = perfect efficiency, no loss of reagent.
+    /// A 'less efficient' absorber is actually more ideal for janitors, since it doesn't fill up as fast.
+    /// </summary>
+    [DataField]
+    public float Efficiency = 0.25f;
 }

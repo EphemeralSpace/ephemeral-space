@@ -13,7 +13,6 @@ public sealed partial class AccessibilityTab : Control
     {
         RobustXamlLoader.Load(this);
 
-        Control.AddOptionCheckBox(CCVars.ChatEnableColorName, EnableColorNameCheckBox);
         Control.AddOptionCheckBox(CCVars.AccessibilityColorblindFriendly, ColorblindFriendlyCheckBox);
         Control.AddOptionCheckBox(CCVars.ReducedMotion, ReducedMotionCheckBox);
         Control.AddOptionPercentSlider(CCVars.ScreenShakeIntensity, ScreenShakeIntensitySlider);
@@ -35,6 +34,8 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionFontFamilyName(FontCVars.MachineTitleFamilyName, MachineTitleFontSelector);
         Control.AddOptionFontScale(FontCVars.MonospaceScale, MonospaceFontSelector);
         Control.AddOptionFontFamilyName(FontCVars.MonospaceFamilyName, MonospaceFontSelector);
+        Control.AddOptionFontScale(FontCVars.ChatScale, ChatFontSelector);
+        Control.AddOptionFontFamilyName(FontCVars.ChatFamilyName, ChatFontSelector);
 
         Control.Initialize();
     }

@@ -37,8 +37,6 @@
     - id: ESWeaponBlackjack
     - id: Handcuffs
       amount: 2
-    - id: HoloprojectorSecurity
-    - id: RadioHandheldSecurity
 
 - type: entity
   id: ClothingBeltSecurityFilled

@@ -182,8 +182,7 @@ public sealed partial class ParticleAcceleratorSystem
                 var pos = Transform(uid);
                 if (_gameTiming.CurTime > comp.EffectCooldown)
                 {
-                    _chat.SendAdminAlert(player,
-                        Loc.GetString("particle-accelerator-admin-power-strength-warning",
+                    _chat.SendAdminMessage(Loc.GetString("particle-accelerator-admin-power-strength-warning",
                         ("machine", ToPrettyString(uid)),
                         ("powerState", GetPANumericalLevel(strength)),
                         ("coordinates", pos.Coordinates)));

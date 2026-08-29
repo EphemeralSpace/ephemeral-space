@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -13,7 +13,7 @@ public sealed partial class AutoEmoteSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private ESEmoteSystem _emote = default!;
 
     public override void Initialize()
     {
@@ -47,15 +47,15 @@ public sealed partial class AutoEmoteSystem : EntitySystem
 
                 if (autoEmotePrototype.WithChat)
                 {
-                    _chatSystem.TryEmoteWithChat(uid,
+                    _emote.TryEmoteWithChat(uid,
                         autoEmotePrototype.EmoteId,
-                        autoEmotePrototype.HiddenFromChatWindow ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal,
+                        autoEmotePrototype.HiddenFromChatWindow,
                         ignoreActionBlocker: autoEmotePrototype.IgnoreActionBlocker,
                         forceEmote: autoEmotePrototype.Force);
                 }
                 else
                 {
-                    _chatSystem.TryEmoteWithoutChat(uid, autoEmotePrototype.EmoteId);
+                    _emote.TryEmoteWithoutChat(uid, autoEmotePrototype.EmoteId);
                 }
             }
         }

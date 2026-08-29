@@ -26,7 +26,6 @@
   storage:
     back:
     - ESBoxSurvival
-    - Flash
 
 - type: chameleonOutfit
   id: ESSecurityOfficer

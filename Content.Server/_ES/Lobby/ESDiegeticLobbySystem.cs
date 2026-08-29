@@ -1,10 +1,10 @@
 using Content.Server.Administration;
-using Content.Server.Chat.Managers;
 using Content.Server.Doors.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Preferences.Managers;
 using Content.Shared._ES.CCVar;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Lobby;
 using Content.Shared._ES.Lobby.Components;
 using Content.Shared.Administration;
@@ -33,7 +33,7 @@ public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IServerPreferencesManager _preferences = default!;
-    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IESSharedChatManager _chat = default!;
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private TransformSystem _xform = default!;
@@ -104,7 +104,7 @@ public sealed partial class ESDiegeticLobbySystem : ESSharedDiegeticLobbySystem
             }
         }
 
-        _chat.DispatchServerAnnouncement(closing
+        _chat.SendServerMessage(closing
             ? Loc.GetString("es-lobby-closed-announcement")
             : Loc.GetString("es-lobby-open-announcement"));
     }

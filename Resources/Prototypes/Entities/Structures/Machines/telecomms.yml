@@ -130,11 +130,6 @@
       - EncryptionKeySecurity
       - EncryptionKeyService
       - EncryptionKeyCommand
-  # ES START
-  - type: ActiveRadio
-    channels: [ Common, Supply, Engineering, Medical, Science, Security, Service, Command ]
-  # ES END
-
 
 - type: entity
   parent: TelecomServer
@@ -145,10 +140,6 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
-  # ES START
-  - type: ActiveRadio
-    channels: [ Common ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -159,10 +150,6 @@
     containers:
       key_slots:
       - EncryptionKeyCargo
-  # ES START
-  - type: ActiveRadio
-    channels: [ Supply ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -173,10 +160,6 @@
     containers:
       key_slots:
       - EncryptionKeyEngineering
-  # ES START
-  - type: ActiveRadio
-    channels: [ Engineering ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -187,10 +170,6 @@
     containers:
       key_slots:
       - EncryptionKeyMedical
-  # ES START
-  - type: ActiveRadio
-    channels: [ Medical ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -201,10 +180,6 @@
     containers:
       key_slots:
       - EncryptionKeyScience
-  # ES START
-  - type: ActiveRadio
-    channels: [ Science ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -215,10 +190,6 @@
     containers:
       key_slots:
       - EncryptionKeySecurity
-  # ES START
-  - type: ActiveRadio
-    channels: [ Security ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -229,10 +200,6 @@
     containers:
       key_slots:
       - EncryptionKeyService
-  # ES START
-  - type: ActiveRadio
-    channels: [ Service ]
-  # ES END
 
 - type: entity
   parent: TelecomServer
@@ -243,7 +210,3 @@
     containers:
       key_slots:
       - EncryptionKeyCommand
-  # ES START
-  - type: ActiveRadio
-    channels: [ Command ]
-  # ES END

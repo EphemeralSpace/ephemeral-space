@@ -300,3 +300,10 @@ es-names-first-dataset-female-286 = Egg
 es-names-first-dataset-female-287 = Womp
 es-names-first-dataset-female-288 = Rust
 es-names-first-dataset-female-289 = Bee
+# 2026-08
+es-names-first-dataset-female-290 = Sine
+es-names-first-dataset-female-291 = Cosine
+es-names-first-dataset-female-292 = Solana
+es-names-first-dataset-female-293 = Nora
+es-names-first-dataset-female-294 = Agnes
+es-names-first-dataset-female-295 = Petra

@@ -289,7 +289,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/weapon.rsi
   - type: AccessReader
-    access: [["Armory"]]
+    access: [["Security"]]
 
 - type: entity
   parent: CrateBaseSecure

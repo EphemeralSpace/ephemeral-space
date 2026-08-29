@@ -24,9 +24,6 @@ namespace Content.Shared.Construction
 
         private void OnMachineBoardExamined(EntityUid uid, MachineBoardComponent component, ExaminedEvent args)
         {
-            if (!args.IsInDetailsRange)
-                return;
-
             using (args.PushGroup(nameof(MachineBoardComponent)))
             {
                 args.PushMarkup(Loc.GetString("machine-board-component-on-examine-label"));

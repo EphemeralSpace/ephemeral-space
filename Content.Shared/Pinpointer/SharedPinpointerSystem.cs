@@ -65,7 +65,7 @@ public abstract partial class SharedPinpointerSystem : EntitySystem
 
     private void OnExamined(Entity<PinpointerComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || ent.Comp.TargetName == null)
+        if (ent.Comp.TargetName == null)
             return;
 
         args.PushMarkup(Loc.GetString("examine-pinpointer-linked", ("target", ent.Comp.TargetName)));

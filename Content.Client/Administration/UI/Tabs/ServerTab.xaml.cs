@@ -10,7 +10,6 @@ namespace Content.Client.Administration.UI.Tabs
     [GenerateTypedNameReferences]
     public sealed partial class ServerTab : Control
     {
-        [Dependency] private IConfigurationManager _config = default!;
         [Dependency] private IClientConsoleHost _console = default!;
 
         public ServerTab()
@@ -18,31 +17,7 @@ namespace Content.Client.Administration.UI.Tabs
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
 
-            _config.OnValueChanged(CCVars.OocEnabled, OocEnabledChanged, true);
-            _config.OnValueChanged(CCVars.LoocEnabled, LoocEnabledChanged, true);
-
             ServerShutdownButton.OnPressed += _ => _console.ExecuteCommand("shutdown");
-        }
-
-        private void OocEnabledChanged(bool value)
-        {
-            SetOocButton.Pressed = value;
-        }
-
-        private void LoocEnabledChanged(bool value)
-        {
-            SetLoocButton.Pressed = value;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-
-            if (disposing)
-            {
-                _config.UnsubValueChanged(CCVars.OocEnabled, OocEnabledChanged);
-                _config.UnsubValueChanged(CCVars.LoocEnabled, LoocEnabledChanged);
-            }
         }
     }
 }

@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.Interaction;
 using Content.Shared._ST.Interaction; // Stellar - Interaction particles
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
-using Content.Shared.Chat;
 using Content.Shared.CombatMode;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
@@ -58,7 +58,7 @@ namespace Content.Shared.Interaction
     {
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private ISharedChatManager _chat = default!;
+        [Dependency] private IESSharedChatManager _chat = default!;
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private EntityLookupSystem _lookup = default!;
         [Dependency] private SharedHandsSystem _hands = default!;
@@ -178,7 +178,7 @@ namespace Content.Shared.Interaction
 
         private void RateLimitAlertAdmins(ICommonSession session)
         {
-            _chat.SendAdminAlert(Loc.GetString("interaction-rate-limit-admin-announcement", ("player", session.Name)));
+            _chat.SendAdminMessage(Loc.GetString("interaction-rate-limit-admin-announcement", ("player", session.Name)));
         }
 
         public override void Shutdown()

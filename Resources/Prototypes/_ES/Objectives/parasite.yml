@@ -29,7 +29,7 @@
 - type: entity
   parent: ESBaseSecretIdentityObjective
   id: ESObjectiveParasiteDoNotKill
-  name: Don't harm others
+  name: Do less than X damage to others
   description: The parasite in your head is extremely sensitive to hormonal changes caused by harming. A small amount would be fine, but too much will send it into a frenzy, killing you.
   components:
   - type: ESObjective
@@ -39,6 +39,6 @@
     invertProgress: true
     completionPercentage: 0.001 # you win so long as you don't hit 0.
   - type: ESCounterObjective
-    target: 300
+    target: 200
   - type: ESParasiteDamageObjective
   - type: ESParasiteWinFreezeObjective

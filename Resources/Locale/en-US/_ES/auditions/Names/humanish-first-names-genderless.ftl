@@ -343,3 +343,14 @@ es-names-first-dataset-genderless-327 = Donk
 es-names-first-dataset-genderless-328 = Juice
 es-names-first-dataset-genderless-329 = Ducky
 es-names-first-dataset-genderless-330 = Kamille
+# 2026-08
+es-names-first-dataset-genderless-331 = Tangent
+es-names-first-dataset-genderless-332 = Bomfy
+es-names-first-dataset-genderless-333 = Flop
+es-names-first-dataset-genderless-334 = Trip
+es-names-first-dataset-genderless-335 = Jet
+es-names-first-dataset-genderless-336 = Toil
+es-names-first-dataset-genderless-337 = Flannery
+es-names-first-dataset-genderless-338 = Dvorak
+es-names-first-dataset-genderless-339 = Turbo
+es-names-first-dataset-genderless-340 = Qwerty

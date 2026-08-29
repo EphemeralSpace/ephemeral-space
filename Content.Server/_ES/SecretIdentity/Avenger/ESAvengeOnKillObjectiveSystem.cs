@@ -1,11 +1,10 @@
 using Content.Server._ES.SecretIdentity.Avenger.Components;
 using Content.Server.Actions;
-using Content.Server.Chat.Managers;
 using Content.Server.Pinpointer;
 using Content.Server.Roles.Jobs;
+using Content.Shared._ES.Chat;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives.Target;
-using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Robust.Server.Player;
 using Robust.Shared.Utility;
@@ -14,7 +13,7 @@ namespace Content.Server._ES.SecretIdentity.Avenger;
 
 public sealed partial class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiveSystem<ESAvengeOnKillObjectiveComponent>
 {
-    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IESSharedChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private JobSystem _job = default!;
@@ -59,8 +58,7 @@ public sealed partial class ESAvengeOnKillObjectiveSystem : ESBaseTargetObjectiv
             var locale = validKill ? "es-avenger-die-message-kill" : "es-avenger-die-message";
 
             var msg = Loc.GetString(locale, ("name", name), ("location", locationString));
-            var wrappedMsg = Loc.GetString("chat-manager-server-wrap-message", ("message", msg));
-            _chatManager.ChatMessageToOne(ChatChannel.Server, msg, wrappedMsg, default, false, session.Channel, Color.Red);
+            _chatManager.SendServerMessage(msg, session, Color.Red);
         }
 
         // Check for

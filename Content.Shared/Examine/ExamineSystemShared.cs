@@ -1,11 +1,9 @@
 using System.Linq;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using JetBrains.Annotations;
-using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Utility;
@@ -13,17 +11,14 @@ using static Content.Shared.Interaction.SharedInteractionSystem;
 
 namespace Content.Shared.Examine
 {
-    public abstract partial class ExamineSystemShared : EntitySystem
+    public abstract partial class ExamineSystemShared
     {
         [Dependency] private OccluderSystem _occluder = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
-        [Dependency] private SharedContainerSystem _containerSystem = default!;
-        [Dependency] private SharedInteractionSystem _interactionSystem = default!;
         [Dependency] protected MobStateSystem MobStateSystem = default!;
 
-        [Dependency] private EntityQuery<GhostComponent> _ghostQuery = default!;
-        [Dependency] private EntityQuery<OccluderComponent> _occluderQuery = default!;
-        [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+        [Dependency] private EntityQuery<OccluderComponent> _occluderQuery;
+        [Dependency] private EntityQuery<TransformComponent> _xformQuery;
 
         private readonly List<RayCastResults> _occluderRaycastResults = new();
 
@@ -42,43 +37,15 @@ namespace Content.Shared.Examine
         /// <summary>
         ///     Examine range to use when the examiner is dead. See <see cref="CritExamineRange"/>.
         /// </summary>
-        public const float DeadExamineRange = 0.75f;
+        public const float DeadExamineRange = 0.75f; // ????????????????
 
         public const float ExamineRange = 16f;
-        protected const float ExamineDetailsRange = 3f;
-
         protected const float ExamineBlurrinessMult = 2.5f;
 
         /// <summary>
         ///     Creates a new examine tooltip with arbitrary info.
         /// </summary>
         public abstract void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor);
-
-        public bool IsInDetailsRange(EntityUid examiner, EntityUid entity)
-        {
-            if (IsClientSide(entity))
-                return true;
-
-            // Ghosts can see everything.
-            if (_ghostQuery.HasComp(examiner))
-                return true;
-
-            // check if the mob is in critical or dead
-            if (MobStateSystem.IsIncapacitated(examiner))
-                return false;
-
-            if (!InRangeUnOccluded(examiner, entity, ExamineDetailsRange))
-                return false;
-
-            // Is the target hidden in a opaque locker or something? Currently this check allows players to examine
-            // their organs, if they can somehow target them. Really this should be with userSeeInsideSelf: false, and a
-            // separate check for if the item is in their inventory or hands.
-            if (_containerSystem.IsInSameOrTransparentContainer(examiner, entity, userSeeInsideSelf: true))
-                return true;
-
-            // is it inside of an open storage (e.g., an open backpack)?
-            return _interactionSystem.CanAccessViaStorage(examiner, entity);
-        }
 
         [Pure]
         public bool CanExamine(EntityUid examiner, EntityUid examined)
@@ -87,8 +54,10 @@ namespace Content.Shared.Examine
             if (IsClientSide(examined))
                 return true;
 
-            return !Deleted(examined) && CanExamine(examiner, _transform.GetMapCoordinates(examined),
-                entity => entity == examiner || entity == examined, examined);
+            return !Deleted(examined) && CanExamine(examiner,
+                _transform.GetMapCoordinates(examined),
+                entity => entity == examiner || entity == examined,
+                examined);
         }
 
         [Pure]
@@ -201,7 +170,8 @@ namespace Content.Shared.Examine
             Func<EntityUid, TState, bool> predicate)
         {
             if (other.MapId != origin.MapId ||
-                other.MapId == MapId.Nullspace) return false;
+                other.MapId == MapId.Nullspace)
+                return false;
 
             var dir = other.Position - origin.Position;
             var length = dir.Length();
@@ -224,7 +194,8 @@ namespace Content.Shared.Examine
             var rayResults = _occluderRaycastResults;
             _occluder.IntersectRay(rayResults, origin.MapId, ray, length);
 
-            if (rayResults.Count == 0) return true;
+            if (rayResults.Count == 0)
+                return true;
 
             foreach (var result in rayResults)
             {
@@ -335,8 +306,7 @@ namespace Content.Shared.Examine
             message.PushColor(Color.DarkGray);
 
             // Raise the event and let things that subscribe to it change the message...
-            var isInDetailsRange = IsInDetailsRange(examiner.Value, entity);
-            var examinedEvent = new ExaminedEvent(message, entity, examiner.Value, isInDetailsRange, hasDescription);
+            var examinedEvent = new ExaminedEvent(message, entity, examiner.Value, hasDescription);
             RaiseLocalEvent(entity, examinedEvent);
 
             var newMessage = examinedEvent.GetTotalMessage();
@@ -374,11 +344,6 @@ namespace Content.Shared.Examine
         private List<ExamineMessagePart> Parts { get; } = new();
 
         /// <summary>
-        ///     Whether the examiner is in range of the entity to get some extra details.
-        /// </summary>
-        public bool IsInDetailsRange { get; }
-
-        /// <summary>
         ///     The entity performing the examining.
         /// </summary>
         public EntityUid Examiner { get; }
@@ -392,12 +357,11 @@ namespace Content.Shared.Examine
 
         private ExamineMessagePart? _currentGroupPart;
 
-        public ExaminedEvent(FormattedMessage message, EntityUid examined, EntityUid examiner, bool isInDetailsRange, bool hasDescription)
+        public ExaminedEvent(FormattedMessage message, EntityUid examined, EntityUid examiner, bool hasDescription)
         {
             Message = message;
             Examined = examined;
             Examiner = examiner;
-            IsInDetailsRange = isInDetailsRange;
             _hasDescription = hasDescription;
         }
 

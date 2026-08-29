@@ -1,7 +1,7 @@
-using Content.Server.Chat.Systems;
+using Content.Server._ES.Chat;
+using Content.Shared._ES.Chat;
 using Content.Shared.Advertise.Components;
 using Content.Shared.Advertise.Systems;
-using Content.Shared.Chat;
 using Content.Shared.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -12,7 +12,7 @@ public sealed partial class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -43,7 +43,7 @@ public sealed partial class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
             return false;
 
         var message = Loc.GetString(_random.Pick(messagePack.Values), ("name", Name(entity)));
-        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, true);
+        _chat.TrySendMessage(message, ESSharedChatSystem.LocalChannel, entity);
         entity.Comp.Flag = false;
         return true;
     }
