@@ -11,6 +11,9 @@
             "name": "coroner"
         },
         {
+            "name": "firefighter"
+        },
+        {
             "name": "paramedic"
         },
         {

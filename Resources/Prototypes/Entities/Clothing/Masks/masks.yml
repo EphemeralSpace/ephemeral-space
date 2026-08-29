@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingMaskPullableBase, BaseClothingViewconeLarge ]
+  parent: [ ClothingMaskPullableBase, BaseClothingViewconeMedium ]
   id: ClothingMaskGas
   name: gas mask
   description: A face-covering mask that can block harmful gases.
