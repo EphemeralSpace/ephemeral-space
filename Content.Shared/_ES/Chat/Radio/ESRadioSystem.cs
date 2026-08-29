@@ -1,6 +1,9 @@
 using Content.Shared._ES.Chat.Radio.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Radio.Components;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -14,6 +17,9 @@ public sealed partial class ESRadioSystem : EntitySystem
     [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private EntityQuery<TelecomExemptComponent> _exemptQuery;
+    [Dependency] private SharedAudioSystem _audio = default!;
+
+    private static readonly SoundSpecifier RadioClick = new SoundCollectionSpecifier("ESRadioClick");
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -22,6 +28,7 @@ public sealed partial class ESRadioSystem : EntitySystem
 
         SubscribeLocalEvent<ESWhisperRadioChatChannelComponent, ESChatMessageSentEvent>(OnChatMessageSent);
 
+        SubscribeLocalEvent<ESRadioChatChannelComponent, ESChatMessageSentEvent>(OnRadioChatMessageSent);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESSendChatMessageAttemptEvent>(OnSendChatMessageAttempt);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESGetChatMessageRecipientsEvent>(OnGetRecipients);
         SubscribeLocalEvent<ESRadioChatChannelComponent, ESTransformChatMessageEvent>(OnRecipientTransformChatMessage);
@@ -41,12 +48,18 @@ public sealed partial class ESRadioSystem : EntitySystem
         _chat.TrySendMessage(args.Content, ent.Comp.RadioChannel, args.Source, nameOverride: FormattedMessage.RemoveMarkupPermissive(args.Name));
     }
 
+    private void OnRadioChatMessageSent(Entity<ESRadioChatChannelComponent> ent, ref ESChatMessageSentEvent args)
+    {
+        _audio.PlayPvs(RadioClick, args.Source, AudioParams.Default.WithVolume(-5f).WithMaxDistance(5f));
+    }
+
     private void OnSendChatMessageAttempt(Entity<ESRadioChatChannelComponent> ent, ref ESSendChatMessageAttemptEvent args)
     {
+        var source = Transform(args.Source);
         var channel = _chat.GetChannel(ent.Owner);
 
         var needsServer = !_exemptQuery.HasComp(args.Source) && !ent.Comp.RequireServer;
-        if (!needsServer && !HasActiveServer(channel))
+        if (!needsServer && !HasActiveServer(channel, source.MapID))
         {
             args.Cancel();
             return;
@@ -107,10 +120,13 @@ public sealed partial class ESRadioSystem : EntitySystem
     /// <summary>
     /// Checks if a given chat channel has a corresponding telecom server.
     /// </summary>
-    public bool HasActiveServer(ProtoId<ESChatChannelPrototype> channelId)
+    public bool HasActiveServer(ProtoId<ESChatChannelPrototype> channelId, MapId map)
     {
-        foreach (var (uid, _, keys) in EntityQueryEnumerator<TelecomServerComponent, EncryptionKeyHolderComponent>())
+        foreach (var (uid, _, keys, xform) in EntityQueryEnumerator<TelecomServerComponent, EncryptionKeyHolderComponent, TransformComponent>())
         {
+            if (xform.MapID != map)
+                continue;
+
             if (_powerReceiver.IsPowered(uid) &&
                 keys.Channels.Contains(channelId))
             {

@@ -68,9 +68,6 @@ alerts-internals-desc = [color=yellow]Click[/color] here or press [color=yellow]
 alerts-piloting-name = Piloting Shuttle
 alerts-piloting-desc = You are piloting a shuttle. Click the alert to stop.
 
-alerts-stamina-name = Stamina
-alerts-stamina-desc = Stuns you if it is too low.
-
 alerts-thirsty-name = [color=yellow]Thirsty[/color]
 alerts-thirsty-desc = Something to drink would be good right about now.
 

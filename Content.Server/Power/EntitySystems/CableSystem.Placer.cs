@@ -6,6 +6,7 @@ using Content.Shared.Maps;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -43,6 +44,11 @@ public sealed partial class CableSystem
         foreach (var anchored in _map.GetAnchoredEntities((gridUid, grid), snapPos))
         {
             if (_whitelistSystem.IsWhitelistPass(component.Blacklist, anchored))
+                return;
+
+            if (TryComp<PhysicsComponent>(anchored, out var body) &&
+                body.CanCollide &&
+                (body.CollisionLayer & (int) placer.Comp.BlockingLayer) != 0)
                 return;
 
             if (TryComp<CableComponent>(anchored, out var wire) && wire.CableType == component.BlockingCableType)

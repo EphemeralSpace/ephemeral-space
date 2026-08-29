@@ -12,6 +12,7 @@ public sealed partial class ESChatSystem : ESSharedChatSystem
     [Dependency] private INetManager _net = default!;
 
     public event Action<EntityUid, HashSet<ProtoId<ESChatChannelPrototype>>>? LocalChatPermissionsUpdated;
+    public event Action<ProtoId<ESChatChannelPrototype>>? ChatChannelFocused;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -21,6 +22,8 @@ public sealed partial class ESChatSystem : ESSharedChatSystem
         SubscribeLocalEvent<ESChatPermissionsComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
         SubscribeLocalEvent<ESChatPermissionsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<ESChatPermissionsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<ESChatPermissionsComponent, ESChatFocusChannelActionEvent>(OnChatFocusChannelAction);
     }
 
     public override void RefreshChatPermissions(Entity<ESChatPermissionsComponent?> ent)
@@ -52,5 +55,16 @@ public sealed partial class ESChatSystem : ESSharedChatSystem
     private void OnPlayerDetached(Entity<ESChatPermissionsComponent> ent, ref LocalPlayerDetachedEvent args)
     {
         LocalChatPermissionsUpdated?.Invoke(ent, ent.Comp.PermittedChannels);
+    }
+
+    private void OnChatFocusChannelAction(Entity<ESChatPermissionsComponent> ent, ref ESChatFocusChannelActionEvent args)
+    {
+        FocusChatChannel(args.Channel);
+        args.Handled = true;
+    }
+
+    public void FocusChatChannel(ProtoId<ESChatChannelPrototype> channel)
+    {
+        ChatChannelFocused?.Invoke(channel);
     }
 }

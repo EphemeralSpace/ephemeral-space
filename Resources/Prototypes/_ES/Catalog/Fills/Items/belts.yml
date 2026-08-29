@@ -9,6 +9,5 @@
         children:
         - id: EmergencyPouchBrute
         - id: EmergencyPouchBurn
-        - id: EmergencyPouchToxin
         - id: EmergencyPouchOxygenDeprivation
         - id: HandheldHealthAnalyzer

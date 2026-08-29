@@ -44,7 +44,6 @@
       - Sheet
       - RawMaterial
       - Ingot
-  - type: OreSiloClient
   - type: AmbientSound
     enabled: false
     volume: 5
@@ -74,7 +73,6 @@
         whitelist:
           components:
           - MachineBoard
-          - ComputerBoard
   - type: ContainerContainer
     containers:
       machine_board: !type:Container

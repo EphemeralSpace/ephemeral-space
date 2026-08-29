@@ -28,6 +28,11 @@
   - type: Icon
     sprite: Structures/Machines/arcade.rsi
     state: arcade
+  - type: ESBreakableVisuals # TODO: no broken visuals for these yet
+    brokenLayers:
+      computerLayerBody:
+        sprite: Structures/Machines/arcade.rsi
+        state: arcade
   - type: WiresPanel
   - type: Wires
     layoutId: Arcade
@@ -98,32 +103,10 @@
     - GunpetInstrument
     - BirdToyInstrument
     - PlushieHampter
-    - PlushieLizard
-    - PlushieRainbowLizard
-    - PlushieAtmosian
-    - PlushieSpaceLizard
-    - PlushieNuke
     - PlushieCarp
-    - PlushieMagicarp
-    - PlushieHolocarp
-    - PlushieRainbowCarp
-    - PlushieRatvar
     - PlushieNar
-    - PlushieSnake
-    - PlushieArachind
-    - PlushieMoth
-    - PlushieVulp
-    - PlushieHampter
-    - PlushiePenguin
-    - PlushieHuman
-    - PlushieRouny
     - PlushieBee
-    - PlushieSlime
-    - PlushieGhost
-    - PlushieDiona
     - PlushieSharkBlue
-    - PlushieVox
-    - PlushieXeno
     - RevolverCapGun
     - SnapPopBox
     - TennisBall
@@ -148,8 +131,6 @@
         type: SpaceVillainArcadeBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Computer
-    board: SpaceVillainArcadeComputerCircuitboard
   - type: Vocalizer
     minVocalizeInterval: 1m # Arcades are noisy
     maxVocalizeInterval: 4m
@@ -194,8 +175,6 @@
         type: BlockGameBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Computer
-    board: BlockGameArcadeComputerCircuitboard
   - type: Vocalizer
     minVocalizeInterval: 1m # Arcades are noisy
     maxVocalizeInterval: 4m

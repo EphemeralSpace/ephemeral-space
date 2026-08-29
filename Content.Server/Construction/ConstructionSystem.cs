@@ -25,7 +25,6 @@ namespace Content.Server.Construction
         {
             base.Initialize();
 
-            InitializeComputer();
             InitializeGraphs();
             InitializeGuided();
             InitializeInteractions();

@@ -1,4 +1,5 @@
 using Content.Shared._ES.Chat.Components;
+using Content.Shared.Mind;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat;
@@ -9,6 +10,7 @@ public abstract partial class ESSharedChatSystem
     {
         SubscribeLocalEvent<ESChatPermissionsComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ESChatPermissionsComponent, ESGetChatPermissionsEvent>(OnGetChatPermissions);
+        SubscribeLocalEvent<ESChatPermissionsComponent, MindRelayedEvent<ESGetChatPermissionsEvent>>(OnRelayGetChatPermissions);
     }
 
     private void OnStartup(Entity<ESChatPermissionsComponent> ent, ref ComponentStartup args)
@@ -21,6 +23,14 @@ public abstract partial class ESSharedChatSystem
         foreach (var channel in ent.Comp.InherentChannels)
         {
             args.Channels.Add(channel);
+        }
+    }
+
+    private void OnRelayGetChatPermissions(Entity<ESChatPermissionsComponent> ent, ref MindRelayedEvent<ESGetChatPermissionsEvent> args)
+    {
+        foreach (var channel in ent.Comp.InherentChannels)
+        {
+            args.Args.Channels.Add(channel);
         }
     }
 

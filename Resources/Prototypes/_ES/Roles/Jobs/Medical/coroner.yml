@@ -8,7 +8,6 @@
   icon: "ESJobIconCoroner"
   access:
   - Medical
-  - Maintenance
   - Chemistry
   special:
   - !type:AddComponentSpecial
@@ -29,7 +28,7 @@
     back: ClothingBackpack
   storage:
     back:
-    - ESBoxSurvivalMedical
+    - ESBoxSurvival
 
 - type: chameleonOutfit
   id: ESCoroner

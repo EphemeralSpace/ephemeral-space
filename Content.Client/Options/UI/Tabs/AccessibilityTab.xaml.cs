@@ -18,8 +18,6 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionPercentSlider(CCVars.ScreenShakeIntensity, ScreenShakeIntensitySlider);
         Control.AddOptionPercentSlider(CCVars.ChatWindowOpacity, ChatWindowOpacitySlider);
         Control.AddOptionPercentSlider(CCVars.SpeechBubbleTextOpacity, SpeechBubbleTextOpacitySlider);
-        Control.AddOptionPercentSlider(CCVars.SpeechBubbleSpeakerOpacity, SpeechBubbleSpeakerOpacitySlider);
-        Control.AddOptionPercentSlider(CCVars.SpeechBubbleBackgroundOpacity, SpeechBubbleBackgroundOpacitySlider);
         Control.AddOptionCheckBox(CCVars.ChatAutoFillHighlights, AutoFillHighlightsCheckBox);
         Control.AddOptionColorSlider(CCVars.ChatHighlightsColor, HighlightsColorSlider);
 
@@ -36,6 +34,8 @@ public sealed partial class AccessibilityTab : Control
         Control.AddOptionFontFamilyName(FontCVars.MonospaceFamilyName, MonospaceFontSelector);
         Control.AddOptionFontScale(FontCVars.ChatScale, ChatFontSelector);
         Control.AddOptionFontFamilyName(FontCVars.ChatFamilyName, ChatFontSelector);
+        Control.AddOptionFontScale(FontCVars.ChatWhisperScale, ChatWhisperFontSelector);
+        Control.AddOptionFontFamilyName(FontCVars.ChatWhisperFamilyName, ChatWhisperFontSelector);
 
         Control.Initialize();
     }

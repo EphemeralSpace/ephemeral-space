@@ -312,14 +312,6 @@
 
 - type: entity
   parent: LockableButton
-  id: LockableButtonMaintenance
-  suffix: Maintenance
-  components:
-  - type: AccessReader
-    access: [["Maintenance"]]
-
-- type: entity
-  parent: LockableButton
   id: LockableButtonExternal
   suffix: External
   components:

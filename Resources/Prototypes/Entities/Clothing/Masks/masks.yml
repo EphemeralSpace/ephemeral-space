@@ -43,28 +43,6 @@
 
 - type: entity
   parent: ClothingMaskPullableBase
-  id: ClothingMaskBreathMedical
-  name: medical mask
-  description: A close-fitting sterile mask that can be connected to an air supply.
-  components:
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: Clothing/Mask/medical.rsi
-  - type: Clothing
-    sprite: Clothing/Mask/medical.rsi
-  - type: BreathMask
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - PetWearable
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 50
-      Plastic: 50
-
-- type: entity
-  parent: ClothingMaskPullableBase
   id: ClothingMaskBreath
   name: breath mask
   description: Might as well keep this on 24/7.
@@ -77,6 +55,8 @@
     sprite: Clothing/Mask/breath.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: IdentityBlocker
+    coverage: MOUTH
   - type: Tag
     tags:
     - PetWearable

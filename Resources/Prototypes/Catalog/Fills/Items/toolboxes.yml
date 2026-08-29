@@ -47,7 +47,7 @@
       prob: 0.9
     - !type:GroupSelector
       children:
-      - id: ClothingHandsGlovesColorYellow
+      - id: ClothingHandsGlovesInsulated
         weight: 0.05
       - id: CableHVStack10
 

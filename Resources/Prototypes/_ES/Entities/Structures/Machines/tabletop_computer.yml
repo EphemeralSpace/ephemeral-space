@@ -21,7 +21,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ComputerVisuals.Powered:
+      enum.PowerDeviceVisuals.Powered:
         computerLayerScreen:
           True: { visible: true, shader: unshaded }
           False: { visible: false }
@@ -29,21 +29,20 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
-      enum.ConstructionVisuals.Key:
-        enum.ConstructionVisuals.Layer:
-          frameUnsecured: { state: 0 }
-          boardUnsecured: { state: 1 }
-          missingWires: { state: 2 }
-          monitorMissing: { state: 3 }
-          monitorUnsecured: { state: 4 }
+  - type: ESBreakableVisuals
+    brokenLayers:
+      computerLayerBody:
+        sprite: _ES/Structures/Machines/tabletop_computer.rsi
+        state: broken
+      computerLayerScreen:
+        sprite: _ES/Structures/Machines/tabletop_computer.rsi
+        state: screen_broken
   - type: PointLight
     radius: 1.3
     energy: 40
     falloff: 6.8
     enabled: true
     color: "#00b000"
-  - type: Construction
-    graph: ESTabletopComputer
   - type: Fixtures
     fixtures:
       fix1:
@@ -66,61 +65,6 @@
     layoutId: ComputerAi
 
 - type: entity
-  parent: ComputerFrame
-  id: ESTabletopComputerFrame
-  name: tabletop computer frame
-  description: A tabletop computer under construction.
-  components:
-  - type: Sprite
-    layers:
-    - state: tabletop_0
-      map: [ "enum.ConstructionVisuals.Layer" ]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ConstructionVisuals.Key:
-        enum.ConstructionVisuals.Layer:
-          frameUnsecured: { state: tabletop_0 }
-          boardUnsecured: { state: tabletop_1 }
-          missingWires: { state: tabletop_2 }
-          monitorMissing: { state: tabletop_3 }
-          monitorUnsecured: { state: tabletop_4 }
-  - type: Construction
-    graph: ESTabletopComputer
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.10,-0.10,0.10,0.10"
-        density: 500
-        mask:
-        - TabletopMachineMask
-        layer:
-        - BulletImpassable
-
-- type: entity
-  parent: ComputerBroken
-  id: ESTabletopComputerBroken
-  name: broken tabletop computer
-  components:
-  - type: Sprite
-    sprite: _ES/Structures/Machines/tabletop_computer.rsi
-  - type: Construction
-    graph: ESTabletopComputer
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.10,-0.10,0.10,0.10"
-        density: 500
-        mask:
-        - TabletopMachineMask
-        layer:
-        - BulletImpassable
-
-- type: entity
   parent: ESBaseTabletopComputerAiAccess
   id: ESComputerMedicalRecordsTabletop
   name: medical records computer
@@ -136,8 +80,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#85b6fe"
-  - type: Computer
-    board: MedicalRecordsComputerCircuitboard
   - type: ESAmbientMusicMarkerMedical
 
 - type: entity
@@ -165,8 +107,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#e9755e"
-  - type: Computer
-    board: CriminalRecordsComputerCircuitboard
   - type: AccessReader
     access: [["Security"]]
   - type: ESSabotageTarget
@@ -189,8 +129,6 @@
     key: enum.GeneralStationRecordConsoleKey.Key
   - type: PointLight
     color: "#70ff67"
-  - type: Computer
-    board: StationRecordsComputerCircuitboard
   - type: GuideHelp
     guides:
     - Forensics
@@ -211,8 +149,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#85b6fe"
-  - type: Computer
-    board: CrewMonitoringComputerCircuitboard
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
   - type: UserInterface
@@ -256,8 +192,6 @@
       state: cameras
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: SurveillanceCameraMonitorCircuitboard
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: SurveillanceCamera
@@ -294,8 +228,6 @@
       state: cameras
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
-  - type: Computer
-    board: SurveillanceWirelessCameraMonitorCircuitboard
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera

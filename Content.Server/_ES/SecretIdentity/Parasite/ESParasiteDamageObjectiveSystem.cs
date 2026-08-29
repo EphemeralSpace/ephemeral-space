@@ -64,7 +64,7 @@ public sealed partial class ESParasiteDamageObjectiveSystem : ESBaseObjectiveSys
         };
 
         if (popupMsg != null)
-            _popup.PopupEntity(Loc.GetString(popupMsg), args.Origin, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString(popupMsg), args.Origin, args.Origin, PopupType.MediumCaution);
 
         ent.Comp.LastProgress = progress;
 

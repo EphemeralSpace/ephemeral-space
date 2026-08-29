@@ -560,6 +560,71 @@ Flash: null
 SciFlash: null
 Stunprod: null
 BoxFlashbang: null
+Stunbaton: ESWeaponBlackjack
+
+# 2026-8-17
+BaseSubstationWall: null
+BaseSubstationWallFrame: null
+SubstationWallBasic: null
+DebugSubstationWallRecharging: null
+SubstationMachineCircuitboard: null
+WallmountSubstationElectronics: null
+SMESAdvanced: null
+SMESAdvancedEmpty: null
+SMESMachineCircuitboard: null
+SMESAdvancedMachineCircuitboard: null
+
+# 2026-08-18
+MailingUnit: null
+BookRandomStory: null
+MachineMaterialSilo: null
+NTHandyFlag: null
+
+# 2026-8-19
+ComputerFrame: null
+ESTabletopComputerFrame: null
+ComputerBroken: null
+ESTabletopComputerBroken: null
+ESComputerWarehouseManifestCircuitBoard: null
+ESComputerAnomalyCircuitBoard: null
+ESComputerSupplyRequestCircuitBoard: null
+ESComputerSupplyRequestMasterCircuitBoard: null
+AlertsComputerCircuitboard: null
+AtmosMonitoringComputerCircuitboard: null
+PowerComputerCircuitboard: null
+MedicalRecordsComputerCircuitboard: null
+CriminalRecordsComputerCircuitboard: null
+StationRecordsComputerCircuitboard: null
+SurveillanceCameraMonitorCircuitboard: null
+SurveillanceWirelessCameraMonitorCircuitboard: null
+ComputerTelevisionCircuitboard: null
+CrewMonitoringComputerCircuitboard: null
+IDComputerCircuitboard: null
+BodyScannerComputerCircuitboard: null
+CommsComputerCircuitboard: null
+CentcommCommsComputerCircuitboard: null
+RadarConsoleCircuitboard: null
+SolarControlComputerCircuitboard: null
+SpaceVillainArcadeComputerCircuitboard: null
+BlockGameArcadeComputerCircuitboard: null
+ShuttleConsoleCircuitboard: null
+CloningConsoleComputerCircuitboard: null
+ComputerIFFCircuitboard: null
+ComputerMassMediaCircuitboard: null
+SensorConsoleCircuitboard: null
+CrateTechBoardRandom: null
+
+# 2026-8-22
+ClothingHandsGlovesColorYellow: ClothingHandsGlovesInsulated
+
+# 2026-8-27
+LockableButtonMaintenance: null
+DoorElectronicsMaintenance: null
+AirlockMaintLocked: AirlockMaint
+ESAirlockMaintLockedBolted: ESAirlockMaintBolted
+ESAirlockMaintLockedWelded: ESAirlockMaintWelded
+AirlockHatchMaintenanceLocked: AirlockHatchMaintenance
+AirlockMaintGlassLocked: AirlockMaintGlass
 
 # ES END
 

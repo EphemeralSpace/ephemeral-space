@@ -145,11 +145,6 @@
     impulse: 100.0
     keysIn:
     - OnCollide
-  - type: StaminaDamageOnTrigger
-    stamina: 25.0
-    keysIn:
-    - OnCollide
-    targetUser: true
   - type: DamageOnTrigger
     damage:
       types:

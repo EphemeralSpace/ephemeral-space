@@ -43,7 +43,7 @@ public sealed partial class SpeakOnUIClosedSystem : SharedSpeakOnUIClosedSystem
             return false;
 
         var message = Loc.GetString(_random.Pick(messagePack.Values), ("name", Name(entity)));
-        _chat.TrySendMessage(message, ESSharedChatSystem.LocalChannel, entity);
+        _chat.TrySendMessage(message, ESSharedChatSystem.LocalChannel, entity, hideChat: entity.Comp.HideChat);
         entity.Comp.Flag = false;
         return true;
     }

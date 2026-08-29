@@ -75,7 +75,7 @@
   # End Offbrand
   - type: Stack
     stackType: Ointment
-    count: 10
+    count: 5
 
 - type: entity
   id: Ointment1
@@ -142,7 +142,7 @@
   # End Offbrand
   - type: Stack
     stackType: RegenerativeMesh
-    count: 10
+    count: 5
 
 - type: entity
   id: OintmentAdvanced1
@@ -203,7 +203,7 @@
   # End Offbrand
   - type: Stack
     stackType: Brutepack
-    count: 10
+    count: 5
 
 - type: entity
   id: Brutepack1
@@ -266,7 +266,7 @@
   # End Offbrand
   - type: Stack
     stackType: MedicatedSuture
-    count: 10
+    count: 5
 
 - type: entity
   id: BrutepackAdvanced1
@@ -310,7 +310,7 @@
         variation: 0.125
   - type: Stack
     stackType: Bloodpack
-    count: 10
+    count: 5
 
 - type: entity
   parent: Bloodpack
@@ -413,7 +413,7 @@
   # End Offbrand
   - type: Stack
     stackType: Gauze
-    count: 10
+    count: 5
 
 - type: entity
   id: Gauze1
@@ -434,7 +434,7 @@
     state: cream
   - type: Stack
     stackType: AloeCream
-    count: 10
+    count: 5
   # Begin Offbrand
   - type: Tending
     woundWhitelist:

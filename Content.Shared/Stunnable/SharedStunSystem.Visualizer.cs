@@ -51,5 +51,6 @@ public abstract partial class SharedStunSystem
     public enum StunVisuals
     {
         SeeingStars,
+        Fatigue,
     }
 }

@@ -1,5 +1,4 @@
 using Content.Server.Audio;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
@@ -38,8 +37,6 @@ public sealed partial class FlatpackSystem : SharedFlatpackSystem
         Dictionary<string, int> cost;
         if (TryComp<MachineBoardComponent>(board, out var machine))
             cost = GetFlatpackCreationCost(ent, (board, machine));
-        else if (TryComp<ComputerBoardComponent>(board, out var computer) && computer.Prototype != null)
-            cost = GetFlatpackCreationCost(ent, null);
         else
         {
             Log.Error($"Encountered invalid flatpack board while packing: {ToPrettyString(board)}");
@@ -86,11 +83,6 @@ public sealed partial class FlatpackSystem : SharedFlatpackSystem
         {
             cost = GetFlatpackCreationCost(ent, (board, machine));
             proto = machine.Prototype;
-        }
-        else if (TryComp<ComputerBoardComponent>(board, out var computer) && computer.Prototype != null)
-        {
-            cost = GetFlatpackCreationCost(ent, null);
-            proto = computer.Prototype;
         }
         else
         {

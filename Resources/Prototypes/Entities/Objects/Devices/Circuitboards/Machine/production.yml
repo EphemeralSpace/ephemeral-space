@@ -287,44 +287,6 @@
         Cable: 2
 
 - type: entity
-  id: SMESMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: SMES machine board
-  description: A machine printed circuit board for a SMES.
-  components:
-    - type: Sprite
-      sprite: Objects/Misc/module.rsi
-      state: power_mod
-    - type: MachineBoard
-      prototype: SMESBasicEmpty
-      stackRequirements:
-        Manipulator: 1
-        CableHV: 10
-      componentRequirements:
-        PowerCell:
-          amount: 4
-          defaultPrototype: PowerCellSmall
-
-- type: entity
-  id: SMESAdvancedMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: advanced SMES machine board
-  description: A machine printed circuit board for an Advanced SMES.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/module.rsi
-    state: power_mod
-  - type: MachineBoard
-    prototype: SMESAdvancedEmpty
-    stackRequirements:
-      Manipulator: 2
-      CableHV: 20
-    componentRequirements:
-      PowerCell:
-        amount: 4
-        defaultPrototype: PowerCellMedium
-
-- type: entity
   id: CellRechargerCircuitboard
   parent: BaseMachineCircuitboard
   name: cell recharger machine board
@@ -419,28 +381,6 @@
     materialComposition:
       Steel: 30
       Plastic: 30
-
-- type: entity
-  id: SubstationMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: substation machine board
-  description: A machine printed circuit board for a substation.
-  components:
-    - type: MachineBoard
-      prototype: SubstationBasicEmpty
-      stackRequirements:
-        Manipulator: 1
-        CableMV: 5
-        CableHV: 5
-      componentRequirements:
-        PowerCell:
-          amount: 1
-          defaultPrototype: PowerCellSmall
-    - type: PhysicalComposition
-      materialComposition:
-        Glass: 200
-      chemicalComposition:
-        Silicon: 20
 
 - type: entity
   parent: BaseMachineCircuitboard
@@ -645,19 +585,6 @@
     stackRequirements:
       Manipulator: 1
       Steel: 1
-
-- type: entity
-  id: MaterialSiloMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: material silo machine board
-  components:
-  - type: Sprite
-    state: supply
-  - type: MachineBoard
-    prototype: MachineMaterialSilo
-    stackRequirements:
-      Manipulator: 4
-      Cable: 1
 
 - type: entity
   id: MicrowaveMachineCircuitboard

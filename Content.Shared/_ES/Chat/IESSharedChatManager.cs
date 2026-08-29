@@ -13,6 +13,8 @@ public interface IESSharedChatManager
     static readonly ProtoId<ESChatChannelPrototype> ServerChannel = "Server";
     static readonly ProtoId<ESChatChannelPrototype> AdminChannel = "Admin";
 
+    static readonly ProtoId<ESChatChannelOrderPrototype> ChannelOrder = "Default";
+
     int MaxMessageLength { get; protected set; }
 
     event Action<EntityUid, string, ProtoId<ESChatChannelPrototype>>? OnRequestSendChatMessage;

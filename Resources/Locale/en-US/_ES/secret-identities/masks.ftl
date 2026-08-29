@@ -90,6 +90,9 @@ es-secret-identity-barnacle-desc = As a Barnacle, place your barnacles around th
 es-secret-identity-sleeper-agent-name = Sleeper Agent
 es-secret-identity-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them. When a traitor dies, you have a chance to switch sides and gain a new secret identity.
 
+# Modifiers
+es-secret-identity-modifier-ex-syndicate = Ex-Syndie
+
 # Meta
 es-objective-issuer-secret-identity = Secret Identity
 

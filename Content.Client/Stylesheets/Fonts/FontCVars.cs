@@ -72,4 +72,16 @@ public static class FontCVars
     /// </summary>
     public static readonly CVarDef<float> ChatScale =
         CVarDef.Create<float>("font.chat_scale", 1, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// The user-selected font family name for <see cref="StandardFontType.ChatWhisper"/>.
+    /// </summary>
+    public static readonly CVarDef<string> ChatWhisperFamilyName =
+        CVarDef.Create<string>("font.chat_family_name", "", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// The user-selected font scale for <see cref="StandardFontType.ChatWhisper"/>.
+    /// </summary>
+    public static readonly CVarDef<float> ChatWhisperScale =
+        CVarDef.Create<float>("font.chat_scale", 1, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

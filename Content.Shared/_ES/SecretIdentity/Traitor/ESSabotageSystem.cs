@@ -36,13 +36,21 @@ public sealed partial class ESSabotageSystem : EntitySystem
     ///     Returns true if the user should be capable of sabotaging the given target.
     /// </summary>
     [PublicAPI]
-    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent> target)
+    public bool CanSabotage(EntityUid user, Entity<ESSabotageTargetComponent?> target)
     {
+        if (!Resolve(target, ref target.Comp))
+            return false;
+
         // for localhost debugging
         if (_admin.HasAdminFlag(user, AdminFlags.Debug))
             return true;
 
         if (_mind.GetMind(user) is not { } mind)
+            return false;
+
+        var ev = new ESSabotageAttemptEvent(user);
+        RaiseLocalEvent(target, ref ev);
+        if (ev.Cancelled)
             return false;
 
         // overriding, for vandal etc
@@ -51,9 +59,13 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
         foreach (var objective in _objective.GetObjectives<ESSabotageConditionComponent>(mind))
         {
-            if (_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target) &&
-                !_objective.IsCompleted(objective.Owner))
-                return true;
+            if (!_entityWhitelist.IsWhitelistPass(objective.Comp.Whitelist, target))
+                continue;
+
+            if (_objective.IsCompleted(objective.Owner))
+                continue;
+
+            return true;
         }
 
         return false;
@@ -61,7 +73,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
     private void OnGetVerbs(Entity<ESSabotageTargetComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!CanSabotage(args.User, ent))
+        if (!CanSabotage(args.User, ent.AsNullable()))
             return;
 
         var user = args.User;
@@ -69,6 +81,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
         {
             Priority = 1,
             Text = Loc.GetString("es-sabotage-verb-text"),
+            Disabled = !args.CanAccess || !args.CanInteract,
             DoContactInteraction = true,
             Act = () =>
             {
@@ -96,7 +109,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
         if (args.Cancelled || args.Handled)
             return;
 
-        if (!CanSabotage(args.User, ent))
+        if (!CanSabotage(args.User, ent.AsNullable()))
             return;
 
         _degradation.Degrade(ent, args.User);
@@ -109,7 +122,7 @@ public sealed partial class ESSabotageSystem : EntitySystem
 
     private void OnExamined(Entity<ESSabotageTargetComponent> ent, ref ExaminedEvent args)
     {
-        if (!CanSabotage(args.Examiner, ent))
+        if (!CanSabotage(args.Examiner, ent.AsNullable()))
             return;
 
         args.PushMarkup(Loc.GetString("es-sabotage-examine-text"));
@@ -117,13 +130,16 @@ public sealed partial class ESSabotageSystem : EntitySystem
 }
 
 [Serializable, NetSerializable]
-public sealed partial class ESSabotageDoAfterEvent : DoAfterEvent
-{
-    public override DoAfterEvent Clone() => this;
-}
+public sealed partial class ESSabotageDoAfterEvent : SimpleDoAfterEvent;
 
 /// <summary>
 /// Event broadcast whenever a sabotage is completed successfully.
 /// </summary>
 [ByRefEvent]
 public readonly record struct ESSabotageCompletedEvent(EntityUid User, EntityUid Target);
+
+/// <summary>
+/// Event raised on a sabotage target to check whether it can currently be sabotaged.
+/// </summary>
+[ByRefEvent]
+public record struct ESSabotageAttemptEvent(EntityUid User, bool Cancelled = false);

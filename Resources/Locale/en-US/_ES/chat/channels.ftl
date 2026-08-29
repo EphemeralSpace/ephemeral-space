@@ -45,6 +45,10 @@ es-chat-filter-name-server = Server
 es-chat-channel-syndie-transponder-fmt-verb = \[Traitor\] [bold]{"{1}"}[/bold] {$verb}, "{"{0}"}"
 es-chat-channel-syndie-transponder-bold-fmt-verb = \[Traitor\] [bold]{"{1}"}[/bold] {$verb}, "[bold]{"{0}"}[/bold]"
 
+es-chat-channel-name-hivemind = Hivemind
+es-chat-channel-parasite-hivemind-fmt-verb = [italic][bold]{"{1}"}[/bold] {$verb} through the wormlink,[/italic] "{"{0}"}"
+es-chat-channel-parasite-hivemind-bold-fmt-verb = [italic][bold]{"{1}"}[/bold] {$verb} through the wormlink,[/italic] "[bold]{"{0}"}[/bold]"
+
 es-chat-channel-speak-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "{"{0}"}"
 es-chat-channel-speak-bold-fmt-verb = [bold]{"{1}"}[/bold] {$verb}, "[bold]{"{0}"}[/bold]"
 

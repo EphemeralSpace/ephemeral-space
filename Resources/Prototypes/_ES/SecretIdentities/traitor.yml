@@ -7,7 +7,7 @@
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
-      id: ESCrateCacheTraitorAssassin
+      id: ESCacheTraitorAssassin
 
 - type: esSecretIdentity
   parent: ESBaseTraitor
@@ -23,7 +23,7 @@
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
-      id: ESCrateCacheTraitorInfiltrator
+      id: ESCacheTraitorInfiltrator
 
 - type: esSecretIdentity
   parent: ESBaseTraitor
@@ -34,7 +34,7 @@
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
-      id: ESCrateCacheTraitorMarauder
+      id: ESCacheTraitorMarauder
 
 - type: esSecretIdentity
   parent: ESBaseTraitor
@@ -46,7 +46,7 @@
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
-      id: ESCrateCacheTraitorSubverter
+      id: ESCacheTraitorSubverter
 
 - type: esSecretIdentity
   parent: ESBaseTraitor
@@ -82,12 +82,13 @@
 
 # Non-traitor identities that are dependent on traitors
 - type: esSecretIdentity
-  parent: ESBaseCommandRestricted # same restriction as traitors
+  parent: [ ESBaseCommandRestricted, ESBaseCrew ] # same restriction as traitors
   id: SleeperAgent
   name: es-secret-identity-sleeper-agent-name
-  organization: Crew
   description: es-secret-identity-sleeper-agent-desc
   color: darkturquoise
+  modifiers:
+    { }
   weight: 0 # otherwise it can roll in randomasquerades with no traitors. temp fix
   tips:
   - SleeperAgentBalance

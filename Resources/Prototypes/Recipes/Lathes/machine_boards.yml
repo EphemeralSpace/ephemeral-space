@@ -70,16 +70,6 @@
   id: WeaponCapacitorRechargerCircuitboard
   result: WeaponCapacitorRechargerCircuitboard
 
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseMachineRecipeCategory ]
-  id: SubstationMachineCircuitboard
-  result: SubstationMachineCircuitboard
-
-- type: latheRecipe
-  parent: [ BaseCircuitboardRecipe, BaseMachineRecipeCategory ]
-  id: SMESMachineCircuitboard
-  result: SMESMachineCircuitboard
-
 ## Circuit imprinter
 
 ## Engineering

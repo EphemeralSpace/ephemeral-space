@@ -17,9 +17,6 @@
   id: Internals
 
 - type: alertCategory
-  id: Stamina
-
-- type: alertCategory
   id: Piloting
 
 - type: alertCategory

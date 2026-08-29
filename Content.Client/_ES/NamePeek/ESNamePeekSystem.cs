@@ -1,4 +1,6 @@
+using Content.Client._ES.Chat;
 using Content.Client.Examine;
+using Content.Shared.Humanoid;
 using Content.Shared.Input;
 using Content.Shared.Mobs.Components;
 using Robust.Client.GameObjects;
@@ -22,10 +24,12 @@ public sealed partial class ESNamePeekSystem : EntitySystem
     [Dependency] private LightLevelSystem _lightLevel = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private ESChatSystem _chat = default!;
 
-    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
-    [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
-    [Dependency] private EntityQuery<MobStateComponent> _mobstateQuery = default!;
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery;
+    [Dependency] private EntityQuery<TransformComponent> _transformQuery;
+    [Dependency] private EntityQuery<MobStateComponent> _mobstateQuery;
+    [Dependency] private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearanceQuery;
 
     public bool Visible;
 
@@ -40,12 +44,14 @@ public sealed partial class ESNamePeekSystem : EntitySystem
             _examine,
             _lookup,
             this,
+            _chat,
             _lightLevel,
             _transform,
             _sprite,
             _spriteQuery,
             _transformQuery,
-            _mobstateQuery));
+            _mobstateQuery,
+            _humanoidAppearanceQuery));
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ESHoldToFace, new PointerInputCmdHandler(OnExamineNames, ignoreUp: false, outsidePrediction: true))

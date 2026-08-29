@@ -2,3 +2,8 @@
   license: "CC-BY-NC-SA-3.0"
   copyright: "Made by pigeonbeans, mixed to mono by mirrorcult"
   source: "https://soundcloud.com/pigeonbeans"
+
+- files: ["clock-ticking.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Wall Clock Ticking http://www.freesound.org/people/qubodup/sounds/219222 by Iwan ‘qubodup’ Gabovitch http://freesound.org/people/qubodup under CC-BY 3.0 License http://creativecommons.org/licenses/by/3.0/legalcode. Converted to mono and .ogg by EmoGarbage404"
+  source: "https://freesound.org/people/qubodup/sounds/219222/"

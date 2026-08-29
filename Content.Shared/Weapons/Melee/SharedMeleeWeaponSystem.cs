@@ -65,7 +65,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] protected SharedPopupSystem PopupSystem = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
-    [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private DamageExamineSystem _damageExamine = default!;
     // ES START
     [Dependency] private ESScreenshakeSystem _shake = default!;
@@ -582,12 +581,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         if (Damageable.TryChangeDamage(target.Value, modifiedDamage, out var damageResult, origin:user, ignoreResistances:resistanceBypass, weapon: meleeUid))
 // ES END
         {
-            // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
-            if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
-            {
-                _stamina.TakeStaminaDamage(target.Value, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
-            }
-
             if (meleeUid == user)
             {
                 AdminLogger.Add(LogType.MeleeHit,
@@ -753,12 +746,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
             if (damageResult.GetTotal() > FixedPoint2.Zero)
             {
-                // If the target has stamina and is taking blunt damage, they should also take stamina damage based on their blunt to stamina factor
-                if (damageResult.DamageDict.TryGetValue("Blunt", out var bluntDamage))
-                {
-                    _stamina.TakeStaminaDamage(entity, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
-                }
-
                 appliedDamage += damageResult;
                 _status.TrySetStatusEffectDuration(entity, MeleeDamageSlowStatusEffect, TimeSpan.FromSeconds(0.35));
 
