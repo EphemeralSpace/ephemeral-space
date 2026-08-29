@@ -2039,3 +2039,9 @@ Entries:
         be opened by anyone.
   id: 219
   time: '2026-08-29T13:49:04.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Tweak
+      message: Satchels no longer spawn
+  id: 220
+  time: '2026-08-29T13:49:15.0000000+00:00'
