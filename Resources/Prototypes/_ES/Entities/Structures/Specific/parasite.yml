@@ -56,19 +56,35 @@
   parent: BaseStructure
   id: ESBarnacle
   name: barnacle
-  description: a disgusting barnacle, it oozes with evil.
+  description: A disgusting barnacle, it oozes with evil.
   components:
   - type: Sprite
-    drawdepth: OverMobs
     sprite: _ES/Structures/Specific/barnacle.rsi
+    noRot: true
     layers:
     - state: barnacle
       map: [ "nest" ]
   - type: InteractionOutline
-  - type: Physics
-    canCollide: false
   - type: Transform
     anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 80
+        mask:
+        - Impassable
+        - MidImpassable
+        layer:
+        - Opaque
+        - MidImpassable
+        - BulletImpassable
+  - type: ESBreakableWall
+    baseLayer:
+    - Impassable
+    - MidImpassable
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -82,9 +98,9 @@
             state: barnacle
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: ESWeakBiological
   - type: ESBreakable
-    threshold: 100
+    threshold: 50
     sound:
       collection: MetalBreak
 

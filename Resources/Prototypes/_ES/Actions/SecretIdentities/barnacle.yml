@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: BaseAction
   id: ActionSecretIdentityBarnacle
-  name: Barnacle
-  description: From behind someone's back, reach into their bag and steal from them. Only works once per person.
+  name: "[color=orange]Plant Barnacle[/color]"
+  description: Slowly plant a barnacle onto the ground. When you die, it'll shoot out a burrower that infects people.
   components:
   - type: Action
     icon:

@@ -1,2 +1,3 @@
-﻿barnacle-max = You've placed the max amount of barnacles!
-barnacle-destroyed = One of your barnacles was destroyed {$location}!
+﻿barnacle-planting-start = Planting barnacle...
+barnacle-max = I can't plant any more!
+barnacle-destroyed = One of my barnacles was destroyed {$location}!
