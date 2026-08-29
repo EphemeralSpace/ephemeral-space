@@ -107,7 +107,7 @@
     - timer
     duration: 15
     spreadAmount: 50
-    smokePrototype: Foam
+    smokePrototype: RemoveGasFoam
     solution:
       reagents:
       - ReagentId: SanitizationFoam

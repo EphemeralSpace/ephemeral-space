@@ -22,7 +22,7 @@
     state: ratman
   jobName: ESjob-name-ratman
 
- - type: jobIcon
+- type: jobIcon
   parent: JobIcon
   id: ESJobIconAnimalControl
   icon:

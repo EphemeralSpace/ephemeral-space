@@ -27,3 +27,9 @@
         visualType: Large
         messages: [ "es-generic-reagent-effect-blistering-skin" ]
         probability: 0.1
+
+- type: entity
+  parent: Foam
+  id: RemoveGasFoam
+  components:
+    - type: ESRemoveGas
