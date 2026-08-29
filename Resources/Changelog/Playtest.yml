@@ -2045,3 +2045,17 @@ Entries:
       message: Satchels no longer spawn
   id: 220
   time: '2026-08-29T13:49:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the firefighter, a new engineering job with special anti-fire
+        equipment. They seem to really like being on fire, though...
+  id: 221
+  time: '2026-08-29T17:09:47.0000000+00:00'
+- author: SpeltIncorrectyl
+  changes:
+    - type: Tweak
+      message: Crew manifest is now predicted
+  id: 222
+  time: '2026-08-29T19:11:07.0000000+00:00'
