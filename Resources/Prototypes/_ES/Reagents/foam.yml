@@ -25,5 +25,5 @@
       - !type:PopupMessage
         type: Local
         visualType: Large
-        messages: [ "es-generic-reagent-effect-burning-skin" ]
+        messages: [ "es-generic-reagent-effect-blistering-skin" ]
         probability: 0.1
