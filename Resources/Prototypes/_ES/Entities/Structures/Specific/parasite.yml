@@ -51,3 +51,90 @@
     canCollide: false
   - type: Transform
     anchored: false
+
+- type: entity
+  parent: BaseStructure
+  id: ESBarnacle
+  name: barnacle
+  description: A disgusting barnacle, it oozes with evil.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Specific/barnacle.rsi
+    noRot: true
+    layers:
+    - state: barnacle
+      map: [ "nest" ]
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 80
+        mask:
+        - Impassable
+        - MidImpassable
+        layer:
+        - Opaque
+        - MidImpassable
+        - BulletImpassable
+  - type: ESBreakableWall
+    baseLayer:
+    - Impassable
+    - MidImpassable
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        nest:
+          True:
+            sprite: _ES/Structures/Specific/barnacle.rsi
+            state: barnacledead
+          False:
+            sprite: _ES/Structures/Specific/barnacle.rsi
+            state: barnacle
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ESWeakBiological
+  - type: ESBreakable
+    threshold: 50
+    sound:
+      collection: MetalBreak
+
+- type: entity
+  parent: BaseStructure
+  id: ESBarnacleTile
+  name: barnacles
+  description: They're barancles, just like on TV.
+  components:
+  - type: Sprite
+    drawdepth: FloorTiles
+    layers:
+    - sprite: _ES/Structures/Specific/barnacle.rsi
+      state: barnacletile
+  - type: InteractionOutline
+  - type: Physics
+    canCollide: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 15
+        hard: false
+        mask:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+        layer:
+        - Impassable
+        - HighImpassable
+        - LowImpassable
+  - type: ESSecretIdentityConvertOnCollide
+    secretIdentity: Barnacle
+  - type: ESTimedDespawn
+    lifetime: 3
