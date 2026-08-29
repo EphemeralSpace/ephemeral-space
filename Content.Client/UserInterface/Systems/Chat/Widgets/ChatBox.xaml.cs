@@ -71,7 +71,8 @@ public partial class ChatBox : UIWidget
 
     private void OnChannelSelect(ProtoId<ESChatChannelPrototype> channel)
     {
-        Controller.UpdateSelectedChannel(this);
+        Controller.NotifyChatSelectorChanged(this);
+        Controller.NotifyChatTextChange(this);
     }
 
     public virtual void Repopulate()
@@ -164,19 +165,19 @@ public partial class ChatBox : UIWidget
         Controller.UpdateSelectedChannel(this);
 
         // Warn typing indicator about change
-        Controller.NotifyChatTextChange();
+        Controller.NotifyChatTextChange(this);
     }
 
     private void OnFocusEnter(LineEditEventArgs args)
     {
         // Warn typing indicator about focus
-        Controller.NotifyChatFocus(true);
+        Controller.NotifyChatFocus(this, true);
     }
 
     private void OnFocusExit(LineEditEventArgs args)
     {
         // Warn typing indicator about focus
-        Controller.NotifyChatFocus(false);
+        Controller.NotifyChatFocus(this, false);
     }
 
     protected override void Dispose(bool disposing)

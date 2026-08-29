@@ -9,6 +9,7 @@ using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -50,14 +51,24 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         args.Handled = true;
     }
 
+    // ES START
     private void OnAfterInteract(Entity<AbsorbentComponent> ent, ref AfterInteractEvent args)
     {
-        if (!args.CanReach || args.Handled || args.Target is not { } target)
+        if (!args.CanReach || args.Handled)
             return;
 
-        Mop(ent, args.User, target);
+        if (args.Target != null)
+        {
+            Mop(ent, args.User, args.Target.Value);
+        }
+        else
+        {
+            Mop(ent, args.User, args.ClickLocation);
+        }
+
         args.Handled = true;
     }
+    // ES END
 
     private void OnAbsorbentSolutionChange(Entity<AbsorbentComponent> ent, ref SolutionContainerChangedEvent args)
     {
@@ -87,11 +98,24 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         _item.VisualsChanged(ent);
     }
 
-    [Obsolete("Use Entity<T> variant")]
-    public void Mop(EntityUid user, EntityUid target, EntityUid used, AbsorbentComponent component)
+    // ES START
+    public void Mop(Entity<AbsorbentComponent> absorbEnt, EntityUid user, EntityCoordinates coordinates)
     {
-        Mop((used, component), user, target);
+        if (_transform.GetGrid(coordinates) is not { } gridUid)
+        {
+            // Not on grid, do nothing.
+            return;
+        }
+
+        var gridComp = Comp<MapGridComponent>(gridUid);
+        var anchoredEntities = _mapSystem.GetAnchoredEntities((gridUid, gridComp), coordinates);
+
+        foreach (var anchoredEntity in anchoredEntities)
+        {
+            Mop(absorbEnt, user, anchoredEntity);
+        }
     }
+    // ES END
 
     public void Mop(Entity<AbsorbentComponent> absorbEnt, EntityUid user, EntityUid target)
     {
@@ -315,6 +339,15 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
 
             puddleSplit =
                 puddleSolution.SplitSolutionWithout(transferAmount, Puddle.GetAbsorbentReagents(puddleSolution));
+
+            // handle efficiency of absorber
+            if (absorber.Efficiency < 1)
+            {
+                // intentionally throw away the split portion
+                // .25 efficiency = 75% loss
+                _ = puddleSplit.SplitSolution(puddleSplit.Volume * (1 - absorber.Efficiency));
+            }
+
             var absorberSplit =
                 absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume,
                     Puddle.GetAbsorbentReagents(absorberSolution));
@@ -333,6 +366,13 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         {
             // Note: arguably shouldn't this get all solutions?
             puddleSplit = puddleSolution.SplitSolutionWithout(absorber.PickupAmount, Puddle.GetAbsorbentReagents(puddleSolution));
+            if (absorber.Efficiency < 1)
+            {
+                // intentionally throw away the split portion
+                // .25 efficiency = 75% loss
+                _ = puddleSplit.SplitSolution(puddleSplit.Volume * (1 - absorber.Efficiency));
+            }
+
             // Despawn if we're done
             if (puddleSolution.Volume == FixedPoint2.Zero)
             {

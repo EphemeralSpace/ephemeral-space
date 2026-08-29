@@ -1,0 +1,4 @@
+- type: soundCollection
+  id: ESRadioClick
+  files:
+  - /Audio/_ES/Effects/radioclick.ogg

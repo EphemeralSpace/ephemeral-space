@@ -35,8 +35,6 @@
     thresholds:
       0: Alive
       80: Dead
-  - type: Stamina
-    baseCritThreshold: 150
   - type: MovementAlwaysTouching
   - type: Bloodstream
     bloodReferenceSolution:
@@ -146,8 +144,6 @@
         Base: kangaroo-space-crit
       Dead:
         Base: kangaroo-space-dead
-  - type: Stamina
-    baseCritThreshold: 180
   - type: Inventory
     speciesId: kangaroo
     templateId: spacekangaroo
@@ -184,8 +180,6 @@
     thresholds:
       0: Alive
       45: Dead
-  - type: Stamina
-    baseCritThreshold: 150
   - type: DamageStateVisuals
     states:
       Alive:
@@ -277,8 +271,6 @@
       thresholds:
         0: Alive
         45: Dead
-    - type: Stamina
-      baseCritThreshold: 150
     - type: DamageStateVisuals
       states:
         Alive:

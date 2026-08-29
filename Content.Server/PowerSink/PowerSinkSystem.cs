@@ -43,7 +43,7 @@ namespace Content.Server.PowerSink
 
         private void OnExamine(EntityUid uid, PowerSinkComponent component, ExaminedEvent args)
         {
-            if (!args.IsInDetailsRange || !TryComp<PowerConsumerComponent>(uid, out var consumer))
+            if (!TryComp<PowerConsumerComponent>(uid, out var consumer))
                 return;
 
             var drainAmount = (int) consumer.NetworkLoad.ReceivingPower / 1000;

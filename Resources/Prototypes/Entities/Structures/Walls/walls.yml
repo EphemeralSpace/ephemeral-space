@@ -52,6 +52,7 @@
   - type: SunShadowCast
   - type: ESDamageDeflection
     threshold: 45
+  - type: TrayScanReveal
 
 - type: entity
   abstract: true

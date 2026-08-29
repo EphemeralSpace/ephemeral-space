@@ -21,7 +21,7 @@
       CarbonDioxide: stationCO2
       Plasma: stationPlasma
       Tritium: stationTritium
-      WaterVapor: stationWaterVapor
+      Steam: stationSteam
       Miasma: stationMiasma
       NitrousOxide: stationNO
       Cryogas: ESStationCryogas

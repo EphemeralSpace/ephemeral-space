@@ -467,6 +467,7 @@
     footstepSoundCollection:
       collection: FootstepWood
 
+
 - type: entity
   id: TableCarpet
   parent: TableBase

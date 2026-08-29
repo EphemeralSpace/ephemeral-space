@@ -182,4 +182,4 @@ spray-painter-style-canisters-oxygen = Oxygen
 spray-painter-style-canisters-plasma = Plasma
 spray-painter-style-canisters-storage = Storage
 spray-painter-style-canisters-tritium = Tritium
-spray-painter-style-canisters-water-vapor = Water vapor
+spray-painter-style-canisters-steam = Steam

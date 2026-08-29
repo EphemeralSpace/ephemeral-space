@@ -11,7 +11,7 @@ public abstract partial class SharedGunSystem
 {
     private void OnExamine(EntityUid uid, GunComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !component.ShowExamineText)
+        if (!component.ShowExamineText)
             return;
 
         using (args.PushGroup(nameof(GunComponent)))

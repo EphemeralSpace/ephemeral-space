@@ -92,7 +92,7 @@
 
     - tableId: ESMixedBasicGloves
     - id: ClothingEyesGlassesMeson
-    - id: ClothingHandsGlovesColorYellowBudget
+    - id: ClothingHandsGlovesInsulatedBudget
     - id: ClothingMaskGas
     - id: ClothingShoesColorBlack
     - id: ClothingOuterVestHazard
@@ -101,7 +101,6 @@
     - id: ClothingHeadsetGrey
     - group:
       - id: ClothingBackpack
-      - id: ClothingBackpackSatchel
       - id: ClothingBackpackDuffel
     - id: CableApcStack
     - id: CableMVStack
@@ -186,6 +185,7 @@
     - id: HydroponicsToolHatchet
     - id: Multitool
     - id: LuxuryPen
+    - id: ClothingEyesGlassesSunglasses
     - id: Cablecuffs
     - id: Bola
     - id: EmergencyRollerBedSpawnFolded
@@ -201,7 +201,6 @@
     - id: ClothingBeltUtility
       weight: 2
     - id: ESClothingHeadHelmetSecurity
-    - id: ClothingBackpackSatchelSmugglerUnanchored
 
     - id: DefaultStationBeaconUnanchored
     - tableId: ESSoap
@@ -209,7 +208,7 @@
     - id: PowerCellMedium
     - id: PowerCellHigh
       weight: 0.5
-    - id: BoxHug
+    - id: ESBoxHug
 
     - group:
       - id: Brutepack
@@ -230,9 +229,6 @@
     - id: FoodTinPeachesMaint
     - id: FoodBoxDonkpocket
     - id: MonkeyCube
-
-    - id: SMESMachineCircuitboard
-    - id: SubstationMachineCircuitboard
 
     - group:
       - id: ClothingUniformColorRainbow
@@ -277,12 +273,12 @@
     - id: PinpointerNuclear
     - id: CameraBug
     - id: MedkitFilled
+    - id: GrenadeFlashBang
 
     - id: ESKitSecretDoor
 
     - id: ClothingEyesHudSecurity
-    - id: ClothingEyesGlassesSunglasses
-    - id: ClothingHandsGlovesColorYellow
+    - id: ClothingHandsGlovesInsulated
 
     - all: # Russian Outfit
       - id: ESClothingHeadUshanka

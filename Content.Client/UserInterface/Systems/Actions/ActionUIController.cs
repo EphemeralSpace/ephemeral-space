@@ -6,14 +6,10 @@ using Content.Client.Gameplay;
 using Content.Client.Hands;
 using Content.Client.Interaction;
 using Content.Client.Outline;
-using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Actions.Controls;
 using Content.Client.UserInterface.Systems.Actions.Widgets;
-using Content.Client.UserInterface.Systems.Actions.Windows;
 using Content.Client.UserInterface.Systems.Gameplay;
-using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.Charges.Systems;
 using Content.Shared.Input;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -28,17 +24,10 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Content.Client.Actions.ActionsSystem;
-using static Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow;
 using static Robust.Client.UserInterface.Control;
-using static Robust.Client.UserInterface.Controls.BaseButton;
-using static Robust.Client.UserInterface.Controls.LineEdit;
-using static Robust.Client.UserInterface.Controls.MultiselectOptionButton<
-    Content.Client.UserInterface.Systems.Actions.Windows.ActionsWindow.Filters>;
 using static Robust.Client.UserInterface.Controls.TextureRect;
 using static Robust.Shared.Input.Binding.PointerInputCmdHandler;
-// ES START
 using Content.Client.Lobby;
-// ES END
 
 namespace Content.Client.UserInterface.Systems.Actions;
 
@@ -61,10 +50,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private readonly List<EntityUid?> _actions = new();
     private readonly DragDropHelper<ActionButton> _menuDragHelper;
     private readonly TextureRect _dragShadow;
-    private ActionsWindow? _window;
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
-    private MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
 
     public bool IsDragging => _menuDragHelper.IsDragging;
 
@@ -106,9 +93,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _actionsSystem.ActionsUpdated += OnActionsUpdated;
         }
 
-        UpdateFilterLabel();
-        QueueWindowUpdate();
-
         _dragShadow.Orphan();
         UIManager.PopupRoot.AddChild(_dragShadow);
 
@@ -129,8 +113,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         }
 
         builder
-            .Bind(ContentKeyFunctions.OpenActionsMenu,
-                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(TargetingOnUse, outsidePrediction: true),
                 typeof(ConstructionSystem), typeof(DragDropSystem))
             .BindBefore(EngineKeyFunctions.UIRightClick, new PointerInputCmdHandler(TargetingCancel, outsidePrediction: true))
@@ -169,9 +151,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             _actionsSystem.ActionsUpdated += OnActionsUpdated;
         }
 
-        UpdateFilterLabel();
-        QueueWindowUpdate();
-
         _dragShadow.Orphan();
         UIManager.PopupRoot.AddChild(_dragShadow);
 
@@ -192,8 +171,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         }
 
         builder
-            .Bind(ContentKeyFunctions.OpenActionsMenu,
-                InputCmdHandler.FromDelegate(_ => ToggleWindow()))
             .BindBefore(EngineKeyFunctions.Use, new PointerInputCmdHandler(TargetingOnUse, outsidePrediction: true),
                     typeof(ConstructionSystem), typeof(DragDropSystem))
                 .BindBefore(EngineKeyFunctions.UIRightClick, new PointerInputCmdHandler(TargetingCancel, outsidePrediction: true))
@@ -256,30 +233,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         return true;
     }
 
-    public void UnloadButton()
-    {
-        if (ActionButton != null)
-            ActionButton.OnPressed -= ActionButtonPressed;
-    }
-
-    public void LoadButton()
-    {
-        if (ActionButton != null)
-            ActionButton.OnPressed += ActionButtonPressed;
-    }
-
-    private void OnWindowOpened()
-    {
-        ActionButton?.SetClickPressed(true);
-
-        SearchAndDisplay();
-    }
-
-    private void OnWindowClosed()
-    {
-        ActionButton?.SetClickPressed(false);
-    }
-
     public void OnStateExited(GameplayState state)
     {
         if (_actionsSystem != null)
@@ -336,155 +289,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
     private void OnActionsUpdated()
     {
-        QueueWindowUpdate();
-
         if (_actionsSystem != null)
             _container?.SetActionData(_actionsSystem, _actions.ToArray());
-    }
-
-    private void ActionButtonPressed(ButtonEventArgs args)
-    {
-        ToggleWindow();
-    }
-
-    private void ToggleWindow()
-    {
-        if (_window == null)
-            return;
-
-        if (_window.IsOpen)
-        {
-            _window.Close();
-            return;
-        }
-
-        _window.Open();
-    }
-
-    private void UpdateFilterLabel()
-    {
-        if (_window == null)
-            return;
-
-        if (_window.FilterButton.SelectedKeys.Count == 0)
-        {
-            _window.FilterLabel.Visible = false;
-        }
-        else
-        {
-            _window.FilterLabel.Visible = true;
-            _window.FilterLabel.Text = Loc.GetString("ui-actionmenu-filter-label",
-                ("selectedLabels", string.Join(", ", _window.FilterButton.SelectedLabels)));
-        }
-    }
-
-    private bool MatchesFilter(Entity<ActionComponent> ent, Filters filter)
-    {
-        var (uid, comp) = ent;
-        return filter switch
-        {
-            Filters.Enabled => comp.Enabled,
-            Filters.Item => comp.Container != null && comp.Container != _playerManager.LocalEntity,
-            Filters.Innate => comp.Container == null || comp.Container == _playerManager.LocalEntity,
-            Filters.Instant => EntityManager.HasComponent<InstantActionComponent>(uid),
-            Filters.Targeted => EntityManager.HasComponent<TargetActionComponent>(uid),
-            _ => throw new ArgumentOutOfRangeException(nameof(filter), filter, null)
-        };
-    }
-
-    private void ClearList()
-    {
-        if (_window?.Disposed == false)
-            _window.ResultsGrid.RemoveAllChildren();
-    }
-
-    private void PopulateActions(IEnumerable<Entity<ActionComponent>> actions)
-    {
-        if (_window is not { Disposed: false, IsOpen: true })
-            return;
-
-        if (_actionsSystem == null)
-            return;
-
-        _window.UpdateNeeded = false;
-
-        List<ActionButton> existing = new(_window.ResultsGrid.ChildCount);
-        foreach (var child in _window.ResultsGrid.Children)
-        {
-            if (child is ActionButton button)
-                existing.Add(button);
-        }
-
-        int i = 0;
-        foreach (var action in actions)
-        {
-            if (i < existing.Count)
-            {
-                existing[i++].UpdateData(action, _actionsSystem);
-                continue;
-            }
-
-            var button = new ActionButton(EntityManager, _spriteSystem, this) {Locked = true};
-            button.ActionPressed += OnWindowActionPressed;
-            button.ActionUnpressed += OnWindowActionUnPressed;
-            button.ActionFocusExited += OnWindowActionFocusExisted;
-            button.UpdateData(action, _actionsSystem);
-            _window.ResultsGrid.AddChild(button);
-        }
-
-        for (; i < existing.Count; i++)
-        {
-            existing[i].Dispose();
-        }
-    }
-
-    public void QueueWindowUpdate()
-    {
-        if (_window != null)
-            _window.UpdateNeeded = true;
-    }
-
-    private void SearchAndDisplay()
-    {
-        if (_window is not { Disposed: false, IsOpen: true })
-            return;
-
-        if (_actionsSystem == null)
-            return;
-
-        if (_playerManager.LocalEntity is not { } player)
-            return;
-
-        var search = _window.SearchBar.Text;
-        var filters = _window.FilterButton.SelectedKeys;
-        var actions = _actionsSystem.GetClientActions();
-
-        if (filters.Count == 0 && string.IsNullOrWhiteSpace(search))
-        {
-            PopulateActions(actions);
-            return;
-        }
-
-        actions = actions.Where(action =>
-        {
-            if (filters.Count > 0 && filters.Any(filter => !MatchesFilter(action, filter)))
-                return false;
-
-            if (action.Comp.Keywords.Any(keyword => search.Contains(keyword, StringComparison.OrdinalIgnoreCase)))
-                return true;
-
-            var name = EntityManager.GetComponent<MetaDataComponent>(action).EntityName;
-            if (name.Contains(search, StringComparison.OrdinalIgnoreCase))
-                return true;
-
-            if (action.Comp.Container == null || action.Comp.Container == player)
-                return false;
-
-            var providerName = EntityManager.GetComponent<MetaDataComponent>(action.Comp.Container.Value).EntityName;
-            return providerName.Contains(search, StringComparison.OrdinalIgnoreCase);
-        });
-
-        PopulateActions(actions);
     }
 
     private void SetAction(ActionButton button, EntityUid? actionId, bool updateSlots = true)
@@ -529,16 +335,14 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
             return;
         }
 
-        EntityUid? swapAction = null;
         var currentlyHovered = UIManager.MouseGetControl(_input.MouseScreenPosition);
-        if (currentlyHovered is ActionButton button)
+        if (currentlyHovered is ActionButton button &&
+            dragged.Parent is ActionButtonContainer)
         {
-            swapAction = button.Action;
+            var swapAction = button.Action;
             SetAction(button, action, false);
-        }
-
-        if (dragged.Parent is ActionButtonContainer)
             SetAction(dragged, swapAction, false);
+        }
 
         if (_actionsSystem != null)
             _container?.SetActionData(_actionsSystem, _actions.ToArray());
@@ -546,58 +350,8 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
         _menuDragHelper.EndDrag();
     }
 
-    private void OnClearPressed(ButtonEventArgs args)
-    {
-        if (_window == null)
-            return;
-
-        _window.SearchBar.Clear();
-        _window.FilterButton.DeselectAll();
-        UpdateFilterLabel();
-        QueueWindowUpdate();
-    }
-
-    private void OnSearchChanged(LineEditEventArgs args)
-    {
-        QueueWindowUpdate();
-    }
-
-    private void OnFilterSelected(ItemPressedEventArgs args)
-    {
-        UpdateFilterLabel();
-        QueueWindowUpdate();
-    }
-
-    private void OnWindowActionPressed(GUIBoundKeyEventArgs args, ActionButton action)
-    {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.Use)
-            return;
-
-        HandleActionPressed(args, action);
-    }
-
-    private void OnWindowActionUnPressed(GUIBoundKeyEventArgs args, ActionButton dragged)
-    {
-        if (args.Function != EngineKeyFunctions.UIClick && args.Function != EngineKeyFunctions.Use)
-            return;
-
-        HandleActionUnpressed(args, dragged);
-    }
-
-    private void OnWindowActionFocusExisted(ActionButton button)
-    {
-        _menuDragHelper.EndDrag();
-    }
-
     private void OnActionPressed(GUIBoundKeyEventArgs args, ActionButton button)
     {
-        if (args.Function == EngineKeyFunctions.UIRightClick)
-        {
-            SetAction(button, null);
-            args.Handle();
-            return;
-        }
-
         if (args.Function != EngineKeyFunctions.UIClick)
             return;
 
@@ -699,36 +453,11 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     private void UnloadGui()
     {
         _actionsSystem?.UnlinkAllActions();
-
-        if (ActionsBar == null)
-        {
-            return;
-        }
-
-        if (_window != null)
-        {
-            _window.OnOpen -= OnWindowOpened;
-            _window.OnClose -= OnWindowClosed;
-            _window.ClearButton.OnPressed -= OnClearPressed;
-            _window.SearchBar.OnTextChanged -= OnSearchChanged;
-            _window.FilterButton.OnItemSelected -= OnFilterSelected;
-
-            _window.Dispose();
-            _window = null;
-        }
     }
 
     private void LoadGui()
     {
         UnloadGui();
-        _window = UIManager.CreateWindow<ActionsWindow>();
-        LayoutContainer.SetAnchorPreset(_window, LayoutContainer.LayoutPreset.CenterTop);
-
-        _window.OnOpen += OnWindowOpened;
-        _window.OnClose += OnWindowClosed;
-        _window.ClearButton.OnPressed += OnClearPressed;
-        _window.SearchBar.OnTextChanged += OnSearchChanged;
-        _window.FilterButton.OnItemSelected += OnFilterSelected;
 
         if (ActionsBar == null)
         {
@@ -768,8 +497,6 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
     public override void FrameUpdate(FrameEventArgs args)
     {
         _menuDragHelper.Update(args.DeltaSeconds);
-        if (_window is {UpdateNeeded: true})
-            SearchAndDisplay();
     }
 
     private void OnComponentLinked(ActionsComponent component)
@@ -779,13 +506,11 @@ public sealed partial class ActionUIController : UIController, IOnStateChanged<G
 
         LoadDefaultActions();
         _container?.SetActionData(_actionsSystem, _actions.ToArray());
-        QueueWindowUpdate();
     }
 
     private void OnComponentUnlinked()
     {
         _container?.ClearActionData();
-        QueueWindowUpdate();
         StopTargeting();
     }
 

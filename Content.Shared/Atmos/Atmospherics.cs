@@ -200,7 +200,7 @@ namespace Content.Shared.Atmos
             [Gas.Oxygen] = Loc.GetString("gas-oxygen-abbreviation"),
             [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
             [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
-            [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
+            [Gas.Steam] = Loc.GetString("gas-steam-abbreviation"),
         };
 
         #region Excited Groups
@@ -400,7 +400,7 @@ namespace Content.Shared.Atmos
         CarbonDioxide = 2,
         Plasma = 3,
         Tritium = 4,
-        WaterVapor = 5,
+        Steam = 5,
         Miasma = 6,
         NitrousOxide = 7,
         Cryogas = 8

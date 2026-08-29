@@ -97,7 +97,7 @@
     - Plasma
     - Smoke
     - Cryogas
-    - WaterVapor # The Fog...
+    - Steam # The Fog...
     count: 2
 
 - type: entity

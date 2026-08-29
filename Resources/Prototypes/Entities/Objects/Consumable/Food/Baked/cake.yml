@@ -207,9 +207,5 @@
   - type: Tag
     tags:
     - Slice
-  - type: FoodSequenceElement
-    entries:
-      Taco: Suppermatter
-      Burger: SuppermatterBurger
   - type: Item
     heldPrefix: suppermatter-shard

@@ -1,7 +1,10 @@
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Traitor.Components;
+using Content.Shared._ES.SpawnRegion;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
+using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
@@ -21,6 +24,7 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] protected SharedTransformSystem TransformSystem = default!;
@@ -134,11 +138,13 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        var pos = Transform(ent).Coordinates;
+        var pos = user.HasValue ? Transform(user.Value).Coordinates : Transform(ent).Coordinates;
         var cache = PredictedSpawnAtPosition(ent.Comp.CacheLoot, pos);
         PredictedQueueDel(ent);
         _popup.PopupEntity(Loc.GetString("es-ceiling-cache-popup"), ent);
         _audio.PlayPredicted(ent.Comp.RevealSound, pos, user, ent.Comp.RevealSound?.Params.WithMaxDistance(1.5f).WithVolume(-3f));
+        if (user.HasValue)
+            _hands.TryPickupAnyHand(user.Value, cache, animate: false);
 
         if (ent.Comp.MindId.HasValue)
         {
@@ -146,6 +152,16 @@ public abstract partial class ESSharedSecretIdentityCacheSystem : EntitySystem
             RaiseLocalEvent(ent.Comp.MindId.Value, ref ev);
         }
     }
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ESAddCacheSecretIdentityModifierEvent : ESSecretIdentifierModifierEvent
+{
+    [DataField]
+    public ProtoId<ESSpawnRegionPrototype> Region = "ESMaintenance";
+
+    [DataField]
+    public EntityTableSelector CacheProto = new NoneSelector();
 }
 
 [Serializable, NetSerializable]

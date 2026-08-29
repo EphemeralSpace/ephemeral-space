@@ -39,7 +39,7 @@
   id: ESFillLockerEngineer
   table: !type:AllSelector
     children:
-    - id: ClothingHandsGlovesColorYellow
+    - id: ClothingHandsGlovesInsulated
     - id: ClothingMaskGas
     - id: ClothingEyesGlassesMeson
     - id: trayScanner

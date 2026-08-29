@@ -24,9 +24,6 @@ public sealed partial class RCDAmmoSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, RCDAmmoComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var examineMessage = Loc.GetString("rcd-ammo-component-on-examine", ("charges", comp.Charges));
         args.PushText(examineMessage);
     }

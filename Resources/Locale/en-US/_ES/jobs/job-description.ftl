@@ -8,6 +8,7 @@ ESjob-description-coroner = Perform autopsies to find information about dead bod
 ESjob-description-detective = Investigate crime scenes using forensic tools, ensure that the guilty party is found, and have a couple smokes.
 ESjob-description-engineer = Keep the station's main engine & solars active, optimize the power network, and make emergency repairs using your hardsuit in spaced areas.
 ESjob-description-experiment = Help the department that the gear in your locker assigns you to. Don't get killed just for monkeying around. Prove that the 4th iteration of simian intelligence enhancement has borne fruit.
+ESjob-description-firefighter = Fight fires across the station, keep the air cool and breathable, and ensure the station doesn't fall into an inferno. Preferably while on fire yourself.
 ESjob-description-janitor = Keep the station clean of any trash or slipping hazards, and help deal with rat infestations.
 ESjob-description-paramedic = Save patients in critical condition & bring them back to medical for treatment.
 ESjob-description-doctor = Diagnose and heal crewmembers through medicinal chemicals, advanced medicine, and defibrillators.

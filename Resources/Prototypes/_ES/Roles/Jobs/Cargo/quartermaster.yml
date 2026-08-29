@@ -7,7 +7,6 @@
   icon: "JobIconCargoTechnician" # this is intentional, the upstream qm icon is just this but command-colored which we dont want
   access:
   - Cargo
-  - Maintenance
   extendedAccess:
   - Salvage
 

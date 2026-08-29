@@ -36,9 +36,6 @@
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.20
         sprintSpeedModifier: 1.20
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectDesoxyStamina # You are on meth. You keep going.
-        time: 3
       - !type:GenericStatusEffect
         key: Adrenaline
         component: IgnoreSlowOnDamage
@@ -149,9 +146,6 @@
       - !type:MovementSpeedModifier
         walkSpeedModifier: 1.25
         sprintSpeedModifier: 1.25
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectStimulantsStamina # You are on meth. You keep going.
-        time: 3
       - !type:ModifyStatusEffect
         effectProto: StatusEffectStunned
         time: 3.5

@@ -18,7 +18,7 @@
           amount: 2
         - id: ClothingOuterVestHazard
           amount: 3
-        - id: ClothingHandsGlovesColorYellow
+        - id: ClothingHandsGlovesInsulated
           amount: 2
 
 - type: entity
@@ -113,7 +113,7 @@
         children:
         - id: ToolboxElectricalFilled
           amount: 2
-        - id: ClothingHandsGlovesColorYellow
+        - id: ClothingHandsGlovesInsulated
           amount: 2
 
 - type: entity
@@ -210,25 +210,8 @@
     - id: DoorElectronics
     - id: FirelockElectronics
     - id: SignalTimerElectronics
-    - id: SMESMachineCircuitboard
-    - id: SubstationMachineCircuitboard
     - id: BorgChargerCircuitboard
     - id: CellRechargerCircuitboard
-    - id: SpaceVillainArcadeComputerCircuitboard
-    - id: BlockGameArcadeComputerCircuitboard
-
-- type: entity
-  parent: ToteBase
-  id: CrateTechBoardRandom
-  name: surplus boards
-  description: Surplus boards from somewhere.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: RandomTechBoardTable
-        rolls: !type:RangeNumberSelector
-          range: 6, 8
 
 - type: entity
   parent: CrateEngineering

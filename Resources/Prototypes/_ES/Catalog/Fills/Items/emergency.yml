@@ -20,26 +20,6 @@
 
 - type: entity
   parent: BoxCardboard
-  id: ESBoxSurvivalMedical
-  name: survival box
-  description: It's a box with basic internals inside.
-  suffix: ES, Medical
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        all:
-        - id: ClothingMaskBreathMedical
-        - id: EmergencyOxygenTankFilled
-        - id: EmergencyMedipen
-        - id: Gauze
-  - type: Sprite
-    layers:
-    - state: internals
-    - state: emergencytank
-
-- type: entity
-  parent: BoxCardboard
   id: ESBoxHug
   name: box of hugs
   description: A special box for sensitive people.

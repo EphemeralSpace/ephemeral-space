@@ -27,7 +27,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ComputerVisuals.Powered:
+      enum.PowerDeviceVisuals.Powered:
         computerLayerScreen:
           True: { visible: true, shader: unshaded }
           False: { visible: false }
@@ -75,7 +75,6 @@
     soundGroups:
       Brute:
         collection: GlassSmash
-  - type: Computer
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -122,8 +121,6 @@
         type: ESWarehouseManifestBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Computer
-    board: ESComputerWarehouseManifestCircuitBoard
   - type: PointLight
     color: "#f7a259"
 
@@ -142,8 +139,6 @@
     interfaces:
       enum.ESAnomalyConsoleUiKey.Key:
         type: ESAnomalyConsoleBui
-  - type: Computer
-    board: ESComputerAnomalyCircuitBoard
   - type: PointLight
     color: "#aa4fc7"
 
@@ -181,8 +176,6 @@
         type: ESCargoRequestConsoleBui
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
-  - type: Computer
-    board: ESComputerSupplyRequestCircuitBoard
   - type: PointLight
     color: "#d69c02"
 
@@ -276,14 +269,13 @@
       state: generic_panel_open
   - type: ESCargoRequestConsole
     masterConsole: true
-  - type: Computer
-    board: ESComputerSupplyRequestMasterCircuitBoard
 
 - type: entity
   parent: ESBaseComputerTerminal
   id: ESBaseComputerTerminalCryptoNuke
   name: security override terminal
   description: Part of a triad of terminals that interface with the station's high security systems. Capable of tracking the nuclear disk and, if compromised, providing the nuclear codes.
+  abstract: true # map the 3 actual terminals
   components:
   - type: Sprite
     layers:
@@ -314,6 +306,37 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ESAmbientMusicMarkerCommand # it's not really a "command" object, but it makes sense to play command ambience near these
+  - type: WarpPoint
+    follow: true
+    location: security override terminal
+    blacklist:
+      tags:
+        - GhostOnlyWarp
+  - type: ESStagehandAware
+
+- type: entity
+  parent: ESBaseComputerTerminalCryptoNuke
+  id: ESBaseComputerTerminalCryptoNukeCaptainsOffice
+  name: captain's office terminal
+  components:
+  - type: WarpPoint
+    location: captain's office terminal
+
+- type: entity
+  parent: ESBaseComputerTerminalCryptoNuke
+  id: ESBaseComputerTerminalCryptoNukeStationAdministrator
+  name: station administrator terminal
+  components:
+  - type: WarpPoint
+    location: station administrator terminal
+
+- type: entity
+  parent: ESBaseComputerTerminalCryptoNuke
+  id: ESBaseComputerTerminalCryptoNukeSecureTechStorage
+  name: secure tech storage terminal
+  components:
+  - type: WarpPoint
+    location: secure tech storage terminal
 
 - type: entity
   parent: ESBaseComputerTerminal

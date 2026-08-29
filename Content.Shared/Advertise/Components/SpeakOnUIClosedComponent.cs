@@ -35,4 +35,7 @@ public sealed partial class SpeakOnUIClosedComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Flag;
+
+    [DataField]
+    public bool HideChat = true;
 }

@@ -1764,3 +1764,284 @@ Entries:
       message: Chat now uses Wormtown9k, a pixel font.
   id: 189
   time: '2026-08-14T20:31:49.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: T-rays now show wires under grilles and walls
+    - type: Fix
+      message: Oxygen tank can no longer be breathed through your bag
+    - type: Tweak
+      message: Tank max output pressure is much lower (41.6 kpa)
+    - type: Tweak
+      message: Parasite damage cap lowered back to 200
+    - type: Add
+      message: >-
+        Parasite damage objective now tells you exactly how much damage you can
+        deal, how much leeway you have, and has popup warnings for when you
+        reach certain thresholds
+    - type: Fix
+      message: Fix stagehand player screen being scrolled when a new round starts
+    - type: Tweak
+      message: Mop is no longer wieldable and does less damage
+    - type: Tweak
+      message: Footsteps are much quieter now
+    - type: Tweak
+      message: >-
+        Sleeper agent can now proc when a traitor is converted to some other
+        identity (like getting wormed)
+    - type: Tweak
+      message: >-
+        Override terminals now have warp points & stagehand notifs for when
+        theyre hacked or overridden
+    - type: Tweak
+      message: >-
+        Leapleech objective now shows how many leeches you have stored (so
+        stagehands can see)
+    - type: Tweak
+      message: Shock stun is less time now
+    - type: Fix
+      message: Open lockers no longer block bullets (this includes burstworms)
+    - type: Tweak
+      message: You can no longer strip multiple items from someone at the same time
+    - type: Add
+      message: >-
+        Janitor mops are now 4x as good, i.e. they will delete 75% of the
+        solution they mop up instead of keeping it in the mop and making it
+        annoying
+    - type: Tweak
+      message: water vapor is call steam now yay
+  id: 190
+  time: '2026-08-14T22:55:16.0000000+00:00'
+- author: jessicamaybe
+  changes:
+    - type: Add
+      message: You can now hold shift to peek at player names
+  id: 191
+  time: '2026-08-15T00:52:01.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Chat prefixes now work regardless of case.
+    - type: Fix
+      message: Fixed lobby NPCs not having names in chat bubbles.
+    - type: Tweak
+      message: Speech can no longer be heard through walls.
+  id: 192
+  time: '2026-08-15T05:16:41.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Fixed the bleed alert getting stuck showing low amounts of bleed after
+        all bleeding stopped.
+  id: 193
+  time: '2026-08-15T05:20:00.0000000+00:00'
+- author: CrystalineSpider
+  changes:
+    - type: Remove
+      message: Stunprods and Flashes have been removed
+    - type: Tweak
+      message: Flashbangs and Sunglasses are now found in maintenance.
+    - type: Tweak
+      message: Welding equipment and sunglasses no long protect from flashbangs.
+  id: 194
+  time: '2026-08-15T17:24:34.0000000+00:00'
+- author: Mistabay
+  changes:
+    - type: Tweak
+      message: Syndicate transponder cooldown is now 3:30 minutes.
+  id: 195
+  time: '2026-08-15T22:27:40.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Add
+      message: Radios click when you transmit a message.
+  id: 196
+  time: '2026-08-15T22:29:27.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Parasites now have a global hivemind channel they can speak to each
+        other on.
+  id: 197
+  time: '2026-08-15T22:29:55.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Text entry now appears above your head as a speech bubble.
+    - type: Tweak
+      message: >-
+        Speech bubbles no longer show names, use the name peek if you want to
+        see it
+  id: 198
+  time: '2026-08-15T22:38:45.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Fix
+      message: Worm damage popups no longer show to everyone
+  id: 199
+  time: '2026-08-16T00:01:34.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Decreased the max chat message length to a more reasonable value.
+    - type: Fix
+      message: >-
+        The chat box will now cut off messages which are too long instead of
+        simply failing to send them.
+  id: 200
+  time: '2026-08-17T19:32:13.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Substations and SMESes now enter a broken state when destroyed, allowing
+        them to be repaired with a welder. They can no longer be constructed or
+        deconstructed.
+    - type: Tweak
+      message: Made substation explosions on-par with grenades.
+  id: 201
+  time: '2026-08-18T03:28:55.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Emojis can no longer be sent in in-character chat messages.
+  id: 202
+  time: '2026-08-19T16:03:20.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: APCs now use a cable terminal to get power.
+    - type: Tweak
+      message: EVA storage can now be accessed by anyone.
+  id: 203
+  time: '2026-08-20T20:45:47.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Pronouns are now shown beneath the names of characters.
+  id: 204
+  time: '2026-08-21T04:47:36.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Equipment caches now come in the form of duffel bags instead of crates.
+  id: 205
+  time: '2026-08-21T04:49:45.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: Girders now have some flat resistance to attacks.
+    - type: Tweak
+      message: breath masks now block the lower face identity.
+    - type: Tweak
+      message: Topicals now only stack to 5.
+    - type: Tweak
+      message: Pouches no longer have a whitelist, and are 2x2 grids.
+    - type: Fix
+      message: The vendomat now stocks powered cells.
+  id: 206
+  time: '2026-08-22T21:24:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Radios are no longer available in arrivals or on the warp drive.
+    - type: Tweak
+      message: >-
+        Command members no longer get access to all radio channels, now they
+        only receive common and command.
+    - type: Tweak
+      message: >-
+        Players with objectives to sabotage the telecomms processor can no
+        longer repair it.
+  id: 207
+  time: '2026-08-22T21:37:39.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: Replaced the marauder's stimulant pen with an explosive grenade.
+  id: 208
+  time: '2026-08-22T22:20:39.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Computers now have a broken state and cannot be destroyed fully or
+        deconstructed.
+  id: 209
+  time: '2026-08-22T22:21:10.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Fix
+      message: pouches are Actually the right size
+  id: 210
+  time: '2026-08-23T13:55:54.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Tweak
+      message: you can no longer place wires underneath walls.
+  id: 211
+  time: '2026-08-23T14:23:32.0000000+00:00'
+- author: gradientvera
+  changes:
+    - type: Tweak
+      message: When mopping, clicking a tile now cleans any puddles present.
+  id: 212
+  time: '2026-08-23T17:47:06.0000000+00:00'
+- author: jessicamaybe
+  changes:
+    - type: Tweak
+      message: Stagehands no longer show an interaction particle when starting a follow
+  id: 213
+  time: '2026-08-24T02:04:07.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the guidebook sometimes hiding articles and not showing them.
+  id: 214
+  time: '2026-08-25T15:07:25.0000000+00:00'
+- author: piskaczek
+  changes:
+    - type: Add
+      message: adds various objects for theatre
+  id: 215
+  time: '2026-08-26T01:13:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Crew roles (barring sleeper agent) now have the chance to spawn as
+        "Ex-Syndicate" variants, giving them an additional equipment cache.
+  id: 216
+  time: '2026-08-26T16:13:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Secret Identities are now selected before jobs on round start. This
+        means that 
+    - type: Tweak
+      message: Captain is no longer selected before other jobs.
+  id: 217
+  time: '2026-08-26T16:36:48.0000000+00:00'
+- author: Tomeno
+  changes:
+    - type: Tweak
+      message: Occlusion (ominous)
+  id: 218
+  time: '2026-08-28T17:03:55.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: >-
+        Removed maintenance access. Maintenance doors are now unlocked and can
+        be opened by anyone.
+  id: 219
+  time: '2026-08-29T13:49:04.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Tweak
+      message: Satchels no longer spawn
+  id: 220
+  time: '2026-08-29T13:49:15.0000000+00:00'

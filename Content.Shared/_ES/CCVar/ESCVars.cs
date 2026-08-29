@@ -67,4 +67,14 @@ public sealed class ESCVars : CVars
     /// </summary>
     public static readonly CVarDef<bool> LobbyClosed =
         CVarDef.Create("es_lobby.closed", false, CVar.SERVER | CVar.REPLICATED);
+
+    // Audio occlusion
+    public static readonly CVarDef<float> OcclusionMaxOcclusion =
+        CVarDef.Create("es_occlusion.max_occlusion", 2f, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<float> OcclusionVolumeAdjust =
+        CVarDef.Create("es_occlusion.volume_adjust", -3f, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<float> OcclusionMaxDeltaDistance =
+        CVarDef.Create("es_occlusion.max_delta_distance", 15f, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<float> OcclusionMinDeltaDistance =
+        CVarDef.Create("es_occlusion.min_delta_distance", 0.5f, CVar.SERVER | CVar.REPLICATED);
 }

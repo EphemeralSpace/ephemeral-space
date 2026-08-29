@@ -90,16 +90,13 @@ public abstract partial class SharedToolSystem
                 args.PushMarkup(Loc.GetString("welder-component-on-examine-welder-not-lit-message"));
             }
 
-            if (args.IsInDetailsRange)
-            {
-                var (fuel, capacity) = GetWelderFuelAndCapacity(entity.Owner, entity.Comp);
+            var (fuel, capacity) = GetWelderFuelAndCapacity(entity.Owner, entity.Comp);
 
-                args.PushMarkup(Loc.GetString("welder-component-on-examine-detailed-message",
-                    ("colorName", fuel < capacity / FixedPoint2.New(4f) ? "darkorange" : "orange"),
-                    ("fuelLeft", fuel),
-                    ("fuelCapacity", capacity),
-                    ("status", string.Empty))); // Lit status is handled above
-            }
+            args.PushMarkup(Loc.GetString("welder-component-on-examine-detailed-message",
+                ("colorName", fuel < capacity / FixedPoint2.New(4f) ? "darkorange" : "orange"),
+                ("fuelLeft", fuel),
+                ("fuelCapacity", capacity),
+                ("status", string.Empty))); // Lit status is handled above
         }
     }
 

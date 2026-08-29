@@ -6,12 +6,6 @@
     snap:
     - Wallmount
   components:
-# ES START
-#  - type: Anchorable
-#    flags:
-#    - Anchorable
-#  - type: Rotatable
-# ES END
   - type: Physics
     canCollide: false
   - type: Clickable

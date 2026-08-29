@@ -9,8 +9,6 @@
         children:
         - id: EmergencyPouchBrute
         - id: EmergencyPouchBurn
-        - id: EmergencyPouchToxin
-        - id: EmergencyPouchOxygenDeprivation
 
 - type: entity
   id: MedkitBurnFilled
@@ -22,7 +20,7 @@
       storagebase: !type:AllSelector
         children:
         - id: EmergencyPouchBurn
-          amount: 4
+          amount: 2
 
 - type: entity
   id: MedkitToxinFilled
@@ -34,7 +32,7 @@
       storagebase: !type:AllSelector
         children:
         - id: EmergencyPouchToxin
-          amount: 4
+          amount: 2
 
 - type: entity
   id: MedkitO2Filled
@@ -46,7 +44,7 @@
       storagebase: !type:AllSelector
         children:
         - id: EmergencyPouchOxygenDeprivation
-          amount: 4
+          amount: 2
 
 - type: entity
   id: MedkitBruteFilled
@@ -58,7 +56,7 @@
       storagebase: !type:AllSelector
         children:
         - id: EmergencyPouchBrute
-          amount: 4
+          amount: 2
 
 - type: entity
   id: MedkitRadiationFilled
@@ -70,5 +68,5 @@
       storagebase: !type:AllSelector
         children:
         - id: EmergencyPouchRadiation
-          amount: 4
+          amount: 2
 

@@ -1,13 +1,4 @@
 - type: construction
-  id: Computer
-  graph: Computer
-  startNode: start
-  targetNode: computer
-  category: construction-category-machines
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-
-- type: construction
   id: MachineFrame
   graph: Machine
   startNode: start

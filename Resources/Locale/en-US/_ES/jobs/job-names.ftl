@@ -8,6 +8,7 @@ ESjob-name-coroner = Coroner
 ESjob-name-detective = Detective
 ESjob-name-doctor = Doctor
 ESjob-name-experiment = Experiment
+ESjob-name-firefighter = Firefighter
 ESjob-name-janitor = Janitor
 ESjob-name-paramedic = Paramedic
 ESjob-name-ratman = Ratman

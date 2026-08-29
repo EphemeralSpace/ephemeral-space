@@ -49,8 +49,6 @@
   - DoorElectronics
   - AirAlarmElectronics
   - FireAlarmElectronics
-  - SMESMachineCircuitboard
-  - SubstationMachineCircuitboard
   - CellRechargerCircuitboard
   - WeaponCapacitorRechargerCircuitboard
 
@@ -97,7 +95,6 @@
   id: ESSecurityEquipmentStatic
   recipes:
   - Handcuffs
-  - Flash
 
 # Service
 - type: latheRecipePack

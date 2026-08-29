@@ -23,9 +23,6 @@
         whitelist:
           components:
           - DisposalUnit
-        blacklist:
-          components:
-          - MailingUnit
 
     - !type:HTNPrimitiveTask
       operator: !type:MoveToOperator

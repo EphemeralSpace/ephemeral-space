@@ -73,8 +73,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 4
-  - type: Stamina
-    baseCritThreshold: 120
   - type: Destructible
     thresholds:
     - trigger:
@@ -381,7 +379,6 @@
   - type: Access
     tags:
     - Cargo
-    - Maintenance
     - Salvage
   - type: Dumpable
   - type: Storage

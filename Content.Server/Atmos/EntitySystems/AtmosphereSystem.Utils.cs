@@ -43,7 +43,7 @@ public partial class AtmosphereSystem
     /// <summary>
     /// <para>Marks a tile's visual overlay as needing to be redetermined.</para>
     ///
-    /// <para>A tile's overlay (how it looks like, ex. water vapor's texture)
+    /// <para>A tile's overlay (how it looks like, ex. steam's texture)
     /// is determined via determining how much gas there is on the tile.
     /// This is expensive to do for every tile/gas that may have a custom overlay,
     /// so its done once and only updated when it needs to be updated.</para>
@@ -59,7 +59,7 @@ public partial class AtmosphereSystem
     /// <summary>
     /// <para>Marks a tile's visual overlay as needing to be redetermined.</para>
     ///
-    /// <para>A tile's overlay (how it looks like, ex. water vapor's texture)
+    /// <para>A tile's overlay (how it looks like, ex. steam's texture)
     /// is determined via determining how much gas there is on the tile.
     /// This is expensive to do for every tile/gas that may have a custom overlay,
     /// so its done once and only updated when it needs to be updated.</para>

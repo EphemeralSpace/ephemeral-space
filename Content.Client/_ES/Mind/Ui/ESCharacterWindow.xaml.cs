@@ -122,11 +122,9 @@ public sealed partial class ESCharacterWindow : FancyWindow
         // with the organization guide as the root
         if (_secretIdentity.TryGetSecretIdentity((mind, mindComp), out var secretIdentityId)
             && _prototype.Index(secretIdentityId.Value) is { } secretIdentity
-            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.ID)
-            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.Organization.Id))
+            && _prototype.HasIndex<GuideEntryPrototype>(secretIdentity.ID))
         {
-            var rootEntries = new List<ProtoId<GuideEntryPrototype>>() { secretIdentity.Organization.Id };
-            _guidebook.OpenGuidebook(rootEntries: rootEntries, selected: secretIdentity.ID);
+            _guidebook.OpenGuidebook(selected: secretIdentity.ID);
         }
     }
 
@@ -167,9 +165,21 @@ public sealed partial class ESCharacterWindow : FancyWindow
             var secretIdentity = _prototype.Index(secretIdentityId);
             var organization = _prototype.Index(secretIdentity.Organization);
 
+            var modifierName = "null";
+            var modifierColor = Color.White;
+            if (_secretIdentity.TryGetSecretIdentityModifier((mind, mindComp), out var modifierId))
+            {
+                var modifier = _prototype.Index(modifierId);
+
+                modifierName = Loc.GetString(modifier.Name);
+                modifierColor = modifier.Color;
+            }
+
             SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-secret-identity-fmt",
                 ("name", Loc.GetString(secretIdentity.Name)),
-                ("color", secretIdentity.Color)));
+                ("color", secretIdentity.Color),
+                ("modifierName", modifierName),
+                ("modifierColor", modifierColor)));
 
             OrganizationLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-organization-fmt",
                 ("name", Loc.GetString(organization.Name)),
@@ -181,7 +191,9 @@ public sealed partial class ESCharacterWindow : FancyWindow
         {
             SecretIdentityLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-secret-identity-fmt",
                 ("name", Loc.GetString("generic-unknown-title")),
-                ("color", Color.White)));
+                ("color", Color.White),
+                ("modifierName", string.Empty),
+                ("modifierColor", Color.White)));
 
             OrganizationLabel.UnsafeSetMarkup(Loc.GetString("es-character-window-organization-fmt",
                 ("name", Loc.GetString("generic-unknown-title")),

@@ -169,7 +169,7 @@ public abstract partial class SharedNavMapSystem : EntitySystem
 
     private void OnConfigurableExamined(Entity<ConfigurableNavMapBeaconComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange || !TryComp<NavMapBeaconComponent>(ent, out var navMap))
+        if (!TryComp<NavMapBeaconComponent>(ent, out var navMap))
             return;
 
         args.PushMarkup(Loc.GetString("nav-beacon-examine-text",

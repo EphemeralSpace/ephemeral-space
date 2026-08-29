@@ -33,6 +33,11 @@ public enum StandardFontType : byte
     /// Chat font.
     /// </summary>
     Chat,
+
+    /// <summary>
+    /// Chat Whisper font.
+    /// </summary>
+    ChatWhisper,
 }
 
 /// <summary>

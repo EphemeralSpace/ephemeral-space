@@ -165,7 +165,7 @@ public abstract partial class ESSharedChatManager : IESSharedChatManager
 
             foreach (var prefix in channelPrototype.Prefixes)
             {
-                if (content.StartsWith(prefix))
+                if (content.StartsWith(prefix, StringComparison.InvariantCultureIgnoreCase))
                 {
                     trimmedContent = content.Substring(prefix.Length);
                     channel = channelPrototype;

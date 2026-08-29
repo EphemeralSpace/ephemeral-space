@@ -6,11 +6,9 @@
   playTimeTracker: ESJobDetective
   startingGear: ESDetectiveGear
   icon: "JobIconDetective"
-  canBeAntag: false
   access:
   - Security
   - Brig
-  - Maintenance
   - Detective
   - External
 
@@ -29,7 +27,6 @@
   storage:
     back:
     - ESBoxSurvival
-    - Flash
     - ForensicPad
     - ForensicScanner
 

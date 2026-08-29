@@ -27,7 +27,7 @@ namespace Content.Server.Atmos.Portable
             Gas.CarbonDioxide,
             Gas.Plasma,
             Gas.Tritium,
-            Gas.WaterVapor,
+            Gas.Steam,
             Gas.Miasma,
             Gas.NitrousOxide,
             Gas.Cryogas

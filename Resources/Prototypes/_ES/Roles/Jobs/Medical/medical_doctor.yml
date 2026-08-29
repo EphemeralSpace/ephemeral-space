@@ -8,7 +8,6 @@
   icon: "JobIconMedicalDoctor"
   access:
   - Medical
-  - Maintenance
   - Chemistry
 
 - type: startingGear
@@ -24,7 +23,7 @@
     back: ClothingBackpack
   storage:
     back:
-    - ESBoxSurvivalMedical
+    - ESBoxSurvival
 
 - type: chameleonOutfit
   id: ESDoctor

@@ -1,11 +1,14 @@
-﻿using Content.Shared.Input;
+﻿using Content.Shared._ES.Chat;
+using Content.Shared.Input;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
 [Virtual]
-public class ChatInputBox : PanelContainer
+public partial class ChatInputBox : PanelContainer
 {
+    [Dependency] private IESSharedChatManager _chat = default!;
+
     public const string StyleClassChatPanel = "ChatPanel";
     public const string StyleClassChatLineEdit = "ChatLineEdit";
     public const string StyleClassChatFilterOptionButton = "ChatFilterOptionButton";
@@ -17,6 +20,8 @@ public class ChatInputBox : PanelContainer
 
     public ChatInputBox()
     {
+        IoCManager.InjectDependencies(this);
+
         Container = new BoxContainer
         {
             Orientation = BoxContainer.LayoutOrientation.Horizontal,
@@ -37,7 +42,8 @@ public class ChatInputBox : PanelContainer
             Name = "Input",
             PlaceHolder = GetChatboxInfoPlaceholder(),
             HorizontalExpand = true,
-            StyleClasses = { StyleClassChatLineEdit }
+            StyleClasses = { StyleClassChatLineEdit },
+            IsValid = IsInputValid,
         };
         Container.AddChild(Input);
         FilterButton = new ChannelFilterButton
@@ -47,6 +53,11 @@ public class ChatInputBox : PanelContainer
         };
         Container.AddChild(FilterButton);
         AddStyleClass(StyleClassChatPanel);
+    }
+
+    private bool IsInputValid(string text)
+    {
+        return text.Length <= _chat.MaxMessageLength;
     }
 
     private static string GetChatboxInfoPlaceholder()

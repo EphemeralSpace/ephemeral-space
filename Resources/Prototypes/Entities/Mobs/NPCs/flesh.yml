@@ -35,9 +35,6 @@
     thresholds:
       0: Alive
       75: Dead
-  - type: Stamina
-    baseCritThreshold: 50
-    animationThreshold: 25
   - type: Butcherable
     spawned:
     - id: FoodMeat

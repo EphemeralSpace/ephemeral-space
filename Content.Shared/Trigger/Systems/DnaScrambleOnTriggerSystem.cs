@@ -1,4 +1,3 @@
-using Content.Shared.DetailExaminable;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -38,7 +37,6 @@ public sealed partial class DnaScrambleOnTriggerSystem : XOnTriggerSystem<DnaScr
         _forensics.RandomizeDNA(target);
         _forensics.RandomizeFingerprint(target);
 
-        RemComp<DetailExaminableComponent>(target); // remove MRP+ custom description if one exists
         _identity.QueueIdentityUpdate(target); // manually queue identity update since we don't raise the event
 
         // Can't use PopupEntity or PopupPredicted because the trigger might be unpredicted.

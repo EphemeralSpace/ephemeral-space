@@ -106,15 +106,6 @@
   - !type:CryoPodEjectLockWireAction
 
 - type: wireLayout
-  id: ParticleAccelerator
-  dummyWires: 1
-  wires:
-  - !type:ParticleAcceleratorKeyboardWireAction
-  - !type:ParticleAcceleratorLimiterWireAction
-  - !type:ParticleAcceleratorPowerWireAction
-  - !type:ParticleAcceleratorStrengthWireAction
-
-- type: wireLayout
   id: Docking
   dummyWires: 2
   wires:

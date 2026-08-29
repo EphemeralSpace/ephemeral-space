@@ -1,28 +1,27 @@
 <Document>
 # Security Officer
-Ensuring the safety of both station and crew is number one for [color=#cb0000]Security[/color]. They are ready for any situation, and [color=#cb0000]Security[/color] are on hand to maintain order, control crowds, and do general deductive work.
+Ensuring the safety of both station and crew is number one for [color=#cb0000]Security[/color]. They start ready for any situation, and are on hand to maintain order and do general deductive work.
 
 They face other organizations, like [textlink="traitors" link="Traitor"], as well as unruly [textlink="crew" link="Crew"]--though nothing is stopping other officers from being the traitors or unruly crew.
 
-As a Security Officer, it would do you well to familiarize yourself with the many [textlink="masks" link="OrganizationsAndSecretIdentities"] in the game, and understand what excuses someone may use and when, in order to make the most accurate deduction.
+As a Security Officer, it would do you well to familiarize yourself with the many [textlink="secret identities" link="OrganizationsAndSecretIdentities"] in the game, and understand what excuses someone may use and when, in order to make the most accurate deduction.
 
 ## Gear
-First we have non-lethals--a step above simply telling someone to cooperate with instructions. Stunbatons can be used to incapacitate targets at close range, and handcuffs can be applied to deny a criminal free movement and access to their hands. Cuffs will also shove the person down if your [color=red]harm mode[/color] is active during uncuff.
+First we have less lethal options--a step above simply telling someone to cooperate with instructions. Blackjacks can be used to incapacitate targets at close range, and handcuffs can be applied to deny a criminal free movement and access to their hands. Cuffs will also shove the person down if your [color=red]harm mode[/color] is active during uncuff.
 
   <Box>
-    <GuideEntityEmbed Entity="Stunbaton"/>
+    <GuideEntityEmbed Entity="ESWeaponBlackjack"/>
     <GuideEntityEmbed Entity="Handcuffs"/>
   </Box>
 
-## Flashes
-[color=#a4885c]Flashes[/color] are an effective tool for dispersing crowds and apprehending particularly evasive targets, with a large area of effect blinding all those without protection.
-It is worth noting that flashes can be both used in a large area ([color=yellow]Z[/color] hotkey) and if you attack somebody with it while [color=red]harm mode[/color] is active. Important to note that localized flashes last [color=yellow]2.5[/color] times as long as large area ones.
-[color=#cb0000]Security[/color] and [color=#a4885c]some[/color] other members of staff have eye protection from flashbangs and flashes.
+## Firearms
+[color=#a4885c]Pistols[/color] are an essential part of security, dealing quick, ranged damage to those deemed true enemies to the station.
+With enough shots, you can down someone into a partially critical state much like with [color=#a4885c]Blackjacks[/color], they will still be able to crawl when not being attacked further but are much more limited.
+Ammo is limited and deaths are permanent, so be wise lest the crew decide you are a traitor and cut you down just as quick.
 
   <Box>
-    <GuideEntityEmbed Entity="Flash"/>
-    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity"/>
-    <GuideEntityEmbed Entity="GrenadeFlashBang"/>
+    <GuideEntityEmbed Entity="ESWeaponPistol9mm"/>
+    <GuideEntityEmbed Entity="ESWeaponRevolver357"/>
   </Box>
 
 </Document>

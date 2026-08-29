@@ -79,9 +79,6 @@ public sealed partial class BotanySystem : EntitySystem
 
     private void OnExamined(EntityUid uid, SeedComponent component, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         if (!TryGetSeed(component, out var seed))
             return;
 

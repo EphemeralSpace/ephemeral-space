@@ -1,0 +1,13 @@
+# General configurations of explosives that are shared between multiple things
+
+## Average grenade-type explosion
+- type: entity
+  id: ESBaseExplosiveGrenade
+  abstract: true
+  components:
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120 # about a ~4 tile radius
+    canCreateVacuum: false

@@ -61,9 +61,6 @@ public abstract partial class SharedBatterySystem : EntitySystem
 
     private void OnExamine(Entity<BatteryComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         if (!HasComp<ExaminableBatteryComponent>(ent))
             return;
 

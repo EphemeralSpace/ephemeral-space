@@ -17,8 +17,8 @@
   id: ESTraitorCaches
   table:
     group:
-    - id: ESCrateCacheTraitorMarauder
-    - id: ESCrateCacheTraitorAssassin
-    - id: ESCrateCacheTraitorInfiltrator
-    - id: ESCrateCacheTraitorSubverter
+    - id: ESCacheTraitorMarauder
+    - id: ESCacheTraitorAssassin
+    - id: ESCacheTraitorInfiltrator
+    - id: ESCacheTraitorSubverter
       weight: 0.5

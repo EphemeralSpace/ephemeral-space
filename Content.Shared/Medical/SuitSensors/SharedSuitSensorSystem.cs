@@ -162,9 +162,6 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
 
     private void OnExamine(Entity<SuitSensorComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         string msg;
         switch (ent.Comp.Mode)
         {

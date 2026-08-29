@@ -11,10 +11,10 @@
     NetworkConfigurator: 3
     GasAnalyzer: 3
     FlashlightLantern: 5
-    ClothingHandsGlovesColorYellowBudget: 3
+    ClothingHandsGlovesInsulatedBudget: 3
     SprayPainter: 3
     SprayPainterAmmo: 5
   # Some engineer forgot to take the multitool out the youtool when working on it, happens.
   contrabandInventory:
     Multitool: 1
-    ClothingHandsGlovesColorYellow: 1
+    ClothingHandsGlovesInsulated: 1

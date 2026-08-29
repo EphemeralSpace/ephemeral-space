@@ -58,15 +58,29 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     public LocId Description;
 
     /// <summary>
+    /// Chance that modifiers are rolled for this secret identites
+    /// </summary>
+    [DataField]
+    public float ModifierChance;
+
+    /// <summary>
+    /// Weighted list of different modifiers
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<ESSecretIdentityModifierPrototype>, float> Modifiers = new();
+
+    /// <summary>
     /// Set of tips that apply to this secret identity specifically.
     /// </summary>
     [DataField]
     public HashSet<ProtoId<ESTipPrototype>> Tips = new();
 
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry Components = new();
 
     [DataField]
+    [AlwaysPushInheritance]
     public ComponentRegistry MindComponents = new();
 
     /// <summary>

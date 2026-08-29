@@ -207,10 +207,7 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnExamined(Entity<SleepingComponent> ent, ref ExaminedEvent args)
     {
-        if (args.IsInDetailsRange)
-        {
-            args.PushMarkup(Loc.GetString("sleep-examined", ("target", Identity.Entity(ent, EntityManager))));
-        }
+        args.PushMarkup(Loc.GetString("sleep-examined", ("target", Identity.Entity(ent, EntityManager))));
     }
 
     private void AddWakeVerb(Entity<SleepingComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)

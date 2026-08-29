@@ -95,6 +95,12 @@ public sealed partial class AnchorableSystem : EntitySystem
         if (!TryComp(args.Used, out ToolComponent? usedTool) || !_tool.HasQuality(args.Used, anchorable.Tool, usedTool))
             return;
 
+        // Don't show interactions for things which can't be unanchored at all
+        var isAnchored = Comp<TransformComponent>(uid).Anchored;
+        if (isAnchored && (anchorable.Flags & AnchorableFlags.Unanchorable) == 0x0 ||
+            !isAnchored && (anchorable.Flags & AnchorableFlags.Anchorable) == 0x0)
+            return;
+
         args.Handled = true;
         TryToggleAnchor(uid, args.User, args.Used, anchorable, usingTool: usedTool);
     }

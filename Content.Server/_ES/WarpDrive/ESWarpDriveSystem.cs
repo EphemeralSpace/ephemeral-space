@@ -57,6 +57,7 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ESWarpDriveComponent, ComponentStartup>(OnWarpDriveStartup);
         SubscribeLocalEvent<ESWarpDriveObjectiveComponent, ESGetObjectiveProgressEvent>(OnGetObjectiveProgress);
         SubscribeLocalEvent<ESSingularityWorldInterruptionComponent, GotEquippedHandEvent>(OnInterruptionPickedUp);
         SubscribeLocalEvent<ESCryptoNukeSecurityOverridenEvent>(OnSecurityOverriden);
@@ -69,6 +70,11 @@ public sealed partial class ESWarpDriveSystem : GameRuleSystem<ESWarpDriveGameRu
         );
 
         InitializeSingularityWorld();
+    }
+
+    private void OnWarpDriveStartup(Entity<ESWarpDriveComponent> ent, ref ComponentStartup args)
+    {
+        _appearance.SetData(ent, ESWarpDriveVisuals.Charging, true);
     }
 
     private void OnSecurityOverriden(ref ESCryptoNukeSecurityOverridenEvent ev)

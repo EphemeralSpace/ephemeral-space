@@ -5,12 +5,10 @@
   playTimeTracker: ESJobStationAdmin
   startingGear: ESStationAdminGear
   icon: "JobIconStationAdmin"
-  canBeAntag: false
   overrideConsoleVisibility: false
   access:
   - Command
   - StationAdmin
-  - Maintenance
   - External
 
 - type: startingGear
@@ -26,7 +24,6 @@
   storage:
     back:
     - ESBoxSurvival
-    - Flash
 
 - type: chameleonOutfit
   id: ESStationAdmin

@@ -15,9 +15,9 @@
 # Maints Variants
 
 - type: entity
-  parent: AirlockMaintLocked
-  id: ESAirlockMaintLockedWelded
-  suffix: ES, Locked, Welded
+  parent: AirlockMaint
+  id: ESAirlockMaintWelded
+  suffix: ES, Welded
   components:
   - type: Fixtures
     fixtures:
@@ -36,9 +36,9 @@
     isWelded: True
 
 - type: entity
-  parent: AirlockMaintLocked
-  id: ESAirlockMaintLockedBolted
-  suffix: ES, Locked, Bolted
+  parent: AirlockMaint
+  id: ESAirlockMaintBolted
+  suffix: ES, Bolted
   components:
   - type: DoorBolt
     boltsDown: true

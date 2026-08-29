@@ -97,8 +97,6 @@
     damage:
       types:
         Blunt: 5 # important threshold, unable to deal damage to items with base structural deflection
-  - type: StaminaDamageOnHit
-    damage: 7
 
 # Slash
 - type: entity

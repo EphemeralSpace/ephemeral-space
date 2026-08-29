@@ -1,0 +1,123 @@
+- type: entity
+  parent: BaseStructure
+  id: BaseRailingFancy
+  abstract: true
+  name: fancy railing
+  description: The wood supporting it still seems to be growing. The only synthetic feeling thing about it is the soft covering on the top.
+  suffix: ES, Lobby
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _ES/Structures/Walls/fancyrailing.rsi
+  - type: Icon
+    sprite: _ES/Structures/Walls/fancyrailing.rsi
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+
+- type: entity
+  parent: BaseRailingFancy
+  id: RailingFancy
+  components:
+  - type: Sprite
+    state: side
+  - type: Icon
+    state: side
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: BaseRailingFancy
+  id: RailingCornerFancy
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: BaseRailingFancy
+  id: RailingCornerSmallFancy
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.25,-0.25,0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+
+- type: entity
+  parent: BaseRailingFancy
+  id: RailingRoundFancy
+  components:
+  - type: Sprite
+    state: round
+  - type: Icon
+    state: round
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,-0.25,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix3:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer

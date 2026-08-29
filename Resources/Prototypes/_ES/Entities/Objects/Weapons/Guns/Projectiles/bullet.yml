@@ -153,8 +153,6 @@
     damage:
       types:
         Blunt: 10
-  - type: StaminaDamageOnCollide
-    damage: 40 # 3 hits to stun
 
 # special base bullets
 - type: entity

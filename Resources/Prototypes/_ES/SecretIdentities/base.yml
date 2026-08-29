@@ -17,15 +17,30 @@
   - ESDetective
 
 - type: esSecretIdentity
+  id: ESBaseCrew
+  organization: Crew
+  abstract: true
+  modifierChance: 0.066
+  modifiers:
+    ExSyndicate: 1
+
+- type: esSecretIdentity
   parent: ESBaseCommandRestricted
   id: ESBaseParasite
   organization: Parasite
   abstract: true
+  actions:
+    all:
+    - id: ESActionParasiteWormTalk
   components:
   - type: ESOrganizationFactionIcon
     icon: ESParasite
     organization: Parasite
     examineString: es-secret-identity-organization-parasite-examine
+  mindComponents: # Goes on the mind so that we don't overwrite the base component on the mob
+  - type: ESChatPermissions
+    inherentChannels:
+    - ParasiteHivemind
   objectives:
     all:
     - id: ESObjectiveParasiteDie
@@ -55,7 +70,7 @@
     icon:
       sprite: Objects/Devices/communication.rsi
       state: old-radio
-    useDelay: 60
+    useDelay: 210
   - type: InstantAction
     event: !type:ESTransponderActionEvent
       channel: SyndicateTransponder

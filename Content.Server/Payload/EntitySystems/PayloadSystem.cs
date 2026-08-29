@@ -139,12 +139,6 @@ public sealed partial class PayloadSystem : EntitySystem
     {
         using (args.PushGroup(nameof(PayloadCaseComponent)))
         {
-            if (!args.IsInDetailsRange)
-            {
-                args.PushMarkup(Loc.GetString("payload-case-not-close-enough", ("ent", uid)));
-                return;
-            }
-
             if (GetAllPayloads(uid).Any())
             {
                 args.PushMarkup(Loc.GetString("payload-case-has-payload", ("ent", uid)));

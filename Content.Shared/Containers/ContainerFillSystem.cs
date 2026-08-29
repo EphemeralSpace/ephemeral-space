@@ -71,13 +71,11 @@ public sealed partial class ContainerFillSystem : EntitySystem
             var spawns = _entityTable.GetSpawns(table);
             foreach (var proto in spawns)
             {
-                var spawn = Spawn(proto, coords);
-                if (!_containerSystem.Insert(spawn, container, containerXform: xform))
+                var spawn = SpawnInContainerOrDrop(proto, ent, containerId, xform, containerComp);
+                if (!container.Contains(spawn))
                 {
                     var alreadyContained = container.ContainedEntities.Count > 0 ? string.Join("\n", container.ContainedEntities.Select(e => $"\t - {ToPrettyString(e)}")) : "< empty >";
                     Log.Error($"Entity {ToPrettyString(ent)} with a {nameof(EntityTableContainerFillComponent)} failed to insert an entity: {ToPrettyString(spawn)}.\nCurrent contents:\n{alreadyContained}");
-                    _transform.AttachToGridOrMap(spawn);
-                    break;
                 }
             }
         }

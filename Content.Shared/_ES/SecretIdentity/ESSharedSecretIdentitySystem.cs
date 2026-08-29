@@ -218,6 +218,25 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     }
 
     /// <summary>
+    /// Retrieves the current secret identity modifier from a mind, failing if one isn't present.
+    /// </summary>
+    public bool TryGetSecretIdentityModifier(Entity<MindComponent?> mind, [NotNullWhen(true)] out ProtoId<ESSecretIdentityModifierPrototype>? modifier)
+    {
+        modifier = null;
+        if (!Role.MindHasRole<ESSecretIdentityRoleComponent>(mind, out var role))
+            return false;
+
+        modifier = role.Value.Comp2.Modifier;
+        return modifier != null;
+    }
+
+    public ProtoId<ESSecretIdentityModifierPrototype>? GetSecretIdentityModifierOrNull(Entity<MindComponent?> mind)
+    {
+        TryGetSecretIdentityModifier(mind, out var modifier);
+        return modifier;
+    }
+
+    /// <summary>
     /// Variant of <see cref="TryGetSecretIdentity(EntityUid, out ProtoId{ESSecretIdentityPrototype}?)"/> that does not involve the mind.
     /// So in situations like a phantom where the mind has left the body, this will still return the correct result.
     /// </summary>
@@ -326,9 +345,11 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     ///     This allows "bad" game states like giving secret identities to roles they're incompatible with, and will automatically
     ///     start organizations as necessary.
     /// </remarks>
-    public virtual void ApplySecretIdentity(Entity<MindComponent> mind,
+    public virtual void ApplySecretIdentity(
+        Entity<MindComponent> mind,
         ProtoId<ESSecretIdentityPrototype> secretIdentityId,
-        Entity<ESOrganizationRuleComponent>? organization = null)
+        Entity<ESOrganizationRuleComponent>? organization = null,
+        bool applyModifiers = false)
     {
         // No Op
     }

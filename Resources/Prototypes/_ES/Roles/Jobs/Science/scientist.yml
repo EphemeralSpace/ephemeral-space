@@ -8,7 +8,6 @@
   icon: "JobIconScientist"
   access:
   - Research
-  - Maintenance
 
 - type: startingGear
   id: ESScientistGear

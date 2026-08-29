@@ -1,3 +1,4 @@
+using Content.Shared.Actions;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -31,3 +32,15 @@ public sealed partial class ESChatPermissionsComponent : Component
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class ESClientRefreshChatPermissions : EntityEventArgs;
+
+/// <summary>
+/// Action that focuses a channel on the client, if available.
+/// </summary>
+public sealed partial class ESChatFocusChannelActionEvent : InstantActionEvent
+{
+    /// <summary>
+    /// The channel that's focused.
+    /// </summary>
+    [DataField(required: true)]
+    public ProtoId<ESChatChannelPrototype> Channel;
+}

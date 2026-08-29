@@ -29,6 +29,9 @@ public sealed partial class ESBreakableWallSystem : ESSharedBreakableWallSystem
 
     private void OnChangeConstructionOnBreak(Entity<ESChangeConstructionOnBreakComponent> ent, ref ESBrokenStateChanged args)
     {
+        if (!args.Broken)
+            return;
+
         if (!string.IsNullOrEmpty(ent.Comp.Node))
             _construction.ChangeNode(ent, null, ent.Comp.Node);
     }

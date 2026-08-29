@@ -10,7 +10,7 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
 
     public event Action<ProtoId<ESChatChannelPrototype>>? OnChannelSelect;
 
-    public ProtoId<ESChatChannelPrototype> SelectedChannel { get; private set; }
+    public ProtoId<ESChatChannelPrototype> SelectedChannel { get; private set; } = ESSharedChatSystem.LocalChannel;
 
     private const int SelectorDropdownOffset = 38;
 

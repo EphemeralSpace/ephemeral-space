@@ -30,9 +30,6 @@ namespace Content.Server.Forensics
 
         private void OnExamined(EntityUid uid, ForensicPadComponent component, ExaminedEvent args)
         {
-            if (!args.IsInDetailsRange)
-                return;
-
             if (!component.Used)
             {
                 args.PushMarkup(Loc.GetString("forensic-pad-unused"));
