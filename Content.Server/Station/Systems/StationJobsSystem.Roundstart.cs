@@ -319,7 +319,6 @@ public sealed partial class StationJobsSystem
                 continue;
 
             var session = _player.GetSessionById(player);
-            var secretIdentity = _prototypeManager.Index(secretIdentities[player]);
             var station = _random.Pick(givenStations);
 
             var validJobs = new List<ProtoId<JobPrototype>>();
@@ -328,7 +327,8 @@ public sealed partial class StationJobsSystem
                 if (_banManager.IsRoleBanned(session, [jobCandidate]))
                     continue;
 
-                if (secretIdentity.ProhibitedJobs.Contains(jobCandidate))
+                if (secretIdentities.TryGetValue(player, out var secretIdentity) &&
+                    _prototypeManager.Index(secretIdentity).ProhibitedJobs.Contains(jobCandidate))
                     continue;
 
                 validJobs.Add(jobCandidate);
