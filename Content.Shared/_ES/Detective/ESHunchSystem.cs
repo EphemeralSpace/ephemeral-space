@@ -6,11 +6,13 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Robust.Shared.Network;
 
 namespace Content.Shared._ES.Detective;
 
 public sealed partial class ESHunchSystem : EntitySystem
 {
+    [Dependency] private INetManager _net = default!;
     [Dependency] private ESCluesSystem _clue = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ESKillTrackingSystem _killTracking = default!;
@@ -28,18 +30,20 @@ public sealed partial class ESHunchSystem : EntitySystem
     {
         if (!_mobState.IsDead(ev.Target))
             return;
+        ev.Handled = true;
 
-        if (_killTracking.GetKiller(ev.Target) is not { } killer)
+        // Relies on non-networked data
+        if (_net.IsClient)
+            return;
+
+        if (_killTracking.GetKiller(ev.Target) is not { } killer ||
+            !_mind.TryGetMind(killer, out var mind))
         {
             _popup.PopupEntity(Loc.GetString("detective-hunch-fail", ("target", Identity.Entity(ev.Target, EntityManager))),
                 ev.Performer,
                 ev.Performer);
-            ev.Handled = true;
             return;
         }
-
-        if (!_mind.TryGetMind(killer, out var mind))
-            return;
 
         var comp = EnsureComp<ESHunchComponent>(ev.Performer);
         if (comp.BodyClue.TryGetValue(ev.Target, out var oldClue))
@@ -47,22 +51,22 @@ public sealed partial class ESHunchSystem : EntitySystem
             _popup.PopupEntity(oldClue,
                 ev.Performer,
                 ev.Performer);
-            ev.Handled = true;
             return;
         }
 
-        if (_clue.GetClues(mind.Value.Owner, 1).FirstOrDefault() is not { } clue)
+        if (_clue.GetClues(mind.Value.Owner, 1).FirstOrDefault() is not (var clueType, { } clue))
         {
             var emptyHunch = Loc.GetString("detective-hunch-empty", ("target", Identity.Entity(ev.Target, EntityManager)));
             _popup.PopupEntity(emptyHunch, ev.Performer, ev.Performer);
             comp.BodyClue.Add(ev.Target, emptyHunch);
-            ev.Handled = true;
             return;
         }
 
-        var msg = Loc.GetString("detective-hunch", ("clue", clue), ("target", Identity.Entity(ev.Target, EntityManager)));
+        var msg = Loc.GetString("detective-hunch",
+            ("clue", clue),
+            ("type", clueType),
+            ("target", Identity.Entity(ev.Target, EntityManager)));
         comp.BodyClue.Add(ev.Target, msg);
         _popup.PopupEntity(msg, ev.Performer, ev.Performer);
-        ev.Handled = true;
     }
 }

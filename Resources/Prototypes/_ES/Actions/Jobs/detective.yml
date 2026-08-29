@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: BaseAction
   id: ActionJobHunch
-  name: Hunch
-  description: Choose someone who you are going to stalk.
+  name: "[color=lightblue]Hunch[/color]"
+  description: Use your sleuthing skills to discover a clue about a dead body's killer.
   components:
   - type: Action
     icon:
