@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid.Markings;
@@ -80,7 +81,14 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
         if (!_sprite.LayerMapTryGet(target, ent.Comp.Layer, out var index, true))
             return;
 
+        var sprite = Comp<SpriteComponent>(target);
         _sprite.LayerSetRsiState(target, index, RSI.StateId.Invalid);
+        sprite.LayerSetShader(index, string.Empty);
+        _sprite.LayerSetScale(target, index, new Vector2(1f, 1f));
+        _sprite.LayerSetRotation(target, index, Angle.Zero);
+        _sprite.LayerSetOffset(target, index, Vector2.Zero);
+        _sprite.LayerSetColor(target, index, Color.White);
+        _sprite.LayerSetRenderingStrategy(target, index, LayerRenderingStrategy.Default);
     }
 
     private void OnMarkingsGotInserted(Entity<VisualOrganMarkingsComponent> ent, ref OrganGotInsertedEvent args)

@@ -87,6 +87,7 @@
     spawned:
     - id: FoodMeat
       amount: 5
+  - type: ESCryohuskable
 
 - type: entity
   parent: OrganBase
@@ -126,42 +127,72 @@
 - type: entity
   parent: [ OrganBaseTorso, OrganHumanExternal ]
   id: OrganHumanTorso
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskTorso
 
 - type: entity
   parent: [ OrganBaseHead, OrganHumanExternal ]
   id: OrganHumanHead
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskHead
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganHumanExternal ]
   id: OrganHumanArmLeft
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskArmLeft
 
 - type: entity
   parent: [ OrganBaseArmRight, OrganHumanExternal ]
   id: OrganHumanArmRight
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskArmRight
 
 - type: entity
   parent: [ OrganBaseHandLeft, OrganHumanExternal ]
   id: OrganHumanHandLeft
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskHandLeft
 
 - type: entity
   parent: [ OrganBaseHandRight, OrganHumanExternal ]
   id: OrganHumanHandRight
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskHandRight
 
 - type: entity
   parent: [ OrganBaseLegLeft, OrganHumanExternal ]
   id: OrganHumanLegLeft
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskLegLeft
 
 - type: entity
   parent: [ OrganBaseLegRight, OrganHumanExternal ]
   id: OrganHumanLegRight
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskLegRight
 
 - type: entity
   parent: [ OrganBaseFootLeft, OrganHumanExternal ]
   id: OrganHumanFootLeft
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskFootLeft
 
 - type: entity
   parent: [ OrganBaseFootRight, OrganHumanExternal ]
   id: OrganHumanFootRight
+  components:
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskFootRight
 
 - type: entity
   parent: [ OrganBaseBrain, OrganHumanInternal ]

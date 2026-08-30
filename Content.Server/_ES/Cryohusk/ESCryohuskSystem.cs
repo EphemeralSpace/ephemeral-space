@@ -11,6 +11,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
@@ -40,6 +41,7 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
 
@@ -69,13 +71,19 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
         _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"), raiseEvents: false);
 
-        throw new NotImplementedException();
-        // _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
-        _humanoidProfile.ApplyProfileTo(target.Owner,
-            new HumanoidCharacterProfile()
-                .WithGender(Gender.Neuter)
-                .WithSex(Sex.Unsexed)
-                .WithSpecies(target.Comp.CryohuskSpecies));
+        var evt = new ESGotCryohuskedEvent();
+        RaiseLocalEvent(target, ref evt);
+
+        var profile = new HumanoidCharacterProfile()
+            .WithGender(Gender.Neuter)
+            .WithSex(Sex.Unsexed)
+            .WithSpecies(target.Comp.CryohuskSpecies)
+            .WithCharacterAppearance(
+                new HumanoidCharacterAppearance()
+                    .WithSkinColor(Color.White));
+
+        _humanoidProfile.ApplyProfileTo(target.Owner, profile);
+        _visualBody.ApplyProfileTo(target.Owner, profile);
 
         foreach (var uid in GetRecursiveContainedEntities(target.Owner))
         {
@@ -119,6 +127,8 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
     public override void Update(float frameTime)
     {
+        base.Update(frameTime);
+
         foreach (var (uid, comp, xform) in EntityQueryEnumerator<ESCryohuskableComponent, TransformComponent>())
         {
             if (_timing.CurTime < comp.NextUpdate)
