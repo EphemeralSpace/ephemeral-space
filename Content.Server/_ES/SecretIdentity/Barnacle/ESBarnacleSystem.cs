@@ -56,6 +56,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         {
             if (TerminatingOrDeleted(projectile.GoalEntity))
             {
+                SpawnNextToOrDrop(projectile.BarnacleDead, uid);
                 QueueDel(uid);
                 continue;
             }
@@ -63,7 +64,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
             var newVelocity = physics.LinearVelocity + Vector2.Normalize(physics.LinearVelocity) * projectile.AccelerationRate;
             _physics.SetLinearVelocity(uid, newVelocity);
 
-            if (_transform.GetWorldPosition(uid).EqualsApprox(_transform.GetWorldPosition(projectile.GoalEntity), projectile.Tolerance) || _transform.GetGrid(uid) == null)
+            if (_transform.GetWorldPosition(uid).EqualsApprox(_transform.GetWorldPosition(projectile.GoalEntity), projectile.Tolerance))
             {
                 SpawnNextToOrDrop(projectile.BarnacleDead, uid);
                 QueueDel(uid);
