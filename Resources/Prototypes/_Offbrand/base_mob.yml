@@ -21,7 +21,6 @@
   - type: Damageable
     damageContainer: Biological
   - type: RadiationReceiver
-  - type: Stamina
   - type: MobState
   - type: DamageOnHighSpeedImpact
     damage:

@@ -214,7 +214,7 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     private void OnExamined(Entity<CryoPodComponent> entity, ref ExaminedEvent args)
     {
         var container = _itemSlots.GetItemOrNull(entity.Owner, entity.Comp.SolutionContainerName);
-        if (args.IsInDetailsRange && container != null && _solutionContainer.TryGetFitsInDispenser(container.Value, out _, out var containerSolution))
+        if (container != null && _solutionContainer.TryGetFitsInDispenser(container.Value, out _, out var containerSolution))
         {
             using (args.PushGroup(nameof(CryoPodComponent)))
             {

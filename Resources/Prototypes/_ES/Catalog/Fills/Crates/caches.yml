@@ -1,7 +1,7 @@
 # Base prototype
 - type: entity
-  parent: CrateGenericSteel
-  id: ESCrateCache
+  parent: ClothingBackpackDuffel
+  id: ESBaseCache
   # name: equipment cache
   # description: A secret cache hidden in the ceiling. Good thing nobody looks up there.
   suffix: ES
@@ -9,13 +9,13 @@
 
 # Assassin
 - type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheTraitorAssassin
+  parent: ESBaseCache
+  id: ESCacheTraitorAssassin
   suffix: ES, Assassin Cache
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
+      storagebase:
         tableId: ESTraitorCacheAssassin
 
 - type: entityTable
@@ -31,33 +31,40 @@
 
 # Infiltrator
 - type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheTraitorInfiltrator
+  parent: ESBaseCache
+  id: ESCacheTraitorInfiltrator
   suffix: ES, Infiltrator Cache
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
+      storagebase:
         tableId: ESTraitorCacheInfiltrator
 
 - type: entityTable
   id: ESTraitorCacheInfiltrator
   table:
     all:
-    - id: ESClothingBackpackChameleonFill
+    - all: # Chameleon clothes
+      - id: ClothingUniformJumpsuitChameleon
+      - id: ClothingOuterChameleon
+      - id: ClothingHeadHatChameleon
+      - id: ClothingHandsChameleon
+      - id: ClothingHeadsetChameleon
+      - id: ClothingShoesChameleon
+      - id: ESChameleonControllerImplanter
     - id: ESEmag
     - id: C4
       amount: 2
 
 # Marauder
 - type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheTraitorMarauder
+  parent: ESBaseCache
+  id: ESCacheTraitorMarauder
   suffix: ES, Marauder Cache
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
+      storagebase:
         tableId: ESTraitorCacheMarauder
 
 - type: entityTable
@@ -67,17 +74,17 @@
     - id: ESWeaponRevolver357
     - id: ESSpeedLoader357
     - id: ESWeaponKnife
-    - id: StimulantPen
+    - id: ExGrenade
 
 # Subverter
 - type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheTraitorSubverter
+  parent: ESBaseCache
+  id: ESCacheTraitorSubverter
   suffix: ES, Subverter Cache
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
+      storagebase:
         tableId:  ESTraitorCacheTraitorSubverter
 
 - type: entityTable
@@ -86,18 +93,34 @@
     all:
     - id: ESSubverterChip
     - id: SleepyPen
-    - tableId: SubverterWeapons
-      rolls: 2
+    - all: # one normal pistol
+      - group:
+        - id: ESWeaponPistol9mm
+        - id: ESWeaponPistol9mmSilenced
+      - id: ESMagazine9mm
+    - group: # one secondary weapon
+      - all:
+        - group:
+          - id: ESWeaponPistol9mm
+          - id: ESWeaponPistol9mmSilenced
+        - id: ESMagazine9mm
+        weight: 4
+      - all:
+        - id: ESWeaponDoubleBarrelShotgun
+        - id: ESShotgunShellsBoxBuckshot
+      - all:
+        - id: ESWeaponRevolver357
+        - id: ESSpeedLoader357
 
 # Mercenary
 - type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewMercenary
+  parent: ESBaseCache
+  id: ESCacheCrewMercenary
   suffix: ES, Mercenary Cache
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
+      storagebase:
         tableId: ESCrewCacheMercenary
 
 - type: entityTable
@@ -111,32 +134,15 @@
         weight: 2
       - id: ESWeaponPistol9mmSilenced
 
-# Insider
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewInsider
-  suffix: ES, Insider Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESCrewCacheInsider
-
-- type: entityTable
-  id: ESCrewCacheInsider
-  table:
-    all:
-    - id: ESBoxFolderFilledInsider
-
 # Arms Dealer
 - type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewArmsDealer
+  parent: ESBaseCache
+  id: ESCacheCrewArmsDealer
   suffix: ES, Arms Dealer Cache
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage:
+      storagebase:
         group:
         - id: ESWeaponPistol9mm
           weight: 8
@@ -147,21 +153,3 @@
         - id: ESWeaponDoubleBarrelShotgun
           weight: 1
         rolls: 2
-
-# Hitman
-- type: entity
-  parent: ESCrateCache
-  id: ESCrateCacheCrewHitman
-  suffix: ES, Hitman Cache
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: ESCrewCacheHitman
-
-- type: entityTable
-  id: ESCrewCacheHitman # the component on the hitman's mind adds their dossier(s).
-  table:
-    all:
-    - id: ESWeaponPistol9mmSilenced
-    - id: ESMagazine9mm

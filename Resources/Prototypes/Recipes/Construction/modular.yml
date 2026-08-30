@@ -5,11 +5,3 @@
   targetNode: grenade
   category: construction-category-weapons
   objectType: Item
-
-- type: construction
-  id: ModularMineRecipe
-  graph: ModularMineGraph
-  startNode: start
-  targetNode: mine
-  category: construction-category-weapons
-  objectType: Item

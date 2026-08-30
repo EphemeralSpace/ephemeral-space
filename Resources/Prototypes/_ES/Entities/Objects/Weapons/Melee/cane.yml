@@ -17,8 +17,6 @@
     damage:
       types:
         Blunt: 5
-  - type: StaminaDamageOnHit
-    damage: 5
   - type: UseDelay
     delay: 1
 
@@ -39,8 +37,6 @@
     damage:
       types:
         Blunt: 5
-  - type: StaminaDamageOnHit
-    damage: 5
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:

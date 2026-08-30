@@ -28,9 +28,6 @@ public abstract partial class SharedChargesSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, LimitedChargesComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         var rechargeEnt = new Entity<LimitedChargesComponent?, AutoRechargeComponent?>(uid, comp, null);
         var charges = GetCurrentCharges(rechargeEnt);
         using var _ = args.PushGroup(nameof(LimitedChargesComponent));

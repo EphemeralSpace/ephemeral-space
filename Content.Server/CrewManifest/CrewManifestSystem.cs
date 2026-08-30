@@ -4,6 +4,7 @@ using Content.Server.EUI;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
+using Content.Shared._ES.CrewManifest;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;
@@ -25,13 +26,6 @@ public sealed partial class CrewManifestSystem : EntitySystem
     [Dependency] private EuiManager _euiManager = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-
-    /// <summary>
-    ///     Cached crew manifest entries. The alternative is to outright
-    ///     rebuild the crew manifest every time the state is requested:
-    ///     this is inefficient.
-    /// </summary>
-    private readonly Dictionary<EntityUid, CrewManifestEntries> _cachedEntries = new();
 
     private readonly Dictionary<EntityUid, Dictionary<ICommonSession, CrewManifestEui>> _openEuis = new();
 
@@ -58,7 +52,6 @@ public sealed partial class CrewManifestSystem : EntitySystem
         }
 
         _openEuis.Clear();
-        _cachedEntries.Clear();
     }
 
     private void OnRequestCrewManifest(RequestCrewManifestMessage message, EntitySessionEventArgs args)
@@ -114,8 +107,8 @@ public sealed partial class CrewManifestSystem : EntitySystem
     /// <returns>The name and crew manifest entries (unordered) of the station.</returns>
     public (string name, CrewManifestEntries? entries) GetCrewManifest(EntityUid station)
     {
-        var valid = _cachedEntries.TryGetValue(station, out var manifest);
-        return (valid ? MetaData(station).EntityName : string.Empty, valid ? manifest : null);
+        TryComp<CrewManifestComponent>(station, out var comp);
+        return (MetaData(station).EntityName, comp?.Entries);
     }
 
     private void UpdateEuis(EntityUid station)
@@ -245,7 +238,11 @@ public sealed partial class CrewManifestSystem : EntitySystem
         });
 
         entries.Entries = entriesSort.Select(x => x.entry).ToArray();
-        _cachedEntries[station] = entries;
+
+        // store results on the station entity and replicate to clients
+        var comp = EnsureComp<CrewManifestComponent>(station);
+        comp.Entries = entries;
+        Dirty(station, comp);
     }
 }
 

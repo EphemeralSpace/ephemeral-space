@@ -1,0 +1,12 @@
+- type: entity
+  parent: StatusEffectBase
+  id: ESStatusEffectEmotionPyroeuphoria
+  name: pyroeuphoria
+  components:
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 1.15
+  - type: ESViewconeModifier
+    angleModifier: 45
+  - type: PainSuppressionStatusEffect
+  - type: StatusEffectAlert
+    alert: ESPyroeuphoria

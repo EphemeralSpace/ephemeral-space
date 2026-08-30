@@ -7,7 +7,6 @@
   icon: "JobIconChef"
   access:
   - Service
-  - Maintenance
   - Kitchen
   - Hydroponics
   extendedAccess:

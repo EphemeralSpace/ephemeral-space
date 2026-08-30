@@ -8,6 +8,18 @@
     },
     "states": [
         {
+            "name": "barnacle0"
+        },
+        {
+            "name": "barnacle1"
+        },
+        {
+            "name": "barnacle2"
+        },
+        {
+            "name": "barnacle3"
+        },
+        {
             "name": "leech0"
         },
         {

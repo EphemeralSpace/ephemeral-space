@@ -10,6 +10,7 @@ using Content.Shared._ES.Chat;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Damage.ForceSay;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
 using Robust.Client.Audio;
 using Robust.Client.GameObjects;
@@ -27,7 +28,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
@@ -78,6 +78,12 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     /// </summary>
     private readonly Dictionary<EntityUid, List<SpeechBubble>> _activeSpeechBubbles =
         new();
+
+    /// <summary>
+    ///     The speech bubble that is currently tied to the chatbox output.
+    ///     i.e., when
+    /// </summary>
+    private SpeechBubble? _activeTypingSpeechBubble;
 
     /// <summary>
     ///     Speech bubbles that are to-be-sent because of the "rate limit" they have.
@@ -280,24 +286,32 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         if (msg.Source == null)
             return;
 
-        var ent = EntityManager.GetEntity(msg.Source.Value);
+        if (!EntityManager.TryGetEntity(msg.Source.Value, out var ent) ||
+            !EntityManager.EntityExists(ent))
+            return;
 
-        EnqueueSpeechBubble(ent, msg, speechType);
+        EnqueueSpeechBubble(ent.Value, msg, speechType);
     }
 
-    private void CreateSpeechBubble(EntityUid entity, SpeechBubbleData speechData)
+    private SpeechBubble CreateSpeechBubble(EntityUid entity, SpeechBubbleData speechData)
     {
         var bubble =
-            SpeechBubble.CreateSpeechBubble(speechData.Type, speechData.Message, entity);
+            SpeechBubble.CreateSpeechBubble(speechData.Type, speechData.Name, speechData.Content, entity);
 
         bubble.OnDied += SpeechBubbleDied;
 
         if (_activeSpeechBubbles.TryGetValue(entity, out var existing))
         {
-            // Push up existing bubbles above the mob's head.
-            foreach (var existingBubble in existing)
+            var last = existing.Last();
+            // dont push bubbles up if we're creating a new bubble in place of one thats fading
+            // (this most commonly happens with the active typing speech bubble)
+            if (last.Modulate.A >= 1f && !last.Fading)
             {
-                existingBubble.VerticalOffset += bubble.ContentSize.Y;
+                // Push up existing bubbles above the mob's head.
+                foreach (var existingBubble in existing)
+                {
+                    existingBubble.VerticalOffset += bubble.ContentSize.Y;
+                }
             }
         }
         else
@@ -316,6 +330,8 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             var last = existing[^(SpeechBubbleCap + 1)];
             last.FadeNow();
         }
+
+        return bubble;
     }
 
     private void SpeechBubbleDied(EntityUid entity, SpeechBubble bubble)
@@ -335,7 +351,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             _queuedSpeechBubbles.Add(entity, queueData);
         }
 
-        queueData.MessageQueue.Enqueue(new SpeechBubbleData(message, speechType));
+        queueData.MessageQueue.Enqueue(new SpeechBubbleData(message.Name, message.Content, speechType));
     }
 
     public void RemoveSpeechBubble(EntityUid entityUid, SpeechBubble bubble)
@@ -398,7 +414,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
             var msg = queueData.MessageQueue.Dequeue();
 
-            queueData.TimeLeft += BubbleDelayBase + msg.Message.Content.Length * BubbleDelayFactor;
+            queueData.TimeLeft += BubbleDelayBase + msg.Content.Length * BubbleDelayFactor;
 
             // We keep the queue around while it has 0 items. This allows us to keep the timer.
             // When the timer hits 0 and there's no messages left, THEN we can clear it up.
@@ -453,7 +469,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        var (prefixChannel, _) = SplitInputContents(box.ChatInput.Input.Text);
 
         if (prefixChannel == null)
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(_prototypeManager.Index(box.SelectedChannel));
@@ -479,6 +495,8 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     public void SendMessage(ChatBox box, ProtoId<ESChatChannelPrototype> channel)
     {
         _typingIndicator?.ClientSubmittedChatText();
+        _activeTypingSpeechBubble?.FadeNow();
+        _activeTypingSpeechBubble = null;
 
         var text = box.ChatInput.Input.Text;
         box.ChatInput.Input.Clear();
@@ -527,12 +545,44 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
 
         var modifiedText = ev.Suffix != null
             ? Loc.GetString(forceSay.ForceSayMessageWrap,
-                ("message", msg), ("suffix", ev.Suffix))
+                ("message", msg),
+                ("suffix", ev.Suffix))
             : Loc.GetString(forceSay.ForceSayMessageWrapNoSuffix,
                 ("message", msg));
 
         chatBox.ChatInput.Input.SetText(modifiedText);
         chatBox.ChatInput.Input.ForceSubmitText();
+    }
+
+    /// <summary>
+    ///     Creates or updates a speechbubble for the current entity containing the contents of the current chat input.
+    /// </summary>
+    public void TryUpdateTypingSpeechBubble(string text, ProtoId<ESChatChannelPrototype> channel, bool forceRebuild = false)
+    {
+        if (_player.LocalEntity is not { } entity)
+            return;
+
+        if (!_prototypeManager.TryIndex(channel, out var proto))
+            return;
+
+        var bubbleType = proto.SpeechBubbleType ?? SpeechType.Say;
+
+        if (forceRebuild && _activeTypingSpeechBubble is not null)
+        {
+            _activeTypingSpeechBubble.FadeNow();
+            _activeTypingSpeechBubble = null;
+        }
+
+        if (_activeTypingSpeechBubble is not null && !_activeTypingSpeechBubble.Disposed)
+        {
+            _activeTypingSpeechBubble.RebuildBubbleContents(_activeTypingSpeechBubble.NameText, text, bubbleType);
+        }
+        else
+        {
+            _activeTypingSpeechBubble =
+                CreateSpeechBubble(entity, new SpeechBubbleData(Identity.Name(entity, EntityManager), text, bubbleType));
+            _activeTypingSpeechBubble.MakePermanent();
+        }
     }
 
     private void OnChatMessageSent(ESChatMessage msg)
@@ -603,14 +653,39 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         _chats.Remove(chat);
     }
 
-    public void NotifyChatTextChange()
+    public void NotifyChatTextChange(ChatBox box)
     {
+        var channel = GetCurrentChatChannel(box);
+        _typingIndicator?.ClientChangedValidChannel(channel);
         _typingIndicator?.ClientChangedChatText();
+        TryUpdateTypingSpeechBubble(box.ChatInput.Input.Text, channel);
     }
 
-    public void NotifyChatFocus(bool isFocused)
+    public void NotifyChatFocus(ChatBox box, bool isFocused)
     {
         _typingIndicator?.ClientChangedChatFocus(isFocused);
+
+        if (!isFocused)
+        {
+            _activeTypingSpeechBubble?.FadeNow();
+            _activeTypingSpeechBubble = null;
+        }
+    }
+
+    public void NotifyChatSelectorChanged(ChatBox box)
+    {
+        UpdateSelectedChannel(box);
+        if (box.ChatInput.Input.Text != string.Empty)
+            TryUpdateTypingSpeechBubble(box.ChatInput.Input.Text, box.SelectedChannel, true);
+    }
+
+    private ESChatChannelPrototype GetCurrentChatChannel(ChatBox box)
+    {
+        var (channel, _) = SplitInputContents(box.ChatInput.Input.Text);
+        if (channel != null)
+            return channel;
+
+        return _prototypeManager.Index(box.SelectedChannel);
     }
 
     public void Repopulate()
@@ -621,7 +696,7 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
         }
     }
 
-    private readonly record struct SpeechBubbleData(ESChatMessage Message, SpeechType Type);
+    private readonly record struct SpeechBubbleData(string Name, string Content, SpeechType Type);
 
     private sealed class SpeechBubbleQueueData
     {
@@ -636,16 +711,24 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     public void OnSystemLoaded(ESChatSystem system)
     {
         system.LocalChatPermissionsUpdated += OnLocalPermissionsUpdated;
+        system.ChatChannelFocused += OnChatChannelFocused;
     }
 
     public void OnSystemUnloaded(ESChatSystem system)
     {
         system.LocalChatPermissionsUpdated -= OnLocalPermissionsUpdated;
+        system.ChatChannelFocused -= OnChatChannelFocused;
     }
 
     private void OnLocalPermissionsUpdated(EntityUid uid, HashSet<ProtoId<ESChatChannelPrototype>> channels)
     {
         LocalChatPermissionsUpdated?.Invoke(uid, channels);
+    }
+
+    private void OnChatChannelFocused(ProtoId<ESChatChannelPrototype> channel)
+    {
+        if (TryGetMainChat(out var box))
+            box.Focus(channel);
     }
 
     public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels()

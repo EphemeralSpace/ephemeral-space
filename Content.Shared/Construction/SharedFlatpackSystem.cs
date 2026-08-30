@@ -48,9 +48,6 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
         if (HasComp<MachineBoardComponent>(args.Item))
             return;
 
-        if (TryComp<ComputerBoardComponent>(args.Item, out var computer) && computer.Prototype != null)
-            return;
-
         args.Cancelled = true;
     }
 
@@ -104,8 +101,6 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
 
     private void OnFlatpackExamined(Entity<FlatpackComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
         args.PushMarkup(Loc.GetString("flatpack-examine"));
     }
 

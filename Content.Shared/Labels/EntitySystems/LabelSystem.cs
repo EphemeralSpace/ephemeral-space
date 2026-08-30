@@ -98,12 +98,6 @@ public sealed partial class LabelSystem : EntitySystem
 
         using (args.PushGroup(nameof(PaperLabelComponent)))
         {
-            if (!args.IsInDetailsRange)
-            {
-                args.PushMarkup(Loc.GetString("comp-paper-label-has-label-cant-read"));
-                return;
-            }
-
             // Assuming yaml has the correct entity whitelist, this should not happen.
             if (!TryComp<PaperComponent>(item, out var paper))
                 return;

@@ -2,7 +2,6 @@ using Content.Client.Resources;
 using Content.Client.Stylesheets.SheetletConfigs;
 using Content.Client.Stylesheets.Stylesheets;
 using Content.Client.UserInterface.Systems.Actions.Controls;
-using Content.Client.UserInterface.Systems.Actions.Windows;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -37,7 +36,6 @@ public sealed class ActionSheetlet<T> : Sheetlet<T> where T: PalettedStylesheet,
         return
         [
             E<PanelContainer>().Class(ActionButton.StyleClassActionHighlightRect).Panel(handSlotHighlight),
-            E<LineEdit>().Class(ActionsWindow.StyleClassActionSearchBox).Box(actionSearchBox),
         ];
     }
 }

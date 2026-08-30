@@ -31,7 +31,7 @@ public sealed partial class CCVars
         CVarDef.Create("chat.rate_limit_announce_admins_delay", 15, CVar.SERVERONLY);
 
     public static readonly CVarDef<int> ChatMaxMessageLength =
-        CVarDef.Create("chat.max_message_length", 1000, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("chat.max_message_length", 192, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<int> ChatMaxAnnouncementLength =
         CVarDef.Create("chat.max_announcement_length", 256, CVar.SERVER | CVar.REPLICATED);
@@ -41,18 +41,6 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<bool> ChatShowTypingIndicator =
         CVarDef.Create("chat.show_typing_indicator", true, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
-
-    public static readonly CVarDef<bool> ChatEnableFancyBubbles =
-        CVarDef.Create("chat.enable_fancy_bubbles",
-            true,
-            CVar.CLIENTONLY | CVar.ARCHIVE,
-            "Toggles displaying fancy speech bubbles, which display the speaking character's name.");
-
-    public static readonly CVarDef<bool> ChatFancyNameBackground =
-        CVarDef.Create("chat.fancy_name_background",
-            false,
-            CVar.CLIENTONLY | CVar.ARCHIVE,
-            "Toggles displaying a background under the speaking character's name.");
 
     /// <summary>
     ///     A message broadcast to each player that joins the lobby.

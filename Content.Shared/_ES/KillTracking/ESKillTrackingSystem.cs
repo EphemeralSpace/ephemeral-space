@@ -68,6 +68,10 @@ public sealed partial class ESKillTrackingSystem : EntitySystem
         if (args.DamageDelta is not { } delta || delta.Empty)
             return;
 
+        // don't update damage if they're dead.
+        if (ent.Comp.Killed)
+            return;
+
         // Cuffing -- if someone is cuffed and takes environmental damage (origin-less)
         // treat the damage they take as being caused by the person that cuffed them
         var origin = args.Origin;

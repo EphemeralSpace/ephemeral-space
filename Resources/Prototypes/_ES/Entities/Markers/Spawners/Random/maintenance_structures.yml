@@ -14,14 +14,14 @@
   - type: EntityTableSpawner
     table:
       group:
-      - id: AirlockMaintLocked
+      - id: AirlockMaint
         weight: 1.5
-      - id: ESAirlockMaintLockedWelded
+      - id: ESAirlockMaintWelded
         weight: 0.5
-      - id: ESAirlockMaintLockedBolted
+      - id: ESAirlockMaintBolted
         weight: 0.25
       - all:
-        - id: AirlockMaintLocked
+        - id: AirlockMaint
         - id: BarricadeBlock
 
 - type: entity
@@ -42,14 +42,14 @@
   - type: EntityTableSpawner
     table:
       group:
-      - id: AirlockMaintLocked
+      - id: AirlockMaint
         weight: 1.5
-      - id: ESAirlockMaintLockedWelded
+      - id: ESAirlockMaintWelded
         weight: 0.5
-      - id: ESAirlockMaintLockedBolted
+      - id: ESAirlockMaintBolted
         weight: 0.25
       - all:
-        - id: AirlockMaintLocked
+        - id: AirlockMaint
         - id: BarricadeBlock
       - id: WallSolid
         weight: 0.5

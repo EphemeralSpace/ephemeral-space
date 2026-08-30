@@ -1,0 +1,35 @@
+- type: job
+  id: ESFirefighter
+  name: ESjob-name-firefighter
+  description: ESjob-description-firefighter
+  playTimeTracker: ESJobFirefighter
+  startingGear: ESFirefighterGear
+  icon: "ESJobIconFirefighter"
+  access:
+  - Engineering
+  - Atmospherics
+  - External
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: ESPyroeuphoric
+
+- type: startingGear
+  id: ESFirefighterGear
+  equipment:
+    shoes: ClothingShoesColorRed
+    mask: ClothingMaskGas
+    id: ESFirefighterPDA
+    ears: ClothingHeadsetEngineering
+    head: ClothingHeadHatHardhatRed
+    back: ClothingBackpack
+    jumpsuit: ESClothingUniformJumpsuitFirefighter
+    gloves: ClothingHandsGlovesColorBlack
+  storage:
+    back:
+    - ESBoxSurvival
+
+- type: chameleonOutfit
+  id: ESFirefighter
+  job: ESFirefighter
+  hidden: false

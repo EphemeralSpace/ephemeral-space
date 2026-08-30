@@ -1,20 +1,17 @@
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CCVar;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Standing;
-using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Physics;
@@ -32,7 +29,6 @@ public abstract partial class SharedStunSystem
     private EntityQuery<CrawlerComponent> _crawlerQuery;
 
     [Dependency] private EntityLookupSystem _entityLookup = default!;
-    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private StandingStateSystem _standingState = default!;
@@ -71,10 +67,6 @@ public abstract partial class SharedStunSystem
         SubscribeLocalEvent<KnockedDownComponent, HandCountChangedEvent>(OnHandCountChanged);
         SubscribeLocalEvent<GravityAffectedComponent, KnockDownAttemptEvent>(OnKnockdownAttempt);
         SubscribeLocalEvent<GravityAffectedComponent, GetStandUpTimeEvent>(OnGetStandUpTime);
-
-        // Handling Alternative Inputs
-        SubscribeAllEvent<ForceStandUpEvent>(OnForceStandup);
-        SubscribeLocalEvent<KnockedDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(HandleToggleKnockdown, handle: false))
@@ -384,72 +376,6 @@ public abstract partial class SharedStunSystem
         SetAutoStand(entity.Owner);
         return true;
 
-    }
-
-    private void OnForceStandup(ForceStandUpEvent msg, EntitySessionEventArgs args)
-    {
-        if (args.SenderSession.AttachedEntity is not { } user)
-            return;
-
-        ForceStandUp(user);
-    }
-
-    public void ForceStandUp(Entity<KnockedDownComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp, false))
-            return;
-
-        // That way if we fail to stand, the game will try to stand for us when we are able to
-        SetAutoStand(entity, true);
-
-        if (StandingBlocked((entity, entity.Comp)))
-            return;
-
-        if (!_hands.TryGetEmptyHand(entity.Owner, out _))
-            return;
-
-        if (!TryForceStand(entity.Owner))
-            return;
-
-        // If we have a DoAfter, cancel it
-        CancelKnockdownDoAfter(entity);
-        // Remove Component
-        RemComp<KnockedDownComponent>(entity);
-
-        _adminLogger.Add(LogType.Stamina, LogImpact.Medium, $"{ToPrettyString(entity):user} has force stood up from knockdown.");
-    }
-
-    private void OnKnockedDownAlert(Entity<KnockedDownComponent> entity, ref KnockedDownAlertEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        // If we're already trying to stand, or we fail to stand try forcing it
-        if (!TryStanding(entity.Owner))
-            ForceStandUp((entity.Owner, entity.Comp));
-
-        args.Handled = true;
-    }
-
-    private bool TryForceStand(Entity<StaminaComponent?> entity)
-    {
-        // Can't force stand if no Stamina.
-        if (!Resolve(entity, ref entity.Comp, false))
-            return false;
-
-        var ev = new TryForceStandEvent(entity.Comp.ForceStandStamina);
-        RaiseLocalEvent(entity, ref ev);
-
-        if (!Stamina.TryTakeStamina(entity, ev.Stamina, entity.Comp, visual: true))
-        {
-            _popup.PopupEntity(Loc.GetString("knockdown-component-pushup-failure"), entity, entity, PopupType.MediumCaution);
-            return false;
-        }
-
-        _popup.PopupEntity(Loc.GetString("knockdown-component-pushup-success"), entity, entity);
-        _audio.PlayPredicted(entity.Comp.ForceStandSuccessSound, entity.Owner, entity.Owner, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
-
-        return true;
     }
 
     /// <summary>

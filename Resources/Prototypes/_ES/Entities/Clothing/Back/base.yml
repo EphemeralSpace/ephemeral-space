@@ -1,0 +1,12 @@
+- type: entity
+  parent: Clothing
+  id: ESBaseClothingBack
+  suffix: ES
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    slots:
+    - back

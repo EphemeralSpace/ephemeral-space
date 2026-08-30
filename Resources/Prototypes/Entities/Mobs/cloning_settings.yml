@@ -9,7 +9,6 @@
   id: Body
   components:
   # general
-  - DetailExaminable
   - Dna
   - Fingerprint
   - NpcFactionMember

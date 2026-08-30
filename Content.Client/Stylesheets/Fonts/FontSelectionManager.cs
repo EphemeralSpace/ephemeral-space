@@ -101,6 +101,12 @@ internal sealed partial class FontSelectionManager : IFontSelectionManager, IPos
             FontCVars.ChatFamilyName,
             FontCVars.ChatScale);
 
+        InitializeFont(
+            StandardFontType.ChatWhisper,
+            WhisperFontChat,
+            FontCVars.ChatWhisperFamilyName,
+            FontCVars.ChatWhisperScale);
+
         return;
 
         void InitializeFont(

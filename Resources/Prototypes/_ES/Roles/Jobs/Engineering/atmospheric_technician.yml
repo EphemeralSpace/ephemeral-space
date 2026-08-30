@@ -7,7 +7,6 @@
   startingGear: ESAtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   access:
-  - Maintenance
   - Engineering
   - External
   - Atmospherics

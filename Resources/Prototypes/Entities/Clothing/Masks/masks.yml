@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingMaskPullableBase, BaseClothingViewconeLarge ]
+  parent: [ ClothingMaskPullableBase, BaseClothingViewconeMedium ]
   id: ClothingMaskGas
   name: gas mask
   description: A face-covering mask that can block harmful gases.
@@ -32,7 +32,6 @@
     sprite: Clothing/Mask/gassyndicate.rsi
   - type: Clothing
     sprite: Clothing/Mask/gassyndicate.rsi
-  - type: FlashImmunity
   - type: EyeProtection
   - type: Armor
     modifiers:
@@ -41,28 +40,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-
-- type: entity
-  parent: ClothingMaskPullableBase
-  id: ClothingMaskBreathMedical
-  name: medical mask
-  description: A close-fitting sterile mask that can be connected to an air supply.
-  components:
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: Clothing/Mask/medical.rsi
-  - type: Clothing
-    sprite: Clothing/Mask/medical.rsi
-  - type: BreathMask
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - PetWearable
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 50
-      Plastic: 50
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -78,6 +55,8 @@
     sprite: Clothing/Mask/breath.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: IdentityBlocker
+    coverage: MOUTH
   - type: Tag
     tags:
     - PetWearable

@@ -48,18 +48,6 @@
 
 - type: entity
   parent: BaseFlatpack
-  id: SingularityGeneratorFlatpack
-  name: singularity generator flatpack
-  description: A flatpack used for constructing a singularity generator.
-  components:
-  - type: Flatpack
-    entity: SingularityGenerator
-  - type: Sprite
-    layers:
-    - state: singularity-generator
-
-- type: entity
-  parent: BaseFlatpack
   id: RadiationCollectorFlatpack
   name: radiation collector flatpack
   description: A flatpack used for constructing a radiation collector.
@@ -93,18 +81,6 @@
   - type: Sprite
     layers:
     - state: emitter
-
-- type: entity
-  parent: BaseFlatpack
-  id: TeslaGeneratorFlatpack
-  name: tesla generator flatpack
-  description: A flatpack used for constructing a tesla generator.
-  components:
-  - type: Flatpack
-    entity: TeslaGenerator
-  - type: Sprite
-    layers:
-    - state: tesla-generator
 
 - type: entity
   parent: BaseFlatpack

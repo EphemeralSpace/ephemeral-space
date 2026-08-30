@@ -1,0 +1,18 @@
+- type: esChatChannelOrder
+  id: Default
+  order:
+  - Speak
+  - Whisper
+  - Emote
+  - ParasiteHivemind
+  - RadioWhisperCommon
+  - RadioWhisperCommand
+  - RadioWhisperEngineering
+  - RadioWhisperMedical
+  - RadioWhisperScience
+  - RadioWhisperSecurity
+  - RadioWhisperService
+  - RadioWhisperSupply
+  - Lobby
+  - Stagehand
+  - AdminChat

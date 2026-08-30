@@ -17,6 +17,7 @@
                     </VFillStack>
                     <VFillStack>
                         <RichTextLabel Name="SecretIdentityLabel" Access="Public" HorizontalAlignment="Right"/>
+                        <RichTextLabel Name="ModifierLabel" Access="Public" HorizontalAlignment="Right"/>
                         <RichTextLabel Name="OrganizationLabel" Access="Public" HorizontalAlignment="Right"/>
                     </VFillStack>
                 </HFillStack>

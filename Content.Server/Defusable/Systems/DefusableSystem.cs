@@ -64,9 +64,6 @@ public sealed partial class DefusableSystem : SharedDefusableSystem
 
     private void OnExamine(EntityUid uid, DefusableComponent comp, ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange)
-            return;
-
         using (args.PushGroup(nameof(DefusableComponent)))
         {
             if (!comp.Usable)

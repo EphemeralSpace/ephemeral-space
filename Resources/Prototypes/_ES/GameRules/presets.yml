@@ -19,7 +19,6 @@
   description: es-preset-extended-desc
   rules:
     all:
-    - id: ESOrganizationRuleCrew
     - id: ESRoundEndRuleRadstorm
     - id: ESWarpDriveRule
     - tableId: ESEventGameRules

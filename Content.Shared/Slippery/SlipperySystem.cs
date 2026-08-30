@@ -26,7 +26,6 @@ public sealed partial class SlipperySystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private StatusEffectsSystem _status = default!;
-    [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SpeedModifierContactsSystem _speedModifier = default!;
@@ -147,8 +146,6 @@ public sealed partial class SlipperySystem : EntitySystem
                     component.SlipData.SlipFriction
                 );
             }
-
-            _stamina.TakeStaminaDamage(other, component.StaminaDamage); // Note that this can StamCrit
 
             _audio.PlayPredicted(component.SlipSound, other, other);
         }

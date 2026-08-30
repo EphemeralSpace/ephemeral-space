@@ -34,15 +34,6 @@
     Steel: 200
     Glass: 300
 
-- type: latheRecipe
-  parent: BaseRoboticsPartRecipe
-  id: SciFlash
-  result: SciFlash
-  materials:
-    Glass: 100
-    Plastic: 200
-    Steel: 100
-
 # Cyborg body
 - type: latheRecipe
   parent: BaseBorgLimbRecipe

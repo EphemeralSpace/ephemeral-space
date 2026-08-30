@@ -85,6 +85,11 @@ public abstract partial class AlertsSystem : EntitySystem
         return (short)MathF.Max(minSeverity, _typeToAlert[alertType].MaxSeverity - minSeverity);
     }
 
+    public short ClampSeverity(ProtoId<AlertPrototype> alertType, short severity)
+    {
+        return Math.Clamp(severity, GetMinSeverity(alertType), GetMaxSeverity(alertType));
+    }
+
     public short GetMaxSeverity(ProtoId<AlertPrototype> alertType)
     {
         return _typeToAlert[alertType].MaxSeverity;

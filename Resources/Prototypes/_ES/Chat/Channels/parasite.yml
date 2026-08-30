@@ -1,0 +1,20 @@
+- type: esChatChannel
+  id: ParasiteHivemind
+  name: es-chat-channel-name-hivemind
+  color: yellowgreen
+  textColor: "#d6ed3e"
+  chatProcessor: ParasiteHivemindChatProcessor
+  prefixes: [ "'h" ]
+  filterCategory: Radio
+# TODO: this would be good to display in world but only if it can be telegraphed distinctively from normal speech
+
+- type: entity
+  id: ParasiteHivemindChatProcessor
+  components:
+  - type: ESGhostListenableChatChannel
+  - type: ESOrganizationChatChannel
+    organization: Parasite
+  - type: ESSpeechVerbChatChannel
+    format: es-chat-channel-parasite-hivemind-fmt-verb
+    boldFormat: es-chat-channel-parasite-hivemind-bold-fmt-verb
+  - type: ESSanitizationChatChannel

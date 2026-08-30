@@ -56,3 +56,10 @@
     count: 2
   - type: WiresPanel
   - type: WiresVisuals
+
+
+- type: entity
+  parent: StatusEffectBase
+  id: ESStatusEffectRadioScramblerRepairBlocked
+  components:
+  - type: ESRadioScramblerRepairBlockedStatusEffect

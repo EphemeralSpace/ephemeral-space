@@ -1,7 +1,10 @@
 es-character-info-title = Character
 es-character-window-name-fmt = [font size=16][bold]{$name}[/bold][/font]
 es-character-window-job-fmt = [color=gray][bold]{$name}[/bold][/color]
-es-character-window-secret-identity-fmt = [color={$color}][font size=16][bold]{$name}[/bold][/font][/color]
+es-character-window-secret-identity-fmt = [font size=16][bold]{ $modifierName ->
+        [null] {""}
+        *[Other] [color={$modifierColor}]{$modifierName} [/color]
+    }[color={$color}]{$name}[/color][/bold][/font]
 es-character-window-organization-fmt = [color={$color}][font size=14][bold]{$name}[/bold][/font][/color]
 
 es-character-window-objective-title = [font size=14][bold]Objectives:[/bold][/font]

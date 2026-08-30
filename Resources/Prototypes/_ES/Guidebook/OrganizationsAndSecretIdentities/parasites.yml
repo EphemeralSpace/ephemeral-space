@@ -5,6 +5,7 @@
   - Burstworm
   - Hemophage
   - Leapleech
+  - Barnacle
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites.xml"
 
 - type: guideEntry
@@ -21,3 +22,8 @@
   id: Leapleech
   name: Leapleech
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites/Leapleech.xml"
+
+- type: guideEntry
+  id: Barnacle
+  name: Barnacle
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Parasites/Barnacle.xml"

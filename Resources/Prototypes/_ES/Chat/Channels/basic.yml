@@ -1,7 +1,6 @@
 - type: esChatChannel
   id: Speak
   name: es-chat-channel-name-speak
-  order: 1
   chatProcessor: SpeakChatProcessor
   prefixes: [ ">" ]
   filterCategory: Local
@@ -13,8 +12,8 @@
   id: SpeakChatProcessor
   components:
   - type: ESGhostListenableChatChannel
-  - type: ESRangedChatChannel
-    requireLOS: false
+  - type: ESRangedChatChannel # TODO: The main message should be obscured through walls but it should still indicate someone talking
+    requireLOS: true
   - type: ESSpeechVerbChatChannel
     format: es-chat-channel-speak-fmt-verb
     boldFormat: es-chat-channel-speak-bold-fmt-verb
@@ -36,7 +35,6 @@
 - type: esChatChannel
   parent: BaseWhisper
   id: Whisper
-  order: 2
   chatProcessor: WhisperChatProcessor
   prefixes: [ "," ]
   focusKey: FocusWhisperChatWindow
@@ -80,7 +78,6 @@
 - type: esChatChannel
   parent: EmoteNoEffect
   id: Emote
-  order: 3
   chatProcessor: EmoteChatProcessor
   prefixes: [ "@", "*" ]
   focusKey: FocusEmote

@@ -87,7 +87,6 @@
     idleState: fab-idle
     runningState: fab-active
     staticPacks:
-    - RoboticsStatic
     - BorgLimbsStatic
     dynamicPacks:
     - Robotics
@@ -97,4 +96,3 @@
       - Sheet
       - RawMaterial
       - Ingot
-  - type: OreSiloClient

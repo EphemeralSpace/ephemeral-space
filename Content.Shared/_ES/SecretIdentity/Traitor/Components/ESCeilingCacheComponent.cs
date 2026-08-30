@@ -21,7 +21,7 @@ public sealed partial class ESCeilingCacheComponent : Component
     public ProtoId<AlertPrototype> CacheAlertProto = "ESCeilingCache";
 
     [DataField]
-    public SoundSpecifier? RevealSound = new SoundPathSpecifier("/Audio/Items/toolbox_drop.ogg");
+    public SoundSpecifier? RevealSound = new SoundCollectionSpecifier("storageRustle");
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

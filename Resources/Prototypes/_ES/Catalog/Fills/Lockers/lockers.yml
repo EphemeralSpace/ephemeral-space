@@ -39,6 +39,16 @@
         tableId: LockerFillExperiment
 
 - type: entity
+  parent: LockerFirefighter
+  id: LockerFirefighterFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        tableId: LockerFillFirefighter
+
+- type: entity
   parent: LockerJanitor
   id: LockerJanitorFilled
   suffix: Filled

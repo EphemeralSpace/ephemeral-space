@@ -18,7 +18,8 @@
           ESCaptain: [ 1, 1 ]
           ESStationAdmin: [ 1, 1 ]
           #engineering (4)
-          ESAtmosphericTechnician: [ 2, 2 ]
+          ESAtmosphericTechnician: [ 1, 1 ]
+          ESFirefighter: [ 1, 1 ]
           ESStationEngineer: [ 2, 2 ]
           #medical (4)
           ESDoctor: [ 2, 2 ]

@@ -288,14 +288,6 @@
 
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsMaintenance
-  suffix: Maintenance, Locked
-  components:
-  - type: AccessReader
-    access: [["Maintenance"]]
-
-- type: entity
-  parent: DoorElectronics
   id: DoorElectronicsVault
   suffix: Vault, Locked
   components:

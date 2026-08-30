@@ -13,19 +13,14 @@
   - type: ESDistributedSpawner
     id: ESSpawnerTechStorage
     tables:
-    - id: AlertsComputerCircuitboard
-    - id: AtmosMonitoringComputerCircuitboard
-    - id: PowerComputerCircuitboard
-    - id: SMESMachineCircuitboard
-      amount: 2
+    - id: FlashlightLantern
+    - id: FlashlightLantern
+    - id: Igniter
     - id: CellRechargerCircuitboard
     - id: WeaponCapacitorRechargerCircuitboard
-    - id: SubstationMachineCircuitboard
-      amount: 2
     - id: PortableGeneratorJrPacmanMachineCircuitboard
-    - id: StationRecordsComputerCircuitboard
+    - id: RemoteSignaller
     - id: OperatingTableCircuitboard
-    - id: SurveillanceCameraMonitorCircuitboard
     - id: MicrowaveMachineCircuitboard
     - id: JukeboxCircuitBoard
 
@@ -94,8 +89,8 @@
   - type: ESDistributedSpawner
     id: ESSpawnerSecureTechStorage
     tables:
-    - id: IDComputerCircuitboard
-    - id: CrewMonitoringComputerCircuitboard
+    - id: PinpointerNuclear
+    - id: ESDoorJammer
 
 - type: entity
   id: ESSpawnerMarkerDistributedTechStorageSecure
