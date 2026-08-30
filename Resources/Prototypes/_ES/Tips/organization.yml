@@ -1,5 +1,9 @@
 # Traitors
 - type: esTip
+  id: TraitorSecretIdentityClaim
+  text: As a Traitor, if someone asks for your secret identity, and you aren't sure what to say, claiming that you are a Vandal is usually a fairly safe option. Vandals are the only other secret identity that have the ability to sabotage machines.
+
+- type: esTip
   id: TraitorNukeTerminalPower
   text: As a Traitor, don't forget that the nuclear authentication terminals require power! Things can quickly go from good to unwinnable if you aren't in a situation that allows you to easily retrieve portable generators to power them.
 
@@ -10,6 +14,18 @@
 - type: esTip
   id: TraitorSabotageWarpDriveTerminals
   text: As a Traitor, you can only win if the crew doesn't. If the Warp Drive is charged, consider hiding out at one of the safety override terminals to ambush any crew who try to activate it.
+
+- type: esTip
+  id: TraitorExSyndie
+  text: Non-traitors can start with traitor gear through the ex-syndie secret identity modifier. Consider claiming you are an ex-syndie if you are caught with illegal items in your bag. This may become harder to believe if your actions have been suspicious.
+
+- type: esTip
+  id: TraitorDistraction
+  text: As a Traitor, when the crew is distracted with something happening somewhere else, it's typically a perfect opening to grab some of your sabotage objectives undetected. Try to pay attention to what people are saying on the radio to look out for these opportunities.
+
+- type: esTip
+  id: TraitorLoseHeat
+  text: As a Traitor, try to keep heat off of you by taking actions that help other players & the station. When you inevitably get caught doing something suspicious, people will be willing to give you the benefit of the doubt. The best traitor is someone who nobody would suspect to ever be a traitor.
 
 # Parasites
 - type: esTip

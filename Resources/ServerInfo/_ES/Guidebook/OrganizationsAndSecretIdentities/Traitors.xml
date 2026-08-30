@@ -7,27 +7,96 @@
   <Box>
     <GuideEntityEmbed Entity="PosterContrabandSyndicateRecruitment" Caption=""/>
   </Box>
-  Traitors are antagonists employed by the [color=#ff0000]Syndicate.[/color]
+  Traitors are a shadowy organization employed by the [color=#ff0000]Syndicate.[/color]
 
   Unlike other servers, Traitors on Ephemeral Space are a team antagonist--closer to a mix of Traitors and Nuclear Operatives.
 
-  Traitors have three phases of objectives: completing their basic objectives, hacking the security override terminals, and then detonating the nuke.
-  Each phase of objectives must be completed before the next can be attempted: the terminals can't be hacked without the basic objectives done, and the nuke can't be detonated if the terminals aren't hacked.
+  [bold][color=yellow]Important information for new players:[/bold][/color]
+   - Take in as much information here as you need. There's no need to rush when reading this guidebook page. Traitors typically have an easier time as the round goes on and conflict brews without them, so you'll probably be doing yourself a favor by waiting a bit, anyways.
+   - Don't be afraid of letting your team down. No individual traitor is expected to be perfect; it's rather common for even experienced agents to slip up and die quickly. Your team will likely help pick up the slack if you fail. Even if you are the last traitor and lose, there's no penalty for failure, other then the bitter taste of defeat.
+   - You can get away with more then you think. Most illicit actions have reasonable plausible deniability (see [italic]Feigning as Other Secret Identities & Claims[/italic] section below.) You'll need to break in to places and take risky actions to complete your objectives. This can be scary, but it's worth trying, even if it might result in death.
+   - If someone asks you what your secret identity is, and you aren't sure what to say / don't know what secret identities exist, [bold]claim to be a Vandal.[/bold] This isn't the perfect option in every situation, but it will save you if you have no other alibi, since vandals are the only other secret identity that can sabotage machines.
 
-  Basic objectives include things like killing specific targets and sabotaging certain machines around the station.
+  ## Gear
+  All traitors start with a [bold]hidden cache[/bold] in mainteneance that only they can retrieve. By going to the coordinates / area listed in the character menu and clicking the action, a duffel bag will drop out of the ceiling, containing several items related to the traitor's secret identity.
+  
+  While somewhat dangerous to carry, these are invaluable tools for completing your objectives, and you should definitely try to pick them up at some point during the round. Their reward far outweighs their potential risk.
+  
+  If you get caught with the items from your cache, you can always try to feign as someone who simply has the ex-syndie modifier - but be careful, as depending on the secret identity you claim to be, this could become extremely suspicious. See the [italic]Feigning as Other Secret Identities & Claims[/italic] section for more info.
 
-  Hacking the terminals is done simply by opening their UI and clicking the button. Terminals show you the location of the disk as a blinking white dot, and anyone who checks them can see that they're hacked after it's done.
-  The terminals are located in [bold]the HoP's secure room, the captain's office, and secure tech storage.[/bold]
+  ## Objectives
+  All traitors on the team share the same objectives, and must work together to complete them. To succeed, they must detonate the nuke inside of the station's vault.
 
-  The nuke can be disarmed--but the detonation timer is significantly shorter than normal, at only 60 seconds. If you fail at that point, it's your own fault.
-
-  The basic objectives, of which you get four, include:
+  Objectives come in phases. To detonate the nuke, all security override terminals must be hacked, and to hack the terminals, all basic objectives must be completed.
+  
+  Currently, there are 7 different possible basic traitor objectives that be chosen, of 3 different categories:
+  
+  ### Basic Objectives
+  
+  [bold]Kill Random[/bold]
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorKillRandom"/>
+  You've been assigned to kill someone on the station. This can select [italic]anyone who is not a part of the traitor organization,[/italic] including friendly [textlink="Sympathizers." link="Sympathizer"]
+  
+  [bold]Sabotage[/bold]
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCommunications"/>
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCrewMonitoring"/>
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageEmergencyAccessTerminal"/>
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCriminalRecords"/>
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageTelecom"/>
+  You need to sabotage the machine your objective tells you to. You can do this by opening up the context menu on them and selecting "sabotage." Doing this causes adverse effects that typically alert people to your presence.
+  
+  Every machine has a different effect when sabotaged. For example, telecomms will replace the majority of messages with static, and the communications computer will send a garbled announcement.
+  
+  [bold]Bug APC[/bold]
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorBugAPC"/>
+  
+  You need to apply a bug to any APC inside of a randomly-selected department. Like sabotaging, you perform this through opening up the context menu on an applicable apc and clicking "sabotage."
+  Once the bug is planted, it will take a few minutes to complete the objective. It can be removed by anyone, so make sure you place it in a secure location!
+  
+  Once the objective is complete, the APC bug will dissapear, and the affected department will have the [italic]grey tide virus[/italic] event triggered inside of it.
+  
+  Importantly, unlike Sabotage, [bold]Bug APC is never a vandal objective. It is strictly traitor-exclusive, and getting caught outs you as such.[/bold]
+  Avoid getting caught in the act at all costs - the crew is not likely to take very kindly to seing you do this.
+  
+  ## Security Override Terminals
+  <Box>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNukeCaptainsOffice" Caption=""/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNukeStationAdministrator" Caption=""/>
+    <GuideEntityEmbed Entity="ESBaseComputerTerminalCryptoNukeSecureTechStorage" Caption=""/>
+  </Box>
+  When all basic objectives are done, the security override terminals can be compromised by opening their UI and clicking "hack."
+  Once all three terminals are compromised, the nuke codes will appear, enabling the detonation of the nuke, provided the nuclear authentication disk is also obtained.
+  
+  After seeing the codes appear, it's common practice to say them in the traitor radio channel so they can be utilized by other teammates & remembered for later, if things go south.
+  
+  The three terminals are located in [bold]the HoP's secure room (the leftmost airlock in the HOP's room,) the captain's office (inside of the bridge,) and secure tech storage (below tool storage.)[/bold]
 
+ ## Nuke
+  <Box>
+    <GuideEntityEmbed Entity="NukeDisk" Caption=""/>
+    <GuideEntityEmbed Entity="NuclearBomb" Caption=""/>
+  </Box>
+
+  The final step in the Syndicate's plan. While then nuke codes are a required component of arming the nuke, it also needs the nuclear authentication disk.
+  It can be located by looking at the sercurity override terminal's UI, or by using a nuke disk pinpointer.
+  
+  The captain starts with a nuke disk pinpointer and the nuke disk in their locker. If they so choose, these can be given away to anyone, but typically, the captain carries both.
+  
+  To obtain it, you will likely need to kill the captain or whoever is holding the disk, unless it's just sitting somewhere.
+  
+  After the nuke is armed, a 60 second countdown that alerts all crew will begin. This is still enough time for a powerful-enough crew to disarm, so be careful - you may want to secure the area around the vault or pick other players off before activating the detonation sequence, to ensure your safety.
+
+ ## Feigning as Other Secret Identites & Claims
+  People will often ask what your secret identity is when you act suspiciously, which you will probably doing a lot of as traitor. It's also pretty likely that, at some point, you will get caught in the act. While the best possible secret identity to claim depends on the situation, there are a lot of generally useful ones:
+ 
+   - [textlink="Vandal" link="Vandal"]: Mentioned in the new player section above for a good reason. The vandal's only goal is to sabotage machines, like a traitor. This makes them a good mostly-futureproof-cover, and a perfect alibi for if you get caught sabotaging a machine. This may backfire if your cache's gear is found, though - someone with traitor items, traitor behavior [italic]and[/italic] traitor gear is more likely then not a traitor!
+   - [textlink="Stalker" link="Stalker"]: This secret identity must pick 5 other players using an action, and ensuring that 2 of them are alive and 3 of them are dead by the end of the round. This can work as good cover for excusing allowing someone to die, or as an alibi when you get caught murdering someone. Just be aware that people aren't generally receptive to mass-murder, even if someone is actually crew.
+   - [textlink="Avenger" link="Avenger"]: If their target dies, this secret identity must kill the player who killed their protect target. This can work fairly well if you are keeping track of who has died and who killed who - often times, crew will not get in the way of a determined avenger.
+  
+  Additionally it should be stated that, above all else, actions speak louder than words. If you act like a traitor and are caught with traitor gear, it's likely you will be executed on the spot, regardless of whatever identity you claim to be.
+  This is inversely true - if you commit to pretending to be a certain secret identity from the start of the round, it's significantly more likely people will believe you, provided your act doesn't seem suspicious.
+  
+ ## General Tips and Strategy
+ - It's extremely effective to wait for when people are distracted to sabotage. Alternatively, you can cause a distraction yourself (try spacing, substation destruction in an important location, or firebombs.)
+ 
 </Document>
