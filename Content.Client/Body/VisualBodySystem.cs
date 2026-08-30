@@ -81,9 +81,7 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
         if (!_sprite.LayerMapTryGet(target, ent.Comp.Layer, out var index, true))
             return;
 
-        var sprite = Comp<SpriteComponent>(target);
         _sprite.LayerSetRsiState(target, index, RSI.StateId.Invalid);
-        sprite.LayerSetShader(index, string.Empty);
         _sprite.LayerSetScale(target, index, new Vector2(1f, 1f));
         _sprite.LayerSetRotation(target, index, Angle.Zero);
         _sprite.LayerSetOffset(target, index, Vector2.Zero);

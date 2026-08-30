@@ -1,5 +1,4 @@
 using Content.Shared.Body;
-using Content.Shared.DetailExaminable;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
