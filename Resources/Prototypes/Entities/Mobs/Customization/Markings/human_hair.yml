@@ -49,7 +49,6 @@
 - type: marking
   id: HumanHairBedheadv4
   bodyPart: Hair
-  markingCategory: Hair
   sprites:
     - sprite: _ES/Mobs/Customization/human_hair.rsi
       state: bedheadv4

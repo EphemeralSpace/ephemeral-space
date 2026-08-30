@@ -1,3 +1,7 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: ESMonkey
+
 - type: entity
   parent: BaseSpeciesAppearance
   id: ESAppearanceMonkey
@@ -49,7 +53,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_monkey" # Not default
       visible: false
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: ESMonkey
   - type: Inventory
     displacements:
@@ -113,18 +117,17 @@
     containers:
       body_organs: !type:AllSelector
         children:
-        - id: OrganHumanTorso
-        - id: OrganHumanHead
-        - id: OrganHumanArmLeft
-        - id: OrganHumanArmRight
-        - id: OrganHumanHandRight
-        - id: OrganHumanHandLeft
-        - id: OrganHumanLegLeft
-        - id: OrganHumanLegRight
-        - id: OrganHumanFootLeft
-        - id: OrganHumanFootRight
+        - id: ESOrganMonkeyTorso
+        - id: ESOrganMonkeyTail
+        - id: ESOrganMonkeyHead
+        - id: ESOrganMonkeyArmLeft
+        - id: ESOrganMonkeyArmRight
+        - id: ESOrganMonkeyHandRight
+        - id: ESOrganMonkeyHandLeft
+        - id: ESOrganMonkeyLegLeft
+        - id: ESOrganMonkeyLegRight
+        - id: ESOrganMonkeyEyes
         - id: OrganHumanBrain
-        - id: OrganHumanEyes
         - id: OrganHumanTongue
         - id: OrganHumanAppendix
         - id: OrganHumanEars
@@ -175,3 +178,75 @@
         - MobMask
         layer:
         - MobLayer
+
+- type: entity
+  parent: OrganBase
+  id: ESOrganMonkey
+  abstract: true
+  suffix: monkey
+
+- type: entity
+  parent: ESOrganMonkey
+  id: ESOrganMonkeyInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  parent: ESOrganMonkey
+  id: ESOrganMonkeyExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite:  _ES/Mobs/Species/Monkey/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite:  _ES/Mobs/Species/Monkey/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: ESMonkey
+
+- type: entity
+  parent: [ OrganBaseHeadSexless, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyHead
+
+- type: entity
+  parent: [ OrganBaseEyes, ESOrganMonkeyInternal, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _ES/Mobs/Species/Monkey/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexless, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyTorso
+
+- type: entity
+  parent: [ OrganBaseLegLeft, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyLegLeft
+
+- type: entity
+  parent: [ OrganBaseArmLeft, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyArmLeft
+
+- type: entity
+  parent: [ OrganBaseHandLeft, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyHandLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyLegRight
+
+- type: entity
+  parent: [ OrganBaseArmRight, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyArmRight
+
+- type: entity
+  parent: [ OrganBaseHandRight, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyHandRight
+
+- type: entity
+  parent: [ OrganBaseTail, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyTail

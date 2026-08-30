@@ -46,6 +46,36 @@
       - UndergarmentBottom
 
 - type: entity
+  parent: OrganBaseTorso
+  id: OrganBaseTorsoSexless
+  abstract: true
+  components:
+  - type: Sprite
+    state: torso
+  - type: VisualOrgan
+    data:
+      state: torso
+
+- type: entity
+  parent: OrganBase
+  id: OrganBaseTail
+  name: tail
+  abstract: true
+  components:
+  - type: Organ
+    category: Tail
+  - type: Sprite
+    state: tail
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Tail
+    data:
+      state: tail
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Tail
+
+- type: entity
   parent: OrganBase
   id: OrganBaseHead
   name: head
@@ -69,6 +99,18 @@
       - SnoutCover
       - HeadSide
       - HeadTop
+
+- type: entity
+  parent: OrganBaseHead
+  id: OrganBaseHeadSexless
+  abstract: true
+  components:
+  - type: Sprite
+    state: head
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Head
+    data:
+      state: head
 
 - type: entity
   parent: OrganBase

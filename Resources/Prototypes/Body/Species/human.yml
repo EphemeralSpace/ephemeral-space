@@ -85,7 +85,7 @@
   components:
   - type: Butcherable
     spawned:
-    - id: FoodMeatHuman
+    - id: FoodMeat
       amount: 5
 
 - type: entity

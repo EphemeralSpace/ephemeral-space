@@ -553,7 +553,6 @@
     factions:
     - Passive
   - type: Body
-    prototype: AnimalRuminant
   - type: HTN
     rootTask:
       task: RuminantCompound

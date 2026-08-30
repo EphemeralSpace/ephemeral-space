@@ -1,24 +1,28 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: ESCryohusk
+
 - type: entity
   parent: BaseSpeciesAppearance
   id: ESAppearanceCryohusk
   categories: [ HideSpawnMenu ]
   components:
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: ESCryohusk
   - type: EntityTableContainerFill
     containers:
       body_organs: !type:AllSelector
         children:
-        - id: OrganHumanTorso
-        - id: OrganHumanHead
-        - id: OrganHumanArmLeft
-        - id: OrganHumanArmRight
-        - id: OrganHumanHandRight
-        - id: OrganHumanHandLeft
-        - id: OrganHumanLegLeft
-        - id: OrganHumanLegRight
-        - id: OrganHumanFootLeft
-        - id: OrganHumanFootRight
+        - id: ESOrganCryohuskHead
+        - id: ESOrganCryohuskTorso
+        - id: ESOrganCryohuskLegLeft
+        - id: ESOrganCryohuskArmLeft
+        - id: ESOrganCryohuskHandLeft
+        - id: ESOrganCryohuskFootLeft
+        - id: ESOrganCryohuskLegRight
+        - id: ESOrganCryohuskArmRight
+        - id: ESOrganCryohuskHandRight
+        - id: ESOrganCryohuskFootRight
         - id: OrganHumanBrain
         - id: OrganHumanEyes
         - id: OrganHumanTongue
@@ -43,3 +47,64 @@
     baseSprintSpeed: 3.75
   - type: Damageable
     damageModifierSet: ESCryohusk
+
+- type: entity
+  parent: OrganBase
+  id: ESOrganCryohusk
+  abstract: true
+  suffix: cryohusk
+
+- type: entity
+  parent: ESOrganCryohusk
+  id: ESOrganCryohuskExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _ES/Mobs/Species/cryohusk.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: ESCryohusk
+
+- type: entity
+  parent: [ OrganBaseHeadSexless, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskHead
+
+- type: entity
+  parent: [ OrganBaseTorsoSexless, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskTorso
+
+- type: entity
+  parent: [ OrganBaseLegLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskLegLeft
+
+- type: entity
+  parent: [ OrganBaseArmLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskArmLeft
+
+- type: entity
+  parent: [ OrganBaseHandLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskHandLeft
+
+- type: entity
+  parent: [ OrganBaseFootLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskFootLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskLegRight
+
+- type: entity
+  parent: [ OrganBaseArmRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskArmRight
+
+- type: entity
+  parent: [ OrganBaseHandRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskHandRight
+
+- type: entity
+  parent: [ OrganBaseFootRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskFootRight
+
