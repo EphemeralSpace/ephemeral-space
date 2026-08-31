@@ -7,10 +7,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Humanoid;
 
-public sealed class MarkingsViewModel
+public sealed partial class MarkingsViewModel
 {
-    [Dependency] private readonly MarkingManager _marking = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private MarkingManager _marking = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private bool _enforceLimits = true;
 
