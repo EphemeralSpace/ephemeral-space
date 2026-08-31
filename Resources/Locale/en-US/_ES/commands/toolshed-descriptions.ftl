@@ -10,10 +10,6 @@ command-description-cast-generateNames =
     Generate random names.
 command-description-clock-setTime =
     Sets the global round time.
-command-description-esstoreroom-viewStock =
-    Displays the warehouse stock on the station, using the cached value.
-command-description-esstoreroom-calculateStock =
-    Displays the warehouse stock on the station, calculating it on the fly.
 command-description-estelesci-advanceStage =
     For a given station, advances the telescience research by one stage.
 command-description-estelesci-setStage =
