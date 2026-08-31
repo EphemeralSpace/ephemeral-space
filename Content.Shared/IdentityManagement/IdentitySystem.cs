@@ -28,7 +28,7 @@ public sealed partial class IdentitySystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedCriminalRecordsConsoleSystem _criminalRecordsConsole = default!;
-    [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private SharedIdCardSystem _idCard = default!;
 
     // The name of the container holding the identity entity
