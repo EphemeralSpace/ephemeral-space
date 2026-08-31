@@ -269,15 +269,6 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
         if (!CanFlush(ent))
             return false;
 
-        var beforeFlushArgs = new BeforeDisposalFlushEvent();
-        RaiseLocalEvent(ent, beforeFlushArgs);
-
-        if (beforeFlushArgs.Cancelled)
-        {
-            SetEngage(ent, false);
-            return false;
-        }
-
         var xform = Transform(ent);
 
         if (!TryComp(xform.GridUid, out MapGridComponent? grid))
@@ -303,7 +294,7 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
         }
 
         // Try to transfer entities from the unit into disposals.
-        TryTransfer(ent, tube.Value, beforeFlushArgs.Tags);
+        TryTransfer(ent, tube.Value);
 
         ent.Comp.NextPressurized = _timing.CurTime;
 

@@ -16,6 +16,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: ESJobIconFirefighter
+  icon:
+    sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
+    state: firefighter
+  jobName: ESjob-name-firefighter
+
+- type: jobIcon
+  parent: JobIcon
   id: ESJobIconRatman
   icon:
     sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi

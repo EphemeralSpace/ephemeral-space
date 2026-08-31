@@ -8,7 +8,6 @@
   speciesOverride: ESMonkey
   access:
   - Research
-  - Maintenance
   nameConfig:
     genderlessFirstNameChance: 0.2 # theyre fucking gendering my ape!!!
     doubleFirstNameChance: 0.05

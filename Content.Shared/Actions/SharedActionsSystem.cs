@@ -703,6 +703,9 @@ public abstract partial class SharedActionsSystem : EntitySystem
     protected virtual void ActionAdded(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
     {
         // See client-side system for UI code.
+
+        var gotEv = new ActionGotAddedEvent(action, performer);
+        RaiseLocalEvent(action, ref gotEv);
     }
 
     /// <summary>
@@ -862,6 +865,9 @@ public abstract partial class SharedActionsSystem : EntitySystem
     protected virtual void ActionRemoved(Entity<ActionsComponent> performer, Entity<ActionComponent> action)
     {
         // See client-side system for UI code.
+
+        var gotEv = new ActionGotRemovedEvent(action, performer);
+        RaiseLocalEvent(action, ref gotEv);
     }
 
     public bool ValidAction(Entity<ActionComponent> ent, bool canReach = true)

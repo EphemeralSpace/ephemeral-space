@@ -8,7 +8,6 @@
   access:
   - Custodial
   - Janitor
-  - Maintenance
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay

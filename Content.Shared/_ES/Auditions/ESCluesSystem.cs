@@ -114,7 +114,7 @@ public sealed partial class ESCluesSystem : EntitySystem
         };
     }
 
-    public IEnumerable<string> GetClues(Entity<ESCharacterComponent?> mind, int count, int minFreq = 3)
+    public IEnumerable<(ESClue, string)> GetClues(Entity<ESCharacterComponent?> mind, int count, int minFreq = 3)
     {
         if (!Resolve(mind, ref mind.Comp))
             yield break;
@@ -142,11 +142,11 @@ public sealed partial class ESCluesSystem : EntitySystem
             // Special-case for initials
             if (clue == ESClue.Initial)
             {
-                yield return _random.Pick(GetSignificantInitialClues(mind, minFreq).ToList());
+                yield return (clue, _random.Pick(GetSignificantInitialClues(mind, minFreq).ToList()));
             }
             else
             {
-                yield return GetClue(mind, clue);
+                yield return (clue, GetClue(mind, clue));
             }
         }
     }

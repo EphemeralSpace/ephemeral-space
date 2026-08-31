@@ -1,0 +1,17 @@
+﻿- type: entity
+  parent: BaseAction
+  id: ActionSecretIdentityBarnacle
+  name: "[color=salmon]Plant Barnacle[/color]"
+  description: Slowly plant a barnacle onto the ground. When you die, it'll shoot out a burrower that infects people.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Structures/Specific/barnacle.rsi
+      state: barnacledead
+    iconOn:
+      sprite: _ES/Structures/Specific/barnacle.rsi
+      state: barnacle
+    useDelay: 1m
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:ESBarnacleActionEvent

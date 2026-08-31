@@ -142,6 +142,24 @@
   - type: PresetIdCard
     job: ESAtmosphericTechnician
 
+- type: entity
+  parent: IDCardStandard
+  id: ESFirefighterIDCard
+  components:
+  - type: Sprite
+    layers:
+    - state: base_normal
+    - state: icon_1
+      color: *color-engi-1
+    - state: icon_2
+      color: *color-engi-2
+    - state: icon_3
+      color: *color-engi-3
+    - state: strip
+      color: "#cb0000" # burn burn burn ! ! !
+  - type: PresetIdCard
+    job: ESFirefighter
+
 #Medical
 
 - type: entity
@@ -397,8 +415,6 @@
   suffix: Agent
   components:
   - type: Access
-    tags:
-    - Maintenance
   - type: AgentIDCard
   - type: UIRequiresLock
   - type: ActivatableUI

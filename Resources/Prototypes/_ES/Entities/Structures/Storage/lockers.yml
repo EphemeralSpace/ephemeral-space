@@ -67,6 +67,18 @@
   - type: ESPersonalLocker
     job: ESHazmat
 
+# Firefighter
+- type: entity
+  parent: [ LockerBaseSecurePersonal, LockerBase ]
+  id: LockerFirefighter
+  name: firefighter's locker
+  description: Like a charred hotdog.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Storage/Closets/firefighter.rsi
+  - type: ESPersonalLocker
+    job: ESFirefighter
+
 # Janitor
 - type: entity
   parent: [ LockerBaseSecurePersonal, LockerBase ]

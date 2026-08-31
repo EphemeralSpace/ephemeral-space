@@ -20,13 +20,13 @@ public sealed partial class RetractableItemActionComponent : Component
     /// Sound collection to play when the item is summoned.
     /// </summary>
     [DataField]
-    public SoundCollectionSpecifier? SummonSounds;
+    public SoundSpecifier? SummonSounds;
 
     /// <summary>
     /// Sound collection to play when the summoned item is retracted back into the action.
     /// </summary>
     [DataField]
-    public SoundCollectionSpecifier? RetractSounds;
+    public SoundSpecifier? RetractSounds;
 
     /// <summary>
     /// The item managed by the action. Will be summoned and hidden as the action is used.

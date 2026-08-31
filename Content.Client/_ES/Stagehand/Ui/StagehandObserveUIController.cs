@@ -147,6 +147,7 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
         observe.CurrentEntity = uid;
 
         var secretIdentity = _secretIdentity?.GetSecretIdentityOrNull((uid, mind));
+        var modifier = _secretIdentity?.GetSecretIdentityModifierOrNull((uid, mind));
         var organization = _secretIdentity?.GetOrganizationOrNull((uid, mind));
 
         observe.NameLabel.UnsafeSetMarkup(Loc.GetString("es-observe-menu-label-name-big", ("text", character.Name)));
@@ -161,6 +162,14 @@ public sealed partial class StagehandObserveUIController : UIController, IOnStat
             observe.SecretIdentityLabel.UnsafeSetMarkup(
                 Loc.GetString("es-observe-menu-label-name-big", ("text", Loc.GetString(secretIdentityPrototype.Name))),
                 secretIdentityPrototype.Color);
+        }
+
+        observe.ModifierLabel.Clear();
+        if (_prototype.TryIndex(modifier, out var modifierPrototype))
+        {
+            observe.ModifierLabel.UnsafeSetMarkup(
+                Loc.GetString("es-observe-menu-label-fmt", ("text", Loc.GetString(modifierPrototype.Name))),
+                modifierPrototype.Color);
         }
 
         observe.OrganizationLabel.Clear();

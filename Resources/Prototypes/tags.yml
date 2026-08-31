@@ -734,9 +734,6 @@
 
 #endregion
 
-- type: Tag
-  id: MailingUnitElectronics # ConstructionGraph: DisposalMachine
-
 - type: Tag # Used on DungeonRoom prototypes.
   id: Maints # RoomFill spawner whitelist for MaintsRoomMarker.
 

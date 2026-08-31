@@ -1995,3 +1995,79 @@ Entries:
       message: Stagehands no longer show an interaction particle when starting a follow
   id: 213
   time: '2026-08-24T02:04:07.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed the guidebook sometimes hiding articles and not showing them.
+  id: 214
+  time: '2026-08-25T15:07:25.0000000+00:00'
+- author: piskaczek
+  changes:
+    - type: Add
+      message: adds various objects for theatre
+  id: 215
+  time: '2026-08-26T01:13:00.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Crew roles (barring sleeper agent) now have the chance to spawn as
+        "Ex-Syndicate" variants, giving them an additional equipment cache.
+  id: 216
+  time: '2026-08-26T16:13:09.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: >-
+        Secret Identities are now selected before jobs on round start. This
+        means that 
+    - type: Tweak
+      message: Captain is no longer selected before other jobs.
+  id: 217
+  time: '2026-08-26T16:36:48.0000000+00:00'
+- author: Tomeno
+  changes:
+    - type: Tweak
+      message: Occlusion (ominous)
+  id: 218
+  time: '2026-08-28T17:03:55.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Remove
+      message: >-
+        Removed maintenance access. Maintenance doors are now unlocked and can
+        be opened by anyone.
+  id: 219
+  time: '2026-08-29T13:49:04.0000000+00:00'
+- author: FyeStance
+  changes:
+    - type: Tweak
+      message: Satchels no longer spawn
+  id: 220
+  time: '2026-08-29T13:49:15.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Added the firefighter, a new engineering job with special anti-fire
+        equipment. They seem to really like being on fire, though...
+  id: 221
+  time: '2026-08-29T17:09:47.0000000+00:00'
+- author: SpeltIncorrectyl
+  changes:
+    - type: Tweak
+      message: Crew manifest is now predicted
+  id: 222
+  time: '2026-08-29T19:11:07.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Adds the barnacle, a new worm mask that does things that are, barnacely
+  id: 223
+  time: '2026-08-29T19:19:15.0000000+00:00'
+- author: Ermucat
+  changes:
+    - type: Add
+      message: Detective can now examine dead bodies to get clues about their killers.
+  id: 224
+  time: '2026-08-29T21:58:25.0000000+00:00'

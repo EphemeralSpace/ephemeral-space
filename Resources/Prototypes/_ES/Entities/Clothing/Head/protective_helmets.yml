@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadLightBase, BaseClothingViewconeMedium]
+  parent: [ClothingHeadLightBase, BaseClothingViewconeSmall]
   id: ESClothingHeadHelmetFire
   name: fire helmet
   suffix: ES

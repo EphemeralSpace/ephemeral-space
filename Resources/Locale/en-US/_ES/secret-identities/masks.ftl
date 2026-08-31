@@ -83,9 +83,15 @@ es-secret-identity-hemophage-desc = As a Hemophage, spread your infected blood a
 es-secret-identity-leapleech-name = Leapleech
 es-secret-identity-leapleech-desc = As a Leapleech, take damage from multiple crew members to increase your power. Upon death, spawn a horde of leaping parasitic leeches based on how many people wronged you.
 
+es-secret-identity-barnacle-name = Barnacle
+es-secret-identity-barnacle-desc = As a Barnacle, place your barnacles around the station. Once you die, your barnacles will send out worms that seek where you died, spreading infectious barnacles around the station.
+
 # Oddballs
 es-secret-identity-sleeper-agent-name = Sleeper Agent
 es-secret-identity-sleeper-agent-desc = As a Sleeper Agent, you're a member of crew and win with them. When a traitor dies, you have a chance to switch sides and gain a new secret identity.
+
+# Modifiers
+es-secret-identity-modifier-ex-syndicate = Ex-Syndie
 
 # Meta
 es-objective-issuer-secret-identity = Secret Identity

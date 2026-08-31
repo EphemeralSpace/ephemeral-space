@@ -43,3 +43,40 @@
   - type: Tag
     tags:
     - Trash
+
+- type: entity
+  parent: ESBaseBullet
+  id: ESProjectileBarnacle
+  name: Burrower
+  description: Da worm.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Projectiles/worm.rsi
+    rotation: 270
+    noRot: false
+    layers:
+    - state: projectilebarnacle
+  - type: ESSecretIdentityConversionProjectile
+    secretIdentity: Barnacle
+  - type: Projectile
+    deleteOnCollide: false
+  - type: ThrowingAngle
+    angle: 0
+  - type: Ammo
+    muzzleFlash: null
+
+- type: entity
+  parent: BaseItem
+  id: ESItemBurrowerDead
+  name: burrower
+  description: Burrowed their last burrow.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Weapons/Projectiles/worm.rsi
+    state: barnacledead
+  - type: Item
+    storedRotation: -90
+  - type: Tag
+    tags:
+    - Trash

@@ -103,7 +103,6 @@
       mediumVoltageNode: output
     - type: Damageable
       damageModifierSet: StructuralMetallicStrong
-    - type: BatterySensor
     - type: DeviceNetwork
       deviceNetId: AtmosDevices
       receiveFrequencyId: AtmosMonitor

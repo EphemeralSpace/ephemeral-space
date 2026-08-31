@@ -107,7 +107,6 @@ public abstract partial class ESSharedEmergencyAccessSystem : EntitySystem
                 continue;
 
             if (!_accessReader.GetMainAccessReader(uid, out var access) ||
-                access.Value.Comp.AccessLists.Any(p => p.IsSubsetOf(ent.Comp.IgnoredAccessList)) ||
                 access.Value.Comp.AccessLists.Sum(p => p.Count) == 0)
                 continue;
 
