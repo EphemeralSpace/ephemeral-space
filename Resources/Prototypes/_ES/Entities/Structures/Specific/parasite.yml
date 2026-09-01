@@ -75,16 +75,16 @@
           radius: 0.45
         density: 80
         mask:
-        - Impassable
-        - MidImpassable
+        - MachineMask
         layer:
-        - Opaque
-        - MidImpassable
-        - BulletImpassable
+        - HalfWallLayer
+        - MobLayer
   - type: ESBreakableWall
     baseLayer:
-    - Impassable
-    - MidImpassable
+    - HalfWallLayer
+    - MobLayer
+  - type: RequireProjectileTarget
+  - type: Climbable
   - type: Appearance
   - type: GenericVisualizer
     visuals:

@@ -6,8 +6,6 @@
       weight: 0.5
     - id: SleepyPen
       weight: 0.5
-    - id: StimulantPen # currently unused but its a fun item anyways. so it can stay here
-      weight: 0.5
     - id: C4
       weight: 0.5
     - id: ExGrenade

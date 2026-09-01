@@ -133,6 +133,7 @@ public sealed partial class ESMasqueradeSystem : GameRuleSystem<ESMasqueradeRule
         // Which will create objectives and run other logic as necessary.
         foreach (var organizationRule in organizationRules)
         {
+            DebugTools.Assert(!GameTicker.IsGameRuleActive(organizationRule), $"Gamerule {ToPrettyString(organizationRule)} was started prematurely!");
             GameTicker.StartGameRule(organizationRule);
         }
     }

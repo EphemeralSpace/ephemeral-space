@@ -65,6 +65,8 @@
     angle: 0
   - type: Ammo
     muzzleFlash: null
+  - type: TimedDespawn
+    lifetime: 30 # these guys fly pretty far
 
 - type: entity
   parent: BaseItem
