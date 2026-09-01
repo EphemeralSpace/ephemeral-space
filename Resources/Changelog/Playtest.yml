@@ -2071,3 +2071,15 @@ Entries:
       message: Detective can now examine dead bodies to get clues about their killers.
   id: 224
   time: '2026-08-29T21:58:25.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed fires not spreading properly.
+    - type: Fix
+      message: >-
+        People on the arrivals shuttle or singularity world can no longer hear
+        radio messages from the station.
+    - type: Fix
+      message: Barnacles can now be climbed.
+  id: 225
+  time: '2026-09-01T02:25:08.0000000+00:00'
