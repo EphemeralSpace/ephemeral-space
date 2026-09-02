@@ -1,0 +1,82 @@
+- type: entity
+  parent: ESBaseClothingBack
+  id: ClothingBackFirefightingPack
+  name: firefighting pack
+  description: A heavy tank with an attached nozzle for fighting fires. Never seems to run out, though the weight might be a problem.
+  components:
+  - type: Sprite
+    sprite: _ES/Clothing/Back/Packs/firefighting.rsi
+    state: icon
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: ItemActionGrant
+    activeIfWorn: true
+  - type: ActionGrant
+    actions:
+    - ESActionExtendNozzle
+
+- type: entity
+  parent: BaseAction
+  id: ESActionExtendNozzle
+  name: Extend Nozzle
+  description: Extend the nozzle from your firefighting pack.
+  components:
+  - type: Action
+    icon:
+      sprite: _ES/Objects/Tools/ff_nozzle.rsi
+      state: icon
+    useDelay: 1
+    raiseOnAction: true
+  - type: InstantAction
+    event: !type:OnRetractableItemActionEvent
+  - type: RetractableItemAction
+    spawnedPrototype: ESFirefightingNozzle
+    summonSounds:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.125
+        volume: -4
+    retractSounds:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.125
+        volume: -4
+
+- type: entity
+  parent: BaseItem
+  id: ESFirefightingNozzle
+  name: nozzle
+  description: Spray the pain away.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Tools/ff_nozzle.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 100
+        reagents:
+        - ReagentId: Water
+          Quantity: 100
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 100
+  - type: UseDelay
+    delays:
+      spray-delay:
+        length: 1
+  - type: Spray
+    transferAmount: 10
+    pushbackAmount: 60
+    spraySound:
+      path: /Audio/Effects/extinguish.ogg
+    sprayedPrototype: ExtinguisherSpray
+    vaporAmount: 3
+    vaporSpread: 90
+    sprayVelocity: 2.0

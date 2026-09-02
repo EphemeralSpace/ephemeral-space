@@ -42,7 +42,6 @@
         - Sheet
         - RawMaterial
         - Ingot
-  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building

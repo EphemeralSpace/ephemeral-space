@@ -55,3 +55,6 @@
 
 - type: playTimeTracker
   id: ESJobStationEngineer
+
+- type: playTimeTracker
+  id: ESJobFirefighter

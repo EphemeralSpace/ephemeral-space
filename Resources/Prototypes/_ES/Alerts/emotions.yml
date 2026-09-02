@@ -1,0 +1,7 @@
+- type: alert
+  id: ESPyroeuphoria
+  icons:
+  - sprite: /Textures/_ES/Interface/Alerts/pyroeuphoria.rsi
+    state: icon
+  name: es-alerts-emotion-pyroeuphoria-name
+  description: es-alerts-emotion-pyroeuphoria-desc

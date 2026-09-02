@@ -22,4 +22,7 @@ public sealed partial class ESRemoveGasComponent : Component
     {
         Gas.Miasma
     };
+
+    [DataField]
+    public float ScrubRate = 5400.0f;
 }

@@ -8,7 +8,6 @@
   icon: "ESJobIconCoroner"
   access:
   - Medical
-  - Maintenance
   - Chemistry
   special:
   - !type:AddComponentSpecial

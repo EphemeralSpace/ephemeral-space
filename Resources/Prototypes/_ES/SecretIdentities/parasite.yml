@@ -35,3 +35,16 @@
   color: darkgoldenrod
   mindComponents:
   - type: ESLeapleech
+
+- type: esSecretIdentity
+  parent: ESBaseParasite
+  id: Barnacle
+  name: es-secret-identity-barnacle-name
+  description: es-secret-identity-barnacle-desc
+  color: salmon
+  actions:
+    all:
+    - id: ESActionParasiteWormTalk # needed from ESBaseParasite
+    - id: ActionSecretIdentityBarnacle
+  mindComponents:
+  - type: ESBarnacle

@@ -1,0 +1,17 @@
+﻿<Document>
+  <ESGuideSecretIdentityEmbed SecretIdentity="Barnacle"/>
+
+  The Barnacle is a member of the parasites focused on planting hidden barnacles in secret places.
+  When they're killed, burrowers will burst out of all unbroken barnacles and begin flying towards the body in a straight line, gaining speed over time.
+  If someone is in the path of the burrower, they will be turned into a Barnacle.
+
+  <Box>
+    <GuideEntityEmbed Entity="ESBarnacle"/>
+    <GuideEntityEmbed Entity="ESProjectileBarnacle"/>
+  </Box>
+
+  However, the individual barnacles are fairly weak and can be destroyed if found.
+  Try to hide them behind secret walls and other barriers so that unsuspecting maints prowlers don't come upon them.
+
+  <ESGuideTipsEmbed SecretIdentity="Barnacle"/>
+</Document>

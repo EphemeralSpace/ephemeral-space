@@ -10,8 +10,7 @@
   tips:
   - RatmanPrepTime
   - RatmanNightvision
-  access:
-  - Maintenance
+  access: [ ]
   special:
   - !type:AddComponentSpecial
     components:

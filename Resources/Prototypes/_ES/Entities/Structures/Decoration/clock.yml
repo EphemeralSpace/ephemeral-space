@@ -1,0 +1,54 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: ESGrandfatherClock
+  name: grandfather clock
+  description: It ticks ominously to your doom.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _ES/Structures/Decoration/grandfather_clock.rsi
+    layers:
+    - state: clock
+      map: ["base"]
+    - map: [ "enum.ClockVisualLayers.MinuteHand"]
+    - map: [ "enum.ClockVisualLayers.HourHand"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "clock-broken" }
+          False: { state: "clock" }
+  - type: ESGrandfatherClock
+  - type: Clock # Same sprite used for hours and minutes due to scale
+    hoursBase: "hand_"
+    minutesBase: "hand_"
+  - type: AmbientSound
+    volume: -5
+    range: 7
+    sound:
+      path: /Audio/_ES/Ambience/Objects/clock-ticking.ogg
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.45,0.25,0.45"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Damageable
+    damageModifierSet: ESWood
+    damageContainer: StructuralInorganic
+  - type: RequireProjectileTarget
+  - type: ESBreakable
+    threshold: 50
+    sound:
+      collection: WoodDestroyHeavy

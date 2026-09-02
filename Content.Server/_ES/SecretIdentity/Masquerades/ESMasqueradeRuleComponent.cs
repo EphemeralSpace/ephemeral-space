@@ -1,6 +1,5 @@
 using Content.Shared._Citadel.Utilities;
 using Content.Shared._ES.SecretIdentity;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.SecretIdentity.Masquerades;
 
@@ -24,10 +23,4 @@ public sealed partial class ESMasqueradeRuleComponent : Component
     ///     The randomizer created from the initial seed and used for all role selection and latejoins.
     /// </summary>
     public SmallRandom Rng = default!;
-
-    /// <summary>
-    ///     The secret identities assigned in this masquerade, if any.
-    ///     This may also be influenced by the impersonated masquerade, for the identities actually in-game, query it.
-    /// </summary>
-    public List<ProtoId<ESSecretIdentityPrototype>>? AssignedSecretIdentities = null;
 }

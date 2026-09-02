@@ -7,7 +7,6 @@
   icon: "JobIconParamedic"
   access:
   - Medical
-  - Maintenance
   - Chemistry
 
 - type: startingGear

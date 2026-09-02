@@ -8,6 +8,8 @@ command-description-cast-viewPresent =
     Views the relationship data of all castmembers that have spawned into the round.
 command-description-cast-generateNames =
     Generate random names.
+command-description-clock-setTime =
+    Sets the global round time.
 command-description-esstoreroom-viewStock =
     Displays the warehouse stock on the station, using the cached value.
 command-description-esstoreroom-calculateStock =

@@ -32,15 +32,6 @@
   objectType: Structure
 
 - type: construction
-  id: BigBox
-  name: construction-recipe-big-box
-  graph: BaseBigBox
-  startNode: start
-  targetNode: basebigbox
-  category: construction-category-storage
-  objectType: Structure
-
-- type: construction
   id: BoxCardboard
   name: construction-recipe-box-cardboard
   graph: BoxCardboard

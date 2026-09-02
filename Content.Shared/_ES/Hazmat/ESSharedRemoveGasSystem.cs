@@ -1,6 +1,7 @@
 using Content.Shared._ES.Hazmat.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
+using Robust.Shared.Spawners;
 
 namespace Content.Shared._ES.Hazmat;
 

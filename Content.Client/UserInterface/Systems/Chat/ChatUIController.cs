@@ -711,16 +711,24 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
     public void OnSystemLoaded(ESChatSystem system)
     {
         system.LocalChatPermissionsUpdated += OnLocalPermissionsUpdated;
+        system.ChatChannelFocused += OnChatChannelFocused;
     }
 
     public void OnSystemUnloaded(ESChatSystem system)
     {
         system.LocalChatPermissionsUpdated -= OnLocalPermissionsUpdated;
+        system.ChatChannelFocused -= OnChatChannelFocused;
     }
 
     private void OnLocalPermissionsUpdated(EntityUid uid, HashSet<ProtoId<ESChatChannelPrototype>> channels)
     {
         LocalChatPermissionsUpdated?.Invoke(uid, channels);
+    }
+
+    private void OnChatChannelFocused(ProtoId<ESChatChannelPrototype> channel)
+    {
+        if (TryGetMainChat(out var box))
+            box.Focus(channel);
     }
 
     public HashSet<ProtoId<ESChatChannelPrototype>> GetPermittedChannels()

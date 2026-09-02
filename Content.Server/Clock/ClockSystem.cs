@@ -1,8 +1,11 @@
+using Content.Server.Administration;
 using Content.Server.GameTicking.Events;
+using Content.Shared.Administration;
 using Content.Shared.Clock;
 using Content.Shared.Destructible;
 using Robust.Server.GameStates;
 using Robust.Shared.Random;
+using Robust.Shared.Toolshed;
 
 namespace Content.Server.Clock;
 
@@ -38,5 +41,20 @@ public sealed partial class ClockSystem : SharedClockSystem
     {
         ent.Comp.StuckTime = GetClockTime(ent);
         Dirty(ent, ent.Comp);
+    }
+}
+
+[ToolshedCommand, AdminCommand(AdminFlags.Debug)]
+public sealed class ClockCommand : ToolshedCommand
+{
+    private ClockSystem? _clock;
+
+    [CommandImplementation("setTime")]
+    public void SetTime(int hour, int minutes, int seconds = 0)
+    {
+        _clock ??= Sys<ClockSystem>();
+
+        var time = new TimeSpan(hour, minutes, seconds);
+        _clock?.SetGlobalTime(time);
     }
 }

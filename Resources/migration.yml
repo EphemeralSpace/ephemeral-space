@@ -574,6 +574,12 @@ SMESAdvancedEmpty: null
 SMESMachineCircuitboard: null
 SMESAdvancedMachineCircuitboard: null
 
+# 2026-08-18
+MailingUnit: null
+BookRandomStory: null
+MachineMaterialSilo: null
+NTHandyFlag: null
+
 # 2026-8-19
 ComputerFrame: null
 ESTabletopComputerFrame: null
@@ -610,6 +616,15 @@ CrateTechBoardRandom: null
 
 # 2026-8-22
 ClothingHandsGlovesColorYellow: ClothingHandsGlovesInsulated
+
+# 2026-8-27
+LockableButtonMaintenance: null
+DoorElectronicsMaintenance: null
+AirlockMaintLocked: AirlockMaint
+ESAirlockMaintLockedBolted: ESAirlockMaintBolted
+ESAirlockMaintLockedWelded: ESAirlockMaintWelded
+AirlockHatchMaintenanceLocked: AirlockHatchMaintenance
+AirlockMaintGlassLocked: AirlockMaintGlass
 
 # ES END
 
