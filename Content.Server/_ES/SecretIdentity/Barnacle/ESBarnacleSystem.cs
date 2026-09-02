@@ -38,7 +38,6 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
     [Dependency] private NavMapSystem _navMap = default!;
-    [Dependency] private TransformSystem _xform = default!;
     [Dependency] private ESSharedSecretIdentitySystem _secretIdentity = default!;
 
     public override void Initialize()
@@ -241,11 +240,10 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         foreach (var barnacle in ent.Comp.Barnacles)
         {
             locations.Add(FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(barnacle, true)));
-            directions.Add(ContentLocalizationManager.FormatDirection((_xform.GetWorldPosition(barnacle) - _xform.GetWorldPosition(ent.Owner)).ToWorldAngle().GetDir()));
         }
 
         Console.Write(ContentLocalizationManager.FormatList(directions));
-        args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb", ("location",  ContentLocalizationManager.FormatList(locations)), ("direction", ContentLocalizationManager.FormatList(directions)))));
+        args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb", ("location",  ContentLocalizationManager.FormatList(locations)))));
     }
 
 }
