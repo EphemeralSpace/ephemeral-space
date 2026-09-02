@@ -242,7 +242,6 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
             locations.Add(FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(barnacle, true)));
         }
 
-        Console.Write(ContentLocalizationManager.FormatList(directions));
         args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb", ("location",  ContentLocalizationManager.FormatList(locations)))));
     }
 
