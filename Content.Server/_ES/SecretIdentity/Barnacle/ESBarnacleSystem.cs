@@ -1,19 +1,24 @@
-﻿using System.Numerics;
+using System.Numerics;
+using System.Linq;
 using Content.Server._ES.SecretIdentity.Hemophage.Components;
 using Content.Server._ES.SecretIdentity.Parasite;
 using Content.Server.Actions;
 using Content.Server.Pinpointer;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._ES.Breakable;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Barnacle;
 using Content.Shared.Alert;
+using Content.Shared.Coordinates;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
+using Content.Shared.Localizations;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
@@ -33,6 +38,8 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private TransformSystem _xform = default!;
+    [Dependency] private ESSharedSecretIdentitySystem _secretIdentity = default!;
 
     public override void Initialize()
     {
@@ -43,6 +50,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         SubscribeLocalEvent<ESBarnacleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ESBarnacleComponent, MindGotAddedEvent>(OnGotAdded);
         SubscribeLocalEvent<ESBarnacleComponent, MindGotRemovedEvent>(OnGotRemoved);
+        SubscribeLocalEvent<ESBarnacleComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
         SubscribeLocalEvent<ESBarnacleMobComponent, ESBrokenStateChanged>(OnBarnacleDestroyed);
         SubscribeLocalEvent<ESBarnacleMobComponent, ESBarnacleDiedEvent>(OnBarnacleDied);
     }
@@ -219,5 +227,25 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 
         var severity = _alerts.ClampSeverity(ent.Comp1.BarnacleAlert, (short) ent.Comp1.Barnacles.Count);
         _alerts.ShowAlert(owned, ent.Comp1.BarnacleAlert, severity);
+
+        _secretIdentity.RefreshCharacterInfoBlurb((ent.Owner, ent.Comp2));
     }
+
+    private void OnGetCharacterInfoBlurb(Entity<ESBarnacleComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        if (ent.Comp.Barnacles.Count == 0)
+            return;
+
+        var locations = new List<string>();
+        var directions = new List<string>();
+        foreach (var barnacle in ent.Comp.Barnacles)
+        {
+            locations.Add(FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(barnacle, true)));
+            directions.Add(ContentLocalizationManager.FormatDirection((_xform.GetWorldPosition(barnacle) - _xform.GetWorldPosition(ent.Owner)).ToWorldAngle().GetDir()));
+        }
+
+        Console.Write(ContentLocalizationManager.FormatList(directions));
+        args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb", ("location",  ContentLocalizationManager.FormatList(locations)), ("direction", ContentLocalizationManager.FormatList(directions)))));
+    }
+
 }
