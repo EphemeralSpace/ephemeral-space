@@ -56,6 +56,7 @@
   - type: Sprite
     sprite: _ES/Objects/Misc/tissue_box.rsi
     state: tissue
+  - type: Item
     inhandVisuals:
       left:
       - state: tissue-inhand-left
