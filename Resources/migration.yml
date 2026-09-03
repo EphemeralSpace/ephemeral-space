@@ -626,6 +626,24 @@ ESAirlockMaintLockedWelded: ESAirlockMaintWelded
 AirlockHatchMaintenanceLocked: AirlockHatchMaintenance
 AirlockMaintGlassLocked: AirlockMaintGlass
 
+# 2026-8-31
+ESComputerSupplyRequest: null
+ESComputerSupplyRequestMaster: null
+ESComputerWarehouseManifest: null
+ESComputerSupplyRequestCivilian: null
+ESComputerSupplyRequestEngineering: null
+ESComputerSupplyRequestMedical: null
+ESComputerSupplyRequestScience: null
+ESComputerSupplyRequestSecurity: null
+ESComputerSupplyRequestService: null
+ESComputerSupplyRequestTabletop: null
+ESComputerSupplyRequestTabletopCivilian: null
+ESComputerSupplyRequestTabletopEngineering: null
+ESComputerSupplyRequestTabletopMedical: null
+ESComputerSupplyRequestTabletopScience: null
+ESComputerSupplyRequestTabletopSecurity: null
+ESComputerSupplyRequestTabletopService: null
+
 # ES END
 
 # 2026-01-07

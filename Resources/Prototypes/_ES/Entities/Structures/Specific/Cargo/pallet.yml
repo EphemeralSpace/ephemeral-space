@@ -2,19 +2,13 @@
   parent: BaseStructure
   id: ESBaseWarehousePallet
   name: warehouse pallet
-  description: A highly advanced construct of plywood, capable of interfacing with advanced station warehouse management software.
+  description: A highly advanced construct of plywood.
   components:
   - type: Sprite
     drawdepth: FloorTiles
     layers:
     - sprite: _ES/Structures/Specific/Cargo/pallet.rsi
       state: icon
-  - type: ESStoreroomPallet
-    goodsWhitelist:
-      components:
-      - GasCanister
-      - EntityStorage
-      - PaperLabel
   - type: InteractionOutline
   - type: Anchorable
   - type: CollideOnAnchor
