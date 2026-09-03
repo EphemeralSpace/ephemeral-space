@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using Content.Client.Guidebook;
 using Content.Client.Guidebook.Richtext;
 using Content.IntegrationTests.Fixtures;
@@ -36,6 +38,34 @@ public sealed class GuideEntryPrototypeTests : GameTest
             var text = reader.ReadToEnd();
 
             Assert.That(parser.TryAddMarkup(new Document(), text), $"Failed to parse the guide entry's document.");
+        });
+    }
+
+    [Test]
+    public async Task NoOrphanGuideEntry()
+    {
+        var pair = Pair;
+        var client = pair.Client;
+        await client.WaitIdleAsync();
+        var protoMan = client.ResolveDependency<IPrototypeManager>();
+
+        await client.WaitAssertion(() =>
+        {
+            var orphanGuides = new HashSet<ProtoId<GuideEntryPrototype>>(protoMan
+                .EnumeratePrototypes<GuideEntryPrototype>()
+                .Select(p => (ProtoId<GuideEntryPrototype>) p.ID));
+            foreach (var guide in protoMan.EnumeratePrototypes<GuideEntryPrototype>())
+            {
+                orphanGuides.ExceptWith(guide.Children);
+            }
+
+            Assert.Multiple(() =>
+            {
+                foreach (var orphan in orphanGuides)
+                {
+                    Assert.That(protoMan.Index(orphan).Root, $"GuideEntryPrototype {orphan} has no parent but is not specified as a root! Did you forget to add it somewhere?");
+                }
+            });
         });
     }
 }
