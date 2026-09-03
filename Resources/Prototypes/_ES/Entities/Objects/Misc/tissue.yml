@@ -1,0 +1,67 @@
+# Tissue Box
+- type: entity
+  parent: BaseItem
+  id: TissueBoxEmpty
+  name: tissue box
+  description: "A box full of tissues. Useful for the sinus-ridden & blowing your nose during space-summer."
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/tissue_box.rsi
+    state: tissuebox-empty
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _ES/Objects/Misc/tissue_box.rsi
+    mapLayers:
+      tissuebox-full:
+        whitelist:
+          tags:
+          - Tissue
+  - type: Bin
+    whitelist:
+      tags:
+      - Tissue
+  - type: ContainerContainer
+    containers:
+      bin-container: !type:Container
+
+- type: entity
+  parent: TissueBoxEmpty
+  id: TissueBox
+  suffix: Full
+  components:
+  - type: Bin
+    initialContents:
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    - Tissue
+    whitelist:
+      tags:
+      - Tissue
+
+# Tissues
+- type: entity
+  parent: BasePaper
+  id: Tissue
+  name: tissue
+  description: A soft paper tissue. You can't think of anything to do with this, considering space summer doesn't exist.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Misc/tissue_box.rsi
+    state: tissue
+    inhandVisuals:
+      left:
+      - state: tissue-inhand-left
+      right:
+      - state: tissue-inhand-right
+  - type: Tag
+    tags:
+    - Trash
+    - Tissue
