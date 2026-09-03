@@ -2089,3 +2089,9 @@ Entries:
       message: Fixed audio occlusion for airlocks changing mid-opening and closing
   id: 226
   time: '2026-09-01T17:51:57.0000000+00:00'
+- author: Artxmisery
+  changes:
+    - type: Fix
+      message: Quartermaster can actually roll a tethergun
+  id: 227
+  time: '2026-09-03T18:15:12.0000000+00:00'
