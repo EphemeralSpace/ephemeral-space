@@ -68,7 +68,6 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
             if (comp.NextClean > curTime)
                 continue;
 
-            var position = _transformSystem.GetGridTilePositionOrDefault(uid);
             var transform = CompOrNull<TransformComponent>(uid);
             if (transform == null)
             {
