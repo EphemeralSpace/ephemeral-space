@@ -25,12 +25,32 @@
 
 - type: esTip
   id: TraitorLoseHeat
-  text: As a Traitor, try to keep heat off of you by taking actions that help other players & the station. When you inevitably get caught doing something suspicious, people will be willing to give you the benefit of the doubt. The best traitor is someone who nobody would suspect to ever be a traitor.
+  text: As a Traitor, try to keep heat off of you by taking actions that help other players & the station. When you inevitably get caught doing something suspicious, people will be willing to give you the benefit of the doubt. The best traitor is someone who nobody would ever suspect to be a traitor.
 
 # Parasites
 - type: esTip
   id: ParasiteSometimesStayAlive
-  text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and stay alive to the later stages of a round if you don't see any particularly juicy conversion opportunities, assuming there are a decent amount of other parasites.
+  text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and stay alive to the later stages of a round if you don't see any particularly juicy conversion opportunities, assuming there are a decent amount of other parasites. 
+
+- type: esTip
+  id: ParasiteSometimesKill
+  text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and kill other non-parasites to eek out the last percentage you need during the end of the game, provided you have the damage to spare. This becomes a lot easier to do if your teammates help you.
+
+ type: esTip
+  id: ParasiteDamageResource
+  text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more belivable, even if it can be scary.
+
+ type: esTip
+  id: ParasiteDamageResource
+  text: As a Parasite, if you ever go over your 200 damage threshold, you have approximately 1 minute to live. Since the parasite conversion percentage is based on the number of living crew, it might be a good idea to take a few people down with you before you die.
+
+- type: esTip
+  id: ParasiteObviouslySuicidal
+  text: As a Parasite, try not to appear too obviously suicidal. People will likely put two-and-two together and figure out what you are if you beg for others to kill you--be it verbally or through universally unhelpful actions.
+
+- type: esTip
+  id: ParasiteIdentityFeigning
+  text: As a Parasite, appearing as a member of an enemy troupe is often a highly effective strategy. Standing in a room with a nuke terminal, shooting somebody who asks for a search, or appearing near recently-degraded machines can all lead people to believe you are a traitor who needs to be executed.
 
 - type: esTip
   id: ParasiteSabotageNotAlwaysGood
