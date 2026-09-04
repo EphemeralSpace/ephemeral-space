@@ -36,11 +36,11 @@
   id: ParasiteSometimesKill
   text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and kill other non-parasites to eek out the last percentage you need during the end of the game, provided you have the damage to spare. This becomes a lot easier to do if your teammates help you.
 
- type: esTip
+- type: esTip
   id: ParasiteDamageResource
   text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more belivable, even if it can be scary to do so.
 
- type: esTip
+- type: esTip
   id: ParasiteTakingYouDownWithMe
   text: As a Parasite, if you ever go over your 200 damage threshold, you have approximately 1 minute to live. Since the parasite conversion percentage is based on the number of living crew, it might be a good idea to take a few people down with you before you die.
 
