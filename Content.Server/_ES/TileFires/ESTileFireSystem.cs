@@ -28,6 +28,11 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
     private static readonly EntProtoId Stage1Fire = "ESTileFire";
 
+    /// <summary>
+    /// Scratch buffer for weighted neighbor picks. Cleared each spread so we do not alloc a Dictionary per event.
+    /// </summary>
+    private readonly List<(EntityCoordinates Coords, float Weight)> _spreadWeights = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -97,7 +102,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             return;
 
         // Score neighboring tiles based on criteria, then do a weighted pick to spread
-        Dictionary<EntityCoordinates, float> weights = new(args.NeighborFreeTiles.Count);
+        _spreadWeights.Clear();
         foreach (var neighbor in args.NeighborFreeTiles)
         {
             // not updating the spreader api to get rid of this .owner sorry too many breakchanges for me
@@ -130,18 +135,18 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             if (_atmos.GetHeatCapacity(mixture, false) < Atmospherics.MinimumHeatCapacity)
                 score *= 0;
 
-            var coords = MapSys.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
+            var neighborCoords = MapSys.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
 
             if (score > 0)
-                weights.Add(coords, score);
+                _spreadWeights.Add((neighborCoords, score));
         }
 
         while (args.Updates > 0)
         {
-            if (flammable.FireStacks < ent.Comp.MinFirestacksToSpread || weights.Count == 0)
+            if (flammable.FireStacks < ent.Comp.MinFirestacksToSpread || _spreadWeights.Count == 0)
                 return;
 
-            var coords = _random.PickAndTake(weights);
+            var coords = PickAndTakeWeight(_spreadWeights);
             var fire = Spawn(ent.Comp.Prototype, coords);
 
             if (ent.Comp.Origin is { } origin)
