@@ -29,9 +29,9 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
     private static readonly EntProtoId Stage1Fire = "ESTileFire";
 
     /// <summary>
-    /// Scratch buffer for weighted neighbor picks. Cleared each spread so we do not alloc a Dictionary per event.
+    /// Scratch weights buffer. Cleared each spread to avoid allocating a new Dictionary per event.
     /// </summary>
-    private readonly List<(EntityCoordinates Coords, float Weight)> _spreadWeights = new();
+    private readonly Dictionary<EntityCoordinates, float> _spreadWeights = new();
 
     public override void Initialize()
     {
@@ -135,10 +135,10 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             if (_atmos.GetHeatCapacity(mixture, false) < Atmospherics.MinimumHeatCapacity)
                 score *= 0;
 
-            var neighborCoords = MapSys.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
+            var coords = MapSys.GridTileToLocal(neighbor.Tile.GridUid, neighbor.Grid, neighbor.Tile.GridIndices);
 
             if (score > 0)
-                _spreadWeights.Add((neighborCoords, score));
+                _spreadWeights.Add(coords, score);
         }
 
         while (args.Updates > 0)
@@ -146,7 +146,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             if (flammable.FireStacks < ent.Comp.MinFirestacksToSpread || _spreadWeights.Count == 0)
                 return;
 
-            var coords = PickAndTakeWeight(_spreadWeights);
+            var coords = _random.PickAndTake(_spreadWeights);
             var fire = Spawn(ent.Comp.Prototype, coords);
 
             if (ent.Comp.Origin is { } origin)
