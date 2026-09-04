@@ -53,10 +53,6 @@
 # Small bottles
 
 - type: entity
-  parent: [ DrinkBottleBaseSmallEmpty, DrinkAleBottleFull ]
-  id: DrinkBottleAle
-
-- type: entity
   parent: [ DrinkBottleBaseSmallEmpty, DrinkBeerBottleFull ]
   id: DrinkBottleBeer
   components:
@@ -67,14 +63,6 @@
 # Large bottles
 
 - type: entity
-  parent: [ DrinkBottleBaseEmpty, DrinkAbsintheBottleFull ]
-  id: DrinkBottleAbsinthe
-
-- type: entity
-  parent: [DrinkBottleBaseEmpty, DrinkBlueCuracaoBottleFull]
-  id: DrinkBottleAlcoClear
-
-- type: entity
   parent: [ DrinkBottleBaseEmpty, DrinkCognacBottleFull ]
   id: DrinkBottleCognac
 
@@ -83,42 +71,8 @@
   id: DrinkBottleGin
 
 - type: entity
-  parent: [DrinkBottleBaseEmpty, DrinkGildlagerBottleFull]
-  id: DrinkBottleGildlager
-
-- type: entity
-  name: coffee liqueur bottle
-  parent: [DrinkBottleBaseEmpty, DrinkCoffeeLiqueurBottleFull]
-  id: DrinkBottleCoffeeLiqueur
-
-# todo make a real cahors bottle
-- type: entity
-  name: nt cahors bottle
-  parent: [DrinkBottleBaseEmpty, DrinkBottleGlassBaseFull]
-  id: DrinkBottleNTCahors
-  components:
-  - type: Sprite
-    sprite: Objects/Consumable/Drinks/ntcahors.rsi
-
-- type: entity
-  parent: [DrinkBottleBaseEmpty, DrinkPatronBottleFull]
-  id: DrinkBottlePatron
-
-- type: entity
-  parent: [DrinkBottleBaseEmpty, DrinkPoisonWinebottleFull]
-  id: DrinkBottlePoisonWine
-
-- type: entity
   parent: [DrinkBottleBaseEmpty, DrinkRumBottleFull]
   id: DrinkBottleRum
-
-- type: entity
-  parent: [DrinkBottleBaseEmpty, DrinkTequilaBottleFull]
-  id: DrinkBottleTequila
-
-- type: entity
-  parent: [DrinkBottleBaseEmpty, DrinkVermouthBottleFull]
-  id: DrinkBottleVermouth
 
 - type: entity
   parent: [DrinkBottleBaseEmpty, DrinkVodkaBottleFull]

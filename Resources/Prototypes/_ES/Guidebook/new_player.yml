@@ -3,6 +3,7 @@
   hidden: false
   name: New Player Guide
   priority: 0
+  root: true
   text: "/ServerInfo/_ES/Guidebook/NewPlayer.xml"
   children:
   - Roundflow

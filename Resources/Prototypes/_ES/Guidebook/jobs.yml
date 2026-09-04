@@ -3,6 +3,7 @@
   hidden: false
   name: Jobs
   priority: 3
+  root: true
   text: "/ServerInfo/_ES/Guidebook/Jobs.xml"
   children:
   - Assistant
