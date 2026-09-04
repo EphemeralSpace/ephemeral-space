@@ -304,7 +304,8 @@
 
 - type: esTip
   id: AmmoLimitedResource
-  text: Ammo is an extremely valuable & limited resource; you cannot get more once the existing supplies run out. Avoid using it on people who are downed - use a melee weapon instead.
+  text: Ammo is an extremely valuable & limited resource; you cannot get more once the existing supplies run out. Avoid using it on people who are downed, and consider using a melee weapon instead.
 
+- type: esTip
   id: BurnableBarricades
   text: Clicking a barricade with a flammable item lets you burn it down, breaking the structure quickly. This even works on things that can't damage them through normal means, such as matches.

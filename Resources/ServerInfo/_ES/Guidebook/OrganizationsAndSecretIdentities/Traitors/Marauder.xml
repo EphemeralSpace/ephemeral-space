@@ -23,7 +23,5 @@
 ### Explosive Grenade
 	Highly versatile and great for dealing massive damage to players in a pinch. Though it can sometimes do okay damage to weak structures like machines and windows, it's much better used as an offensive tool.
 
-	<GuideReagentEmbed Reagent="Stimulants"/>
-
     <ESGuideTipsEmbed SecretIdentity="Marauder"/>
 </Document>

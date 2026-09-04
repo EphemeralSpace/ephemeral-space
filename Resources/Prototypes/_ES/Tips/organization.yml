@@ -38,10 +38,10 @@
 
  type: esTip
   id: ParasiteDamageResource
-  text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more belivable, even if it can be scary.
+  text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more belivable, even if it can be scary to do so.
 
  type: esTip
-  id: ParasiteDamageResource
+  id: ParasiteTakingYouDownWithMe
   text: As a Parasite, if you ever go over your 200 damage threshold, you have approximately 1 minute to live. Since the parasite conversion percentage is based on the number of living crew, it might be a good idea to take a few people down with you before you die.
 
 - type: esTip

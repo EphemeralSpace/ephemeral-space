@@ -22,7 +22,7 @@
   
   While somewhat dangerous to carry, these are invaluable tools for completing your objectives, and you should definitely try to pick them up at some point during the round. Their reward far outweighs their potential risk.
   
-  If you get caught with the items from your cache, you can always try to feign as someone who simply has the ex-syndie modifier - but be careful, as depending on the secret identity you claim to be, this could become extremely suspicious. See the [italic]Feigning as Other Secret Identities & Claims[/italic] section for more info.
+  Other (non-traitor) players can also get traitor gear through the [textlink="ex-syndie" link="ExSyndie"] secret identity modifier, so keep that in mind. Holding a traitor kit is usually not an instant out because of this, but will still end up increasing your suspiciousness-levels to others.
 
   ## Objectives
   All traitors on the team share the same objectives, and must work together to complete them. To succeed, they must detonate the nuke inside of the station's vault.
@@ -56,7 +56,7 @@
   Once the objective is complete, the APC bug will dissapear, and the affected department will have the [italic]grey tide virus[/italic] event triggered inside of it.
   
   Importantly, unlike Sabotage, [bold]Bug APC is never a vandal objective. It is strictly traitor-exclusive, and getting caught outs you as such.[/bold]
-  Avoid getting caught in the act at all costs - the crew is not likely to take very kindly to seing you do this.
+  Avoid getting caught in the act at all costs - the crew is not likely to take very kindly to seeing you do this.
   
   ## Security Override Terminals
   <Box>
@@ -89,14 +89,16 @@
  ## Feigning as Other Secret Identites & Claims
   People will often ask what your secret identity is when you act suspiciously, which you will probably doing a lot of as traitor. It's also pretty likely that, at some point, you will get caught in the act. While the best possible secret identity to claim depends on the situation, there are a lot of generally useful ones:
  
-   - [textlink="Vandal" link="Vandal"]: Mentioned in the new player section above for a good reason. The vandal's only goal is to sabotage machines, like a traitor. This makes them a good mostly-futureproof-cover, and a perfect alibi for if you get caught sabotaging a machine. This may backfire if your cache's gear is found, though - someone with traitor items, traitor behavior [italic]and[/italic] traitor gear is more likely then not a traitor!
+   - [textlink="Vandal" link="Vandal"]: Mentioned in the new player section above for a good reason. The vandal's only goal is to sabotage machines, like a traitor. This makes them a good mostly-futureproof-cover, and a perfect alibi for if you get caught sabotaging a machine. This may backfire if your cache's gear is found, though - someone with traitor items, traitorous behavior, [italic]and[/italic] traitor gear is more likely then not to be seen a traitor!
    - [textlink="Stalker" link="Stalker"]: This secret identity must pick 5 other players using an action, and ensuring that 2 of them are alive and 3 of them are dead by the end of the round. This can work as good cover for excusing allowing someone to die, or as an alibi when you get caught murdering someone. Just be aware that people aren't generally receptive to mass-murder, even if someone is actually crew.
    - [textlink="Avenger" link="Avenger"]: If their target dies, this secret identity must kill the player who killed their protect target. This can work fairly well if you are keeping track of who has died and who killed who - often times, crew will not get in the way of a determined avenger.
   
-  Additionally it should be stated that, above all else, actions speak louder than words. If you act like a traitor and are caught with traitor gear, it's likely you will be executed on the spot, regardless of whatever identity you claim to be.
+  Additionally it should be stated that, above all else, actions speak louder than words. If you act like a traitor and are caught with traitor gear, it's likely you will be executed on the spot, regardless of whatever secret identity you claim to be.
   This is inversely true - if you commit to pretending to be a certain secret identity from the start of the round, it's significantly more likely people will believe you, provided your act doesn't seem suspicious.
   
  ## General Tips and Strategy
  - It's extremely effective to wait for when people are distracted to sabotage. Alternatively, you can cause a distraction yourself (try spacing, substation destruction in an important location, or firebombs.)
+ - Try to appear as a normal member of the crew by helping others & doing your job where possible. This will make you a lot more credible if you ever find yourself in a sticky situation (such as being found with traitor items, or caught sabotaging a machine.) The more suspicious actions you get found doing, the more likely people are to think you're a traitor.
+ - Talking / lying your way out of situations instead of initiating combat when pressured is often useful. Engaging in combat in these situations makes you seem like an [italic]extremely obvious[/italic] traitor; it is not recommended to do unless you have absolutely no other choice.
  
 </Document>

@@ -4,6 +4,8 @@
   name: es-secret-identity-assassin-name
   description: es-secret-identity-assassin-desc
   color: hotpink
+  tips:
+  - AssassinSleepDiskHolder
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
@@ -20,6 +22,7 @@
   - InfiltratorRatmanDoors
   - EmagAirlockDeniability
   - InfiltratorEmagBolt
+  - InfiltratorGetWeapon
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
@@ -31,6 +34,8 @@
   name: es-secret-identity-marauder-name
   description: es-secret-identity-marauder-desc
   color: coral
+  tips:
+  - MarauderGrenade
   mindComponents:
   - type: ESSecretIdentityCacheSpawner
     cacheProto:
