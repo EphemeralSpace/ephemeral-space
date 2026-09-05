@@ -83,6 +83,14 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
         Log.Debug("SanitationChip! Now we're spawning the timer!");
 
+        var query = EntityQueryEnumerator<DeviceNetworkComponent>();
+
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            var ev = new ESSanitationChipActivatedEvent();
+            RaiseLocalEvent(uid, ref ev);
+        }
+
         _ = _timer.SpawnMethodTimer(chip.Comp.TimeUntilGasSpawn, () => SpawnGas(chip, target));
 
         if (HasComp<LimitedChargesComponent>(chip.Owner))
@@ -144,8 +152,6 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
                 Del(smoke);
                 continue;
             }
-            var ev = new ESSanitationChipActivatedEvent();
-            RaiseLocalEvent(uid, ref ev);
 
             _smoke.StartSmoke(smoke, chip.Comp.Solution.Clone(), (float)chip.Comp.Duration.TotalSeconds, chip.Comp.SpreadAmount, smokeComp);
             _timer.SpawnMethodTimer(chip.Comp.Duration,

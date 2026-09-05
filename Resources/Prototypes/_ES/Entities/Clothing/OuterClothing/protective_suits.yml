@@ -70,7 +70,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
   - type: Armor
-     modifiers:
+    modifiers:
       flatReductions:
         Caustic: 3
   - type: HideLayerClothing
