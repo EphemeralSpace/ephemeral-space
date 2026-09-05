@@ -312,16 +312,6 @@
       range: 5
 
 - type: rules
-  id: NearMorgue
-  rules:
-    - !type:NearbyComponentsRule
-      anchored: true
-      count: 2
-      components:
-        - type: Morgue
-      range: 3
-
-- type: rules
   id: NearSpookyFog
   rules:
     - !type:NearbyEntitiesRule
