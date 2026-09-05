@@ -471,6 +471,9 @@
             Out: { state: vent_out }
             Welded: { state: vent_welded }
             Lockout: { state: vent_lockout }
+            # ES START
+            Cleaning: { state: es_vent_cleaning }
+            # ES END
     - type: PipeColorVisuals
     - type: GasVentPump
       inlet: inlet
