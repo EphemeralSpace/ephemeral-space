@@ -3,7 +3,7 @@
   parent: BaseItem
   id: TissueBoxEmpty
   name: tissue box
-  description: "A box full of tissues. Useful for the sinus-ridden & blowing your nose during space-summer."
+  description: "A box full of tissues. Useful for the mucus-ridden & blowing your nose during space summer."
   suffix: Empty
   components:
   - type: Sprite
