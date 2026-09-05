@@ -2095,3 +2095,13 @@ Entries:
       message: Quartermaster can actually roll a tethergun
   id: 227
   time: '2026-09-03T18:15:12.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Barnacle now have a different appearance after popping and shooting out
+        burrowers.
+    - type: Fix
+      message: Fix barnacles and hemophages converting dead players.
+  id: 228
+  time: '2026-09-05T21:47:26.0000000+00:00'
