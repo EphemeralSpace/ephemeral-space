@@ -2105,3 +2105,12 @@ Entries:
       message: Fix barnacles and hemophages converting dead players.
   id: 228
   time: '2026-09-05T21:47:26.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Tweak
+      message: >-
+        More fonts, more fun! Emotes are now italic, live chat preview is
+        slightly better, and radio messages now have an icon on their speech
+        bubbles.
+  id: 229
+  time: '2026-09-05T22:00:06.0000000+00:00'
