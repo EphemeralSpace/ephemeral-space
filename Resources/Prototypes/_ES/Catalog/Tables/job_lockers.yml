@@ -158,6 +158,7 @@
     - id: TrashBag
     - id: Plunger
     - id: WireBrush
+    - id: SanitationChip
 
 - type: entityTable
   id: LockerFillAnimalControl
