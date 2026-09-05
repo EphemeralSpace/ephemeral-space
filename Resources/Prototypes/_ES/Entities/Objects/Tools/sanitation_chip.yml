@@ -2,7 +2,7 @@
   parent: BaseItem
   id: SanitationChip
   name: sanitation chip
-  description: A sanitation chip, used to help clean up a screwed up area.
+  description: Inserting this into a Air Alarm instructs its connected vents to run a deep cleaning program to sterilize the area. You probably don't want to be in the room without protective gear when it happens.
   components:
   - type: Sprite
     sprite: _ES/Objects/Devices/sanichip.rsi

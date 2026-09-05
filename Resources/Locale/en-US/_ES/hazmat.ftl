@@ -1,1 +1,1 @@
-es-sanitation-chip-announcement = A sanitation chip has been activated in {$area}. If you are in {$area}, please leave within {$seconds} seconds as the sanitation foam is quite harmful.
+es-sanitation-chip-announcement = Sanitation Override has been activated near {$area}. Anyone lacking protective gear shoud evacuate within {$seconds} seconds to avoid chemical burns.
