@@ -24,6 +24,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 {
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
@@ -31,6 +32,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
     [Dependency] private NavMapSystem _navMap = default!;
 
@@ -171,43 +173,48 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         _alerts.ClearAlert(args.Container.Owner, ent.Comp.BarnacleAlert);
     }
 
-    private void OnBarnacleDestroyed(EntityUid uid, ESBarnacleMobComponent comp, ESBrokenStateChanged ev)
+    private void OnBarnacleDestroyed(Entity<ESBarnacleMobComponent> ent, ref ESBrokenStateChanged ev)
     {
         if (!ev.Broken)
             return;
 
-        if (!TryComp<MindComponent>(comp.BarnacleOwner, out var mind) ||
-            !TryComp<ESBarnacleComponent>(comp.BarnacleOwner, out var barnacle))
+        if (!TryComp<MindComponent>(ent.Comp.BarnacleOwner, out var mind) ||
+            !TryComp<ESBarnacleComponent>(ent.Comp.BarnacleOwner, out var barnacle))
             return;
 
-        barnacle.Barnacles.Remove(uid);
+        barnacle.Barnacles.Remove(ent);
 
         if (mind.CurrentEntity is not { } owned)
             return;
 
-        var msg = Loc.GetString("barnacle-destroyed", ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(uid))));
+        var msg = Loc.GetString("barnacle-destroyed",
+            ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(ent.Owner))));
         _popup.PopupEntity(msg, owned, owned, PopupType.MediumCaution);
-        UpdateAlert((comp.BarnacleOwner, barnacle, mind));
+        UpdateAlert((ent.Comp.BarnacleOwner, barnacle, mind));
     }
 
-    private void OnBarnacleDied(EntityUid uid, ESBarnacleMobComponent comp , ESBarnacleDiedEvent ev)
+    private void OnBarnacleDied(Entity<ESBarnacleMobComponent> ent, ref ESBarnacleDiedEvent ev)
     {
-        if (!TryComp<MindComponent>(comp.BarnacleOwner, out var mind))
+        if (!TryComp<MindComponent>(ent.Comp.BarnacleOwner, out var mind))
             return;
 
         if (mind.CurrentEntity is not { } owned)
             return;
 
-        if (_transform.GetGrid(uid) != _transform.GetGrid(owned)) // Makes sure barnacle and killed are on same grid
+        if (_transform.GetGrid(ent.Owner) != _transform.GetGrid(owned)) // Makes sure barnacle and killed are on same grid
             return;
 
-        var direction = _transform.GetWorldPosition(owned) - _transform.GetWorldPosition(uid);
+        var direction = _transform.GetWorldPosition(owned) - _transform.GetWorldPosition(ent.Owner);
 
-        var projectile = SpawnNextToOrDrop(comp.ProjectileId, uid);
+        var projectile = SpawnNextToOrDrop(ent.Comp.ProjectileId, ent);
         var projectileComp = EnsureComp<ESBarnacleProjectileComponent>(projectile);
         projectileComp.GoalEntity = owned;
 
-        _gun.ShootProjectile(projectile, direction, Vector2.Zero, uid, uid, 0.01f);
+        _gun.ShootProjectile(projectile, direction, Vector2.Zero, ent, ent, 0.01f);
+
+        _appearance.SetData(ent, ESBarnacleVisuals.Popped, true);
+        _metaData.SetEntityName(ent, Loc.GetString("es-barnacle-popped-name"));
+        _metaData.SetEntityDescription(ent, Loc.GetString("es-barnacle-popped-desc"));
     }
 
     private void UpdateAlert(Entity<ESBarnacleComponent?, MindComponent?> ent)
