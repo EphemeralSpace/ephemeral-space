@@ -9,7 +9,7 @@
   components:
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: FlimsyGlass
+    damageModifierSet: ESWindow
   - type: Destructible
     thresholds:
     - trigger: # Overkill threshold
