@@ -3,7 +3,7 @@
   name: es-reagent-name-sanitization-foam
   desc: es-reagent-desc-sanitization-foam
   physicalDesc: reagent-physical-desc-alkaline
-  flavor: burning
+  flavor: alkaline
   puddleSpriteSet: Shiny
   color: "#6f377fb0"
   recognizable: true
