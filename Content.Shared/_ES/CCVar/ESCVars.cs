@@ -72,7 +72,7 @@ public sealed class ESCVars : CVars
     public static readonly CVarDef<float> OcclusionMaxOcclusion =
         CVarDef.Create("es_occlusion.max_occlusion", 2f, CVar.SERVER | CVar.REPLICATED);
     public static readonly CVarDef<float> OcclusionVolumeAdjust =
-        CVarDef.Create("es_occlusion.volume_adjust", -3f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("es_occlusion.volume_adjust", -2f, CVar.SERVER | CVar.REPLICATED);
     public static readonly CVarDef<float> OcclusionMaxDeltaDistance =
         CVarDef.Create("es_occlusion.max_delta_distance", 15f, CVar.SERVER | CVar.REPLICATED);
     public static readonly CVarDef<float> OcclusionMinDeltaDistance =
