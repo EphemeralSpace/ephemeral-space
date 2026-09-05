@@ -13,16 +13,16 @@
 
   [bold][color=yellow]Important information for new players:[/bold][/color]
    - Take in as much information here as you need. There's no need to rush when reading this guidebook page. Traitors typically have an easier time as the round goes on and conflict brews without them, so you'll probably be doing yourself a favor by waiting a bit, anyways.
-   - Don't be afraid of letting your team down. No individual traitor is expected to be perfect; it's rather common for even experienced agents to slip up and die quickly. Your team will likely help pick up the slack if you fail. Even if you are the last traitor and lose, there's no penalty for failure, other then the bitter taste of defeat.
+   - Don't be afraid of letting your team down. No individual traitor is expected to be perfect; it's rather common for even experienced agents to slip up and die quickly. Your team will likely help pick up the slack if you fail. Even if you are the last traitor and lose, there's no penalty for failure, other tham the bitter taste of defeat.
    - You can get away with more then you think. Most illicit actions have reasonable plausible deniability (see [italic]Feigning as Other Secret Identities & Claims[/italic] section below.) You'll need to break in to places and take risky actions to complete your objectives. This can be scary, but it's worth trying, even if it might result in death.
    - If someone asks you what your secret identity is, and you aren't sure what to say / don't know what secret identities exist, [bold]claim to be a Vandal.[/bold] This isn't the perfect option in every situation, but it will save you if you have no other alibi, since vandals are the only other secret identity that can sabotage machines.
 
   ## Gear
-  All traitors start with a [bold]hidden cache[/bold] in mainteneance that only they can retrieve. By going to the coordinates / area listed in the character menu and clicking the action, a duffel bag will drop out of the ceiling, containing several items related to the traitor's secret identity.
+  All traitors start with a [bold]hidden cache[/bold] in maintenance that only they can retrieve. By going to the coordinates / area listed in the character menu and clicking the action, a duffel bag will drop out of the ceiling, containing several items related to the traitor's secret identity.
   
   While somewhat dangerous to carry, these are invaluable tools for completing your objectives, and you should definitely try to pick them up at some point during the round. Their reward far outweighs their potential risk.
   
-  Other (non-traitor) players can also get traitor gear through the [textlink="ex-syndie" link="ExSyndie"] secret identity modifier, so keep that in mind. Holding a traitor kit is usually not an instant out because of this, but will still end up increasing your suspiciousness-levels to others.
+  Other (non-traitor) players can also get traitor gear through the [textlink="Ex-Syndie" link="ExSyndie"] secret identity modifier, so keep that in mind. Holding a traitor kit is usually not an instant out because of this, but will still end up increasing your suspicion levels to others.
 
   ## Objectives
   All traitors on the team share the same objectives, and must work together to complete them. To succeed, they must detonate the nuke inside of the station's vault.
@@ -92,6 +92,7 @@
    - [textlink="Vandal" link="Vandal"]: Mentioned in the new player section above for a good reason. The vandal's only goal is to sabotage machines, like a traitor. This makes them a good mostly-futureproof-cover, and a perfect alibi for if you get caught sabotaging a machine. This may backfire if your cache's gear is found, though - someone with traitor items, traitorous behavior, [italic]and[/italic] traitor gear is more likely then not to be seen a traitor!
    - [textlink="Stalker" link="Stalker"]: This secret identity must pick 5 other players using an action, and ensuring that 2 of them are alive and 3 of them are dead by the end of the round. This can work as good cover for excusing allowing someone to die, or as an alibi when you get caught murdering someone. Just be aware that people aren't generally receptive to mass-murder, even if someone is actually crew.
    - [textlink="Avenger" link="Avenger"]: If their target dies, this secret identity must kill the player who killed their protect target. This can work fairly well if you are keeping track of who has died and who killed who - often times, crew will not get in the way of a determined avenger.
+   - [textlink="Tragedian" link="Tragedian"]: A secret identity that must put on a performance that embodies a certain theme, then die. This can be risky, since the crew may want to let the tragedian die in some situations. However, there is no downside to claiming this if you are not caught doing any machine sabotage or APC bugging, and it may let you get off scott-free if you can manage to feign a performance with a defined theme - people generally enjoy going along with the tragedian, if they know they exist.
   
   Additionally it should be stated that, above all else, actions speak louder than words. If you act like a traitor and are caught with traitor gear, it's likely you will be executed on the spot, regardless of whatever secret identity you claim to be.
   This is inversely true - if you commit to pretending to be a certain secret identity from the start of the round, it's significantly more likely people will believe you, provided your act doesn't seem suspicious.

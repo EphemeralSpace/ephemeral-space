@@ -17,7 +17,7 @@
 
 - type: esTip
   id: TraitorExSyndie
-  text: Non-traitors can start with traitor gear through the ex-syndie secret identity modifier. Consider claiming you are an ex-syndie if you are caught with illegal items in your bag. This may become harder to believe if your actions have been suspicious.
+  text: Non-traitors can start with traitor gear through the Ex-Syndie secret identity modifier. Consider claiming you are an Ex-Syndie if you are caught with illegal items in your bag. This may become harder to believe if your actions have been suspicious.
 
 - type: esTip
   id: TraitorDistraction
@@ -38,7 +38,7 @@
 
 - type: esTip
   id: ParasiteDamageResource
-  text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more belivable, even if it can be scary to do so.
+  text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more believable, even if it can be scary to do so.
 
 - type: esTip
   id: ParasiteTakingYouDownWithMe
@@ -46,7 +46,7 @@
 
 - type: esTip
   id: ParasiteObviouslySuicidal
-  text: As a Parasite, try not to appear too obviously suicidal. People will likely put two-and-two together and figure out what you are if you beg for others to kill you--be it verbally or through universally unhelpful actions.
+  text: As a Parasite, try not to appear too obviously suicidal. People will likely put two and two together and figure out what you are if you beg for others to kill you--be it verbally or through universally unhelpful actions.
 
 - type: esTip
   id: ParasiteIdentityFeigning

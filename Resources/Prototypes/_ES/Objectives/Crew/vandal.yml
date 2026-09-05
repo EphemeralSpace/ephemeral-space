@@ -1,7 +1,7 @@
 - type: entity
   id: ESObjectiveVandalSabotageCommunications
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageCommunications]
-  description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer in command.
+  description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer in Bridge.
 
 - type: entity
   id: ESObjectiveVandalSabotageCrewMonitoring
@@ -11,7 +11,7 @@
 - type: entity
   id: ESObjectiveVandalSabotageEmergencyAccessTerminal
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageEmergencyAccessTerminal]
-  description: Doors hold back people. They separate us. They create hate. Hacking emergency access terminal in bridge to open up a bunbch of them would show Nanotrasen!
+  description: Doors hold back people. They separate us. They create hate. Hacking the emergency access terminal in the Bridge to open up a bunch of them would show Nanotrasen!
 
 - type: entity
   id: ESObjectiveVandalSabotageCriminalRecords

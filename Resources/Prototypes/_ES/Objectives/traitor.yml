@@ -67,7 +67,7 @@
 - type: entity
   id: ESObjectiveTraitorSabotageCommunications
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
-  description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer located in command areas.
+  description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer located in the bridge.
 
 # Crew monitoring
 - type: entity
