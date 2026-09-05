@@ -33,28 +33,10 @@ public sealed partial class StrapComponent : Component
     public EntityWhitelist? Blacklist;
 
     /// <summary>
-    /// The change in position to the strapped mob
+    /// A list of different points an entity can be buckled to.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public StrapPosition Position = StrapPosition.None;
-
-    /// <summary>
-    /// The buckled entity will be offset by this amount from the center of the strap object.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public Vector2 BuckleOffset = Vector2.Zero;
-
-    /// <summary>
-    /// The angle to rotate the player by when they get strapped
-    /// </summary>
-    [DataField]
-    public Angle Rotation;
-
-    /// <summary>
-    /// The size of the strap which is compared against when buckling entities
-    /// </summary>
-    [DataField]
-    public int Size = 100;
+    public List<StrapPoint> StrapPoints = new() { new StrapPoint() };
 
     /// <summary>
     /// If disabled, nothing can be buckled on this object, and it will unbuckle anything that's already buckled
@@ -93,6 +75,31 @@ public sealed partial class StrapComponent : Component
     public bool BuckleOnInteractHand = true;
 }
 
+/// <summary>
+/// Different points an entity can be buckled to.
+/// </summary>
+[DataDefinition]
+[Serializable, NetSerializable]
+public sealed partial class StrapPoint
+{
+    /// <summary>
+    /// The buckled entity will be offset by this amount from the center of the strap object.
+    /// </summary>
+    [DataField]
+    public Vector2 BuckleOffset = Vector2.Zero;
+
+    /// <summary>
+    /// The change in position to the strapped mob
+    /// </summary>
+    [DataField]
+    public StrapPosition Position = StrapPosition.None;
+
+    /// <summary>
+    /// The angle to rotate the player by when they get strapped
+    /// </summary>
+    [DataField]
+    public Angle Rotation;
+}
 public enum StrapPosition
 {
     /// <summary>
