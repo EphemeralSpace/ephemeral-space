@@ -1,0 +1,15 @@
+- type: entity
+  parent: ESWallArmory
+  id: ESWallHypersleep
+  name: sterile hardened wall
+  description: Immaculately constructed in such a manner as to make deconstruction effectively impossible. Looks armored.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/hypersleep.rsi
+    state: full
+  - type: Icon
+    sprite: _ES/Structures/Walls/hypersleep.rsi
+    state: full
+  - type: IconSmooth
+    key: hypersleepwalls
+    base: solid

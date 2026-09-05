@@ -1,0 +1,51 @@
+# indestructible because i dont wanna make sprites for these tiles and stuff rn. they could be used outside of cryosleep but until then. it will wait
+# well - ok. you could just make them drop rods or something i guess, but thats kind of lazy
+# honestly we in general just need a way to make tiles without having to make unique tile sprites for all of them it really sucks
+- type: tile
+  id: ESShinyMetal
+  name: es-tiles-shiny-metal
+  sprite: /Textures/_ES/Tiles/shinymetal.png
+  baseTurf: Plating
+  weather: false
+  footstepSounds:
+    collection: FootstepCatwalk
+  heatCapacity: 10000
+  mass: 200
+  itemDrop: SheetSteel1
+
+- type: tile
+  id: ESShinyMetalVertical
+  parent: ESShinyMetal
+  name: es-tiles-shiny-metal-vertical
+  sprite: /Textures/_ES/Tiles/shinymetal_vertical.png
+
+- type: tile
+  id: ESCarbonFiber
+  name: es-tiles-carbon-fiber
+  sprite: /Textures/_ES/Tiles/carbonfiber.png
+  baseTurf: Plating
+  weather: false
+  footstepSounds:
+    collection: FootstepCarpet
+  barestepSounds:
+    collection: BarestepCarpet
+  itemDrop: SheetSteel1
+
+# indestructible variants for hypersleep
+- type: tile
+  id: ESCarbonFiberIndestructible
+  parent: ESCarbonFiber
+  name: es-tiles-carbon-fiber-indestructible
+  indestructible: true
+
+- type: tile
+  id: ESShinyMetalIndestructible
+  parent: ESShinyMetal
+  name: es-tiles-shiny-metal-indestructible
+  indestructible: true
+
+- type: tile
+  id: ESShinyMetalVerticalIndestructible
+  parent: ESShinyMetalVertical
+  name: es-tiles-shiny-metal-indestructible
+  indestructible: true
