@@ -2122,3 +2122,11 @@ Entries:
         much more informative pages.)
   id: 230
   time: '2026-09-05T22:11:59.0000000+00:00'
+- author: PotatOverlord
+  changes:
+    - type: Add
+      message: >-
+        Barnacles can now see a record of their barnacley exploits in the
+        character menu.
+  id: 231
+  time: '2026-09-05T22:41:20.0000000+00:00'
