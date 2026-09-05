@@ -32,22 +32,6 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: ESJobIconAnimalControl
-  icon:
-    sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
-    state: animalcontrol
-  jobName: ESjob-name-animalcontrol
-
-- type: jobIcon
-  parent: JobIcon
-  id: ESJobIconHazmat
-  icon:
-    sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi
-    state: hazmat
-  jobName: ESjob-name-hazmat
-
-- type: jobIcon
-  parent: JobIcon
   id: ESJobIconJanitor
   icon:
     sprite: /Textures/_ES/Interface/Misc/ES_job_icons.rsi

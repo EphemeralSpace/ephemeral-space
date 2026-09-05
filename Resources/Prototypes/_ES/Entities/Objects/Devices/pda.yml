@@ -27,21 +27,3 @@
   components:
   - type: Pda
     id: RatmanCard
-
-- type: entity
-  parent: PassengerPDA
-  id: AnimalControlPDA
-  name: PDA
-  suffix: ES
-  components:
-  - type: Pda
-    id: AnimalControlCard
-
-- type: entity
-  parent: PassengerPDA
-  id: HazmatPDA
-  name: PDA
-  suffix: ES
-  components:
-  - type: Pda
-    id: HazmatCard

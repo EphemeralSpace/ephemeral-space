@@ -6,7 +6,7 @@
   startingGear: ESJanitorGear
   icon: "ESJobIconJanitor"
   access:
-  - Custodial
+  - Service
   - Janitor
   special:
   - !type:GiveItemOnHolidaySpecial

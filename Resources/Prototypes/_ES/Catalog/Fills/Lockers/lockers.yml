@@ -1,14 +1,4 @@
 - type: entity
-  parent: LockerAnimalControl
-  id: LockerAnimalControlFilled
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: LockerFillAnimalControl
-
-- type: entity
   parent: LockerChef
   id: LockerChefFilled
   suffix: Filled
@@ -57,16 +47,6 @@
     containers:
       entity_storage:
         tableId: LockerFillFirefighter
-
-- type: entity
-  parent: LockerHazmat
-  id: LockerHazmatFilled
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage:
-        tableId: LockerFillHazmat
 
 - type: entity
   parent: LockerJanitor
