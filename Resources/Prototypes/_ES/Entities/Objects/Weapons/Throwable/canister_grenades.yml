@@ -93,3 +93,22 @@
         enabled:
           True: { state: active }
           False: { state: spent }
+
+- type: entity
+  parent: SmokeGrenade
+  id: SanitizerGrenade
+  name: sterilnade
+  description: Sanitizaton foam grenade. Not intended for mapping, testing purposes only.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/janitor.rsi
+  - type: SmokeOnTrigger
+    keysIn:
+    - timer
+    duration: 15
+    spreadAmount: 50
+    smokePrototype: RemoveGasFoam
+    solution:
+      reagents:
+      - ReagentId: SanitizationFoam
+        Quantity: 30

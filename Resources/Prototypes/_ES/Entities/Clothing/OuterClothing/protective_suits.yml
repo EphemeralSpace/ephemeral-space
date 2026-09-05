@@ -69,6 +69,10 @@
     sprite: Clothing/OuterClothing/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Bio/general.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Caustic: 3
   - type: HideLayerClothing
     slots:
     - Tail

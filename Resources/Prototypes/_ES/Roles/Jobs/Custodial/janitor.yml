@@ -4,7 +4,7 @@
   description: ESjob-description-janitor
   playTimeTracker: ESJobJanitor
   startingGear: ESJanitorGear
-  icon: "JobIconJanitor"
+  icon: "ESJobIconJanitor"
   access:
   - Service
   - Janitor

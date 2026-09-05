@@ -1,0 +1,35 @@
+- type: reagent
+  id: SanitizationFoam
+  name: es-reagent-name-sanitization-foam
+  desc: es-reagent-desc-sanitization-foam
+  physicalDesc: reagent-physical-desc-alkaline
+  flavor: alkaline
+  puddleSpriteSet: Shiny
+  color: "#6f377fb0"
+  recognizable: true
+  boilingPoint: 900
+  meltingPoint: -200
+  tileReactions:
+    - !type:CleanTileReaction {}
+    - !type:CleanDecalsReaction {}
+    # gas scrubbing should be added to the foam entity when used
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.2
+#      - !type:PopupMessage
+#        type: Local
+#        visualType: Large
+#        messages: [ "es-generic-reagent-effect-blistering-skin" ]
+#        probability: 0.1
+
+- type: entity
+  parent: Foam
+  id: RemoveGasFoam
+  components:
+    - type: ESRemoveGas
