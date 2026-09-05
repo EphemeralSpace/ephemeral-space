@@ -81,15 +81,30 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
             colorOverride: Color.LightGoldenrodYellow,
             important: true);
 
-        Log.Debug("SanitationChip! Now we're spawning the timer!");
+        var airAlarm = Comp<AirAlarmComponent>(target);
 
         var query = EntityQueryEnumerator<DeviceNetworkComponent>();
 
+        var addresses = airAlarm.VentData.Keys;
+
         while (query.MoveNext(out var uid, out var comp))
         {
+            var checkAddress = comp.Address;
+            if (!addresses.Contains(checkAddress))
+                continue;
+
+            if (_weldable.IsWelded(uid))
+            {
+                continue;
+            }
+
+            Log.Debug("SanitationChip! Raising activation event.");
+
             var ev = new ESSanitationChipActivatedEvent();
             RaiseLocalEvent(uid, ref ev);
         }
+
+        Log.Debug("SanitationChip! Now we're spawning the timer!");
 
         _ = _timer.SpawnMethodTimer(chip.Comp.TimeUntilGasSpawn, () => SpawnGas(chip, target));
 
@@ -108,11 +123,6 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
         var airAlarm = Comp<AirAlarmComponent>(target);
 
         var addresses = airAlarm.VentData.Keys;
-
-        foreach (var address in addresses)
-        {
-            Log.Debug("SanitationChip! Address in Air Alarm: " + address);
-        }
 
         var query = EntityQueryEnumerator<DeviceNetworkComponent>();
 

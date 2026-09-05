@@ -70,7 +70,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/general.rsi
   - type: Armor
-     modifiers:
+    modifiers:
       flatReductions:
         Caustic: 2
   - type: BreathMask
