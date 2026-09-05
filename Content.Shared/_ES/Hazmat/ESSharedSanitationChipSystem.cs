@@ -9,7 +9,6 @@ using Content.Shared.Timing;
 using Content.Shared._ES.Announcements;
 using Content.Shared._ES.Hazmat.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Hazmat;
 
