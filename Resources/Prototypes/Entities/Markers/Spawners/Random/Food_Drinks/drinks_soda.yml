@@ -32,11 +32,9 @@
     children:
     - id: DrinkBeerCan
     - id: DrinkCafeLatte
-    - id: DrinkChangelingStingCan
     - id: DrinkColaBottleFull
     - id: DrinkColaCan
     - id: DrinkDrGibbCan
-    - id: DrinkEnergyDrinkCan
     - id: DrinkFourteenLokoCan
     - id: DrinkGrapeCan
     - id: DrinkGreenTea
@@ -44,17 +42,9 @@
     - id: DrinkHotCoffee
     - id: DrinkIcedTeaCan
     - id: DrinkLemonLimeCan
-    - id: DrinkLemonLimeCranberryCan
-    - id: DrinkPwrGameCan
     - id: DrinkRootBeerCan
-    - id: DrinkShamblersJuiceCan
     - id: DrinkSodaWaterCan
     - id: DrinkSolDryCan
-    - id: DrinkSpaceMountainWindBottleFull
-    - id: DrinkSpaceMountainWindCan
-    - id: DrinkSpaceUpBottleFull
-    - id: DrinkSpaceUpCan
-    - id: DrinkStarkistCan
     - id: DrinkTeacup
     - id: DrinkTonicWaterCan
     - id: DrinkWaterBottleFull

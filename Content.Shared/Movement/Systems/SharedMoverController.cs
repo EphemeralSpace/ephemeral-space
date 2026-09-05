@@ -676,7 +676,6 @@ public abstract partial class SharedMoverController : VirtualController
             return false;
 
         sound = haveShoes ? tileDef.FootstepSounds : tileDef.BarestepSounds;
-        sound?.Params = sound.Params.AddVolume(-7f);
         return sound != null;
     }
 

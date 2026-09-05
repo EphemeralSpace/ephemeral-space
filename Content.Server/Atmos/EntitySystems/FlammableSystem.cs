@@ -335,8 +335,6 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 if (ignite)
                     Ignite(uid, uid, flammable, user);
-                else
-                    Extinguish(uid, flammable, user);
                 UpdateAppearance(uid, flammable);
             }
         }

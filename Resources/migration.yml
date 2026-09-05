@@ -626,6 +626,10 @@ ESAirlockMaintLockedWelded: ESAirlockMaintWelded
 AirlockHatchMaintenanceLocked: AirlockHatchMaintenance
 AirlockMaintGlassLocked: AirlockMaintGlass
 
+# 2026-8-31
+DrinkGildlagerBottleFull: null
+DrinkSyndicatebomb: null
+
 # ES END
 
 # 2026-01-07

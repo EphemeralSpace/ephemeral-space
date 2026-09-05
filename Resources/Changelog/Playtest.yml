@@ -134,7 +134,7 @@ Entries:
     - type: Add
       message: >-
         The door jammer is a jury-rigged screwdriver that forcibly bolts any
-        door it's thrown and embedded into, until it's removed. 
+        door it's thrown and embedded into, until it's removed.
     - type: Add
       message: >-
         The net is an item that steals the item out of someone's active hand
@@ -957,7 +957,7 @@ Entries:
     - type: Tweak
       message: >-
         Items that use charges (RCD barricade kit etc) now have itemstatus
-        showing the charge count 
+        showing the charge count
     - type: Remove
       message: Barricades are no longer deconstructible by prying
   id: 107
@@ -1448,7 +1448,7 @@ Entries:
     - type: Add
       message: >-
         Cryojunkies now get an announcement upon death informing them that their
-        revive is coming soon. 
+        revive is coming soon.
     - type: Tweak
       message: Cryohusks no longer have examine text for nonexistent eyes.
   id: 156
@@ -2020,7 +2020,7 @@ Entries:
     - type: Tweak
       message: >-
         Secret Identities are now selected before jobs on round start. This
-        means that 
+        means that
     - type: Tweak
       message: Captain is no longer selected before other jobs.
   id: 217
@@ -2071,3 +2071,27 @@ Entries:
       message: Detective can now examine dead bodies to get clues about their killers.
   id: 224
   time: '2026-08-29T21:58:25.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed fires not spreading properly.
+    - type: Fix
+      message: >-
+        People on the arrivals shuttle or singularity world can no longer hear
+        radio messages from the station.
+    - type: Fix
+      message: Barnacles can now be climbed.
+  id: 225
+  time: '2026-09-01T02:25:08.0000000+00:00'
+- author: Tomeno
+  changes:
+    - type: Fix
+      message: Fixed audio occlusion for airlocks changing mid-opening and closing
+  id: 226
+  time: '2026-09-01T17:51:57.0000000+00:00'
+- author: Artxmisery
+  changes:
+    - type: Fix
+      message: Quartermaster can actually roll a tethergun
+  id: 227
+  time: '2026-09-03T18:15:12.0000000+00:00'

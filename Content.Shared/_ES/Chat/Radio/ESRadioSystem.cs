@@ -77,11 +77,15 @@ public sealed partial class ESRadioSystem : EntitySystem
     private void OnGetRecipients(Entity<ESRadioChatChannelComponent> ent, ref ESGetChatMessageRecipientsEvent args)
     {
         var channel = _chat.GetChannel(ent.Owner);
+        var needsServer = !_exemptQuery.HasComp(args.Source) && !ent.Comp.RequireServer;
 
-        var query = EntityQueryEnumerator<ESRadioReceiverComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var query = EntityQueryEnumerator<ESRadioReceiverComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var xform))
         {
             if (!comp.Channels.Contains(channel))
+                continue;
+
+            if (!needsServer && !HasActiveServer(channel, xform.MapID))
                 continue;
 
             var attemptEv = new RadioReceiveAttemptEvent(channel, args.Source, uid);

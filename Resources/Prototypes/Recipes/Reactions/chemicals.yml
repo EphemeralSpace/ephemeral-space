@@ -257,19 +257,6 @@
     Oil: 3
 
 - type: reaction
-  id: Fluorosurfactant
-  impact: Medium
-  reactants:
-    Carbon:
-      amount: 2
-    Fluorine:
-      amount: 2
-    SulfuricAcid:
-      amount: 1
-  products:
-    Fluorosurfactant: 5
-
-- type: reaction
   id: Desoxyephedrine
   impact: Medium
   minTemp: 370

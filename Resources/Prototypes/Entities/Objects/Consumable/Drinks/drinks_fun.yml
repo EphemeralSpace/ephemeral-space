@@ -108,22 +108,14 @@
     - RootBeer
     - DrGibb
     - GrapeSoda
-    - Starkist
-    - SpaceUp
-    - SpaceMountainWind
     - LemonLime
-    - LemonLimeCranberry
-    - PwrGame
   - quantity: 10
     weight: 3
     reagents:
     - Whiskey
     - Vodka
     - Beer
-    - Ale
     - Rum
-    - Tequila
-    - Absinthe
   - quantity: 10
     weight: 1
     reagents:
