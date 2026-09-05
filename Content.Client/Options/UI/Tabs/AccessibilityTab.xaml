@@ -34,6 +34,8 @@
                                        Title="{Loc 'ui-options-chat-font'}" />
                 <ui:OptionFontSelector Name="ChatWhisperFontSelector" StandardType="ChatWhisper"
                                        Title="{Loc 'ui-options-chat-whisper-font'}" />
+                <ui:OptionFontSelector Name="ChatEmoteFontSelector" StandardType="ChatEmote"
+                                       Title="{Loc 'ui-options-chat-emote-font'}" />
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

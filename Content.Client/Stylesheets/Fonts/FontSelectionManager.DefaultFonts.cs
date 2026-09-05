@@ -30,13 +30,20 @@ internal sealed partial class FontSelectionManager
         .Build();
 
     private static readonly FontFamilyStack DefaultFontChat = FontFamilyStack.New()
-        .AddKind(FontKind.Regular, new ResPath("/Fonts/_ES/Wormtown9k-Regular.ttf"))
+        .AddKind(FontKind.Regular, new ResPath("/Fonts/_ES/Wormtown9k-11px7pt.ttf"))
+        .AddExtra(new ResPath("/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"))
+        .AddExtra(new ResPath("/Fonts/NotoEmoji.ttf"))
+        .Build();
+
+    private static readonly FontFamilyStack EmoteFontChat = FontFamilyStack.New()
+        .AddKind(FontKind.Regular, new ResPath("/Fonts/_ES/Wormtown9k-11px7ptItalic.ttf"))
+        .AddExtra(new ResPath("/Fonts/_ES/Wormtown9k-11px7pt.ttf"))
         .AddExtra(new ResPath("/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"))
         .AddExtra(new ResPath("/Fonts/NotoEmoji.ttf"))
         .Build();
 
     private static readonly FontFamilyStack WhisperFontChat = FontFamilyStack.New()
-        .AddKind(FontKind.Regular, new ResPath("/Fonts/_ES/Wormtown9k-Small.ttf"))
+        .AddKind(FontKind.Regular, new ResPath("/Fonts/_ES/Wormtown9k-8px4pt.ttf"))
         .AddExtra(new ResPath("/Fonts/NotoSans/NotoSansSymbols2-Regular.ttf"))
         .AddExtra(new ResPath("/Fonts/NotoEmoji.ttf"))
         .Build();
