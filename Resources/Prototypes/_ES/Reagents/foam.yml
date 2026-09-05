@@ -22,11 +22,11 @@
         damage:
           types:
             Caustic: 0.2
-      - !type:PopupMessage
-        type: Local
-        visualType: Large
-        messages: [ "es-generic-reagent-effect-blistering-skin" ]
-        probability: 0.1
+#      - !type:PopupMessage
+#        type: Local
+#        visualType: Large
+#        messages: [ "es-generic-reagent-effect-blistering-skin" ]
+#        probability: 0.1
 
 - type: entity
   parent: Foam
