@@ -1,0 +1,25 @@
+- type: entity
+  parent: BaseItem
+  id: SanitationChip
+  name: sanitation chip
+  description: A sanitation chip, used to help clean up a screwed up area.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Devices/sanichip.rsi
+    state: icon
+  - type: Item
+    storedRotation: 90
+  - type: LimitedCharges
+    maxCharges: 1
+    deleteOnEmpty: true
+  - type: ESSanitationChip
+    delayTime: 2
+    timeUntilGasSpawn: 15
+    duration: 30
+    spreadAmount: 200
+    smokePrototype: RemoveGasFoam
+    solution:
+      reagents:
+      - ReagentId: SanitizationFoam
+        Quantity: 1500
+

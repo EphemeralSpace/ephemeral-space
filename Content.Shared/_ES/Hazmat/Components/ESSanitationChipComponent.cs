@@ -7,8 +7,7 @@ using Content.Shared.Chemistry.Components;
 
 namespace Content.Shared._ES.Hazmat.Components;
 
-[RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(ESSharedSanitationChipSystem))]
 public sealed partial class ESSanitationChipComponent : Component
 {
@@ -16,11 +15,14 @@ public sealed partial class ESSanitationChipComponent : Component
     [DataField]
     public float MovementThreshold = 0.1f;
 
-    [DataField, AutoNetworkedField]
-    public TimeSpan DelayTime = TimeSpan.FromSeconds(15);
+    [DataField(required: true), AutoNetworkedField]
+    public TimeSpan DelayTime;
 
-    [DataField, AutoNetworkedField]
-    public TimeSpan Duration = TimeSpan.FromSeconds(30);
+    [DataField(required: true), AutoNetworkedField]
+    public TimeSpan TimeUntilGasSpawn;
+
+    [DataField(required: true), AutoNetworkedField]
+    public TimeSpan Duration;
 
     [DataField(required: true), AutoNetworkedField]
     public int SpreadAmount;

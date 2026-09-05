@@ -7,7 +7,6 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
 using Content.Shared.DeviceNetwork.Components;
-using Robust.Shared.Prototypes;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry.Components;
@@ -16,7 +15,16 @@ using Content.Shared.Maps;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Server.GameObjects;
+using Content.Shared.Administration.Logs;
+using Content.Server.Atmos.Monitor.Components;
+using Content.Shared._ES.Core.Timer;
 using Robust.Shared.Map;
+using Content.Server._ES.Announcements;
+using System.Linq;
+using Content.Shared.Tools.Systems;
+using Robust.Shared.Audio;
+using Content.Server.Pinpointer;
+using Robust.Shared.Utility;
 
 using Content.Shared._ES.Hazmat.Components;
 using Content.Shared._ES.Hazmat;
@@ -31,6 +39,10 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private SpreaderSystem _spreader = default!;
+    [Dependency] private ESAnnouncementSystem _chat = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
+    [Dependency] private WeldableSystem _weldable = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
 
     public override void Initialize()
     {
@@ -40,6 +52,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
     private void OnSanitationChipDoAfter(Entity<ESSanitationChipComponent> chip, ref ESSanitationChipDoAfterEvent args)
     {
+        Log.Debug("SanitationChip! In Do After!");
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
@@ -48,21 +61,56 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
     private bool TryUseSanitationChip(Entity<ESSanitationChipComponent> chip, EntityUid user, EntityUid target)
     {
-        if (!HasComp<DeviceNetworkComponent>(target))
+        Log.Debug("SanitationChip! Try Using!");
+        if (!HasComp<AirAlarmComponent>(target))
+        {
+            Log.Debug("SanitationChip! Did not work!");
             return false;
+        }
 
-        var deviceNetworkComp = Comp<DeviceNetworkComponent>(target);
+        var seconds = chip.Comp.TimeUntilGasSpawn.ToString();
 
-        var address = deviceNetworkComp.Address;
+        var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(target));
+
+        _chat.DispatchRoundAnnouncement(Loc.GetString("es-sanitation-chip-announcement", ("seconds", seconds), ("area", location)),
+            Loc.GetString("es-station-event-announcer"),
+            announcementSound: new SoundPathSpecifier("/Audio/_ES/Announcements/attention_medium.ogg"),
+            colorOverride: Color.LightGoldenrodYellow,
+            important: true);
+
+        Log.Debug("SanitationChip! Now we're spawning the timer!");
+
+        _ = _timer.SpawnMethodTimer(chip.Comp.TimeUntilGasSpawn, () => SpawnGas(chip, target));
+
+        return true;
+    }
+
+    private void SpawnGas(Entity<ESSanitationChipComponent> chip, EntityUid target)
+    {
+        Log.Debug("SanitationChip! We are in the spawn part now!");
+        var airAlarm = Comp<AirAlarmComponent>(target);
+
+        var addresses = airAlarm.VentData.Keys;
+
+        foreach (var address in addresses)
+        {
+            Log.Debug("SanitationChip! Address in Air Alarm: " + address);
+        }
 
         var query = EntityQueryEnumerator<DeviceNetworkComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
         {
             var checkAddress = comp.Address;
-            if (!checkAddress.Equals(address))
+            if (!addresses.Contains(checkAddress))
                 continue;
 
+            Log.Debug("Sanitation Chip! Now we have the address to use.");
+            if (_weldable.IsWelded(uid))
+            {
+                Log.Debug("Sanitation Chip! This vent is welded shut.");
+                continue;
+            }
             var xform = CompOrNull<TransformComponent>(uid);
             if (xform == null)
                 continue;
@@ -88,9 +136,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
                 continue;
             }
 
-            _smoke.StartSmoke(smoke, chip.Comp.Solution, (float)chip.Comp.Duration.TotalSeconds, chip.Comp.SpreadAmount, smokeComp);
+            _smoke.StartSmoke(smoke, chip.Comp.Solution.Clone(), (float)chip.Comp.Duration.TotalSeconds, chip.Comp.SpreadAmount, smokeComp);
         }
-
-        return true;
     }
 }

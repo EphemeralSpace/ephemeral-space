@@ -7,6 +7,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
 using Content.Shared.DeviceNetwork.Components;
+using Content.Shared._ES.Announcements;
 using Robust.Shared.Prototypes;
 
 using Content.Shared._ES.Hazmat.Components;

@@ -123,7 +123,6 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
 
         foreach (var reagentQuantity in solution.Contents.ToArray())
         {
-            Log.Debug("RemoveGas! Going through reagents.");
             var reactVolume = reagentQuantity.Quantity;
             var reagent = _prototype.Index<ReagentPrototype>(reagentQuantity.Reagent.Prototype);
             var puddleQuery = GetEntityQuery<PuddleComponent>();
@@ -132,7 +131,6 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
 
             foreach (var entity in entities)
             {
-                Log.Debug("RemoveGas! Cleaning up puddles.");
                 if (!puddleQuery.TryGetComponent(entity, out var puddle) ||
                     !_solutionContainerSystem.TryGetSolution(entity, puddle.SolutionName, out var puddleSolution, out _))
                 {
@@ -148,14 +146,12 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
 
                 if (purgeable.Volume <= FixedPoint2.Zero)
                 {
-                    Log.Debug("RemoveGas! Low purable volume.");
                     break;
                 }
             }
 
             if (canDoDecals)
             {
-                Log.Debug("RemoveGas! Cleaning up decals.");
                 var decals = _decalSystem.GetDecalsIntersecting(tile.GridUid,
                     lookupSystem.GetLocalBounds(tile, mapGrid.TileSize)
                         .Enlarged(0.5f)
@@ -178,9 +174,7 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
         {
             var amountOfGas = tile.GetMoles(gas);
             var amountToReduceBy = timeDelta * transferRate;
-            Log.Debug("RemoveGas! Removing gas at rate: " + amountToReduceBy);
             var adjustedAmountOfGas = MathF.Min(0f, amountOfGas - amountToReduceBy);
-            Log.Debug("RemoveGas! Amount of gas left: " + adjustedAmountOfGas + ", original amount: " + amountOfGas);
             tile.AdjustMoles(gas, adjustedAmountOfGas);
         }
     }
