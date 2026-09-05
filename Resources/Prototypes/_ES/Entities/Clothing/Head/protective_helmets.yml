@@ -69,6 +69,10 @@
     sprite: Clothing/Head/Hoods/Bio/general.rsi
   - type: Clothing
     sprite: Clothing/Head/Hoods/Bio/general.rsi
+  - type: Armor
+     modifiers:
+      flatReductions:
+        Caustic: 2
   - type: BreathMask
   - type: IngestionBlocker
   - type: GroupExamine
