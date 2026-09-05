@@ -176,20 +176,6 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobSmile
-  name: Smile Spawner
-  suffix: Science Pet
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-    - state: ai
-  - type: ConditionalSpawner
-    prototypes:
-    - MobSlimesPet
-
-- type: entity
-  parent: MarkerBase
   id: SpawnMobWalter
   name: Walter Spawner
   suffix: Chemistry Pet

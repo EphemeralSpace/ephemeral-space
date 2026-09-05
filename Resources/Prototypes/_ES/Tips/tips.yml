@@ -280,7 +280,7 @@
 
 - type: esTip
   id: MasqueradeDeduction
-  text: If you're attentive to the secret identity composition, it's often possible to guess what the masquerade is. For example, a large amount of VIPs probably signifies that the masquerade is Red Carpet.
+  text: If you're attentive to the secret identity composition, it's often possible to guess what the masquerade is. For example, a large amount of cannibals probably signifies that the masquerade is Buffet.
 
 - type: esTip
   id: WatchOutForSympathizers
@@ -296,8 +296,16 @@
 
 - type: esTip
   id: LieALot
-  text: Lying is extremely powerful. If you've successfully built your credibility up earlier in the round, people tend to trust whatever tales you spin. Even when you might not hae much to immediately gain, lying can help protect you from unseen consequences.
+  text: Lying is extremely powerful. If you've successfully built your credibility up earlier in the round, people tend to trust whatever tales you spin. Even when you might not have much to immediately gain, lying can help protect you from unseen consequences.
 
 - type: esTip
   id: OffmedUseItemsWhileDowned
   text: You can generally still use items while incapacitated, assuming you aren't too deep into crit. Set off a smoke grenade and inject yourself with painkillers to try and make a hasty escape.
+
+- type: esTip
+  id: AmmoLimitedResource
+  text: Ammo is an extremely valuable & limited resource; you cannot reliably get more once the existing supplies run out. Avoid using it on people who are downed, and consider using a melee weapon instead.
+
+- type: esTip
+  id: BurnableBarricades
+  text: Clicking a barricade with a flammable item lets you burn it down, breaking the structure quickly. This even works on things that can't damage them through normal means, such as matches.

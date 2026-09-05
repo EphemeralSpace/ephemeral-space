@@ -75,27 +75,27 @@
           radius: 0.45
         density: 80
         mask:
-        - Impassable
-        - MidImpassable
+        - MachineMask
         layer:
-        - Opaque
-        - MidImpassable
-        - BulletImpassable
+        - HalfWallLayer
+        - MobLayer
   - type: ESBreakableWall
     baseLayer:
-    - Impassable
-    - MidImpassable
+    - HalfWallLayer
+    - MobLayer
+  - type: RequireProjectileTarget
+  - type: Climbable
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ESBreakableVisuals.Broken:
         nest:
-          True:
-            sprite: _ES/Structures/Specific/barnacle.rsi
-            state: barnacledead
-          False:
-            sprite: _ES/Structures/Specific/barnacle.rsi
-            state: barnacle
+          False: { state: barnacle }
+          True: { state: barnacledead }
+      enum.ESBarnacleVisuals.Popped:
+        nest:
+          False: { sprite: _ES/Structures/Specific/barnacle.rsi }
+          True: { sprite: _ES/Structures/Specific/barnacle-popped.rsi }
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: ESWeakBiological

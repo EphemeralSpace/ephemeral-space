@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client._ES.Chat;
 using Content.Client.Examine;
+using Content.Client.Stylesheets.Fonts;
 using Content.Shared._ES.Auditions;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -32,6 +33,7 @@ public sealed partial class NamePeekOverlay : Overlay
     [Dependency] private IInputManager _inputManager = default!;
     [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     private readonly ExamineSystem _examineSystem;
     private readonly EntityLookupSystem _lookup;
@@ -45,7 +47,7 @@ public sealed partial class NamePeekOverlay : Overlay
     private EntityQuery<SpriteComponent> _spriteQuery;
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;
-    private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearanceQuery;
+    private EntityQuery<HumanoidProfileComponent> _humanoidProfileQuery;
 
     private readonly HashSet<Entity<MobStateComponent>> _nearbyEntities = new();
 
@@ -66,7 +68,7 @@ public sealed partial class NamePeekOverlay : Overlay
         EntityQuery<SpriteComponent> spriteQuery,
         EntityQuery<TransformComponent> transformQuery,
         EntityQuery<MobStateComponent> mobStateQuery,
-        EntityQuery<HumanoidAppearanceComponent> humanoidAppearanceQuery)
+        EntityQuery<HumanoidProfileComponent> humanoidProfileQuery)
     {
         _examineSystem = examine;
         _lookup = lookup;
@@ -79,14 +81,14 @@ public sealed partial class NamePeekOverlay : Overlay
         _spriteQuery = spriteQuery;
         _transformQuery = transformQuery;
         _mobStateQuery = mobStateQuery;
-        _humanoidAppearanceQuery = humanoidAppearanceQuery;
+        _humanoidProfileQuery = humanoidProfileQuery;
 
         IoCManager.InjectDependencies(this);
 
         _shader = _prototypeManager.Index(UnshadedShader).Instance();
         var cache = IoCManager.Resolve<IResourceCache>();
-        _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
-        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Small.ttf"), 12);
+        _font = _fontSelection.GetDefaultFont(StandardFontType.Chat, 12);
+        _smallFont = _fontSelection.GetDefaultFont(StandardFontType.ChatWhisper, 12);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -187,7 +189,7 @@ public sealed partial class NamePeekOverlay : Overlay
 
             handle.DrawString(_font, drawPosition, text, scale, color, outline);
 
-            if (_humanoidAppearanceQuery.TryGetComponent(ent, out var humanoid))
+            if (_humanoidProfileQuery.TryGetComponent(ent, out var humanoid))
             {
                 var pronouns = humanoid.Gender.GetPronounString(_loc);
 

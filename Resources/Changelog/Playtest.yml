@@ -2071,3 +2071,54 @@ Entries:
       message: Detective can now examine dead bodies to get clues about their killers.
   id: 224
   time: '2026-08-29T21:58:25.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: Fixed fires not spreading properly.
+    - type: Fix
+      message: >-
+        People on the arrivals shuttle or singularity world can no longer hear
+        radio messages from the station.
+    - type: Fix
+      message: Barnacles can now be climbed.
+  id: 225
+  time: '2026-09-01T02:25:08.0000000+00:00'
+- author: Tomeno
+  changes:
+    - type: Fix
+      message: Fixed audio occlusion for airlocks changing mid-opening and closing
+  id: 226
+  time: '2026-09-01T17:51:57.0000000+00:00'
+- author: Artxmisery
+  changes:
+    - type: Fix
+      message: Quartermaster can actually roll a tethergun
+  id: 227
+  time: '2026-09-03T18:15:12.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Barnacle now have a different appearance after popping and shooting out
+        burrowers.
+    - type: Fix
+      message: Fix barnacles and hemophages converting dead players.
+  id: 228
+  time: '2026-09-05T21:47:26.0000000+00:00'
+- author: sowelipililimute
+  changes:
+    - type: Tweak
+      message: >-
+        More fonts, more fun! Emotes are now italic, live chat preview is
+        slightly better, and radio messages now have an icon on their speech
+        bubbles.
+  id: 229
+  time: '2026-09-05T22:00:06.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Improved the guidebook in many areas (traitors and parasites now have
+        much more informative pages.)
+  id: 230
+  time: '2026-09-05T22:11:59.0000000+00:00'

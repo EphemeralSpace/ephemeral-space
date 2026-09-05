@@ -1,174 +1,10 @@
-- type: entity
-  parent: BaseMobSpeciesOrganic
-  id: ESBaseMobMonkey
-  name: monkey
-  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
-  abstract: true
-  components:
-# Basic Stuff
-  - type: Hunger
-  - type: Icon
-    sprite: _ES/Mobs/Species/Monkey/parts.rsi
-    state: full
-  - type: Thirst
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 3
-# Monkey Quirks
-  - type: Deathgasp
-    prototype: MonkeyDeathgasp
-  - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
-    normalState: Monkey_burning
-  - type: DamageVisuals # no sprites for this atm
-    disabled: true
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    angle: 30
-    animation: WeaponArcBite
-    damage:
-      types:
-        Blunt: 3
-        Piercing: 3
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 80
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-# Body / sprite comp
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
-    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
-    - map: [ "enum.HumanoidVisualLayers.LHand" ]
-    - map: [ "enum.HumanoidVisualLayers.RHand" ]
-    - map: [ "jumpsuit" ]
-    - map: [ "shoes" ]
-    - map: [ "gloves" ]
-    - map: [ "ears" ]
-    - map: [ "eyes" ]
-    - map: [ "belt" ]
-    - map: [ "id" ]
-    - map: [ "outerClothing" ]
-    - map: [ "back" ]
-    - map: [ "neck" ]
-    - map: [ "suitstorage" ] # This is not in the default order
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_monkey" # Not default
-      visible: false
-  - type: HumanoidAppearance
-    species: ESMonkey
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: hair
-# Displacements
-  - type: Inventory
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: gloves
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: outer
-      belt:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: belt
-      neck:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: neck
-      back:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-            state: shoes
-  - type: Hands
-    leftHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-          state: inhand-left
-    rightHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _ES/Mobs/Species/Monkey/displacement.rsi
-          state: inhand-right
+- type: markingsGroup
+  parent: Undergarments
+  id: ESMonkey
 
 - type: entity
-  save: false
-  parent: [ ESBaseMobMonkey, BaseMobMonkeyDisposalsCrawler]
-  id: ESMobMonkey
-  suffix: Species
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: ESMobMonkeyDummy
+  parent: BaseSpeciesAppearance
+  id: ESAppearanceMonkey
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -217,7 +53,7 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_monkey" # Not default
       visible: false
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: ESMonkey
   - type: Inventory
     displacements:
@@ -277,3 +113,141 @@
         32:
           sprite: _ES/Mobs/Species/Monkey/displacement.rsi
           state: inhand-right
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: ESOrganMonkeyTorso
+        - id: ESOrganMonkeyTail
+        - id: ESOrganMonkeyHead
+        - id: ESOrganMonkeyArmLeft
+        - id: ESOrganMonkeyArmRight
+        - id: ESOrganMonkeyHandRight
+        - id: ESOrganMonkeyHandLeft
+        - id: ESOrganMonkeyLegLeft
+        - id: ESOrganMonkeyLegRight
+        - id: ESOrganMonkeyEyes
+        - id: OrganHumanBrain
+        - id: OrganHumanTongue
+        - id: OrganHumanAppendix
+        - id: OrganHumanEars
+        - id: OrganHumanLungs
+        - id: OrganHumanHeart
+        - id: OrganHumanStomach
+        - id: OrganHumanLiver
+        - id: OrganHumanKidneys
+
+- type: entity
+  parent:
+  - BaseSpeciesMobOrganic
+  - BaseMobMonkeyDisposalsCrawler
+  - ESAppearanceMonkey
+  id: ESMobMonkey
+  name: monkey
+  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
+  components:
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 3
+# Monkey Quirks
+  - type: Deathgasp
+    prototype: MonkeyDeathgasp
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Monkey_burning
+  - type: DamageVisuals # no sprites for this atm
+    disabled: true
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+
+- type: entity
+  parent: OrganBase
+  id: ESOrganMonkey
+  abstract: true
+  suffix: monkey
+
+- type: entity
+  parent: ESOrganMonkey
+  id: ESOrganMonkeyInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  parent: ESOrganMonkey
+  id: ESOrganMonkeyExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite:  _ES/Mobs/Species/Monkey/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite:  _ES/Mobs/Species/Monkey/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: ESMonkey
+
+- type: entity
+  parent: [ OrganBaseHeadSexless, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyHead
+
+- type: entity
+  parent: [ OrganBaseEyes, ESOrganMonkeyInternal, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _ES/Mobs/Species/Monkey/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexless, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyTorso
+
+- type: entity
+  parent: [ OrganBaseLegLeft, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyLegLeft
+
+- type: entity
+  parent: [ OrganBaseArmLeft, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyArmLeft
+
+- type: entity
+  parent: [ OrganBaseHandLeft, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyHandLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyLegRight
+
+- type: entity
+  parent: [ OrganBaseArmRight, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyArmRight
+
+- type: entity
+  parent: [ OrganBaseHandRight, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyHandRight
+
+- type: entity
+  parent: [ OrganBaseTail, ESOrganMonkeyExternal ]
+  id: ESOrganMonkeyTail

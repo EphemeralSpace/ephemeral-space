@@ -1,7 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Shared._Offbrand.EntityEffects;
-using Content.Shared.Body.Organ;
-using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Body;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityConditions;
@@ -22,8 +21,6 @@ public sealed partial class MetaboliteThresholdEntityConditionSystem : EntityCon
         {
             if (ent.Comp2.Body is { } body && _solutionContainer.TryGetSolution(body, ent.Comp1.SolutionName, out _, out var solution))
                 return solution;
-
-            return null;
         }
         else
         {

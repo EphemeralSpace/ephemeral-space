@@ -11,9 +11,11 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Preferences;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
@@ -33,12 +35,13 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private RejuvenateSystem _rejuvenate = default!;
     [Dependency] private ESSharedStagehandNotificationsSystem _stagehandNotifications = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
 
@@ -68,10 +71,19 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
         _metaData.SetEntityName(target, Loc.GetString("es-cryohusk-name"), raiseEvents: false);
 
-        _humanoidAppearance.SetSpecies(target, target.Comp.CryohuskSpecies);
-        _humanoidAppearance.SetSkinColor(target, Color.White);
-        _humanoidAppearance.SetSex(target, Sex.Unsexed);
-        _humanoidAppearance.SetGender(target.Owner, Gender.Neuter);
+        var evt = new ESGotCryohuskedEvent();
+        RaiseLocalEvent(target, ref evt);
+
+        var profile = new HumanoidCharacterProfile()
+            .WithGender(Gender.Neuter)
+            .WithSex(Sex.Unsexed)
+            .WithSpecies(target.Comp.CryohuskSpecies)
+            .WithCharacterAppearance(
+                new HumanoidCharacterAppearance()
+                    .WithSkinColor(Color.White));
+
+        _humanoidProfile.ApplyProfileTo(target.Owner, profile);
+        _visualBody.ApplyProfileTo(target.Owner, profile);
 
         foreach (var uid in GetRecursiveContainedEntities(target.Owner))
         {
@@ -115,6 +127,8 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
 
     public override void Update(float frameTime)
     {
+        base.Update(frameTime);
+
         foreach (var (uid, comp, xform) in EntityQueryEnumerator<ESCryohuskableComponent, TransformComponent>())
         {
             if (_timing.CurTime < comp.NextUpdate)

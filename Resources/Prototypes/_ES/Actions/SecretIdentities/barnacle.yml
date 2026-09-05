@@ -6,11 +6,11 @@
   components:
   - type: Action
     icon:
-      sprite: _ES/Structures/Specific/barnacle.rsi
-      state: barnacledead
-    iconOn:
-      sprite: _ES/Structures/Specific/barnacle.rsi
+      sprite: _ES/Actions/SecretIdentity/parasite.rsi
       state: barnacle
+    iconOn:
+      sprite: _ES/Actions/SecretIdentity/parasite.rsi
+      state: barnacle-on
     useDelay: 1m
   - type: TargetAction
   - type: WorldTargetAction

@@ -3,6 +3,7 @@
   hidden: false
   name: References
   priority: 30
+  root: true
   text: "/ServerInfo/_ES/Guidebook/References.xml"
   children:
   - Rules

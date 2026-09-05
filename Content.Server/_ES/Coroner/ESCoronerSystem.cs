@@ -3,8 +3,10 @@ using Content.Server._ES.SecretIdentity;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Shared._ES.Auditions;
+using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Coroner;
 using Content.Shared._ES.SecretIdentity;
+using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.ColorNaming;
@@ -24,19 +26,31 @@ public sealed partial class ESCoronerSystem : ESSharedCoronerSystem
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     protected override FormattedMessage GetReport(EntityUid target)
     {
         var msg = new FormattedMessage();
-        if (!TryComp<HumanoidAppearanceComponent>(target, out var humanoidAppearance))
+        if (!TryComp<HumanoidProfileComponent>(target, out var humanoidProfile))
             return msg;
 
         var name = Name(target);
-        var age = humanoidAppearance.Age;
-        var sex = _clues.SexToString(humanoidAppearance.Sex);
-        var eye = ColorNaming.Describe(humanoidAppearance.EyeColor, Loc);
-        var hair = humanoidAppearance.MarkingSet.TryGetCategory(MarkingCategories.Hair, out var hairs)
-                ? _clues.GetHairColorString(hairs.First().MarkingColors.First())
+        var age = humanoidProfile.Age;
+        var sex = _clues.SexToString(humanoidProfile.Sex);
+        if (!_visualBody.TryGatherMarkingsData(target,
+                new HashSet<HumanoidVisualLayers>() { HumanoidVisualLayers.Head, HumanoidVisualLayers.Hair },
+                out var profiles,
+                out _,
+                out var markings))
+        {
+            return msg;
+        }
+
+        var headMarkings = markings.First().Value;
+        var hairColor = headMarkings.GetValueOrDefault(HumanoidVisualLayers.Hair)?.FirstOrDefault();
+        var eye = ColorNaming.Describe(profiles.First().Value.EyeColor, Loc);
+        var hair = hairColor is not null
+                ? _clues.GetHairColorString(hairColor.MarkingColors.First())
                 : Loc.GetString("es-clue-hair-none");
 
         var timeOfDeath = _timing.CurTime;
