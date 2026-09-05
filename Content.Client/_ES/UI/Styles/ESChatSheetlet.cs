@@ -13,6 +13,7 @@ public sealed class ESChatSheetlet : Sheetlet<PalettedStylesheet>
     {
         var small = sheet.Fonts.GetFont(StandardFontType.ChatWhisper, 12);
         var medium = sheet.Fonts.GetFont(StandardFontType.Chat, 12);
+        var italic = sheet.Fonts.GetFont(StandardFontType.ChatEmote, 12);
 
         return
         [
@@ -20,6 +21,11 @@ public sealed class ESChatSheetlet : Sheetlet<PalettedStylesheet>
                 .Class(StyleClass.FontChat)
                 .Font(medium)
                 .Prop(Label.StylePropertyFontOutlineThickness, 2f),
+
+            E<PanelContainer>()
+                .Class("speechBox", "emoteBox")
+                .ParentOf(E<RichTextLabel>().Class("bubbleContent"))
+                .Font(italic),
 
             E<PanelContainer>()
                 .Class("speechBox", "whisperBox")

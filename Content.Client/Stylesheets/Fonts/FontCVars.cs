@@ -77,11 +77,23 @@ public static class FontCVars
     /// The user-selected font family name for <see cref="StandardFontType.ChatWhisper"/>.
     /// </summary>
     public static readonly CVarDef<string> ChatWhisperFamilyName =
-        CVarDef.Create<string>("font.chat_family_name", "", CVar.ARCHIVE | CVar.CLIENTONLY);
+        CVarDef.Create<string>("font.chat_whisper_family_name", "", CVar.ARCHIVE | CVar.CLIENTONLY);
 
     /// <summary>
     /// The user-selected font scale for <see cref="StandardFontType.ChatWhisper"/>.
     /// </summary>
     public static readonly CVarDef<float> ChatWhisperScale =
-        CVarDef.Create<float>("font.chat_scale", 1, CVar.ARCHIVE | CVar.CLIENTONLY);
+        CVarDef.Create<float>("font.chat_whisper_scale", 1, CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// The user-selected font family name for <see cref="StandardFontType.ChatEmote"/>.
+    /// </summary>
+    public static readonly CVarDef<string> ChatEmoteFamilyName =
+        CVarDef.Create<string>("font.chat_emote_family_name", "", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    /// The user-selected font scale for <see cref="StandardFontType.ChatEmote"/>.
+    /// </summary>
+    public static readonly CVarDef<float> ChatEmoteScale =
+        CVarDef.Create<float>("font.chat_emote_scale", 1, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

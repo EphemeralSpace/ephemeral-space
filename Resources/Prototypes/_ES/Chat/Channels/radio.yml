@@ -12,7 +12,7 @@
 - type: esChatChannel
   id: BaseRadioWhisper
   parent: BaseWhisper
-  speechBubbleType: say
+  speechBubbleType: radio
 
 - type: entity
   id: ESBaseRadioChatProcessor

@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client._ES.Chat;
 using Content.Client.Examine;
+using Content.Client.Stylesheets.Fonts;
 using Content.Shared._ES.Auditions;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -32,6 +33,7 @@ public sealed partial class NamePeekOverlay : Overlay
     [Dependency] private IInputManager _inputManager = default!;
     [Dependency] private ILocalizationManager _loc = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     private readonly ExamineSystem _examineSystem;
     private readonly EntityLookupSystem _lookup;
@@ -85,8 +87,8 @@ public sealed partial class NamePeekOverlay : Overlay
 
         _shader = _prototypeManager.Index(UnshadedShader).Instance();
         var cache = IoCManager.Resolve<IResourceCache>();
-        _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
-        _smallFont = new VectorFont(cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Small.ttf"), 12);
+        _font = _fontSelection.GetDefaultFont(StandardFontType.Chat, 12);
+        _smallFont = _fontSelection.GetDefaultFont(StandardFontType.ChatWhisper, 12);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
