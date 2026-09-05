@@ -4,6 +4,7 @@ using Content.Shared._ES.Hazmat;
 
 namespace Content.Shared._ES.Hazmat.Components;
 
+// Allows entity to remove the gasses specified
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState, AutoGenerateComponentPause]
 [Access(typeof(ESSharedRemoveGasSystem))]

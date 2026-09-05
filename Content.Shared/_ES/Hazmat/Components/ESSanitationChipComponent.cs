@@ -11,7 +11,6 @@ namespace Content.Shared._ES.Hazmat.Components;
 [Access(typeof(ESSharedSanitationChipSystem))]
 public sealed partial class ESSanitationChipComponent : Component
 {
-    // todo datafield for the foam? it might just be the prototype id?
     [DataField]
     public float MovementThreshold = 0.1f;
 
@@ -34,6 +33,7 @@ public sealed partial class ESSanitationChipComponent : Component
     public Solution Solution = new();
 }
 
+// used to mark a vent, so that the gas vent can properly update it's sprite
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ESVentAffectedBySanitationChipComponent : Component { }
 

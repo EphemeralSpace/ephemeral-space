@@ -1,5 +1,6 @@
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
-using Robust.Shared.Prototypes;
 using Content.Shared.Timing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -7,26 +8,27 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Server.Fluids.EntitySystems;
-using Content.Server.Spreader;
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Coordinates.Helpers;
+using Content.Shared.Charges.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Tools.Systems;
+using Content.Shared._ES.Core.Timer;
 using Content.Shared.Maps;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Effects;
-using Robust.Server.GameObjects;
 using Content.Shared.Administration.Logs;
+using Content.Server.Atmos.Piping.Unary.Components;
+using Content.Server.Fluids.EntitySystems;
+using Content.Server.Spreader;
+using Content.Server.Power.EntitySystems;
 using Content.Server.Atmos.Monitor.Components;
-using Content.Shared._ES.Core.Timer;
-using Robust.Shared.Map;
 using Content.Server._ES.Announcements;
-using System.Linq;
-using Content.Shared.Tools.Systems;
-using Robust.Shared.Audio;
 using Content.Server.Pinpointer;
-using Content.Shared.Charges.Systems;
-using Content.Shared.Charges.Components;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
 
 using Content.Shared._ES.Hazmat.Components;
 using Content.Shared._ES.Hazmat;
@@ -46,6 +48,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
     [Dependency] private WeldableSystem _weldable = default!;
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiverSystem = default!;
 
     public override void Initialize()
     {
@@ -55,7 +58,6 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
     private void OnSanitationChipDoAfter(Entity<ESSanitationChipComponent> chip, ref ESSanitationChipDoAfterEvent args)
     {
-        Log.Debug("SanitationChip! In Do After!");
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
@@ -64,12 +66,8 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
     private bool TryUseSanitationChip(Entity<ESSanitationChipComponent> chip, EntityUid user, EntityUid target)
     {
-        Log.Debug("SanitationChip! Try Using!");
         if (!HasComp<AirAlarmComponent>(target))
-        {
-            Log.Debug("SanitationChip! Did not work!");
             return false;
-        }
 
         var seconds = chip.Comp.TimeUntilGasSpawn.TotalSeconds.ToString();
 
@@ -87,6 +85,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
         var addresses = airAlarm.VentData.Keys;
 
+        // change the sprite using the event before we spawn the gas
         while (query.MoveNext(out var uid, out var comp))
         {
             var checkAddress = comp.Address;
@@ -97,14 +96,14 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
             {
                 continue;
             }
-
-            Log.Debug("SanitationChip! Raising activation event.");
+            else if (!_powerReceiverSystem.IsPowered(uid) || !Comp<GasVentPumpComponent>(uid).Enabled)
+            {
+                continue;
+            }
 
             var ev = new ESSanitationChipActivatedEvent();
             RaiseLocalEvent(uid, ref ev);
         }
-
-        Log.Debug("SanitationChip! Now we're spawning the timer!");
 
         _ = _timer.SpawnMethodTimer(chip.Comp.TimeUntilGasSpawn, () => SpawnGas(chip, target));
 
@@ -119,7 +118,6 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
 
     private void SpawnGas(Entity<ESSanitationChipComponent> chip, EntityUid target)
     {
-        Log.Debug("SanitationChip! We are in the spawn part now!");
         var airAlarm = Comp<AirAlarmComponent>(target);
 
         var addresses = airAlarm.VentData.Keys;
@@ -132,10 +130,12 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
             if (!addresses.Contains(checkAddress))
                 continue;
 
-            Log.Debug("Sanitation Chip! Now we have the address to use.");
             if (_weldable.IsWelded(uid))
             {
-                Log.Debug("Sanitation Chip! This vent is welded shut.");
+                continue;
+            }
+            else if (!_powerReceiverSystem.IsPowered(uid) || !Comp<GasVentPumpComponent>(uid).Enabled)
+            {
                 continue;
             }
             var xform = CompOrNull<TransformComponent>(uid);
@@ -166,6 +166,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
             _smoke.StartSmoke(smoke, chip.Comp.Solution.Clone(), (float)chip.Comp.Duration.TotalSeconds, chip.Comp.SpreadAmount, smokeComp);
             _timer.SpawnMethodTimer(chip.Comp.Duration,
             () => {
+                // this will remove the component
                 var finishedEv = new ESSanitationChipFinishedEvent();
                 RaiseLocalEvent(uid, ref finishedEv);
             });

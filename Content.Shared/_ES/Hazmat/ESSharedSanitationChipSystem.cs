@@ -1,16 +1,15 @@
 using Content.Shared.DoAfter;
-using Robust.Shared.Prototypes;
-using Content.Shared.Timing;
+using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Tag;
 using Content.Shared.Popups;
-using Content.Shared.DeviceNetwork.Components;
+using Content.Shared.Tag;
+using Content.Shared.Timing;
 using Content.Shared._ES.Announcements;
-using Robust.Shared.Prototypes;
-
 using Content.Shared._ES.Hazmat.Components;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Hazmat;
 
@@ -24,6 +23,7 @@ public abstract partial class ESSharedSanitationChipSystem : EntitySystem
 
     private static readonly ProtoId<TagPrototype> AirAlarmTag = "AirAlarm";
 
+    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
@@ -58,11 +58,6 @@ public abstract partial class ESSharedSanitationChipSystem : EntitySystem
 
         if (!_doAfter.TryStartDoAfter(args))
             return false;
-
-        var userName = Identity.Entity(user, EntityManager);
-        // todo fix this
-        var popup = "todo POPUP STRING: " + userName;
-        _popup.PopupEntity(popup, chip, chip);
 
         return true;
     }

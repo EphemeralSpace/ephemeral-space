@@ -49,6 +49,8 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private DecalSystem _decalSystem = default!;
 
+    private string _water = "Water";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -71,8 +73,8 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
             var transform = CompOrNull<TransformComponent>(uid);
             if (transform == null)
             {
-                Log.Debug("RemoveGas! Grid or transform component not found.");
-                continue; // unsure how to handle error
+                Log.Error("RemoveGas! Grid or transform component not found.");
+                continue;
             }
             var environment = _atmosphereSystem.GetTileMixture((uid, transform), true);
             if (environment != null)
@@ -86,35 +88,22 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
 
     public void OnRemoveGasDoAfter(Entity<ESRemoveGasComponent> ent, ref TimedDespawnEvent args)
     {
-        Log.Debug("RemoveGas! Triggering removal.");
         var uid = ent.Owner;
         if (!TryComp<TransformComponent>(uid, out var transform))
-        {
-            Log.Debug("RemoveGas! Transform not found.");
             return;
-        }
 
         if (!TryComp<MapGridComponent>(transform.GridUid, out var mapGrid))
-        {
-            Log.Debug("RemoveGas! Map Grid not found");
             return;
-        }
 
         if (!TryComp<SmokeComponent>(uid, out var smokeComponent))
             return;
 
         if (!_solutionContainerSystem.ResolveSolution(uid, SmokeComponent.SolutionName, ref smokeComponent.Solution, out var solution) || !solution.Any())
-        {
-            Log.Debug("RemoveGas! Solution to clean up not found.");
             return;
-        }
 
         var tile = _map.GetTileRef(transform.GridUid.Value, mapGrid, transform.Coordinates);
         if (tile.Tile.IsEmpty)
-        {
-            Log.Debug("RemoveGas! No tile detected.");
             return;
-        }
 
         var canDoDecals = TryComp<DecalGridComponent>(tile.GridUid, out var decalGrid);
 
@@ -137,12 +126,11 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
                     continue;
                 }
 
-                // todo fix this, remove references to strings.
-                var purgeable = _solutionContainerSystem.SplitSolutionWithout(puddleSolution.Value, purgeAmount, "Water", reagent.ID);
+                var purgeable = _solutionContainerSystem.SplitSolutionWithout(puddleSolution.Value, purgeAmount, _water, reagent.ID);
 
                 purgeAmount -= purgeable.Volume;
 
-                _solutionContainerSystem.TryAddSolution(puddleSolution.Value, new Solution("Water", purgeable.Volume));
+                _solutionContainerSystem.TryAddSolution(puddleSolution.Value, new Solution(_water, purgeable.Volume));
 
                 if (purgeable.Volume <= FixedPoint2.Zero)
                 {

@@ -185,7 +185,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
                 if ((vent.PressureChecks & VentPressureBound.InternalBound) != 0)
                     pressureDelta = MathF.Min(pressureDelta, vent.InternalPressureBound - pipe.Air.Pressure);
-
+Log.Debug("Sanitation Chip! This vent is welded shut.");
                 if (pressureDelta <= 0)
                     return;
 
@@ -211,7 +211,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
         }
 
         private void OnGasVentPumpLeaveAtmosphere(EntityUid uid, GasVentPumpComponent component, ref AtmosDeviceDisabledEvent args)
-        {
+        {Log.Debug("Sanitation Chip! This vent is welded shut.");
             UpdateState(uid, component);
         }
 
@@ -343,17 +343,17 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 _ambientSoundSystem.SetAmbience(uid, false);
                 _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Welded, appearance);
             }
+            else if (!_powerReceiverSystem.IsPowered(uid) || !vent.Enabled)
+            {
+                _ambientSoundSystem.SetAmbience(uid, false);
+                _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Off, appearance);
+            }
 // ES START
             else if (EntityManager.TryGetComponent<ESVentAffectedBySanitationChipComponent>(uid, out var component))
             {
                 _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Cleaning, appearance);
             }
 // ES END
-            else if (!_powerReceiverSystem.IsPowered(uid) || !vent.Enabled)
-            {
-                _ambientSoundSystem.SetAmbience(uid, false);
-                _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Off, appearance);
-            }
             else if (vent.PumpDirection == VentPumpDirection.Releasing)
             {
                 if (vent.UnderPressureLockout & !vent.PressureLockoutOverride & !vent.IsPressureLockoutManuallyDisabled)
