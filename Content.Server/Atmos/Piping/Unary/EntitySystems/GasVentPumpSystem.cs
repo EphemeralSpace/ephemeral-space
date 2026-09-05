@@ -81,7 +81,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
         private void OnESSanitationChipFinishedEvent(EntityUid uid, GasVentPumpComponent vent, ref ESSanitationChipFinishedEvent args)
         {
-            EntityManager.RemoveComponent<ESVentAffectedBySanitationChipComponent>(uid);
+            RemComp<ESVentAffectedBySanitationChipComponent>(uid);
             Log.Debug("SanitationChip! We have finished changing the state of the vent!");
             UpdateState(uid, vent);
         }
@@ -349,7 +349,7 @@ Log.Debug("Sanitation Chip! This vent is welded shut.");
                 _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Off, appearance);
             }
 // ES START
-            else if (EntityManager.TryGetComponent<ESVentAffectedBySanitationChipComponent>(uid, out var component))
+            else if (TryComp<ESVentAffectedBySanitationChipComponent>(uid, out var component))
             {
                 _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Cleaning, appearance);
             }

@@ -34,6 +34,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Decals;
 using Content.Server.Decals;
 using System.Numerics;
+using Robust.Shared.GameObjects;
 
 using Content.Shared._ES.Hazmat.Components;
 using Content.Shared._ES.Hazmat;
@@ -89,7 +90,8 @@ public sealed partial class ESRemoveGasSystem : ESSharedRemoveGasSystem
     public void OnRemoveGasDoAfter(Entity<ESRemoveGasComponent> ent, ref TimedDespawnEvent args)
     {
         var uid = ent.Owner;
-        if (!TryComp<TransformComponent>(uid, out var transform))
+        var transform = Transform(uid);
+        if (transform == null)
             return;
 
         if (!TryComp<MapGridComponent>(transform.GridUid, out var mapGrid))
