@@ -83,10 +83,6 @@
   id: MobHuman
   name: Urist McHands
   components:
-  - type: Butcherable
-    spawned:
-    - id: FoodMeat
-      amount: 5
   - type: ESCryohuskable
 
 - type: entity
