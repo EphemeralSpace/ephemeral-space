@@ -60,7 +60,7 @@ public abstract partial class ESSharedSanitationChipSystem : EntitySystem
             return false;
 
         var userName = Identity.Entity(user, EntityManager);
-        // todo make announcement
+        // todo fix this
         var popup = "todo POPUP STRING";
         _popup.PopupEntity(popup, user, target);
 

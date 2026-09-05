@@ -34,5 +34,14 @@ public sealed partial class ESSanitationChipComponent : Component
     public Solution Solution = new();
 }
 
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ESVentAffectedBySanitationChipComponent : Component { }
+
 [Serializable, NetSerializable]
 public sealed partial class ESSanitationChipDoAfterEvent : SimpleDoAfterEvent;
+
+[ByRefEvent]
+public readonly record struct ESSanitationChipActivatedEvent;
+
+[ByRefEvent]
+public readonly record struct ESSanitationChipFinishedEvent;

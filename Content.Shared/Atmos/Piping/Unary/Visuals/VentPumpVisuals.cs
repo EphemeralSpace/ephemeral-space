@@ -16,5 +16,8 @@ namespace Content.Shared.Atmos.Visuals
         Out,
         Welded,
         Lockout,
+// ES START
+        SanitationChip
+// ES END
     }
 }

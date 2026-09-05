@@ -28,6 +28,11 @@ using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.GameObjects;
+
+// ES START
+using Content.Shared._ES.Hazmat.Components;
+// ES END
 
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
@@ -62,7 +67,25 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             SubscribeLocalEvent<GasVentPumpComponent, WeldableChangedEvent>(OnWeldChanged);
             SubscribeLocalEvent<GasVentPumpComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
             SubscribeLocalEvent<GasVentPumpComponent, VentScrewedDoAfterEvent>(OnVentScrewed);
+// ES START
+            SubscribeLocalEvent<GasVentPumpComponent, ESSanitationChipActivatedEvent>(OnESSanitationChipActivatedEvent);
+            SubscribeLocalEvent<GasVentPumpComponent, ESSanitationChipFinishedEvent>(OnESSanitationChipFinishedEvent);
         }
+
+        private void OnESSanitationChipActivatedEvent(EntityUid uid, GasVentPumpComponent vent, ref ESSanitationChipActivatedEvent args)
+        {
+            AddComp<ESVentAffectedBySanitationChipComponent>(uid);
+            Log.Debug("SanitationChip! We have changed the state of the vent!");
+            // UpdateState(uid, vent);
+        }
+
+        private void OnESSanitationChipFinishedEvent(EntityUid uid, GasVentPumpComponent vent, ref ESSanitationChipFinishedEvent args)
+        {
+            EntityManager.RemoveComponent<ESVentAffectedBySanitationChipComponent>(uid);
+            Log.Debug("SanitationChip! We have finished changing the state of the vent!");
+            // UpdateState(uid, vent);
+        }
+// ES END
 
         private void OnGasVentPumpUpdated(EntityUid uid, GasVentPumpComponent vent, ref AtmosDeviceUpdateEvent args)
         {
@@ -320,6 +343,12 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 _ambientSoundSystem.SetAmbience(uid, false);
                 _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.Welded, appearance);
             }
+// ES START
+            else if (EntityManager.TryGetComponent<ESVentAffectedBySanitationChipComponent>(uid, out var component))
+            {
+                _appearance.SetData(uid, VentPumpVisuals.State, VentPumpState.SanitationChip, appearance);
+            }
+// ES END
             else if (!_powerReceiverSystem.IsPowered(uid) || !vent.Enabled)
             {
                 _ambientSoundSystem.SetAmbience(uid, false);

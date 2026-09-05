@@ -24,6 +24,8 @@ using System.Linq;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio;
 using Content.Server.Pinpointer;
+using Content.Shared.Charges.Systems;
+using Content.Shared.Charges.Components;
 using Robust.Shared.Utility;
 
 using Content.Shared._ES.Hazmat.Components;
@@ -43,6 +45,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
     [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private WeldableSystem _weldable = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private SharedChargesSystem _sharedCharges = default!;
 
     public override void Initialize()
     {
@@ -68,7 +71,7 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
             return false;
         }
 
-        var seconds = chip.Comp.TimeUntilGasSpawn.ToString();
+        var seconds = chip.Comp.TimeUntilGasSpawn.TotalSeconds.ToString();
 
         var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(target));
 
@@ -81,6 +84,12 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
         Log.Debug("SanitationChip! Now we're spawning the timer!");
 
         _ = _timer.SpawnMethodTimer(chip.Comp.TimeUntilGasSpawn, () => SpawnGas(chip, target));
+
+        if (HasComp<LimitedChargesComponent>(chip.Owner))
+        {
+            var chargesComp = Comp<LimitedChargesComponent>(chip.Owner);
+            _sharedCharges.TryUseCharge((chip.Owner, chargesComp));
+        }
 
         return true;
     }
@@ -135,8 +144,15 @@ public sealed partial class ESSanitationChipSystem : ESSharedSanitationChipSyste
                 Del(smoke);
                 continue;
             }
+            var ev = new ESSanitationChipActivatedEvent();
+            RaiseLocalEvent(uid, ref ev);
 
             _smoke.StartSmoke(smoke, chip.Comp.Solution.Clone(), (float)chip.Comp.Duration.TotalSeconds, chip.Comp.SpreadAmount, smokeComp);
+            _timer.SpawnMethodTimer(chip.Comp.Duration,
+            () => {
+                var finishedEv = new ESSanitationChipFinishedEvent();
+                RaiseLocalEvent(uid, ref finishedEv);
+            });
         }
     }
 }
