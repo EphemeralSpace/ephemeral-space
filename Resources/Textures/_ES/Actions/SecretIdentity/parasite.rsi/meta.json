@@ -9,6 +9,12 @@
   "states": [
     {
       "name": "icon"
+    },
+    {
+      "name": "barnacle"
+    },
+    {
+      "name": "barnacle-on"
     }
   ]
 }
