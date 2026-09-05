@@ -342,8 +342,6 @@
   name: snail
   description: Revolting unless you're french.
   components:
-  - type: Body
-    prototype: Mouse
   - type: Emoting
   - type: Sprite
     drawdepth: SmallMobs

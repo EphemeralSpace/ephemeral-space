@@ -1,0 +1,284 @@
+- type: entity
+  abstract: true
+  parent:
+  - BaseMob
+  - ESBaseMob # ES START
+  # - MobDamageable # Offbrand - we don't want thresholds
+  - MobPolymorphable
+  - MobCombat
+  - StripableInventoryBase
+  - BaseMobWoundable # Offbrand
+  - BaseMobPain # Offbrand
+  - BaseMobSurgery # Offbrand
+  id: BaseSpeciesMob
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    # ES START
+    - map: [ "neck" ]
+    - map: [ "outerClothing" ]
+    # ES END
+    - map: [ "back" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: { visible: true }
+          False: { visible: false }
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: HumanoidProfile
+  - type: TypingIndicator
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      60: 0.85
+      80: 0.75
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 185
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: FloorOcclusion
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MeatBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MeatLaserImpact
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPie
+  - type: StatusEffects
+    allowed:
+    - Electrocution
+    - RatvarianLanguage
+    - PressureImmunity
+    - Muted
+    - TemporaryBlindness
+    - Pacified
+    - Flashed
+    - RadiationProtection
+    - Adrenaline
+  - type: Identity
+  - type: IdExaminable
+  - type: Internals
+  - type: FloatingVisuals
+  - type: Climbing
+  - type: Cuffable
+  - type: Ensnareable
+    sprite: Objects/Misc/ensnare.rsi
+    state: icon
+  - type: AnimationPlayer
+  - type: Buckle
+  - type: CombatMode
+    canDisarm: true
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: SleepEmitSound
+  - type: SSDIndicator
+  - type: StandingState
+  - type: Crawler
+  - type: Dna
+  - type: MindContainer
+  - type: MindExaminable
+  - type: CanEnterCryostorage
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: CreamPied
+  - type: ParcelWrapOverride
+    parcelPrototype: WrappedParcelHumanoid
+    wrapDelay: 5
+  - type: Stripping
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryGuideUiKey.Key: # Offbrand
+        type: SurgeryGuideBoundUserInterface
+  - type: Puller
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageForceSay
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+# ES START
+  - type: ESBlinker
+# ES END
+
+- type: entity
+  abstract: true
+  parent:
+  # - MobBloodstream - Offbrand - we're doing our own thign with this
+  - MobRespirator
+  - MobAtmosStandard
+  - MobFlammable
+  - BaseSpeciesMob
+  - BaseMobHeartrate # Offbrand
+  - BaseMobBrain # Offbrand
+  - BaseMobCryostasis # Offbrand
+  - BaseMobLungDamage # Offbrand
+  id: BaseSpeciesMobOrganic
+  components:
+  - type: Hunger
+  - type: Thirst
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.50
+        Heat: 0.1
+  # Offbrand - wounds manage this
+  # - type: PassiveDamage
+  #   allowedStates:
+  #   - Alive
+  #   damageCap: 20
+  #   damage:
+  #     types:
+  #       Heat: -0.07
+  #     groups:
+  #       Brute: -0.07
+  - type: Fingerprint
+  - type: Blindable
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    coldDamage:
+      types:
+        Cold: 0.2 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        # ES START
+        # less heat damage holy shit this game loves fuckin you up in 5 different ways
+        Heat: 0.3 #per second, scales with temperature & other constants
+        # ES END
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.9
+      280: 0.8
+      260: 0.7
+  - type: ThermalRegulator
+    metabolismHeat: 800
+    radiatedHeat: 100
+    implicitHeatRegulation: 500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+  - type: ESMiasmaSource
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: FireVisuals
+    alternateState: Standing
+  - type: StunVisuals

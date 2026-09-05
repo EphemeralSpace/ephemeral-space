@@ -239,7 +239,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
                 ent);
 
             // normally medium severity, but for humanoids high severity, so new players get relay'd to admin alerts.
-            var logSeverity = HasComp<HumanoidAppearanceComponent>(args.Target) ? LogImpact.High : LogImpact.Medium;
+            var logSeverity = HasComp<HumanoidProfileComponent>(args.Target) ? LogImpact.High : LogImpact.Medium;
 
             _logger.Add(LogType.Action,
                 logSeverity,
