@@ -140,6 +140,7 @@
 - type: entity
   parent:
   - BaseSpeciesMobOrganic
+  - BaseMobMonkeyDisposalsCrawler
   - ESAppearanceMonkey
   id: ESMobMonkey
   name: monkey
