@@ -241,13 +241,15 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
             return;
 
         var locations = new List<string>();
-        var directions = new List<string>();
         foreach (var barnacle in ent.Comp.Barnacles)
         {
-            locations.Add(FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(barnacle, true)));
+            var name = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(barnacle, true));
+            locations.Add(Loc.GetString("barnacle-location-fmt", ("name", name)));
         }
 
-        args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb", ("location",  ContentLocalizationManager.FormatList(locations)))));
+        args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb",
+            ("count", locations.Count),
+            ("location",  ContentLocalizationManager.FormatList(locations)))));
     }
 
 }
