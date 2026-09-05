@@ -1,0 +1,13 @@
+- type: guideEntry
+  id: Modifiers
+  hidden: false
+  name: Modifiers
+  children:
+  - ExSyndie
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Modifiers.xml"
+
+- type: guideEntry
+  id: ExSyndie
+  hidden: false
+  name: Ex-Syndie
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Modifiers/ExSyndie.xml"

@@ -17,6 +17,8 @@
   color: brown
   tips:
   - HemophageBloodSpreading
+  - HemophageCritBloodSpreading
+  - HemophageBloodLevels
   mindComponents:
   - type: ESHemophage
 
@@ -33,6 +35,9 @@
   name: es-secret-identity-leapleech-name
   description: es-secret-identity-leapleech-desc
   color: darkgoldenrod
+  tips:
+  - LeapleechBasicMechanics
+  - LeapleechMortal
   mindComponents:
   - type: ESLeapleech
 
@@ -42,6 +47,8 @@
   name: es-secret-identity-barnacle-name
   description: es-secret-identity-barnacle-desc
   color: salmon
+  tips:
+  - BarnacleNestPlacement
   actions:
     all:
     - id: ESActionParasiteWormTalk # needed from ESBaseParasite
