@@ -2114,3 +2114,11 @@ Entries:
         bubbles.
   id: 229
   time: '2026-09-05T22:00:06.0000000+00:00'
+- author: Flareguy
+  changes:
+    - type: Tweak
+      message: >-
+        Improved the guidebook in many areas (traitors and parasites now have
+        much more informative pages.)
+  id: 230
+  time: '2026-09-05T22:11:59.0000000+00:00'
