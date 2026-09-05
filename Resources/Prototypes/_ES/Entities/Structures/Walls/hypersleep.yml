@@ -1,5 +1,5 @@
 - type: entity
-  parent: ESWallArmory
+  parent: BaseHardenedReinforcedWall
   id: ESWallHypersleep
   name: sterile hardened wall
   description: Immaculately constructed in such a manner as to make deconstruction effectively impossible. Looks armored.
