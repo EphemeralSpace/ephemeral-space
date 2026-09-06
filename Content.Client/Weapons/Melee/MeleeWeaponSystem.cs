@@ -1,14 +1,8 @@
 using System.Linq;
 using Content.Client.Gameplay;
-using Content.Shared.CombatMode;
 using Content.Shared.Effects;
-using Content.Shared.Hands.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Weapons.Ranged.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -109,23 +103,42 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             coordinates = TransformSystem.ToCoordinates(_map.GetMap(mousePos.MapId), mousePos);
         }
 
-        // Heavy attack.
-        if (altDown == BoundKeyState.Down)
+        // secondary attack
+        if (altDown == BoundKeyState.Down && weapon.AltDisarm)
         {
-            // If it's an unarmed attack then do a disarm
-            if (weapon.AltDisarm && weaponUid == entity)
+            // If it's an unarmed attack then disarm
+            if (weaponUid == entity)
             {
                 ClientDisarm(entity, mousePos, coordinates);
                 return;
             }
-
-            ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
-            return;
         }
 
-        // Light attack
+        // primary attack
         if (useDown == BoundKeyState.Down)
-            ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+        {
+            EntityUid? target = null;
+            if (_stateManager.CurrentState is GameplayStateBase screen)
+                target = screen.GetClickedEntity(mousePos);
+
+            var attackerPos = TransformSystem.GetMapCoordinates(weaponUid);
+
+            // mimics server-side lagcomp
+            var adjustedRange = weapon.Range + 0.1f;
+
+            // Light attacks occur only if we're clicking a specific target in our approximate weapon range.
+            // Heavy attacks occur in all other situations.
+            if (target.HasValue
+                && mousePos.MapId == attackerPos.MapId
+                && (attackerPos.Position - TransformSystem.GetWorldPosition(target.Value)).Length() <= adjustedRange)
+            {
+                ClientLightAttack(entity, target.Value, coordinates, weaponUid, weapon);
+            }
+            else
+            {
+                ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
+            }
+        }
     }
 
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)
@@ -181,18 +194,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         RaisePredictiveEvent(new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
     }
 
-    private void ClientLightAttack(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent)
+    private void ClientLightAttack(EntityUid attacker, EntityUid target, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent)
     {
-        var attackerPos = TransformSystem.GetMapCoordinates(attacker);
-
-        if (mousePos.MapId != attackerPos.MapId || (attackerPos.Position - mousePos.Position).Length() > meleeComponent.Range)
-            return;
-
-        EntityUid? target = null;
-
-        if (_stateManager.CurrentState is GameplayStateBase screen)
-            target = screen.GetClickedEntity(mousePos);
-
         // Don't light-attack if interaction will be handling this instead
         if (Interaction.CombatModeCanHandInteract(attacker, target))
             return;
