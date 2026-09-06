@@ -1,0 +1,20 @@
+# currently not obtainable ingame. if you pry this it will just turn in to a normal steel tile. sorry not sorry
+- type: tile
+  id: ESFloorSteelSeafoam
+  name: es-tiles-steel-tile-seafoam
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/steel_seafoam.png
+
+- type: tile
+  id: ESFloorUnderWindow
+  name: es-tiles-underwindow
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/windowfloor.png
+  variants: 1
+
+- type: tile
+  id: ESFloorUnderWindowBright
+  name: es-tiles-underwindow-bright
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/windowfloor_bright.png
+  variants: 1

@@ -1,0 +1,18 @@
+- type: entity
+  abstract: true
+  id: BaseHardenedReinforcedWall
+  parent: BaseWall
+  description: Immaculately constructed in such a manner as to make deconstruction effectively impossible.
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 2000
+  - type: RadiationBlocker
+    resistance: 1000
