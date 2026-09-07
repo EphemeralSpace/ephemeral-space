@@ -164,6 +164,9 @@ public sealed partial class MeleeWeaponComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool MustBeEquippedToUse = false;
+
+    [DataField]
+    public TimeSpan ShoveDelay = TimeSpan.FromSeconds(1.5f);
 }
 
 /// <summary>

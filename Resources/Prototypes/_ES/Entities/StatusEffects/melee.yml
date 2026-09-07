@@ -15,3 +15,14 @@
   - type: MovementModStatusEffect
     sprintSpeedModifier: 0.8
     walkSpeedModifier: 0.8
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: ESMeleeShoveSlowdown
+  name: shove slowdown
+  components:
+  - type: MovementModStatusEffect
+    sprintSpeedModifier: 0.5
+    walkSpeedModifier: 0.5
+  - type: GunAccuracyStatusEffect
+    angleRangeModifier: 24

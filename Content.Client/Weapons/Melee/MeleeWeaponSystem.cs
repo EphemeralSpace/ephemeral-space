@@ -158,14 +158,22 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     /// </summary>
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
+        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+
+        EntityUid? target = null;
+        if (_stateManager.CurrentState is GameplayStateBase screen)
+            target = screen.GetClickedEntity(targetMap);
+
+        // Don't light-attack if interaction will be handling this instead
+        if (target.HasValue && Interaction.CombatModeCanHandInteract(user, target.Value))
+            return;
+
         // Only run on first prediction to avoid the potential raycast entities changing.
         if (!_xformQuery.TryGetComponent(user, out var userXform) ||
             !Timing.IsFirstTimePredicted)
         {
             return;
         }
-
-        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
 
         if (targetMap.MapId != userXform.MapID)
             return;

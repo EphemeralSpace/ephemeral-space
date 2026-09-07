@@ -76,6 +76,8 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
     private static readonly EntProtoId MeleeAttackSlowStatusEffect = "ESMeleeTemporarySlowdownAttack";
     private static readonly EntProtoId MeleeDamageSlowStatusEffect = "ESMeleeTemporarySlowdownDamage";
+    private static readonly EntProtoId ShoveStatusEffect = "ESMeleeShoveSlowdown";
+    private static readonly TimeSpan ShoveStatusDuration = TimeSpan.FromSeconds(1.0f);
 
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
@@ -414,6 +416,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         if (!CombatMode.IsInCombatMode(user))
             return false;
 
+        var fireRate = TimeSpan.FromSeconds(1f / GetAttackRate(weaponUid, user, weapon));
         EntityUid? target = null;
         switch (attack)
         {
@@ -455,6 +458,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
                 if (!Blocker.CanAttack(user, target, (weaponUid, weapon), true))
                     return false;
+                fireRate = weapon.ShoveDelay;
                 break;
             default:
                 if (!Blocker.CanAttack(user, weapon: (weaponUid, weapon)))
@@ -463,7 +467,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         }
 
         // Windup time checked elsewhere.
-        var fireRate = TimeSpan.FromSeconds(1f / GetAttackRate(weaponUid, user, weapon));
         var swings = 0;
 
         // TODO: If we get autoattacks then probably need a shotcounter like guns so we can do timing properly.
@@ -1077,8 +1080,8 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             animated: false,
             playSound: false,
             doSpin: false);
+        _status.TrySetStatusEffectDuration(target.Value, ShoveStatusEffect, ShoveStatusDuration);
 
-        // _audio.PlayPvs(combatMode.DisarmSuccessSound, target.Value, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
         var targetEnt = Identity.Entity(target.Value, EntityManager);
         var userEnt = Identity.Entity(user, EntityManager);
 
@@ -1089,6 +1092,12 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
         var msgUser = Loc.GetString("disarm-action-shove-popup-message-cursor", ("targetName", targetEnt));
         PopupSystem.PopupEntity(msgUser, msgOther, target.Value, user);
+
+        if (TryGetWeapon(user, out var heldWeapon, out var heldWeaponComponent))
+        {
+            heldWeaponComponent.NextAttack = Timing.CurTime + TimeSpan.FromSeconds(1f / GetAttackRate(heldWeapon, user, heldWeaponComponent));
+            DirtyField(heldWeapon, heldWeaponComponent, nameof(MeleeWeaponComponent.NextAttack));
+        }
 
         return true;
     }
