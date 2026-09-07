@@ -10,8 +10,8 @@
     <Box>
         <GuideEntityEmbed Entity="ESWeaponPistol9mmSilenced"/>
         <GuideEntityEmbed Entity="ESMagazine9mm"/>
-        <GuideEntityEmbed Entity="SleepyPen"/>
-        <GuideEntityEmbed Entity="SmokeGrenade"/>
+        <GuideEntityEmbed Entity="SleepyPen" Caption="2 knockout medipens"/>
+        <GuideEntityEmbed Entity="SmokeGrenade" Caption="2 smoke grenades"/>
     </Box>
 
 ### Silenced 9mm Handgun

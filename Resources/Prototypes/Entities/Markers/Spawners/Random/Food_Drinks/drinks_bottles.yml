@@ -22,39 +22,18 @@
     children:
     - !type:NestedSelector
       tableId: RandomCommonAlcoholTable
-      weight: 0.95
-    - !type:NestedSelector
-      tableId: RandomRareAlcoholTable
-      weight: 0.05
+      weight: 1
 
 - type: entityTable
   id: RandomCommonAlcoholTable
   table: !type:GroupSelector
     children:
-    - id: DrinkAbsintheBottleFull
-    - id: DrinkBlueCuracaoBottleFull
     - id: DrinkCognacBottleFull
     - id: DrinkGrenadineBottleFull
     - id: DrinkGinBottleFull
-    - id: DrinkGildlagerBottleFull
-    - id: DrinkCoffeeLiqueurBottleFull
-    - id: DrinkMelonLiquorBottleFull
-    - id: DrinkPatronBottleFull
     - id: DrinkRumBottleFull
-    - id: DrinkSakeBottleFull
-    - id: DrinkTequilaBottleFull
-    - id: DrinkVermouthBottleFull
     - id: DrinkVodkaBottleFull
     - id: DrinkWhiskeyBottleFull
     - id: DrinkWineBottleFull
     - id: DrinkBeerBottleFull
     - id: DrinkBeerGrowler
-    - id: DrinkAleBottleFull
-    - id: DrinkAleBottleFullGrowler
-    - id: DrinkChampagneBottleFull
-
-- type: entityTable
-  id: RandomRareAlcoholTable
-  table: !type:GroupSelector
-    children:
-    - id: DrinkPoisonWinebottleFull

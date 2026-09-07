@@ -24,7 +24,7 @@ public sealed partial class ESTargetPlayersObjectiveSystem : EntitySystem
     private void OnGetObjectiveTargetCandidates(Entity<ESTargetPlayersObjectiveComponent> ent, ref ESGetObjectiveTargetCandidates args)
     {
         // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
-        var query = EntityQueryEnumerator<HumanoidAppearanceComponent, MobStateComponent, MindContainerComponent>();
+        var query = EntityQueryEnumerator<HumanoidProfileComponent, MobStateComponent, MindContainerComponent>();
         while (query.MoveNext(out var uid, out _, out var mobState, out var mindContainer))
         {
             // the player needs to have a mind and not be the excluded one +

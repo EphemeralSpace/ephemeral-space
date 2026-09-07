@@ -8,5 +8,6 @@ public enum SpeechType : byte
     Emote,
     Say,
     Whisper,
+    Radio,
     Looc,
 }

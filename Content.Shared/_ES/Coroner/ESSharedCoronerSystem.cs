@@ -81,7 +81,7 @@ public abstract partial class ESSharedCoronerSystem : EntitySystem
         if (!_actionBlocker.CanComplexInteract(user) || !_actionBlocker.CanUseHeldEntity(user, tool))
             return false;
 
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
             return false;
 
         if (!HasComp<ESAutopsyUserComponent>(user))

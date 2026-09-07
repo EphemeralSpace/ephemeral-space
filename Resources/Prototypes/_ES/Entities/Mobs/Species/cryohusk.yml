@@ -1,32 +1,110 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: ESCryohusk
+
 - type: entity
-  parent: BaseMobSpeciesOrganic
-  id: ESBaseMobCryohusk
-  name: ???
-  abstract: true
+  parent: BaseSpeciesAppearance
+  id: ESAppearanceCryohusk
+  categories: [ HideSpawnMenu ]
   components:
-  - type: Hunger
-  - type: Icon
-    sprite: _ES/Mobs/Species/cryohusk.rsi
-    state: full
-  - type: Thirst
-  - type: HumanoidAppearance
+  - type: HumanoidProfile
     species: ESCryohusk
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: ESOrganCryohuskHead
+        - id: ESOrganCryohuskTorso
+        - id: ESOrganCryohuskLegLeft
+        - id: ESOrganCryohuskArmLeft
+        - id: ESOrganCryohuskHandLeft
+        - id: ESOrganCryohuskFootLeft
+        - id: ESOrganCryohuskLegRight
+        - id: ESOrganCryohuskArmRight
+        - id: ESOrganCryohuskHandRight
+        - id: ESOrganCryohuskFootRight
+        - id: OrganHumanBrain
+        - id: OrganHumanEyes
+        - id: OrganHumanTongue
+        - id: OrganHumanAppendix
+        - id: OrganHumanEars
+        - id: OrganHumanLungs
+        - id: OrganHumanHeart
+        - id: OrganHumanStomach
+        - id: OrganHumanLiver
+        - id: OrganHumanKidneys
+
+- type: entity
+  parent:
+  - ESAppearanceCryohusk
+  - BaseSpeciesMobOrganic
+  id: ESMobCryohusk
+  name: ???
+  components:
   - type: SlurredAccent
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 3.75
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.75
   - type: Damageable
     damageModifierSet: ESCryohusk
 
 - type: entity
-  save: false
-  parent: ESBaseMobCryohusk
-  id: ESMobCryohusk
+  parent: OrganBase
+  id: ESOrganCryohusk
+  abstract: true
+  suffix: cryohusk
 
 - type: entity
-  parent: BaseSpeciesDummy
-  id: ESMobCryohuskDummy
-  categories: [ HideSpawnMenu ]
+  parent: ESOrganCryohusk
+  id: ESOrganCryohuskExternal
+  abstract: true
   components:
-  - type: HumanoidAppearance
-    species: ESCryohusk
+  - type: Sprite
+    sprite: _ES/Mobs/Species/cryohusk.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _ES/Mobs/Species/cryohusk.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: ESCryohusk
+
+- type: entity
+  parent: [ OrganBaseHeadSexless, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskHead
+
+- type: entity
+  parent: [ OrganBaseTorsoSexless, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskTorso
+
+- type: entity
+  parent: [ OrganBaseLegLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskLegLeft
+
+- type: entity
+  parent: [ OrganBaseArmLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskArmLeft
+
+- type: entity
+  parent: [ OrganBaseHandLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskHandLeft
+
+- type: entity
+  parent: [ OrganBaseFootLeft, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskFootLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskLegRight
+
+- type: entity
+  parent: [ OrganBaseArmRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskArmRight
+
+- type: entity
+  parent: [ OrganBaseHandRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskHandRight
+
+- type: entity
+  parent: [ OrganBaseFootRight, ESOrganCryohuskExternal ]
+  id: ESOrganCryohuskFootRight
+

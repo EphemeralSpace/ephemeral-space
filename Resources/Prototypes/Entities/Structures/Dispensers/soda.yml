@@ -41,7 +41,6 @@
         - id: DrinkColaBottleFull
         - id: DrinkCreamCartonXL
         - id: DrinkDrGibbJug
-        - id: DrinkEnergyDrinkJug
         - id: DrinkGreenTeaJug
         - id: DrinkIceJug
         - id: DrinkJuiceLimeCartonXL
@@ -49,8 +48,6 @@
         - id: DrinkLemonLimeJug
         - id: DrinkRootBeerJug
         - id: DrinkSodaWaterBottleFull
-        - id: DrinkSpaceMountainWindBottleFull
-        - id: DrinkSpaceUpBottleFull
         - id: DrinkSugarJug
         - id: DrinkTeaJug
         - id: DrinkTonicWaterBottleFull

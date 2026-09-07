@@ -10,8 +10,8 @@
 
     <Box>
         <GuideEntityEmbed Entity="ESEmag"/>
-        <GuideEntityEmbed Entity="C4"/>
-        <GuideEntityEmbed Entity="ESClothingBackpackChameleonFill"/>
+        <GuideEntityEmbed Entity="C4" Caption="2 C-4"/>
+        <GuideEntityEmbed Entity="ESClothingBackpackChameleonFill" Caption="chameleon kit"/>
     </Box>
 
 ### EMAG
@@ -23,6 +23,6 @@
 ### Chameleon Kit
     Special clothing that can change its appearance to look like almost any other piece of clothing. Useful for losing heat after taking suspicious actions.
 	Don't forget that the bag is also a part of the kit, too!
-
-    <ESGuideTipsEmbed SecretIdentity="Infiltrator"/>
+	
+	<ESGuideTipsEmbed SecretIdentity="Infiltrator"/>
 </Document>

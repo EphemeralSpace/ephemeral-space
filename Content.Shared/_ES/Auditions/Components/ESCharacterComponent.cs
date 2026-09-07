@@ -25,6 +25,9 @@ public sealed partial class ESCharacterComponent : Component
     public HumanoidCharacterProfile Profile;
 
     [DataField, AutoNetworkedField]
+    public Color? HairColor;
+
+    [DataField, AutoNetworkedField]
     public EntityUid Station;
 
     [DataField, AutoNetworkedField]

@@ -2,6 +2,7 @@ using Content.Client._ES.Auditions;
 using Content.Client._ES.Core;
 using Content.Client.Humanoid;
 using Content.Shared._Citadel.Utilities;
+using Content.Shared.Body;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -25,7 +26,7 @@ public sealed partial class ESJobDisplay : BoxContainer
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private readonly ESAuditionsSystem _auditions;
-    private readonly HumanoidAppearanceSystem _humanoid;
+    private readonly SharedVisualBodySystem _visualBody;
     private readonly SharedStationSpawningSystem _stationSpawning;
 
     private ProtoId<JobPrototype> _jobId;
@@ -37,7 +38,7 @@ public sealed partial class ESJobDisplay : BoxContainer
         IoCManager.InjectDependencies(this);
 
         _auditions = _entityManager.System<ESAuditionsSystem>();
-        _humanoid = _entityManager.System<HumanoidAppearanceSystem>();
+        _visualBody = _entityManager.System<SharedVisualBodySystem>();
         _stationSpawning = _entityManager.System<SharedStationSpawningSystem>();
 
         SetJob(SharedGameTicker.FallbackOverflowJob);
@@ -56,11 +57,11 @@ public sealed partial class ESJobDisplay : BoxContainer
 
         _entityManager.DeleteEntity(_doll);
         _doll = jobProto.JobEntity is null
-            ? _entityManager.Spawn(_prototypeManager.Index(jobProto.SpeciesOverride ?? SharedHumanoidAppearanceSystem.DefaultSpecies).DollPrototype)
+            ? _entityManager.Spawn(_prototypeManager.Index(jobProto.SpeciesOverride ?? HumanoidCharacterProfile.DefaultSpecies).DollPrototype)
             : _entityManager.Spawn(jobProto.JobEntity);
         var randomSeed = new RngSeed().SeedForStep(job.Id.GetHashCode() + _player.LocalEntity?.Id ?? 0);
-        var defaultDude = _auditions.RandomProfile(randomSeed.IntoRandomizer(), jobProto.SpeciesOverride);
-        _humanoid.LoadProfile(_doll, defaultDude);
+        var defaultDude = _auditions.RandomProfile(randomSeed.IntoRandomizer(), jobProto.SpeciesOverride, out _);
+        _visualBody.ApplyProfileTo(_doll, defaultDude);
         JobView.SetEntity(_doll);
 
         // HACK SHIT i threw in because idk how this loadout bs works.

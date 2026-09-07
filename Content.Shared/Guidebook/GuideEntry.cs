@@ -29,6 +29,13 @@ public partial class GuideEntry
     [DataField(required: true)] public string Name = default!;
 
     /// <summary>
+    ///     Whether this guide is root-level and has no parents.
+    ///     Guides without parents not marked as Root are considered errors.
+    /// </summary>
+    [DataField]
+    public bool Root;
+
+    /// <summary>
     ///     The "children" of this guide for when guides are shown in a tree / table of contents.
     /// </summary>
     [DataField]

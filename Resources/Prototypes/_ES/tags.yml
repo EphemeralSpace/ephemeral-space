@@ -104,3 +104,8 @@
 
 - type: Tag
   id: OxygenPouch
+
+# Used for tissue box
+
+- type: Tag
+  id: Tissue

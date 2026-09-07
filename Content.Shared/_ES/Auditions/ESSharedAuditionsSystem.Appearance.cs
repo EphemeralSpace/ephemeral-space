@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Random;
+using Content.Shared.Body;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -14,6 +15,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using YamlDotNet.Core;
 
 namespace Content.Shared._ES.Auditions;
 
@@ -63,7 +65,7 @@ public abstract partial class ESSharedAuditionsSystem
         var nameConfig = _prototypeManager.TryIndex(job, out var jobPrototype) ? jobPrototype.NameConfig : ESNameConfig.Default;
         var species = jobPrototype?.SpeciesOverride;
 
-        var profile = RandomProfile(_random, species);
+        var profile = RandomProfile(_random, species, out var hairColor);
 
         profile.Name = GenerateName(nameConfig, profile.Gender, out var baseName);
 
@@ -75,6 +77,7 @@ public abstract partial class ESSharedAuditionsSystem
         var day = _random.Next(1, DateTime.DaysInMonth(year, month));
         character.DateOfBirth = new DateTime(year, month, day);
         character.Profile = profile;
+        character.HairColor = hairColor;
 
         character.BaseName = baseName;
 
@@ -97,9 +100,11 @@ public abstract partial class ESSharedAuditionsSystem
         return ent;
     }
 
-    public HumanoidCharacterProfile RandomProfile(IRobustRandom random, ProtoId<SpeciesPrototype>? speciesId = null)
+    public HumanoidCharacterProfile RandomProfile(IRobustRandom random,
+        ProtoId<SpeciesPrototype>? speciesId,
+        out Color hairColor)
     {
-        speciesId ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+        speciesId ??= HumanoidCharacterProfile.DefaultSpecies;
 
         var species = _prototypeManager.Index(speciesId);
 
@@ -126,9 +131,7 @@ public abstract partial class ESSharedAuditionsSystem
             { random.Next(species.OldAge, species.MaxAge), OldAgeWeight }, // Old age
         });
 
-        var hairColor = GenerateHairColor(profile, random);
-        profile.Appearance.HairColor = hairColor;
-        profile.Appearance.FacialHairColor = hairColor;
+        hairColor = GenerateHairColor(profile, random);
 
         var eyeColors = EyeColors.Where(c =>
         {
@@ -146,28 +149,39 @@ public abstract partial class ESSharedAuditionsSystem
         else
         {
             hairOptions = species.UnisexHair.Union(profile.Gender switch
-            {
-                Gender.Male => species.MaleHair,
-                Gender.Female => species.FemaleHair,
-                _ => species.MaleHair.Union(species.FemaleHair).ToList(),
-            })
-            .ToList();
+                {
+                    Gender.Male => species.MaleHair,
+                    Gender.Female => species.FemaleHair,
+                    _ => species.MaleHair.Union(species.FemaleHair).ToList(),
+                })
+                .ToList();
         }
 
+        Marking? hairMarking = null;
+        Marking? facialHairMarking = null;
         if (hairOptions.Any())
-            profile.Appearance.HairStyleId = random.Pick(hairOptions);
+            hairMarking = new Marking(random.Pick(hairOptions), new[] { hairColor });
         if (random.Prob(BaldChance))
-            profile.Appearance.HairStyleId = string.Empty; // This is awful but w/e
+            hairMarking = null;
 
-        if (random.Prob(ShavenChance))
+        if (sex != Sex.Female && !random.Prob(ShavenChance))
         {
-            profile.Appearance.FacialHairStyleId = HairStyles.DefaultFacialHairStyle;
+            var facialHairStyles = _marking
+                .MarkingsByLayerAndGroupAndSex(HumanoidVisualLayers.FacialHair, speciesId.Value.Id, sex)
+                .Keys.ToList(); // species -> markings group is a hack but idrc
+            hairMarking = new Marking(random.Pick(facialHairStyles), new[] { hairColor });
         }
-        else if (sex != Sex.Female)
+
+        var headMarkings = new Dictionary<HumanoidVisualLayers, List<Marking>>();
+        if (hairMarking is not null)
+            headMarkings.Add(HumanoidVisualLayers.Hair, new() { hairMarking });
+        if (facialHairMarking is not null)
+            headMarkings.Add(HumanoidVisualLayers.FacialHair, new() { facialHairMarking });
+
+        profile.Appearance.Markings = new()
         {
-            var facialHairStyles = _marking.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, speciesId).Keys.ToList();
-            profile.Appearance.FacialHairStyleId = random.Pick(facialHairStyles);
-        }
+            ["Head"] = headMarkings,
+        };
 
         return profile;
     }

@@ -1,5 +1,6 @@
 using Content.Server._ES.SecretIdentity.Hemophage.Components;
 using Content.Server.Mind;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Server._ES.SecretIdentity.Hemophage;
@@ -8,6 +9,7 @@ public sealed partial class ESSecretIdentityConvertOnCollideSystem : EntitySyste
 {
     [Dependency] private ESSecretIdentitySystem _secretIdentity = default!;
     [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -17,6 +19,9 @@ public sealed partial class ESSecretIdentityConvertOnCollideSystem : EntitySyste
 
     private void OnCollide(Entity<ESSecretIdentityConvertOnCollideComponent> ent, ref StartCollideEvent args)
     {
+        if (_mobState.IsDead(args.OtherEntity))
+            return;
+
         if (!_mind.TryGetMind(args.OtherEntity, out var mind))
             return;
 

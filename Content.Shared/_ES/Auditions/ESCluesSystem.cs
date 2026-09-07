@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Preferences;
 using Robust.Shared.ColorNaming;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -18,7 +19,7 @@ public sealed partial class ESCluesSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ESSharedAuditionsSystem _auditions = default!;
-    [Dependency] private SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
 
     public IEnumerable<string> GetSignificantInitialClues(Entity<ESCharacterComponent?> mind, int minFreq = 0)
     {
@@ -51,7 +52,10 @@ public sealed partial class ESCluesSystem : EntitySystem
         if (!Resolve(mind, ref mind.Comp))
             return string.Empty;
 
-        return Loc.GetString("es-clue-hair-fmt", ("color", GetHairColorString(mind.Comp.Profile.Appearance.HairColor)));
+        if (mind.Comp.HairColor is null)
+            return Loc.GetString("es-clue-hair-none");
+
+        return Loc.GetString("es-clue-hair-fmt", ("color", GetHairColorString(mind.Comp.HairColor.Value)));
     }
 
     /// <summary>
@@ -93,7 +97,7 @@ public sealed partial class ESCluesSystem : EntitySystem
         if (!Resolve(mind, ref mind.Comp))
             return string.Empty;
 
-        return _humanoidAppearance.GetAgeRepresentation(mind.Comp.Profile.Species, mind.Comp.Profile.Age);
+        return _humanoidProfile.GetAgeRepresentation(mind.Comp.Profile.Species, mind.Comp.Profile.Age);
     }
 
     public string GetSexClue(Entity<ESCharacterComponent?> mind)
@@ -196,7 +200,7 @@ public sealed partial class ESCluesSystem : EntitySystem
 
     public string GetSkinColorString(Color color, ProtoId<SpeciesPrototype>? species)
     {
-        species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
+        species ??= HumanoidCharacterProfile.DefaultSpecies;
 
         var speciesPrototype = _prototype.Index(species);
         foreach (var skinColorId in speciesPrototype.SkinColors)

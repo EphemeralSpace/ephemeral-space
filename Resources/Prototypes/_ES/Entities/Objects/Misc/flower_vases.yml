@@ -1,0 +1,207 @@
+# Base Flower Vases
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: FlowerVaseBase
+  name: flower vase
+  description: A nicely-decorated vase with flowers in it. You used to love throwing these at people that annoyed you at school.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: ESWindow # blows up if you shoot it. cant cut it with a knife easily
+  - type: ESDamageDeflection
+    threshold: 5 # not breakable via punching
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 5 # so fragile it smashes when thrown
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
+# destructible isn't defined here because, to change the item one gets from destroying something, you have to redefine the *entire* destructible yaml block. which sucks but that is how it works currently
+# so, if you want them to be destructible, please look at how the other flower vases do it
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: FlowerVaseBaseBroken
+  name: flower vase
+  description: A once-nicely-decorated vase with flowers in it. You could never stand the thugs at school who threw these at other people... but it looks like the thugs are back.
+  suffix: Broken
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+
+# Real Flower Vases
+# Blue
+- type: entity
+  parent: FlowerVaseBase
+  id: FlowerVaseBlue
+  suffix: Blue
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: blue-inhand-left
+      right:
+      - state: blue-inhand-right
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+    state: blue
+  - type: Destructible
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FlowerVaseBlueBroken:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: FlowerVaseBaseBroken
+  id: FlowerVaseBlueBroken
+  suffix: Blue, Broken
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: blue-broken-inhand-left
+      right:
+      - state: blue-broken-inhand-right
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+    state: blue-broken
+
+# Purple
+- type: entity
+  parent: FlowerVaseBase
+  id: FlowerVasePurple
+  suffix: Purple
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: purple-inhand-left
+      right:
+      - state: purple-inhand-right
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+    state: purple
+  - type: Destructible
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FlowerVasePurpleBroken:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: FlowerVaseBaseBroken
+  id: FlowerVasePurpleBroken
+  suffix: Purple, Broken
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: purple-broken-inhand-left
+      right:
+      - state: purple-broken-inhand-right
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+    state: purple-broken
+
+# glass
+- type: entity
+  parent: FlowerVaseBase
+  id: FlowerVaseglass
+  suffix: glass
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: glass-inhand-left
+      right:
+      - state: glass-inhand-right
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+    state: glass
+  - type: Destructible
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FlowerVaseglassBroken:
+            min: 1
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: FlowerVaseBaseBroken
+  id: FlowerVaseglassBroken
+  suffix: glass, Broken
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: glass-broken-inhand-left
+      right:
+      - state: glass-broken-inhand-right
+  - type: Sprite
+    sprite: _ES/Objects/Misc/flower_vase.rsi
+    state: glass-broken

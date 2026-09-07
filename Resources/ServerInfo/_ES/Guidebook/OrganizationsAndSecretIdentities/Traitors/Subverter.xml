@@ -8,8 +8,8 @@
     Their cache contains two guns, spare ammo for each, a subverter chip, and a kockout medipen.
 
     <Box>
-        <GuideEntityEmbed Entity="ESWeaponPistol9mm"/>
-        <GuideEntityEmbed Entity="ESMagazine9mm"/>
+        <GuideEntityEmbed Entity="ESWeaponPistol9mm" Caption="2 firearms"/>
+        <GuideEntityEmbed Entity="ESMagazine9mm" Caption="2 ammo magazines"/>
         <GuideEntityEmbed Entity="ESSubverterChip"/>
         <GuideEntityEmbed Entity="SleepyPen"/>
     </Box>

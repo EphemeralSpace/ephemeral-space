@@ -1,5 +1,9 @@
 # Traitors
 - type: esTip
+  id: TraitorSecretIdentityClaim
+  text: As a Traitor, if someone asks for your secret identity, and you aren't sure what to say, claiming that you are a Vandal is usually a fairly safe option. Vandals are the only other secret identity that have the ability to sabotage machines.
+
+- type: esTip
   id: TraitorNukeTerminalPower
   text: As a Traitor, don't forget that the nuclear authentication terminals require power! Things can quickly go from good to unwinnable if you aren't in a situation that allows you to easily retrieve portable generators to power them.
 
@@ -11,10 +15,42 @@
   id: TraitorSabotageWarpDriveTerminals
   text: As a Traitor, you can only win if the crew doesn't. If the Warp Drive is charged, consider hiding out at one of the safety override terminals to ambush any crew who try to activate it.
 
+- type: esTip
+  id: TraitorExSyndie
+  text: Non-traitors can start with traitor gear through the Ex-Syndie secret identity modifier. Consider claiming you are an Ex-Syndie if you are caught with illegal items in your bag. This may become harder to believe if your actions have been suspicious.
+
+- type: esTip
+  id: TraitorDistraction
+  text: As a Traitor, when the crew is distracted with something happening somewhere else, it's typically a perfect opening to grab some of your sabotage objectives undetected. Try to pay attention to what people are saying on the radio to look out for these opportunities.
+
+- type: esTip
+  id: TraitorLoseHeat
+  text: As a Traitor, try to keep heat off of you by taking actions that help other players & the station. When you inevitably get caught doing something suspicious, people will be willing to give you the benefit of the doubt. The best traitor is someone who nobody would ever suspect to be a traitor.
+
 # Parasites
 - type: esTip
   id: ParasiteSometimesStayAlive
-  text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and stay alive to the later stages of a round if you don't see any particularly juicy conversion opportunities, assuming there are a decent amount of other parasites.
+  text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and stay alive to the later stages of a round if you don't see any particularly juicy conversion opportunities, assuming there are a decent amount of other parasites. 
+
+- type: esTip
+  id: ParasiteSometimesKill
+  text: As a Parasite, your organization wins as long as >50% of the people alive are parasites. Thus, it can sometimes be highly advantageous to try and kill other non-parasites to eek out the last percentage you need during the end of the game, provided you have the damage to spare. This becomes a lot easier to do if your teammates help you.
+
+- type: esTip
+  id: ParasiteDamageResource
+  text: As a Parasite, your ability to deal damage is a resource. It's typically a good idea to expend it to make yourself more believable, even if it can be scary to do so.
+
+- type: esTip
+  id: ParasiteTakingYouDownWithMe
+  text: As a Parasite, if you ever go over your 200 damage threshold, you have approximately 1 minute to live. Since the parasite conversion percentage is based on the number of living crew, it might be a good idea to take a few people down with you before you die.
+
+- type: esTip
+  id: ParasiteObviouslySuicidal
+  text: As a Parasite, try not to appear too obviously suicidal. People will likely put two and two together and figure out what you are if you beg for others to kill you--be it verbally or through universally unhelpful actions.
+
+- type: esTip
+  id: ParasiteIdentityFeigning
+  text: As a Parasite, appearing as a member of an enemy troupe is often a highly effective strategy. Standing in a room with a nuke terminal, shooting somebody who asks for a search, or appearing near recently-degraded machines can all lead people to believe you are a traitor who needs to be executed.
 
 - type: esTip
   id: ParasiteSabotageNotAlwaysGood

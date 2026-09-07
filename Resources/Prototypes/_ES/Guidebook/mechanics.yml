@@ -3,6 +3,7 @@
   hidden: false
   name: Mechanics
   priority: 1
+  root: true
   text: "/ServerInfo/_ES/Guidebook/Mechanics.xml"
   children:
   - WarpDrive

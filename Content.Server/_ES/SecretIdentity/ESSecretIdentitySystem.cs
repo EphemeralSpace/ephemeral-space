@@ -15,7 +15,6 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -181,11 +180,15 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
         // If we are spawning a new rule, we should initialize the objectives *after*
         // the first player is added to ensure targeting shenanigans don't happen.
-        var ruleExists = organization.HasValue;
+        var ruleExists = true;
         if (organization is null && !TryGetOrganizationEntityForSecretIdentity(secretIdentity, out organization))
         {
             var organizationEnt = _gameTicker.AddGameRule(PrototypeManager.Index(secretIdentity.Organization).GameRule);
             organization = (organizationEnt, Comp<ESOrganizationRuleComponent>(organizationEnt));
+
+            // We only want to start the rule internally if we are spawning a new rule that didn't exist before.
+            // Otherwise, we're in a greater logical structure and starting the rule early may cause problems.
+            ruleExists = false;
         }
 
         // Only exists because the AddRole API does not return the newly added role (why???)

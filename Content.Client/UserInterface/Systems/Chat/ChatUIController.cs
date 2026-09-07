@@ -566,6 +566,14 @@ public sealed partial class ChatUIController : UIController, IOnSystemChanged<ES
             return;
 
         var bubbleType = proto.SpeechBubbleType ?? SpeechType.Say;
+        foreach (var prefix in proto.Prefixes)
+        {
+            if (!text.StartsWith(prefix))
+                continue;
+
+            text = text.Remove(0, prefix.Length).Trim();
+            break;
+        }
 
         if (forceRebuild && _activeTypingSpeechBubble is not null)
         {

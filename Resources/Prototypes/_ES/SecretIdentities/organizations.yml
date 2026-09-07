@@ -20,6 +20,10 @@
   - TraitorNukeTerminalPower
   - TraitorSabotageWithoutPower
   - TraitorSabotageWarpDriveTerminals
+  - TraitorExSyndie
+  - TraitorDistraction
+  - TraitorLoseHeat
+  - AmmoLimitedResource
   objectives:
     all:
     - id: ESObjectiveTraitorKillRandom
@@ -44,6 +48,11 @@
   gameRule: ESOrganizationRuleParasite
   tips:
   - ParasiteSometimesStayAlive
+  - ParasiteSometimesKill
+  - ParasiteTakingYouDownWithMe
+  - ParasiteDamageResource
+  - ParasiteObviouslySuicidal
+  - ParasiteIdentityFeigning
   - ParasiteSabotageNotAlwaysGood
   objectives:
     all:

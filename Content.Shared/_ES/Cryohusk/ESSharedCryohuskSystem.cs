@@ -1,5 +1,6 @@
 using Content.Shared._ES.Cryohusk.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Body;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Prototypes;
 
@@ -11,6 +12,9 @@ public abstract partial class ESSharedCryohuskSystem : EntitySystem
     [Dependency] private SharedIdCardSystem _idCard = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private BodySystem _body = default!;
+
+    private readonly Queue<(EntityUid Body, EntityUid Organ, EntProtoId CryohuskInto)> _queuedOrganAdditions = new();
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -19,6 +23,27 @@ public abstract partial class ESSharedCryohuskSystem : EntitySystem
 
         SubscribeLocalEvent<ESCryohuskComponent, MapInitEvent>(OnCryohuskMapInit);
         SubscribeLocalEvent<ESCryohuskComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
+
+        SubscribeLocalEvent<BodyComponent, ESGotCryohuskedEvent>(_body.RelayEvent);
+        SubscribeLocalEvent<ESCryohuskableOrganComponent, BodyRelayedEvent<ESGotCryohuskedEvent>>(OnOrganCryohusked);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        while (_queuedOrganAdditions.TryDequeue(out var data))
+        {
+            var (body, organ, newOrgan) = data;
+
+            PredictedDel(organ);
+            PredictedTrySpawnInContainer(newOrgan, body, BodyComponent.ContainerID, out _);
+        }
+    }
+
+    private void OnOrganCryohusked(Entity<ESCryohuskableOrganComponent> ent, ref BodyRelayedEvent<ESGotCryohuskedEvent> args)
+    {
+        _queuedOrganAdditions.Enqueue((args.Body, ent, ent.Comp.CryohusksInto));
     }
 
     private void OnCardMapInit(Entity<ESCryohuskIdCardComponent> ent, ref MapInitEvent args)

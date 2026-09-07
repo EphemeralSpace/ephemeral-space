@@ -1,0 +1,77 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blue"
+        },
+        {
+            "name": "blue-broken"
+        },
+        {
+            "name": "blue-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "blue-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "blue-broken-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "blue-broken-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "purple"
+        },
+        {
+            "name": "purple-broken"
+        },
+        {
+            "name": "purple-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "purple-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "purple-broken-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "purple-broken-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "glass"
+        },
+        {
+            "name": "glass-broken"
+        },
+        {
+            "name": "glass-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "glass-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "glass-broken-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "glass-broken-inhand-right",
+            "directions": 4
+        }
+    ]
+}

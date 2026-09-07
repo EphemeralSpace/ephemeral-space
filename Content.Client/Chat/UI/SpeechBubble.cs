@@ -51,6 +51,8 @@ namespace Content.Client.Chat.UI
         /// </summary>
         private TimeSpan? _deathTime;
 
+        private string _prefix;
+
         public float VerticalOffset { get; set; }
         private float _verticalOffsetAchieved;
 
@@ -87,6 +89,9 @@ namespace Content.Client.Chat.UI
                 case SpeechType.Whisper:
                     return new FancyTextSpeechBubble(name, content, senderEntity, type);
 
+                case SpeechType.Radio:
+                    return new FancyTextSpeechBubble(name, content, senderEntity, type, prefix: "🛜 ");
+
                 case SpeechType.Looc:
                     return new TextSpeechBubble(name, content, senderEntity, type, Color.FromHex("#48d1cc"));
 
@@ -111,12 +116,13 @@ namespace Content.Client.Chat.UI
 
             _verticalOffsetAchieved = -ContentSize.Y;
             _deathTime = _timing.RealTime + TotalTime;
+            _prefix = prefix;
         }
 
-        public void RebuildBubbleContents(string name, string content, SpeechType type, Color? fontColor = null, string prefix = "")
+        public void RebuildBubbleContents(string name, string content, SpeechType type, Color? fontColor = null, string? prefix = null)
         {
             RemoveAllChildren();
-            var bubble = BuildBubble(name, content, type, fontColor, prefix);
+            var bubble = BuildBubble(name, content, type, fontColor, prefix ?? _prefix);
             NameText = name;
             ContentText = content;
             AddChild(bubble);
@@ -235,7 +241,10 @@ namespace Content.Client.Chat.UI
             };
 
             content = FormattedMessage.RemoveMarkupPermissive(content);
-            label.UnsafeSetMarkup($"{prefix}{content}", fontColor);
+            var color = fontColor ?? Chat.GetChatColor(name);
+            var outlineColor = Chat.GetChatOutlineColor(color);
+            label.OutlineColorOverride = outlineColor;
+            label.UnsafeSetMarkup($"[color=#3daee9]{prefix}[/color]{content}", color);
 
             var panel = new PanelContainer
             {
@@ -273,7 +282,7 @@ namespace Content.Client.Chat.UI
             var color = fontColor ?? Chat.GetChatColor(name);
             var outlineColor = Chat.GetChatOutlineColor(color);
             bubbleContent.OutlineColorOverride = outlineColor;
-            bubbleContent.UnsafeSetMarkup($"{prefix}{content}", color);
+            bubbleContent.UnsafeSetMarkup($"[color=#e9643a]{prefix}[/color]{content}", color);
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer

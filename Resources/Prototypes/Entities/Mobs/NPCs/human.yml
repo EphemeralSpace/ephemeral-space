@@ -1,6 +1,6 @@
 - type: entity
   name: spirate
-  parent: BaseMobHuman
+  parent: MobHuman
   id: MobSpirate
   description: Yarr!
   components:
@@ -14,7 +14,7 @@
       task: SimpleHumanoidHostileCompound
 
 - type: entity
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: Dead
   save: false # mobs are currently not saveable.
   id: SalvageHumanCorpse

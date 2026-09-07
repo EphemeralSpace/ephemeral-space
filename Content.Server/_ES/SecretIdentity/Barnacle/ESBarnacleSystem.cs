@@ -1,14 +1,16 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server._ES.SecretIdentity.Hemophage.Components;
 using Content.Server._ES.SecretIdentity.Parasite;
 using Content.Server.Actions;
 using Content.Server.Pinpointer;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared._ES.Breakable;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Barnacle;
 using Content.Shared.Alert;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
+using Content.Shared.Localizations;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -24,6 +26,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 {
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
@@ -31,8 +34,10 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private TurfSystem _turfSystem = default!;
     [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private ESSharedSecretIdentitySystem _secretIdentity = default!;
 
     public override void Initialize()
     {
@@ -43,6 +48,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         SubscribeLocalEvent<ESBarnacleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ESBarnacleComponent, MindGotAddedEvent>(OnGotAdded);
         SubscribeLocalEvent<ESBarnacleComponent, MindGotRemovedEvent>(OnGotRemoved);
+        SubscribeLocalEvent<ESBarnacleComponent, ESGetCharacterInfoBlurbEvent>(OnGetCharacterInfoBlurb);
         SubscribeLocalEvent<ESBarnacleMobComponent, ESBrokenStateChanged>(OnBarnacleDestroyed);
         SubscribeLocalEvent<ESBarnacleMobComponent, ESBarnacleDiedEvent>(OnBarnacleDied);
     }
@@ -56,6 +62,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         {
             if (TerminatingOrDeleted(projectile.GoalEntity))
             {
+                SpawnNextToOrDrop(projectile.BarnacleDead, uid);
                 QueueDel(uid);
                 continue;
             }
@@ -63,7 +70,7 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
             var newVelocity = physics.LinearVelocity + Vector2.Normalize(physics.LinearVelocity) * projectile.AccelerationRate;
             _physics.SetLinearVelocity(uid, newVelocity);
 
-            if (_transform.GetWorldPosition(uid).EqualsApprox(_transform.GetWorldPosition(projectile.GoalEntity), projectile.Tolerance) || _transform.GetGrid(uid) == null)
+            if (_transform.GetWorldPosition(uid).EqualsApprox(_transform.GetWorldPosition(projectile.GoalEntity), projectile.Tolerance))
             {
                 SpawnNextToOrDrop(projectile.BarnacleDead, uid);
                 QueueDel(uid);
@@ -170,43 +177,48 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
         _alerts.ClearAlert(args.Container.Owner, ent.Comp.BarnacleAlert);
     }
 
-    private void OnBarnacleDestroyed(EntityUid uid, ESBarnacleMobComponent comp, ESBrokenStateChanged ev)
+    private void OnBarnacleDestroyed(Entity<ESBarnacleMobComponent> ent, ref ESBrokenStateChanged ev)
     {
         if (!ev.Broken)
             return;
 
-        if (!TryComp<MindComponent>(comp.BarnacleOwner, out var mind) ||
-            !TryComp<ESBarnacleComponent>(comp.BarnacleOwner, out var barnacle))
+        if (!TryComp<MindComponent>(ent.Comp.BarnacleOwner, out var mind) ||
+            !TryComp<ESBarnacleComponent>(ent.Comp.BarnacleOwner, out var barnacle))
             return;
 
-        barnacle.Barnacles.Remove(uid);
+        barnacle.Barnacles.Remove(ent);
 
         if (mind.CurrentEntity is not { } owned)
             return;
 
-        var msg = Loc.GetString("barnacle-destroyed", ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(uid))));
+        var msg = Loc.GetString("barnacle-destroyed",
+            ("location", FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(ent.Owner))));
         _popup.PopupEntity(msg, owned, owned, PopupType.MediumCaution);
-        UpdateAlert((comp.BarnacleOwner, barnacle, mind));
+        UpdateAlert((ent.Comp.BarnacleOwner, barnacle, mind));
     }
 
-    private void OnBarnacleDied(EntityUid uid, ESBarnacleMobComponent comp , ESBarnacleDiedEvent ev)
+    private void OnBarnacleDied(Entity<ESBarnacleMobComponent> ent, ref ESBarnacleDiedEvent ev)
     {
-        if (!TryComp<MindComponent>(comp.BarnacleOwner, out var mind))
+        if (!TryComp<MindComponent>(ent.Comp.BarnacleOwner, out var mind))
             return;
 
         if (mind.CurrentEntity is not { } owned)
             return;
 
-        if (_transform.GetGrid(uid) != _transform.GetGrid(owned)) // Makes sure barnacle and killed are on same grid
+        if (_transform.GetGrid(ent.Owner) != _transform.GetGrid(owned)) // Makes sure barnacle and killed are on same grid
             return;
 
-        var direction = _transform.GetWorldPosition(owned) - _transform.GetWorldPosition(uid);
+        var direction = _transform.GetWorldPosition(owned) - _transform.GetWorldPosition(ent.Owner);
 
-        var projectile = SpawnNextToOrDrop(comp.ProjectileId, uid);
+        var projectile = SpawnNextToOrDrop(ent.Comp.ProjectileId, ent);
         var projectileComp = EnsureComp<ESBarnacleProjectileComponent>(projectile);
         projectileComp.GoalEntity = owned;
 
-        _gun.ShootProjectile(projectile, direction, Vector2.Zero, uid, uid, 0.01f);
+        _gun.ShootProjectile(projectile, direction, Vector2.Zero, ent, ent, 0.01f);
+
+        _appearance.SetData(ent, ESBarnacleVisuals.Popped, true);
+        _metaData.SetEntityName(ent, Loc.GetString("es-barnacle-popped-name"));
+        _metaData.SetEntityDescription(ent, Loc.GetString("es-barnacle-popped-desc"));
     }
 
     private void UpdateAlert(Entity<ESBarnacleComponent?, MindComponent?> ent)
@@ -219,5 +231,25 @@ public sealed partial class ESBarnacleSystem : ESBaseParasiteSystem<ESBarnacleCo
 
         var severity = _alerts.ClampSeverity(ent.Comp1.BarnacleAlert, (short) ent.Comp1.Barnacles.Count);
         _alerts.ShowAlert(owned, ent.Comp1.BarnacleAlert, severity);
+
+        _secretIdentity.RefreshCharacterInfoBlurb((ent.Owner, ent.Comp2));
     }
+
+    private void OnGetCharacterInfoBlurb(Entity<ESBarnacleComponent> ent, ref ESGetCharacterInfoBlurbEvent args)
+    {
+        if (ent.Comp.Barnacles.Count == 0)
+            return;
+
+        var locations = new List<string>();
+        foreach (var barnacle in ent.Comp.Barnacles)
+        {
+            var name = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString(barnacle, true));
+            locations.Add(Loc.GetString("barnacle-location-fmt", ("name", name)));
+        }
+
+        args.Info.Add(FormattedMessage.FromMarkupPermissive(Loc.GetString("barnacle-location-character-info-blurb",
+            ("count", locations.Count),
+            ("location",  ContentLocalizationManager.FormatList(locations)))));
+    }
+
 }

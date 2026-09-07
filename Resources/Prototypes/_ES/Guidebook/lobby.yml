@@ -2,4 +2,5 @@
   id: Lobby
   name: Lobby
   priority: 1
+  root: true
   text: "/ServerInfo/_ES/Guidebook/Lobby.xml"

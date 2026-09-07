@@ -93,40 +93,6 @@
 
 - type: entity
   parent: [DrinkVisualsAllFilled, DrinkBottlePlasticBaseFull]
-  id: DrinkSpaceMountainWindBottleFull
-  name: Space Solar Wind bottle
-  description: Blows right through you like a solar wind.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: SpaceMountainWind
-          Quantity: 100
-  - type: Label
-    currentLabel: reagent-name-space-mountain-wind
-  - type: Sprite
-    sprite: Objects/Consumable/Drinks/space_mountain_wind_bottle.rsi
-
-- type: entity
-  parent: [DrinkVisualsAllFilled, DrinkBottlePlasticBaseFull]
-  id: DrinkSpaceUpBottleFull
-  name: Space-Up bottle
-  description: Tastes like a hull breach in your mouth.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: SpaceUp
-          Quantity: 100
-  - type: Label
-    currentLabel: reagent-name-space-up
-  - type: Sprite
-    sprite: Objects/Consumable/Drinks/space-up_bottle.rsi
-
-- type: entity
-  parent: [DrinkVisualsAllFilled, DrinkBottlePlasticBaseFull]
   id: DrinkSodaWaterBottleFull
   name: soda water bottle
   description: Like water, but angry!
@@ -160,23 +126,6 @@
     sprite: Objects/Consumable/Drinks/tonic-bottle.rsi
   - type: Label
     currentLabel: reagent-name-tonic-water
-
-- type: entity
-  parent: [DrinkVisualsOpenable, DrinkBottlePlasticBaseFull]
-  id: DrinkEnergyDrinkJug
-  name: Red Bool jug
-  description: A jug of Red Bool, with enough caffeine to kill a whole station.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 100
-        reagents:
-        - ReagentId: EnergyDrink
-          Quantity: 100
-  - type: Label
-    currentLabel: reagent-name-energy-drink
-  # TODO new sprite
 
 # Xtra large
 # TODO these have too much volume
@@ -214,23 +163,6 @@
           Quantity: 300
   - type: Label
     currentLabel: reagent-name-lemon-lime
-  # TODO new sprite
-
-- type: entity
-  parent: [DrinkVisualsOpenable, DrinkBottlePlasticBaseFull]
-  id: DrinkMeadJug
-  name: mead jug
-  description: Storing mead in a plastic jug should be a crime.
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 150
-        reagents:
-        - ReagentId: Mead
-          Quantity: 150
-  - type: Label
-    currentLabel: reagent-name-mead
   # TODO new sprite
 
 - type: entity

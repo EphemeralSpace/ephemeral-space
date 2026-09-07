@@ -29,7 +29,7 @@ public sealed partial class ESNamePeekSystem : EntitySystem
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery;
     [Dependency] private EntityQuery<TransformComponent> _transformQuery;
     [Dependency] private EntityQuery<MobStateComponent> _mobstateQuery;
-    [Dependency] private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearanceQuery;
+    [Dependency] private EntityQuery<HumanoidProfileComponent> _humanoidProfileQuery;
 
     public bool Visible;
 
@@ -51,7 +51,7 @@ public sealed partial class ESNamePeekSystem : EntitySystem
             _spriteQuery,
             _transformQuery,
             _mobstateQuery,
-            _humanoidAppearanceQuery));
+            _humanoidProfileQuery));
 
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.ESHoldToFace, new PointerInputCmdHandler(OnExamineNames, ignoreUp: false, outsidePrediction: true))

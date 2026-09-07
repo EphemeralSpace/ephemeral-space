@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Made by Flareguy for Ephemeral Space",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "tissuebox-empty"
+        },
+        {
+            "name": "tissuebox-full"
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "tissue"
+        },
+        {
+            "name": "tissue-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "tissue-inhand-left",
+            "directions": 4
+        }
+    ]
+}

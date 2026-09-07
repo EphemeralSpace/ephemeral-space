@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Gameplay;
+using Content.Client.Stylesheets.Fonts;
 using Content.Shared.Popups;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -15,6 +16,7 @@ public sealed partial class PopupUIController : UIController, IOnStateEntered<Ga
 {
     [UISystemDependency] private readonly PopupSystem? _popup = default!;
     [Dependency] private IResourceCache _cache = default!;
+    [Dependency] private IFontSelectionManager _fontSelection = default!;
 
     private Font _smallFont = default!;
     private Font _mediumFont = default!;
@@ -27,10 +29,9 @@ public sealed partial class PopupUIController : UIController, IOnStateEntered<Ga
         base.Initialize();
 
         // ES START
-        // TODO: Move fonts to stylesheets, respect user font preferences.
-        _smallFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 10);
-        _mediumFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 12);
-        _largeFont = new VectorFont(_cache.GetResource<FontResource>("/Fonts/_ES/Wormtown9k-Regular.ttf"), 14);
+        _smallFont = _fontSelection.GetFont(StandardFontType.Chat, 10);
+        _mediumFont = _fontSelection.GetFont(StandardFontType.Chat, 12);
+        _largeFont = _fontSelection.GetFont(StandardFontType.Chat, 14);
         // ES END
     }
 

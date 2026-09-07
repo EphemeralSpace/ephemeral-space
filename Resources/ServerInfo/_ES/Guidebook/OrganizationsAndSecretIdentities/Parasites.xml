@@ -8,29 +8,43 @@
     <GuideEntityEmbed Entity="ESWeaponParasiteWorm" Caption=""/>
   </Box>
   Parasites are an [color=yellowgreen]infectious collective[/color] that want to seize control of the station to turn it into a nest for the parasites to reproduce.
-
-  The various parasite identities all fall under the general role type of "jester"--a secret identity whose objective it is to be killed.
-
+  
+  They are similar to the "jester" archetype in other social deduction games, aiming to get killed to further their objectives.
+  
+  ## Gameplay & Objectives
   <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteDie"/>
+  When hosts of the parasitic infection are killed, the parasites will spring into action, potentially infecting others.
+  For this to work, it [bold]must be from another player who takes your life,[/bold] not the environment or an animal. If you are killed in any other way, you will die without infecting anyone.
+  
+  Each parasite secret identity has a special method of propogating the infection when they die. In brief:
+  - The [textlink="Burstworm" link="Burstworm"] releases a ring of projectile burstworms that infect people on hit.
+  - The [textlink="Leapleech" link="Leapleech"] releases several independent enemy leapleeches that leap at the uninfected and can be killed, and must recieve damage from different players to gain more leeches.
+  - The [textlink="Hemophage" link="Hemophage"] infects anyone unfortunate enough to be standing on the puddles of its blood.
+  - The [textlink="Barnacle" link="Barnacle"] releases burrowers that converge on to the body of the infected, with the burrowers spawning from one of 3 manually-placed barnacle nests.
 
-  When hosts of the parasitic infection are killed, the parasites will spring into actions, causing unique effects to occur and potentially infecting others.
-  Note that it has to be another player who takes your life, not the environment or an animal.
-
-  However, the hosts themselves are restricted by the very same parasites.
-  If they were to take the life of another, the hormonal spike in their brain would send the parasites into a frenzy, killing them almost instantly.
+  When another player is infected from a parasite, they will get the same secret identity as the parasite that infected them.
+  
+  If you are a parasite, it is highly recommended to check the guidebook page of your specific secret identity, as all parasites have unique abilities and different methods of propogating the infection.
 
   <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteDoNotKill"/>
-
-  The parasites win if they seize control of the majority of the station.
-  Note that this only includes living players, so if members of other organizations die off, it's possible for the parasites to win with only relatively few infections.
-
+  Parasites must ensure they can convince other players to kill them [italic]without[/italic] doing over 200 damage to other players themselves.
+  If a parasite passes this threshold, they will be sent in to a hormonal frenzy, killing them in about a minute & preventing the spread of infection from the parasite.
+  
   <ESGuideObjectiveEmbed Objective="ESObjectiveParasiteInfect"/>
-
+  The parasites win if they seize control of the majority (>50%) of the station.
+  Note that this only includes living players, so if members of other organizations die off, it's possible for the parasites to win with only relatively few infections.
+  
   At that point, a psychic message will be sent, notifying that the parasite swarm will begin shortly.
-  After a short delay, all members will develop parasitic growths on their body and have a large parasite burst from their arm.
+  After a short delay, all members will develop parasitic growths on their body and have a large parasite burst from their arm. Hitting any non-parasite in this state will instantly kill them, leaving behind a parasitic mound.
 
-  This larger worm can be used as a weapon, stunning people on hit and converting prone players in parasitic hosts.
+  After about a minute, the round will end as a parasite organization victory.
 
-  After a few minutes, so long as the rampaging parasites are not wiped out, the round will end as a parasite organization victory.
+ ## Feigning as Other Secret Identites & Claims
+ While parasites don't have as much to gain from fake-claiming their secret identity as an organization like traitors might, they can still utilize it to make themselves seem more killable-without-consequences in certain situations.
+ - [textlink="Tragedian" link="Tragedian"]: A secret identity that must put on a performance that embodies a certain theme, then die. This is normally a very inconspicious identity that people will typically let die if they need to, and has no special abilities, making it almost free to feign as. Just make sure to put on a performance that'll make people want to kill you, and have a theme in mind.
+ - [textlink="Traitor" link="Traitor"]: A dangerous organization that must sabotage key areas of the station & blow it up. They get special gear and tend to orbit around certain important locations. If you play in to looking like one, this can make you look [italic]extremely[/italic] murderable, as the crew usually wants to eliminate the traitors as fast as possible. Sticking around recently-sabotaged traitor objectives, nuclear authentication terminals late in to the round, or responding in a hostile way to traitor-related questions towards yourself (especially whilist using traitor gear) are all excellent strategies for getting murdered quickly. If you don't know what these tells are, looking at the [textlink="traitor guidebook page" link="Traitor"] and its associated secret identities can help.
+ - [textlink="Arsonist" link="Arsonist"]: A secret identity that must light a certain amount of fires on the station. Despite being crew-aligned, people often do not like leaving this secret identity alive once found, since they are often very detrimental to the station's continued function. Relative to others listed here, this is a much riskier secret identity to feign as, since there is a risk crew may not kill you. Alternatively, sloppy play could out you as an obvious Parasite, since firebombs are a common "brainless destruction" method. Despite that, it is still here because walking the tightrope can be really rewarding if executed properly.
 
+ ## General Tips and Strategy
+ - Your hivemind chat is invaluable! You can use it to coordinate chaotic situations, and manufacture suspicion and doubt on to yourself when you are trying to get killed. This can be particularly useful when trying to feign as a dangerous secret identity, such as Traitor or Arsonist.
 </Document>

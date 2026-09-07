@@ -201,11 +201,10 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
     {
         if (rootEntries == null)
         {
-            HashSet<ProtoId<GuideEntryPrototype>> entries = [.. _entries.Keys];
-            foreach (var entry in _entries.Values)
-            {
-                entries.ExceptWith(entry.Children);
-            }
+            var entries = _entries.Values
+                .Where(e => e.Root)
+                .Select(e => (ProtoId<GuideEntryPrototype>) e.Id)
+                .ToHashSet();
 
             rootEntries = [.. entries];
         }
