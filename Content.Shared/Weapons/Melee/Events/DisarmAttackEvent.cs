@@ -13,3 +13,15 @@ public sealed class DisarmAttackEvent : AttackEvent
         Target = target;
     }
 }
+
+
+[Serializable, NetSerializable]
+public sealed class ShoveAttackEvent : AttackEvent
+{
+    public NetEntity? Target;
+
+    public ShoveAttackEvent(NetEntity? target, NetCoordinates coordinates) : base(coordinates)
+    {
+        Target = target;
+    }
+}

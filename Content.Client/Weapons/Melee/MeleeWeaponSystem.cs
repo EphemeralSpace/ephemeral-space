@@ -106,12 +106,8 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // secondary attack
         if (altDown == BoundKeyState.Down && weapon.AltDisarm)
         {
-            // If it's an unarmed attack then disarm
-            if (weaponUid == entity)
-            {
-                ClientDisarm(entity, mousePos, coordinates);
-                return;
-            }
+            ClientShove(mousePos, coordinates);
+            return;
         }
 
         // primary attack
@@ -192,6 +188,16 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             target = screen.GetClickedEntity(mousePos);
 
         RaisePredictiveEvent(new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
+    }
+
+    private void ClientShove(MapCoordinates mousePos, EntityCoordinates coordinates)
+    {
+        EntityUid? target = null;
+
+        if (_stateManager.CurrentState is GameplayStateBase screen)
+            target = screen.GetClickedEntity(mousePos);
+
+        RaisePredictiveEvent(new ShoveAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
     }
 
     private void ClientLightAttack(EntityUid attacker, EntityUid target, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent)
