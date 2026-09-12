@@ -2150,3 +2150,9 @@ Entries:
         locker for when a room needs a really deep clean.
   id: 233
   time: '2026-09-09T15:14:08.0000000+00:00'
+- author: Tomeno
+  changes:
+    - type: Fix
+      message: Fixed glitches with audio occlusion on moving grids
+  id: 234
+  time: '2026-09-12T22:43:50.0000000+00:00'
