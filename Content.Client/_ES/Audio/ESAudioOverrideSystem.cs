@@ -248,12 +248,17 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         if (_occlusion.CurrentSoundPaths == null)
             return _occlusionMaxOcclusion;
 
-        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
-        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
+        var soundStageGrid = _occlusion.CurrentSoundPaths.Stage.GridUid;
 
-        var path = _occlusion.FindEntityPath(entity, emitterPos, component);
+        if (!soundStageGrid.IsValid())
+            return _occlusionMaxOcclusion;
 
-        return CalculatePathOcclusion(path, listenerPos, emitterPos);
+        var listenerPos = _maps.MapToGrid(soundStageGrid, listener);
+        var emitterPos = _maps.MapToGrid(soundStageGrid, listener.Offset(delta));
+
+        var path = _occlusion.FindEntityPath(entity, emitterPos.Position, component);
+
+        return CalculatePathOcclusion(path, listenerPos.Position, emitterPos.Position);
     }
 
     /// <summary>
@@ -267,12 +272,17 @@ public sealed partial class ESAudioOverrideSystem : EntitySystem
         if (_occlusion.CurrentSoundPaths == null)
             return _occlusionMaxOcclusion;
 
-        var listenerPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position);
-        var emitterPos = _occlusion.CurrentSoundPaths.Stage.WorldToStage(listener.Position + delta);
+        var soundStageGrid = _occlusion.CurrentSoundPaths.Stage.GridUid;
+
+        if (!soundStageGrid.IsValid())
+            return _occlusionMaxOcclusion;
+
+        var listenerPos = _maps.MapToGrid(soundStageGrid, listener);
+        var emitterPos = _maps.MapToGrid(soundStageGrid, listener.Offset(delta));
 
         // TODO: this should be cached too... maybe we need the cache to be keyed by Object?
-        var path = _occlusion.FindPath(emitterPos);
+        var path = _occlusion.FindPath(emitterPos.Position);
 
-        return CalculatePathOcclusion(path, listenerPos, emitterPos);
+        return CalculatePathOcclusion(path, listenerPos.Position, emitterPos.Position);
     }
 }
