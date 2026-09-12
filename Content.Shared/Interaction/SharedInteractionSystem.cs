@@ -1486,7 +1486,7 @@ namespace Content.Shared.Interaction
                 return ;
 
             // TODO Struct event
-            var ev = new ContactInteractionEvent(uidB.Value);
+            var ev = new ContactInteractionEvent(uidB.Value, used);
             RaiseLocalEvent(uidA, ev);
 
             ev.Other = uidA;

@@ -12,3 +12,7 @@ es-fingerprint-card-examine = There { $count ->
 } on the card.
 es-fingerprint-card-examine-none = The card is clean.
 es-fingerprint-card-examine-usage = You can use this on another card to match the prints.
+
+es-fingerprint-kit-popup-dust-start = Dusting for prints!
+es-fingerprint-kit-popup-no-prints = No prints!
+es-fingerprint-kit-popup-prints = Prints collected!

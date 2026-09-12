@@ -16,6 +16,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private TransformSystem _xform = default!;
 
@@ -77,6 +78,9 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 
         if (used is { } usedEntity && Exists(usedEntity) && TryComp<SpriteComponent>(usedEntity, out var usedSprite))
         {
+            // Force appearance update in case we changed the appearance after spawning.
+            _appearance.OnChangeData(usedEntity, usedSprite);
+
             _sprite.CopySprite((usedEntity, usedSprite), particle);
             _sprite.SetDrawDepth(particle, (int) Shared.DrawDepth.DrawDepth.Effects);
         }

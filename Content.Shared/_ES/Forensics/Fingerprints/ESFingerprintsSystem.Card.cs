@@ -9,8 +9,6 @@ namespace Content.Shared._ES.Forensics.Fingerprints;
 
 public sealed partial class ESFingerprintsSystem
 {
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
-
     private void InitializeCard()
     {
         SubscribeLocalEvent<ESFingerprintCardComponent, ExaminedEvent>(OnCardExamined);
@@ -22,7 +20,7 @@ public sealed partial class ESFingerprintsSystem
 
     private void OnCardExamined(Entity<ESFingerprintCardComponent> ent, ref ExaminedEvent args)
     {
-        using (args.PushGroup(nameof(ESFingerprintCardComponent)))
+        using (args.PushGroup(nameof(ESFingerprintCardComponent), 2))
         {
             args.PushMarkup(ent.Comp.Used
                 ? Loc.GetString("es-fingerprint-card-examine", ("count", ent.Comp.Fingerprints.Count))
@@ -64,7 +62,7 @@ public sealed partial class ESFingerprintsSystem
 
     private void OnCardAfterInteract(Entity<ESFingerprintCardComponent> ent, ref AfterInteractEvent args)
     {
-        if (args.Target is not { } target)
+        if (args.Handled || !args.CanReach || args.Target is not { } target)
             return;
 
         if (!TryComp<ESFingerprintCardComponent>(target, out var targetComp))
@@ -101,7 +99,7 @@ public sealed partial class ESFingerprintsSystem
     /// <summary>
     /// Tries to set the fingerprints on a card, failing if it's already been set.
     /// </summary>
-    public bool TrySetCardFingerprints(Entity<ESFingerprintCardComponent?> ent, List<ESFingerprint> fingerprints)
+    public bool TrySetCardFingerprints(Entity<ESFingerprintCardComponent?> ent, IEnumerable<ESFingerprint> fingerprints)
     {
         if (!Resolve(ent, ref ent.Comp))
             return false;
@@ -109,7 +107,7 @@ public sealed partial class ESFingerprintsSystem
         if (ent.Comp.Used)
             return false;
 
-        ent.Comp.Fingerprints = fingerprints;
+        ent.Comp.Fingerprints = fingerprints.ToList();
         _nameModifier.RefreshNameModifiers(ent.Owner);
         _appearance.SetData(ent, ESFingerprintCardVisuals.Used, true);
         Dirty(ent);

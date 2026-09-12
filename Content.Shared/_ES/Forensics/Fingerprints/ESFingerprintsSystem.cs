@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Forensics.Fingerprints.Components;
+using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Labels.EntitySystems;
@@ -13,6 +15,9 @@ namespace Content.Shared._ES.Forensics.Fingerprints;
 public sealed partial class ESFingerprintsSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private LabelSystem _label = default!;
     [Dependency] private NameModifierSystem _nameModifier = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
@@ -27,6 +32,7 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
         SubscribeLocalEvent<ESFingerprintBlockerComponent, InventoryRelayedEvent<ESTransferFingerprintsAttemptEvent>>(OnTransferFingerprintsAttempt);
 
         InitializeCard();
+        InitializeKit();
     }
 
     private void OnMapInit(Entity<ESFingerprintsComponent> ent, ref MapInitEvent args)
@@ -37,6 +43,10 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
 
     private void OnContactInteraction(Entity<ESFingerprintsComponent> ent, ref ContactInteractionEvent args)
     {
+        // Do not leave fingerprints if we are not actually making direct contact with an object.
+        if (args.Used is not null)
+            return;
+
         args.Handled = TryTransferFingerprints(ent.AsNullable(), args.Other);
     }
 
@@ -116,6 +126,23 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Tries to get the fingerprints left on an entity as evidence.
+    /// Fails if there are none.
+    /// </summary>
+    public bool TryGetFingerprintEvidence(
+        Entity<ESFingerprintEvidenceComponent?> ent,
+        [NotNullWhen(true)] out HashSet<ESFingerprint>? fingerprints)
+    {
+        fingerprints = null;
+
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        fingerprints = ent.Comp.Fingerprints;
+        return fingerprints.Count != 0;
     }
 }
 

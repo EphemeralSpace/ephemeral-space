@@ -20,3 +20,16 @@
   - type: Item
     size: Small
     storedRotation: -90
+
+- type: entity
+  parent: BaseItem
+  id: ESFingerprintKit
+  name: fingerprint powder
+  description: A small kit for dusting prints off of various things around the station.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Specific/Forensics/fingerprint_kit.rsi
+    state: icon
+  - type: ESFingerprintKit
+  - type: Item
+    size: Normal
