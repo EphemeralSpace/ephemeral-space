@@ -1,7 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Forensics.Fingerprints.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
+using Content.Shared.Labels.EntitySystems;
+using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared.Popups;
 using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Forensics.Fingerprints;
@@ -9,6 +13,9 @@ namespace Content.Shared._ES.Forensics.Fingerprints;
 public sealed partial class ESFingerprintsSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private LabelSystem _label = default!;
+    [Dependency] private NameModifierSystem _nameModifier = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -18,6 +25,8 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
 
         SubscribeLocalEvent<ESFingerprintBlockerComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<ESFingerprintBlockerComponent, InventoryRelayedEvent<ESTransferFingerprintsAttemptEvent>>(OnTransferFingerprintsAttempt);
+
+        InitializeCard();
     }
 
     private void OnMapInit(Entity<ESFingerprintsComponent> ent, ref MapInitEvent args)
@@ -74,16 +83,39 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
     /// </summary>
     public bool CanTransferFingerprints(Entity<ESFingerprintsComponent?> ent, EntityUid target)
     {
+        // TODO: component for blocking fingerprints on puddles
+
+        return TryGetFingerprints(ent, out _);
+    }
+
+    /// <summary>
+    /// Attempts to retrieve the fingerprints off an entity
+    /// </summary>
+    /// <param name="ent">The entity to get prints from</param>
+    /// <param name="prints">The fingerprints</param>
+    /// <param name="ignoreBlockers">If true, ignore things like gloves which obscure fingerprints</param>
+    /// <returns>Whether the fingerprints were retrieved successfully</returns>
+    public bool TryGetFingerprints(
+        Entity<ESFingerprintsComponent?> ent,
+        [NotNullWhen(true)] out ESFingerprint? prints,
+        bool ignoreBlockers = false)
+    {
+        prints = null;
+
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
-        // TODO: component for blocking fingerprints on puddles
+        prints = ent.Comp.Fingerprint;
 
+        if (!ignoreBlockers)
+        {
+            var ev = new ESTransferFingerprintsAttemptEvent(ent);
+            RaiseLocalEvent(ent, ref ev);
 
-        var ev = new ESTransferFingerprintsAttemptEvent(ent, target);
-        RaiseLocalEvent(ent, ref ev);
+            return !ev.Cancelled;
+        }
 
-        return !ev.Cancelled;
+        return true;
     }
 }
 
@@ -91,12 +123,11 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
 /// Event raised on an entity with fingerprints when they touch another entity to check if fingerprints are transferred.
 /// </summary>
 [ByRefEvent]
-public record struct ESTransferFingerprintsAttemptEvent(EntityUid User, EntityUid Target) : IInventoryRelayEvent
+public record struct ESTransferFingerprintsAttemptEvent(EntityUid User) : IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = SlotFlags.GLOVES;
 
     public readonly EntityUid User = User;
-    public readonly EntityUid Target = Target;
 
     public bool Cancelled { get; private set; } = false;
 

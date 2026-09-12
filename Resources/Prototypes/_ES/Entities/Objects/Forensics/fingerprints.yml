@@ -1,0 +1,22 @@
+- type: entity
+  parent: Clothing
+  id: ESCardFingerprint
+  name: fingerprints card
+  description: A small white card for recording fingerprints. Does not give you permission to do anything to 80's pop icon Prince.
+  components:
+  - type: Sprite
+    sprite: _ES/Objects/Specific/Forensics/fingerprint.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ESFingerprintCardVisuals.Used:
+        base:
+          True: { state: used }
+          False: { state: icon }
+  - type: ESFingerprintCard
+  - type: Item
+    size: Small
+    storedRotation: -90
