@@ -1,0 +1,27 @@
+- type: decal
+  id: ESHypersleepLights
+  tags: ["station", "markings", "hypersleep"]
+  sprite:
+    sprite: _ES/Decals/es_decals.rsi
+    state: cryosleep_light
+
+- type: decal
+  id: ESHypersleepLightsLong
+  tags: ["station", "markings", "hypersleep"]
+  sprite:
+    sprite: _ES/Decals/es_decals.rsi
+    state: cryosleep_light_long
+
+- type: decal
+  id: ESDarkHalfRight
+  tags: ["station", "markings", "hypersleep"]
+  sprite:
+    sprite: _ES/Decals/es_decals.rsi
+    state: darkhalf_right
+
+- type: decal
+  id: ESDarkHalfLeft
+  tags: ["station", "markings", "hypersleep"]
+  sprite:
+    sprite: _ES/Decals/es_decals.rsi
+    state: darkhalf_left
