@@ -1,10 +1,15 @@
 using Content.Shared._ES.Core.Timer.Components;
+using Content.Shared.Paper;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._ES.Forensics.Components;
 
+/// <summary>
+/// Microscope that can analyzes various inserted forensic evidence
+/// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(ESMicroscopeSystem))]
 public sealed partial class ESEvidenceMicroscopeComponent : Component
@@ -20,6 +25,9 @@ public sealed partial class ESEvidenceMicroscopeComponent : Component
 
     [DataField]
     public string SlotId = "slide_slot";
+
+    [DataField]
+    public EntProtoId<PaperComponent> ReportEntity = "ForensicReportPaper";
 }
 
 [Serializable, NetSerializable]

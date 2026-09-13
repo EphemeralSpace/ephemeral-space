@@ -8,6 +8,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Station;
+using Content.Shared.StationRecords;
 using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Forensics.Fingerprints;
@@ -21,6 +23,8 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
     [Dependency] private LabelSystem _label = default!;
     [Dependency] private NameModifierSystem _nameModifier = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedStationRecordsSystem _stationRecords = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

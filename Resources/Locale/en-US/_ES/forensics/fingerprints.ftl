@@ -16,3 +16,7 @@ es-fingerprint-card-examine-usage = You can use this on another card to match th
 es-fingerprint-kit-popup-dust-start = Dusting for prints!
 es-fingerprint-kit-popup-no-prints = No prints!
 es-fingerprint-kit-popup-prints = Prints collected!
+
+es-fingerprint-report-header = [head=3]Fingerprint Analysis ({$count})[/head]
+es-fingerprint-report-match = - [bold]Matched Print:[/bold] {$name}, {$job}
+es-fingerprint-report-unknown = - [bold][color=red]Fingerprint not found in records![/color][/bold]

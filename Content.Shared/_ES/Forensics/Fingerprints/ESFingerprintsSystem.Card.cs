@@ -4,6 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared.StationRecords;
 
 namespace Content.Shared._ES.Forensics.Fingerprints;
 
@@ -16,6 +17,7 @@ public sealed partial class ESFingerprintsSystem
         SubscribeLocalEvent<ESFingerprintCardComponent, RefreshNameModifiersEvent>(OnCardRefreshNameModifiers);
         SubscribeLocalEvent<ESFingerprintCardComponent, UseInHandEvent>(OnCardUseInHand);
         SubscribeLocalEvent<ESFingerprintCardComponent, AfterInteractEvent>(OnCardAfterInteract);
+        SubscribeLocalEvent<ESFingerprintCardComponent, ESMicroscopeGetReportEvent>(OnGetMicroscopeReport);
     }
 
     private void OnCardExamined(Entity<ESFingerprintCardComponent> ent, ref ExaminedEvent args)
@@ -85,6 +87,36 @@ public sealed partial class ESFingerprintsSystem
         else
         {
             _popup.PopupEntity(Loc.GetString("es-fingerprint-card-popup-compare-match-fail"), target);
+        }
+    }
+
+    private void OnGetMicroscopeReport(Entity<ESFingerprintCardComponent> ent, ref ESMicroscopeGetReportEvent args)
+    {
+        if (_station.GetOwningStation(ent) is not { } station)
+            return;
+
+        args.Message.AddMarkupPermissive(Loc.GetString("es-fingerprint-report-header", ("count", ent.Comp.Fingerprints.Count)));
+        args.Message.PushNewline();
+
+        foreach (var fingerprint in ent.Comp.Fingerprints)
+        {
+            var found = false;
+            foreach (var (_, record) in _stationRecords.GetRecordsOfType<GeneralStationRecord>(station))
+            {
+                if (record.Fingerprint != fingerprint)
+                    continue;
+
+                args.Message.AddMarkupPermissive(Loc.GetString("es-fingerprint-report-match", ("name", record.Name), ("job", record.JobTitle)));
+                args.Message.PushNewline();
+                found = true;
+                break;
+            }
+
+            if (!found)
+            {
+                args.Message.AddMarkupPermissive(Loc.GetString("es-fingerprint-report-unknown"));
+                args.Message.PushNewline();
+            }
         }
     }
 

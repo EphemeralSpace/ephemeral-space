@@ -3,10 +3,14 @@ using Content.Shared._ES.Breakable;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.Forensics.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Labels.Components;
+using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._ES.Forensics;
 
@@ -16,14 +20,25 @@ public sealed partial class ESMicroscopeSystem : EntitySystem
     [Dependency] private ESBreakableSystem _breakable = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PaperSystem _paper = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<ESEvidenceMicroscopeComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<ESEvidenceMicroscopeComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<ESEvidenceMicroscopeComponent, ESMicroscopeScanTimerEvent>(OnMicroscopeScan);
+    }
+
+    private void OnExamined(Entity<ESEvidenceMicroscopeComponent> ent, ref ExaminedEvent args)
+    {
+        if (TryGetCurrentEvidence(ent.AsNullable(), out var evidence))
+            args.PushMarkup(Loc.GetString("es-microscope-examine-evidence", ("object", evidence)));
+        else
+            args.PushMarkup(Loc.GetString("es-microscope-examine-evidence-none"));
     }
 
     private void OnInteractHand(Entity<ESEvidenceMicroscopeComponent> ent, ref InteractHandEvent args)
@@ -68,7 +83,21 @@ public sealed partial class ESMicroscopeSystem : EntitySystem
         if (!TryGetCurrentEvidence(ent.AsNullable(), out var evidence))
             return; // should never happen so don't bother with real message
 
-        //var paper = Spawn();
+        var msg = new FormattedMessage();
+        msg.AddMarkupPermissive(Loc.GetString("es-microscope-report-title"));
+        msg.PushNewline();
+        msg.PushNewline();
+        var ev = new ESMicroscopeGetReportEvent(msg);
+        RaiseLocalEvent(evidence.Value, ref ev);
+
+        var paper = PredictedSpawnNextToOrDrop(ent.Comp.ReportEntity, ent);
+        var label = CompOrNull<LabelComponent>(evidence)?.CurrentLabel;
+        _metaData.SetEntityName(paper,
+            Loc.GetString("es-microscope-report-name",
+            ("hasLabel", label != null),
+            ("label", label!)));
+
+        _paper.SetContent(paper, ev.Message.ToMarkup());
     }
 
     public bool TryGetCurrentEvidence(Entity<ESEvidenceMicroscopeComponent?> ent,
@@ -86,3 +115,6 @@ public sealed partial class ESMicroscopeSystem : EntitySystem
         return evidence.HasValue;
     }
 }
+
+[ByRefEvent]
+public readonly record struct ESMicroscopeGetReportEvent(FormattedMessage Message);
