@@ -627,6 +627,22 @@ AirlockHatchMaintenanceLocked: AirlockHatchMaintenance
 AirlockMaintGlassLocked: AirlockMaintGlass
 
 # 2026-8-31
+ESComputerSupplyRequest: null
+ESComputerSupplyRequestMaster: null
+ESComputerWarehouseManifest: null
+ESComputerSupplyRequestCivilian: null
+ESComputerSupplyRequestEngineering: null
+ESComputerSupplyRequestMedical: null
+ESComputerSupplyRequestScience: null
+ESComputerSupplyRequestSecurity: null
+ESComputerSupplyRequestService: null
+ESComputerSupplyRequestTabletop: null
+ESComputerSupplyRequestTabletopCivilian: null
+ESComputerSupplyRequestTabletopEngineering: null
+ESComputerSupplyRequestTabletopMedical: null
+ESComputerSupplyRequestTabletopScience: null
+ESComputerSupplyRequestTabletopSecurity: null
+ESComputerSupplyRequestTabletopService: null
 DrinkGildlagerBottleFull: null
 DrinkSyndicatebomb: null
 
