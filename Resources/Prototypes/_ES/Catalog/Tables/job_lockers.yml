@@ -57,7 +57,7 @@
     - id: BoxForensicPad
     - id: ESFingerprintKit
     - id: ESCardFingerprint # TODO: box
-      count: 4
+      amount: 4
     - id: DrinkDetFlask
     - id: BoxEvidenceMarkers
     - id: HandLabeler
