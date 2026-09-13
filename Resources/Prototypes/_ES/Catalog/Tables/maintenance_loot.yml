@@ -67,6 +67,8 @@
     - id: LightBulb
     - id: Matchstick
     - id: DrinkGlass
+    - id: ESCardFingerprint
+      weight: 0.5
 
 - type: entityTable
   id: ESMaintLootCommon
@@ -195,6 +197,8 @@
     - id: Plunger
     - id: Shovel
     - id: Jerrycan
+
+    - id: ESFingerprintKit
 
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks
