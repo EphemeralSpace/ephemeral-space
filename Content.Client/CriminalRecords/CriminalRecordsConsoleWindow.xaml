@@ -68,15 +68,6 @@
                     </BoxContainer>
                     <BoxContainer Orientation="Horizontal"
                                   Margin="0 0 0 5">
-                        <Label Text="{Loc 'general-station-record-prints-filter'}"
-                               FontColorOverride="DarkGray" />
-                        <Label Text=":"
-                               Margin="0 0 6 0"
-                               FontColorOverride="DarkGray" />
-                        <Label Name="PersonPrints" />
-                    </BoxContainer>
-                    <BoxContainer Orientation="Horizontal"
-                                  Margin="0 0 0 5">
                         <Label Text="{Loc 'general-station-record-dna-filter'}"
                                FontColorOverride="DarkGray" />
                         <Label Text=":"

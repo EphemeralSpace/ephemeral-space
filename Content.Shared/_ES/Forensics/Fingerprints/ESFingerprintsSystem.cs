@@ -95,7 +95,7 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
     {
         // TODO: component for blocking fingerprints on puddles
 
-        return TryGetFingerprints(ent, out _);
+        return TryGetFingerprint(ent, out _);
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
     /// <param name="prints">The fingerprints</param>
     /// <param name="ignoreBlockers">If true, ignore things like gloves which obscure fingerprints</param>
     /// <returns>Whether the fingerprints were retrieved successfully</returns>
-    public bool TryGetFingerprints(
+    public bool TryGetFingerprint(
         Entity<ESFingerprintsComponent?> ent,
         [NotNullWhen(true)] out ESFingerprint? prints,
         bool ignoreBlockers = false)

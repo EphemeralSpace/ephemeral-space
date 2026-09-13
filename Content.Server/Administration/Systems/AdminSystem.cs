@@ -7,6 +7,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Popups;
 using Content.Server.StationRecords.Systems;
 using Content.Shared._ES.Chat;
+using Content.Shared._ES.Forensics.Fingerprints;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
 using Content.Shared.CCVar;
@@ -50,6 +51,7 @@ public sealed partial class AdminSystem : EntitySystem
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private StationRecordsSystem _stationRecords = default!;
+    [Dependency] private ESFingerprintsSystem _fingerprints = default!;
     [Dependency] private TransformSystem _transform = default!;
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
@@ -402,8 +404,8 @@ public sealed partial class AdminSystem : EntitySystem
                         continue;
                     }
 
-                    if (TryComp(entity, out FingerprintComponent? fingerPrint) &&
-                        fingerPrint.Fingerprint != record.Fingerprint)
+                    if (_fingerprints.TryGetFingerprint(entity, out var fingerprint, ignoreBlockers: true) &&
+                        fingerprint != record.Fingerprint)
                     {
                         continue;
                     }

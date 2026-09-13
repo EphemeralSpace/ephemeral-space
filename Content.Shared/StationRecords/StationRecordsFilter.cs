@@ -41,6 +41,5 @@ public enum StationRecordFilterType : byte
     Name,
     Job,
     Species,
-    Prints,
     DNA,
 }

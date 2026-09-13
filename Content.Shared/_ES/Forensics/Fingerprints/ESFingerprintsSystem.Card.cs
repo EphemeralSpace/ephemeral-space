@@ -47,7 +47,7 @@ public sealed partial class ESFingerprintsSystem
             return;
         args.Handled = true;
 
-        if (!TryGetFingerprints(args.User, out var prints))
+        if (!TryGetFingerprint(args.User, out var prints))
         {
             _popup.PopupEntity(Loc.GetString("es-fingerprint-card-popup-hands-covered"), args.User, args.User);
             return;
