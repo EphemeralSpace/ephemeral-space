@@ -24,6 +24,7 @@
     alwaysEmaggable: true
     bumpOpen: false
     clickOpen: true
+    canPry: false
     canCrush: false
     closeTimeOne: 0.1
     closeTimeTwo: 0.3
