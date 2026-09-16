@@ -61,6 +61,7 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
         foreach (var objective in GetTargetingObjectives(args.NewTarget.Value))
         {
             objective.Comp.TargetMind = mind;
+            RefreshShouldAnnounceProgress(objective);
         }
     }
 
@@ -69,11 +70,17 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
         foreach (var objective in GetTargetingObjectives(ent))
         {
             objective.Comp.TargetMind = args.Mind;
+            RefreshShouldAnnounceProgress(objective);
         }
     }
 
     private void OnObjectivesChanged(Entity<ESTargetCompleteOwnedObjectiveMarkerComponent> ent, ref ESObjectivesChangedEvent args)
     {
+        foreach (var objective in GetTargetingObjectives(ent))
+        {
+            RefreshShouldAnnounceProgress(objective);
+        }
+
         RefreshTargetingObjectives(ent);
     }
 
@@ -84,6 +91,23 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
 
         if (!GetRelevantObjectives(ent, mind.Value).Any())
             args.Invalidate();
+    }
+
+    private void RefreshShouldAnnounceProgress(Entity<ESTargetCompleteOwnedObjectiveComponent> ent)
+    {
+        if (ent.Comp.TargetMind is not { } mind)
+            return;
+
+        var dontAnnounce = false;
+        foreach (var objective in GetRelevantObjectives(ent, mind))
+        {
+            if (ObjectivesSys.ShouldAnnounceProgress(objective.AsNullable()))
+                continue;
+            dontAnnounce = true;
+            break;
+        }
+
+        ObjectivesSys.SetShouldAnnounceProgress(ent.Owner, !dontAnnounce);
     }
 
     private IEnumerable<Entity<ESObjectiveComponent>> GetRelevantObjectives(
