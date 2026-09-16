@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server._ES.SecretIdentity.Secretary.Components;
 using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.Objectives.Target;
@@ -23,7 +24,6 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
         base.Initialize();
 
         SubscribeLocalEvent<ESObjectiveProgressChangedEvent>(OnObjectiveProgressChanged);
-        SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveMarkerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveMarkerComponent, MindAddedMessage>(OnTargetMindGotAdded);
         SubscribeLocalEvent<ESTargetCompleteOwnedObjectiveMarkerComponent, ESObjectivesChangedEvent>(OnObjectivesChanged);
 
@@ -51,12 +51,14 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
         _loop = false;
     }
 
-    private void OnMapInit(Entity<ESTargetCompleteOwnedObjectiveMarkerComponent> ent, ref MapInitEvent args)
+    protected override void OnTargetChanged(Entity<ESTargetCompleteOwnedObjectiveComponent> ent, ref ESObjectiveTargetChangedEvent args)
     {
-        if (!MindSys.TryGetMind(ent, out var mind, out _))
+        base.OnTargetChanged(ent, ref args);
+
+        if (!args.NewTarget.HasValue || !MindSys.TryGetMind(args.NewTarget.Value, out var mind))
             return;
 
-        foreach (var objective in GetTargetingObjectives(ent))
+        foreach (var objective in GetTargetingObjectives(args.NewTarget.Value))
         {
             objective.Comp.TargetMind = mind;
         }
@@ -77,20 +79,24 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
 
     private void OnValidateCandidates(Entity<ESTargetCompleteOwnedObjectiveComponent> ent, ref ESValidateObjectiveTargetCandidates args)
     {
-        if (!MindSys.TryGetMind(args.Candidate, out var mindId, out _))
+        if (!MindSys.TryGetMind(args.Candidate, out var mind))
             return;
 
-        var objectiveCount = 0;
-        foreach (var objective in ObjectivesSys.GetOwnedObjectives(mindId))
+        if (!GetRelevantObjectives(ent, mind.Value).Any())
+            args.Invalidate();
+    }
+
+    private IEnumerable<Entity<ESObjectiveComponent>> GetRelevantObjectives(
+        Entity<ESTargetCompleteOwnedObjectiveComponent> ent,
+        EntityUid mind)
+    {
+        foreach (var objective in ObjectivesSys.GetOwnedObjectives(mind))
         {
             if (_entityWhitelist.IsWhitelistPass(ent.Comp.ObjectiveBlacklist, objective))
                 continue;
 
-            ++objectiveCount;
+            yield return objective;
         }
-
-        if (objectiveCount <= 0)
-            args.Invalidate();
     }
 
     protected override void GetObjectiveProgress(Entity<ESTargetCompleteOwnedObjectiveComponent> ent, ref ESGetObjectiveProgressEvent args)
@@ -101,14 +107,8 @@ public sealed partial class ESTargetCompleteObjectivesSystem : ESBaseTargetObjec
             return;
         }
 
-        var incomplete = false;
-        foreach (var objective in ObjectivesSys.GetOwnedObjectives(mind))
-        {
-            if (_entityWhitelist.IsWhitelistPass(ent.Comp.ObjectiveBlacklist, objective))
-                continue;
-
-            incomplete |= !ObjectivesSys.IsCompleted(objective.AsNullable());
-        }
+        var incomplete = GetRelevantObjectives(ent, mind)
+            .Any(objective => !ObjectivesSys.IsCompleted(objective.AsNullable()));
 
         args.Progress = !incomplete ^ ent.Comp.Invert
             ? 1
