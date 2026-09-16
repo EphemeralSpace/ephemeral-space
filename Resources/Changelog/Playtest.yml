@@ -2156,3 +2156,9 @@ Entries:
       message: Fixed glitches with audio occlusion on moving grids
   id: 234
   time: '2026-09-12T22:43:50.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Fix
+      message: The elusive ratman has upgraded his gates.
+  id: 235
+  time: '2026-09-16T02:08:19.0000000+00:00'
