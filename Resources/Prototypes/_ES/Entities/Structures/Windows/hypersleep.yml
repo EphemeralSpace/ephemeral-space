@@ -1,0 +1,15 @@
+# Hypersleep
+- type: entity
+  parent: BaseWindowFulltile
+  id: ESWindowHypersleep
+  name: sterile hardened window
+  description: Lets you stare into the outside world, outside of your bubble of hyper-safety.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Windows/hypersleep.rsi
+  - type: Icon
+    sprite: _ES/Structures/Windows/hypersleep.rsi
+    state: full
+  - type: IconSmooth
+    key: hypersleepwindow
+    base: solid
