@@ -55,6 +55,9 @@
     - id: FlashlightSeclite
     - id: ForensicScanner
     - id: BoxForensicPad
+    - id: ESFingerprintKit
+    - id: ESCardFingerprint # TODO: box
+      amount: 4
     - id: DrinkDetFlask
     - id: BoxEvidenceMarkers
     - id: HandLabeler

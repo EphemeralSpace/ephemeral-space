@@ -18,4 +18,4 @@
       default: ClothingHandsGlovesColorBlack
     - type: Fiber
       fiberMaterial: fibers-chameleon
-    - type: FingerprintMask
+    - type: ESFingerprintBlocker

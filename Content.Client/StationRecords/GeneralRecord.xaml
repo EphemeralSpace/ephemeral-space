@@ -6,7 +6,6 @@
         <Label Name="Job"/>
         <Label Name="Species"/>
         <Label Name="Gender"/>
-        <Label Name="Fingerprint"/>
         <Label Name="Dna"/>
         <Button Visible="False" Name="DeleteButton" Text="{Loc 'general-station-record-console-delete'}"/>
     </BoxContainer>

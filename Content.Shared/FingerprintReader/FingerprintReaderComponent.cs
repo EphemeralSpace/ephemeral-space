@@ -1,3 +1,4 @@
+using Content.Shared._ES.Forensics.Fingerprints.Components;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.FingerprintReader;
@@ -13,7 +14,7 @@ public sealed partial class FingerprintReaderComponent : Component
     /// The fingerprints that are allowed to access this entity.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HashSet<string> AllowedFingerprints = new();
+    public HashSet<ESFingerprint> AllowedFingerprints = new();
 
     /// <summary>
     /// Whether to ignore gloves when checking fingerprints.
