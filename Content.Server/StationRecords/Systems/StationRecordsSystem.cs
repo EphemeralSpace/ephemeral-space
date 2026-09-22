@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
 using Content.Server.Forensics;
+using Content.Shared._ES.Forensics.Fingerprints;
+using Content.Shared._ES.Forensics.Fingerprints.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
@@ -40,6 +42,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private StationRecordKeyStorageSystem _keyStorage = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private ESFingerprintsSystem _fingerprints = default!;
     [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
@@ -94,10 +97,10 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         if (!_inventory.TryGetSlotEntity(player, "id", out var idUid))
             return;
 
-        TryComp<FingerprintComponent>(player, out var fingerprintComponent);
+        _fingerprints.TryGetFingerprint(player, out var prints, ignoreBlockers: true);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, prints, dnaComponent?.DNA, profile, records);
     }
 
 
@@ -136,7 +139,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string species,
         Gender gender,
         string jobId,
-        string? mobFingerprint,
+        ESFingerprint? mobFingerprint,
         string? dna,
         HumanoidCharacterProfile profile,
         StationRecordsComponent records)
@@ -342,8 +345,6 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
                 !someRecord.JobTitle.ToLower().Contains(filterLowerCaseValue),
             StationRecordFilterType.Species =>
                 !someRecord.Species.ToLower().Contains(filterLowerCaseValue),
-            StationRecordFilterType.Prints => someRecord.Fingerprint != null
-                && IsFilterWithSomeCodeValue(someRecord.Fingerprint, filterLowerCaseValue),
             StationRecordFilterType.DNA => someRecord.DNA != null
                 && IsFilterWithSomeCodeValue(someRecord.DNA, filterLowerCaseValue),
             _ => throw new IndexOutOfRangeException(nameof(filter.Type)),
