@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
-using Content.Shared._ES.CCVar;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
-using Robust.Shared.Player;
 
 namespace Content.Shared._ES.Chat.Sanitization;
 
@@ -97,8 +95,6 @@ public sealed partial class ChatSanitizationManager : IChatSanitizationManager
 
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private ILocalizationManager _loc = default!;
-    [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private INetConfigurationManager _netConfigManager = default!;
 
     private bool _doSanitize;
 
@@ -125,10 +121,6 @@ public sealed partial class ChatSanitizationManager : IChatSanitizationManager
 
         if (!_doSanitize)
             return false;
-
-        if (_entityManager.TryGetComponent<ActorComponent>(speaker, out var actor) &&
-            !_netConfigManager.GetClientCVar(actor.PlayerSession.Channel, ESCVars.UserChatSanitizationEnabled))
-            return false; // User disabled chatsan for themselves, they're Free.
 
         // -1 is just a canary for nothing found yet
         var lastEmoteIndex = -1;
