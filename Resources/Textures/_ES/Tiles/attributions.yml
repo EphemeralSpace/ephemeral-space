@@ -14,7 +14,7 @@
   license: "CC-BY-SA-3.0"
   copyright: "Based on tiles from /vg/station at commit edaa4b129bf6e7353cb465ac9ade1f12da726917, modified and sprited by Flareguy"
   source: "https://github.com/vgstation-coders/vgstation13/blob/edaa4b129bf6e7353cb465ac9ade1f12da726917/icons/turf/floors.dmi"
-- files: ["shinymetal.png", "shinymetal_vertical.png", "carbonfiber.png", "windowfloor", "windowfloor_bright"]
+- files: ["shinymetal.png", "shinymetal_vertical.png", "carbonfiber.png", "grass", "gravel", "dirt", "windowfloor", "windowfloor_bright", "cheapcarpet_beige", "cheapcarpet_yellow", "cheapcarpet_red", "bluecarpet", "stripedcarpet_green", "stripedcarpet_purple", "lino_checker", "lino_checker_green", "lino_checker_zesty", "diamondplating", "diamondplating_tile", "diamondplating_blue", "diamondplating_tile_blue", "diamondplating_red", "diamondplating_tile_red", "diamondplating_green", "diamondplating_tile_green", "diamondplating_yellow", "diamondplating_tile_yellow", "minitile_blue", "minitile_cyan", "minitile_green", "minitile_lightblue", "minitile_red", "minitile_yellow", "science_half_blue", "science_half_green", "science_half_red", "science_half_yellow", "science_half_grey", "science_mono_blue", "science_mono_green", "science_mono_red", "science_mono_yellow", "science_mono_grey",]
   license: "CC-BY-SA-4.0"
   copyright: "Made by Flareguy for Ephemeral Space"
   source: "https://github.com/EphemeralSpace/ephemeral-space/pull/2675"

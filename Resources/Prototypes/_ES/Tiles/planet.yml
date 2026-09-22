@@ -1,0 +1,127 @@
+# base prototypes
+- type: tile
+  id: ESFloorBasePlanet # no parent, just doesnt have destroyed sprites. this isnt great but the normal generic ones would look insane
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  isSubfloor: true
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+
+- type: tile
+  id: ESFloorBaseAstroturf
+  parent: ESBaseTileGeneric # artificial
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Cutting ]
+  footstepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  flammability: 10
+
+# actual tiles
+# planetary
+- type: tile
+  id: ESFloorPlanetaryDirt
+  parent: ESFloorBasePlanet
+  name: es-tiles-dirt-floor
+  sprite: /Textures/_ES/Tiles/dirt.png
+
+- type: tile
+  id: ESFloorPlanetaryGravel
+  parent: ESFloorBasePlanet
+  name: es-tiles-gravel-floor
+  sprite: /Textures/_ES/Tiles/gravel.png
+
+- type: tile
+  id: ESFloorPlanetaryGrass
+  parent: ESFloorBasePlanet
+  name: es-tiles-grass-floor
+  sprite: /Textures/_ES/Tiles/grass.png
+  edgeSpritePriority: 2
+  edgeSprites:
+    SouthEast: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    NorthEast: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    NorthWest: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    SouthWest: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    South: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+    East: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+    North: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+    West: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+  baseTurf: ESFloorDirt
+  footstepSounds:
+    collection: FootstepGrass
+
+- type: tile
+  id: ESFloorPlanetarySand
+  parent: ESFloorBasePlanet
+  name: es-tiles-sand-floor
+  sprite: /Textures/_ES/Tiles/sand.png
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_ES/Tiles/Edge/Sand/single_edge.png
+    NorthEast: /Textures/_ES/Tiles/Edge/Sand/single_edge.png
+    NorthWest: /Textures/_ES/Tiles/Edge/Sand/single_edge.png
+    SouthWest: /Textures/_ES/Tiles/Edge/Sand/single_edge.png
+    South: /Textures/_ES/Tiles/Edge/Sand/double_edge.png
+    East: /Textures/_ES/Tiles/Edge/Sand/double_edge.png
+    North: /Textures/_ES/Tiles/Edge/Sand/double_edge.png
+    West: /Textures/_ES/Tiles/Edge/Sand/double_edge.png
+
+# astroturf
+- type: tile
+  id: ESFloorAstroturfDirt
+  parent: ESFloorBaseAstroturf
+  name: es-tiles-dirt-astroturf-floor
+  sprite: /Textures/_ES/Tiles/dirt.png
+
+- type: tile
+  id: ESFloorAstroturfGravel
+  parent: ESFloorBaseAstroturf
+  name: es-tiles-gravel-astroturf-floor
+  sprite: /Textures/_ES/Tiles/gravel.png
+
+- type: tile
+  id: ESFloorAstroturfGrass
+  parent: ESFloorBaseAstroturf
+  name: es-tiles-grass-astroturf-floor
+  sprite: /Textures/_ES/Tiles/grass.png
+  edgeSpritePriority: 2
+  edgeSprites:
+    SouthEast: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    NorthEast: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    NorthWest: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    SouthWest: /Textures/_ES/Tiles/Edge/Grass/single_edge.png
+    South: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+    East: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+    North: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+    West: /Textures/_ES/Tiles/Edge/Grass/double_edge.png
+  footstepSounds:
+    collection: FootstepGrass
+
+- type: tile
+  id: ESFloorAstroturfGrassTrimmed
+  parent: ESFloorBaseAstroturf
+  name: es-tiles-trimmed-grass-astroturf-floor # no edge sprites version
+  sprite: /Textures/_ES/Tiles/grass.png
+  footstepSounds:
+    collection: FootstepGrass
+
+- type: tile
+  id: ESFloorAstroturfSand
+  parent: ESFloorBaseAstroturf
+  name: es-tiles-sand-astroturf-floor
+  sprite: /Textures/_ES/Tiles/sand.png

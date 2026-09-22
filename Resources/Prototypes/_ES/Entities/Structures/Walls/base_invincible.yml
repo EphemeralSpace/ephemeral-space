@@ -3,6 +3,7 @@
   id: BaseHardenedReinforcedWall
   parent: BaseWall
   description: Immaculately constructed in such a manner as to make deconstruction effectively impossible.
+  components:
   - type: Fixtures
     fixtures:
       fix1:

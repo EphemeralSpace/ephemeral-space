@@ -689,6 +689,7 @@
 
 - type: tile
   id: FloorMono
+  parent: ESBaseTileGeneric
   name: tiles-mono-floor
   sprite: /Textures/Tiles/mono.png
   baseTurf: Plating
@@ -702,6 +703,7 @@
 
 - type: tile
   id: FloorLino
+  parent: ESBaseTileGeneric
   name: tiles-linoleum-floor
   sprite: /Textures/Tiles/lino.png
   baseTurf: Plating
@@ -1144,103 +1146,67 @@
 # Carpets (non smoothing)
 - type: tile
   id: FloorArcadeBlue
+  parent: ESBaseCarpet
   name: tiles-blue-arcade-floor
   sprite: /Textures/Tiles/arcadeblue.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepCarpet
-  barestepSounds:
-    collection: BarestepCarpet
-  # ES START
-  friction: 4
-  # ES END
   itemDrop: FloorTileItemArcadeBlue
   heatCapacity: 10000
 
 - type: tile
   id: FloorArcadeBlue2
+  parent: ESBaseCarpet
   name: tiles-blue-arcade-floor
   sprite: /Textures/Tiles/arcadeblue2.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepCarpet
-  barestepSounds:
-    collection: BarestepCarpet
-  # ES START
-  friction: 4
-  # ES END
   itemDrop: FloorTileItemArcadeBlue2
   heatCapacity: 10000
 
 - type: tile
   id: FloorArcadeRed
+  parent: ESBaseCarpet
   name: tiles-red-arcade-floor
   sprite: /Textures/Tiles/arcadered.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepCarpet
-  barestepSounds:
-    collection: BarestepCarpet
-  # ES START
-  friction: 4
-  # ES END
   itemDrop: FloorTileItemArcadeRed
   heatCapacity: 10000
 
 - type: tile
   id: FloorEighties
+  parent: ESBaseCarpet
   name: tiles-eighties-floor
   sprite: /Textures/Tiles/eighties.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepCarpet
-  barestepSounds:
-    collection: BarestepCarpet
-  # ES START
-  friction: 4
-  # ES END
   itemDrop: FloorTileItemEighties
   heatCapacity: 10000
 
 - type: tile
   id: FloorCarpetClown
+  parent: ESBaseCarpet
   name: tiles-clown-carpet-floor
   sprite: /Textures/Tiles/carpetclown.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepCarpet
-  barestepSounds:
-    collection: BarestepCarpet
-  # ES START
-  friction: 4
-  # ES END
   itemDrop: FloorTileItemCarpetClown
   heatCapacity: 10000
 
 - type: tile
   id: FloorCarpetOffice
+  parent: ESBaseCarpet
   name: tiles-office-carpet-floor
   sprite: /Textures/Tiles/carpetoffice.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: FootstepCarpet
-  barestepSounds:
-    collection: BarestepCarpet
-  # ES START
-  friction: 4
-  # ES END
   itemDrop: FloorTileItemCarpetOffice
   heatCapacity: 10000
 
@@ -1573,6 +1539,7 @@
   itemDrop: FloorTileItemGrass
   heatCapacity: 10000
   weather: true
+  editorHidden: true
 
 - type: tile
   id: FloorGrassJungle
@@ -1585,6 +1552,7 @@
   itemDrop: FloorTileItemGrassJungle
   heatCapacity: 10000
   weather: true
+  editorHidden: true
 
 - type: tile
   id: FloorGrassDark
@@ -1602,6 +1570,7 @@
     collection: FootstepGrass
   heatCapacity: 10000
   weather: true
+  editorHidden: true
 
 - type: tile
   id: FloorGrassLight
@@ -1619,6 +1588,7 @@
     collection: FootstepGrass
   heatCapacity: 10000
   weather: true
+  editorHidden: true
 
 - type: tile
   id: FloorDirt
@@ -1636,6 +1606,7 @@
     collection: FootstepAsteroid
   heatCapacity: 10000
   weather: true
+  editorHidden: true
 
 # Asteroid
 
@@ -1873,6 +1844,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorCaveDrought
@@ -1893,6 +1865,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000
+  editorHidden: true
 
 - type: tile
   id: FloorFlesh
@@ -2078,6 +2051,7 @@
   # ES START
   flammability: 10
   # ES END
+  editorHidden: true
 
 - type: tile
   id: FloorMowedAstroGrass
@@ -2087,6 +2061,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemMowedAstroGrass
+  editorHidden: true
 
 - type: tile
   id: FloorJungleAstroGrass
@@ -2096,6 +2071,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemJungleAstroGrass
+  editorHidden: true
 
 - type: tile
   parent: FloorGrassDark
@@ -2105,6 +2081,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemDarkAstroGrass
+  editorHidden: true
 
 - type: tile
   parent: FloorGrassLight
@@ -2114,6 +2091,7 @@
   isSubfloor: false
   deconstructTools: [ Cutting ]
   itemDrop: FloorTileItemLightAstroGrass
+  editorHidden: true
 
 # Ice
 - type: tile

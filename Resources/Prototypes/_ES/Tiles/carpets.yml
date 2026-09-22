@@ -1,0 +1,40 @@
+# embedded carpets
+- type: tile
+  id: ESFloorCarpetCheapBeige
+  name: es-tiles-carpet-cheap-beige
+  parent: ESBaseCarpet
+  sprite: /Textures/_ES/Tiles/carpet_cheap_beige.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  heatCapacity: 10000
+
+- type: tile
+  id: ESFloorCarpetCheapRed
+  name: es-tiles-carpet-cheap-red
+  parent: ESFloorCarpetCheapBeige
+  sprite: /Textures/_ES/Tiles/carpet_cheap_red.png
+
+- type: tile
+  id: ESFloorCarpetCheapYellow
+  name: es-tiles-carpet-cheap-yellow
+  parent: ESFloorCarpetCheapBeige
+  sprite: /Textures/_ES/Tiles/carpet_cheap_yellow.png
+
+- type: tile
+  id: ESFloorCarpetAirplane
+  name: es-tiles-carpet-blue
+  parent: ESFloorCarpetCheapBeige
+  sprite: /Textures/_ES/Tiles/carpet_airplane.png
+
+- type: tile
+  id: ESFloorCarpetStripedGreen
+  name: es-tiles-carpet-green
+  parent: ESFloorCarpetCheapBeige
+  sprite: /Textures/_ES/Tiles/carpet_striped_green.png
+
+- type: tile
+  id: ESFloorCarpetStripedPurple
+  name: es-tiles-carpet-purple
+  parent: ESFloorCarpetCheapBeige
+  sprite: /Textures/_ES/Tiles/carpet_striped_purple.png

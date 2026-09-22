@@ -1,0 +1,275 @@
+# normal
+- type: decal
+  id: ESMetalTrimLeft
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_left
+
+- type: decal
+  id: ESMetalTrimRight
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_right
+
+- type: decal
+  id: ESMetalTrimUp
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_up
+
+- type: decal
+  id: ESMetalTrimDown
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_down
+
+- type: decal
+  id: ESMetalTrimCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_ne
+
+- type: decal
+  id: ESMetalTrimCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_se
+
+- type: decal
+  id: ESMetalTrimCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_nw
+
+- type: decal
+  id: ESMetalTrimCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_sw
+
+- type: decal
+  id: ESMetalTrimCornerSmallNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_small_ne
+
+- type: decal
+  id: ESMetalTrimCornerSmallSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_small_se
+
+- type: decal
+  id: ESMetalTrimCornerSmallNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_small_nw
+
+- type: decal
+  id: ESMetalTrimCornerSmallSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_corner_small_sw
+# riveted
+- type: decal
+  id: ESMetalTrimRivetLeft
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_left
+
+- type: decal
+  id: ESMetalTrimRivetRight
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_right
+
+- type: decal
+  id: ESMetalTrimRivetUp
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_up
+
+- type: decal
+  id: ESMetalTrimRivetDown
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_down
+
+- type: decal
+  id: ESMetalTrimRivetCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_ne
+
+- type: decal
+  id: ESMetalTrimRivetCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_se
+
+- type: decal
+  id: ESMetalTrimRivetCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_nw
+
+- type: decal
+  id: ESMetalTrimRivetCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_sw
+
+- type: decal
+  id: ESMetalTrimRivetCornerSmallNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_small_ne
+
+- type: decal
+  id: ESMetalTrimRivetCornerSmallSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_small_se
+
+- type: decal
+  id: ESMetalTrimRivetCornerSmallNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_small_nw
+
+- type: decal
+  id: ESMetalTrimRivetCornerSmallSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_rivet_corner_small_sw
+
+# heavy
+- type: decal
+  id: ESMetalTrimHeavyLeft
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_left
+
+- type: decal
+  id: ESMetalTrimHeavyRight
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_right
+
+- type: decal
+  id: ESMetalTrimHeavyUp
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_up
+
+- type: decal
+  id: ESMetalTrimHeavyDown
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_down
+
+- type: decal
+  id: ESMetalTrimHeavyCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_ne
+
+- type: decal
+  id: ESMetalTrimHeavyCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_se
+
+- type: decal
+  id: ESMetalTrimHeavyCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_nw
+
+- type: decal
+  id: ESMetalTrimHeavyCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_sw
+
+- type: decal
+  id: ESMetalTrimHeavyCornerSmallNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_small_ne
+
+- type: decal
+  id: ESMetalTrimHeavyCornerSmallSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_small_se
+
+- type: decal
+  id: ESMetalTrimHeavyCornerSmallNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_small_nw
+
+- type: decal
+  id: ESMetalTrimHeavyCornerSmallSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_heavy_corner_small_sw
+
+# dotted
+- type: decal
+  id: ESMetalTrimDottedCorner
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_dotted_corner
+
+- type: decal
+  id: ESMetalTrimDottedCornerSmall
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_dotted_corner_small
+
+- type: decal
+  id: ESMetalTrimDotted
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _ES/Decals/es_metal_trims.rsi
+    state: trim_metal_dotted

@@ -55,3 +55,69 @@
   sprite:
     sprite: _ES/Decals/damaged_tile.rsi
     state: quartertile_5
+
+# Generic
+- type: decal
+  id: ESDamagedGeneric1
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: generic_1
+
+- type: decal
+  id: ESDamagedGeneric2
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: generic_2
+
+- type: decal
+  id: ESDamagedGeneric3
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: generic_3
+
+- type: decal
+  id: ESDamagedGeneric4
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: generic_4
+
+- type: decal
+  id: ESDamagedGeneric5
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: generic_5
+
+# Carpet
+- type: decal
+  id: ESDamagedCarpet1
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: carpet_1
+
+- type: decal
+  id: ESDamagedCarpet2
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: carpet_2
+
+- type: decal
+  id: ESDamagedCarpet3
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: carpet_3
+
+- type: decal
+  id: ESDamagedCarpet4
+  tags: ["station"]
+  sprite:
+    sprite: _ES/Decals/damaged_tile.rsi
+    state: carpet_4
+
