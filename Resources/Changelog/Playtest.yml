@@ -2162,3 +2162,11 @@ Entries:
       message: The elusive ratman has upgraded his gates.
   id: 235
   time: '2026-09-16T02:08:19.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Fix
+      message: >-
+        Disable chat sanitization option now also disables basic world
+        replacements (ty -> thank you)
+  id: 236
+  time: '2026-09-22T01:34:20.0000000+00:00'
