@@ -1,0 +1,213 @@
+# due to making tile objects being a pain in the ass, none of these are currently obtainable ingame. if you pry any of these they will just turn in to a normal steel tile. sorry not sorry
+#
+# normal tiles
+- type: tile
+  id: ESFloorLinoCheckerDefault
+  name: es-tiles-linoleum-checker
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/lino_checker.png
+
+- type: tile
+  id: ESFloorLinoCheckerGreen
+  name: es-tiles-linoleum-checker-green
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/lino_checker_green.png
+
+- type: tile
+  id: ESFloorLinoCheckerZesty
+  name: es-tiles-linoleum-checker-zesty
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/lino_checker_zesty.png
+
+- type: tile
+  id: ESFloorSteelSeafoam
+  name: es-tiles-steel-tile-seafoam
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/steel_seafoam.png
+
+# minitiles
+- type: tile
+  id: ESFloorMinitileBlue
+  name: es-tiles-mosaic-blue
+  parent: FloorSteel
+  sprite: /Textures/_ES/Tiles/minitile_blue.png
+  damageDecals: # should parent BaseTileGeneric in the future instead, but with how things are set up, that's basically tile yaml refactor territory... much easier to define this here
+  - ESDamagedGeneric1
+  - ESDamagedGeneric2
+  - ESDamagedGeneric3
+  - ESDamagedGeneric4
+  - ESDamagedGeneric5
+
+- type: tile
+  id: ESFloorMinitileLightCyan
+  name: es-tiles-mosaic-cyan
+  parent: ESFloorMinitileBlue
+  sprite: /Textures/_ES/Tiles/minitile_cyan.png
+
+- type: tile
+  id: ESFloorMinitileLightBlue
+  name: es-tiles-mosaic-light-blue
+  parent: ESFloorMinitileBlue
+  sprite: /Textures/_ES/Tiles/minitile_lightblue.png
+
+- type: tile
+  id: ESFloorMinitileRed
+  name: es-tiles-mosaic-red
+  parent: ESFloorMinitileBlue
+  sprite: /Textures/_ES/Tiles/minitile_red.png
+
+- type: tile
+  id: ESFloorMinitileGreen
+  name: es-tiles-mosaic-green
+  parent: ESFloorMinitileBlue
+  sprite: /Textures/_ES/Tiles/minitile_green.png
+
+- type: tile
+  id: ESFloorMinitileYellow
+  name: es-tiles-mosaic-yellow
+  parent: ESFloorMinitileBlue
+  sprite: /Textures/_ES/Tiles/minitile_yellow.png
+
+# labratory
+# labratory (half)
+- type: tile
+  id: ESFloorScienceHalfBlue
+  name: es-tiles-textured-blue
+  parent: ESFloorMinitileBlue
+  sprite: /Textures/_ES/Tiles/science_half_blue.png
+  variants: 1
+  placementVariants:
+  - 1.0
+
+- type: tile
+  id: ESFloorScienceHalfGreen
+  parent: ESFloorScienceHalfBlue
+  name: es-tiles-textured-green
+  sprite: /Textures/_ES/Tiles/science_half_green.png
+
+- type: tile
+  id: ESFloorScienceHalfRed
+  name: es-tiles-textured-red
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_half_red.png
+
+- type: tile
+  id: ESFloorScienceHalfYellow
+  name: es-tiles-textured-yellow
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_half_yellow.png
+
+- type: tile
+  id: ESFloorScienceHalfGrey
+  name: es-tiles-textured-grey
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_half_grey.png
+
+# labratory (mono)
+- type: tile
+  id: ESFloorScienceMonoBlue
+  name: es-tiles-textured-blue
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_mono_blue.png
+
+- type: tile
+  id: ESFloorScienceMonoGreen
+  name: es-tiles-textured-green
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_mono_green.png
+
+- type: tile
+  id: ESFloorScienceMonoRed
+  name: es-tiles-textured-red
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_mono_red.png
+
+- type: tile
+  id: ESFloorScienceMonoYellow
+  name: es-tiles-textured-yellow
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_mono_yellow.png
+
+- type: tile
+  id: ESFloorScienceMonoGrey
+  name: es-tiles-textured-grey
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/science_mono_grey.png
+
+# industrial
+# diamond plating (normal)
+- type: tile
+  id: ESFloorDiamondPlating
+  name: es-tiles-diamond-plating
+  parent: ESFloorScienceHalfBlue
+  sprite: /Textures/_ES/Tiles/diamondplating.png
+  footstepSounds:
+    collection: FootstepHull
+
+- type: tile
+  id: ESFloorDiamondPlatingBlue
+  name: es-tiles-diamond-plating-blue
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_blue.png
+
+- type: tile
+  id: ESFloorDiamondPlatingGreen
+  name: es-tiles-diamond-plating-green
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_green.png
+
+- type: tile
+  id: ESFloorDiamondPlatingRed
+  name: es-tiles-diamond-plating-red
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_red.png
+
+- type: tile
+  id: ESFloorDiamondPlatingYellow
+  name: es-tiles-diamond-plating-yellow
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_yellow.png
+
+# diamond plating (tile)
+- type: tile
+  id: ESFloorDiamondPlatingTile
+  name: es-tiles-diamond-plating-tile
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_tile.png
+
+- type: tile
+  id: ESFloorDiamondPlatingTileBlue
+  name: es-tiles-diamond-plating-tile-blue
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_tile_blue.png
+
+- type: tile
+  id: ESFloorDiamondPlatingTileGreen
+  name: es-tiles-diamond-plating-tile-green
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_tile_green.png
+
+- type: tile
+  id: ESFloorDiamondPlatingTileRed
+  name: es-tiles-diamond-plating-tile-red
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_tile_red.png
+
+- type: tile
+  id: ESFloorDiamondPlatingTileYellow
+  name: es-tiles-diamond-plating-tile-yellow
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/diamondplating_tile_yellow.png
+
+# special
+- type: tile
+  id: ESFloorUnderWindow
+  name: es-tiles-underwindow
+  parent: ESFloorDiamondPlating
+  sprite: /Textures/_ES/Tiles/windowfloor.png
+
+- type: tile
+  id: ESFloorUnderWindowBright
+  name: es-tiles-underwindow-bright
+  parent: ESFloorUnderWindow
+  sprite: /Textures/_ES/Tiles/windowfloor_bright.png
