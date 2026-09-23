@@ -201,6 +201,8 @@
   - type: VisualOrgan
     data:
       sprite: Mobs/Customization/eyes.rsi
+  - type: ESCryohuskableOrgan
+    cryohusksInto: ESOrganCryohuskEyes
 
 - type: entity
   parent: [ OrganBaseTongue, OrganHumanInternal ]
