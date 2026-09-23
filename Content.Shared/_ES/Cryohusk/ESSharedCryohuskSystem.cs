@@ -2,17 +2,20 @@ using Content.Shared._ES.Cryohusk.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Body;
 using Content.Shared.Movement.Systems;
+using Content.Shared.StationRecords;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Cryohusk;
 
 public abstract partial class ESSharedCryohuskSystem : EntitySystem
 {
+    [Dependency] private SharedAccessSystem _access = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedIdCardSystem _idCard = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private BodySystem _body = default!;
+    [Dependency] private StationRecordKeyStorageSystem _stationRecordKeyStorage = default!;
 
     private readonly Queue<(EntityUid Body, EntityUid Organ, EntProtoId CryohuskInto)> _queuedOrganAdditions = new();
 
@@ -48,6 +51,9 @@ public abstract partial class ESSharedCryohuskSystem : EntitySystem
 
     private void OnCardMapInit(Entity<ESCryohuskIdCardComponent> ent, ref MapInitEvent args)
     {
+        _access.TrySetTags(ent, []);
+        _stationRecordKeyStorage.RemoveKey(ent);
+
         _idCard.TryChangeFullName(ent, Loc.GetString("es-cryohusk-name"));
         _idCard.TryChangeJobTitle(ent, null);
         _idCard.TryChangeJobIcon(ent, _prototype.Index(ent.Comp.JobIcon));
