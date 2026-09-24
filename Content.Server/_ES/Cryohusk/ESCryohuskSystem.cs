@@ -13,7 +13,6 @@ using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Systems;
-using Content.Shared.Armor;
 using Content.Shared.Atmos;
 using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
