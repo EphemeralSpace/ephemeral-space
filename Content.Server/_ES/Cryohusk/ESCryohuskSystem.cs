@@ -1,6 +1,5 @@
 using Content.Server.Administration;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.Speech.Components;
 using Content.Shared._ES.Cryohusk;
