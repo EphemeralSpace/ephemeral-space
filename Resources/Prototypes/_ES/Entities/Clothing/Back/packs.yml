@@ -7,9 +7,6 @@
   - type: Sprite
     sprite: _ES/Clothing/Back/Packs/firefighting.rsi
     state: icon
-  - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.85
   - type: HeldSpeedModifier
   - type: ItemActionGrant
     activeIfWorn: true
