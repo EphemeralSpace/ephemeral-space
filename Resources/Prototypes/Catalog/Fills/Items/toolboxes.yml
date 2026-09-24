@@ -17,6 +17,10 @@
           - id: FlashlightLantern
           - id: Flare
           - id: GlowstickGreen
+        - group:
+          - id: InflatableWallStack3
+          - id: InflatableDoorStack1
+          prob: 0.25
         # Low-chance items
         - id: FoodSnackChocolate
           prob: 0.15
