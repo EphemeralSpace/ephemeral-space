@@ -5,18 +5,6 @@
     count: 3
 
 - type: localizedDataset
-  id: BruiseOMatGoodbyes
-  values:
-    prefix: thankyou-bruiseomat-
-    count: 28
-
-- type: localizedDataset
-  id: ChangGoodbyes
-  values:
-    prefix: thankyou-chang-
-    count: 2
-
-- type: localizedDataset
   id: ChefvendGoodbyes
   values:
     prefix: thankyou-chefvend-
@@ -41,30 +29,6 @@
     count: 4
 
 - type: localizedDataset
-  id: DrGibbGoodbyes
-  values:
-    prefix: thankyou-gibb-
-    count: 4
-
-- type: localizedDataset
-  id: SmiteGoodbyes
-  values:
-    prefix: thankyou-smite-
-    count: 4
-
-- type: localizedDataset
-  id: DiscountDansGoodbyes
-  values:
-    prefix: thankyou-discount-
-    count: 8
-
-- type: localizedDataset
-  id: DonutGoodbyes
-  values:
-    prefix: thankyou-donut-
-    count: 4
-
-- type: localizedDataset
   id: GoodCleanFunGoodbyes
   values:
     prefix: thankyou-goodcleanfun-
@@ -75,18 +39,6 @@
   values:
     prefix: vending-machine-thanks-
     count: 1
-
-- type: localizedDataset
-  id: HappyHonkGoodbyes
-  values:
-    prefix: thankyou-happyhonk-
-    count: 4
-
-- type: localizedDataset
-  id: LawDrobeGoodbyes
-  values:
-    prefix: thankyou-lawdrobe-
-    count: 5
 
 - type: localizedDataset
   id: NutriMaxGoodbyes
@@ -105,21 +57,3 @@
   values:
     prefix: thankyou-snack-
     count: 6
-
-- type: localizedDataset
-  id: BodaGoodbyes
-  values:
-    prefix: thankyou-sovietsoda-
-    count: 3
-
-- type: localizedDataset
-  id: SyndieDrobeGoodbyes
-  values:
-    prefix: thankyou-syndiedrobe-
-    count: 5
-
-- type: localizedDataset
-  id: PrideDrobeGoodbyes
-  values:
-    prefix: thankyou-pride-
-    count: 3

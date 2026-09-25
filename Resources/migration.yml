@@ -646,6 +646,11 @@ ESComputerSupplyRequestTabletopService: null
 DrinkGildlagerBottleFull: null
 DrinkSyndicatebomb: null
 
+# 2026-9-24
+VendingMachineBoozeSyndicate: VendingMachineBooze
+VendingMachineWinter: null
+VendingMachinePride: ESVendingMachineGenderVendor
+
 # ES END
 
 # 2026-01-07
