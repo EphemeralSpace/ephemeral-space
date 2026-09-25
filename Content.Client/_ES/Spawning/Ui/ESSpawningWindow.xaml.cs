@@ -282,9 +282,8 @@ public sealed class ESJobButton : ContainerButton
 
     public void RefreshLabel(int? amount, int? filteredAmount)
     {
-        JobAmountLabel.Text = amount != null
-            ? Loc.GetString("es-spawn-menu-job-slot-capped", ("amount", amount))
-            : Loc.GetString("es-spawn-menu-job-slot-uncapped");
+        JobAmountLabel.Visible = amount.HasValue;
+        JobAmountLabel.Text = Loc.GetString("es-spawn-menu-job-slot-capped", ("amount", amount ?? 0));
 
         // We don't care if the number of available slots increases by infinity. that is meaningless.
         JobFilteredAmountLabel.Visible = filteredAmount != 0 && amount != null;
