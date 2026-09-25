@@ -30,7 +30,7 @@ public abstract partial class SharedHideableHumanoidLayersSystem : EntitySystem
 #endif
 
         var dirty = false;
-        if (visible)
+        if (!visible)
         {
             var oldSlots = ent.Comp.HiddenLayers.GetValueOrDefault(layer);
             ent.Comp.HiddenLayers[layer] = slot | oldSlots;
