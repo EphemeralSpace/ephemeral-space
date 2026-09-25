@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat.Components;
 
@@ -7,6 +8,7 @@ namespace Content.Shared._ES.Chat.Components;
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSharedChatSystem))]
+[EntityCategory("ESChatProcessors")]
 public sealed partial class ESSimpleFormatChatChannelComponent : Component
 {
     [DataField(required: true)]

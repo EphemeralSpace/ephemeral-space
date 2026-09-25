@@ -32,10 +32,6 @@
           2: { state: alert-1 }
           3: { state: alert-2 }
           4: { state: alert-2 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
   - type: AtmosAlertsComputer
   - type: ActivatableUI
     singleUser: true

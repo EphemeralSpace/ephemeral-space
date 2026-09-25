@@ -1,6 +1,8 @@
 - type: entity
+  parent: [ DeflectionVerySturdyStructure, ClosetBase ]
   id: LockerBase
-  parent: ClosetBase
+  name: locker
+  description: A top-of-the-line Nanotrasen storage unit. It's engineered to be as annoying as possible to break in to.
   abstract: true
   components:
   - type: AccessReader
@@ -67,42 +69,6 @@
     prob: 0.25
     count: 2
 # ES END
-
-- type: entity
-  id: LockerBaseSecure
-  parent: [ LockerBase, DeflectionVerySturdyStructure ]
-  description: A top-of-the-line Nanotrasen storage unit. It's engineered to be as annoying as possible to break in to.
-  abstract: true
-  components:
-# ES Start
-#  - type: Damageable
-#    damageContainer: StructuralInorganic
-#    damageModifierSet: StructuralMetallic
-# ES End
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 350
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-          params:
-            volume: -6
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 2
 
 - type: entity
   id: LockerBaseSecurePersonal
