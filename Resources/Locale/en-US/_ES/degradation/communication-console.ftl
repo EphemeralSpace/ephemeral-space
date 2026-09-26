@@ -8,3 +8,6 @@ es-communication-degradation-message-7 = I still remember in my mind how things 
 es-communication-degradation-message-8 = On the, on, on the beach. And we used to sleep on the beach here, sleep overnight. They don't do that anymore. Things changed, you see. They don't sleep anymore on the beach...
 es-communication-degradation-message-9 = They have a large barge with a radio antenna tower on it that they would charge up and discharge... They have a large barge with a radio antenna tower on it that they would charge up and discharge... They have a large barge with a radio antenna tower on it that they would charge up and discharge...
 es-communication-degradation-message-10 = The preacher man says it's the end of time... He says that America's rivers are going dry. The interest is up, the stock market's down. You guys have to be careful walking around here this late at night..
+
+es-communication-fail-sender = Interference Alert
+es-communication-fail-generic = ERROR: Communication interference detected. Signal strength weak. Unable to send announcement. Be alert for potential dangerous activity.
