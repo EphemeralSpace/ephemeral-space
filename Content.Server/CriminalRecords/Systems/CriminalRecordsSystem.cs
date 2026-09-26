@@ -1,6 +1,4 @@
 using System.Linq;
-using Content.Server.CartridgeLoader;
-using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.StationRecords.Systems;
 using Content.Shared.CriminalRecords;
 using Content.Shared.CriminalRecords.Systems;
@@ -10,14 +8,6 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
-// ES START
-using Content.Shared._ES.Degradation;
-using Content.Shared.CriminalRecords.Components;
-using Content.Shared.Dataset;
-using Content.Shared.Random.Helpers;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-// ES END
 
 namespace Content.Server.CriminalRecords.Systems;
 
@@ -35,10 +25,6 @@ public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem
     [Dependency] private StationRecordsSystem _records = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private CartridgeLoaderSystem _cartridge = default!;
-// ES START
-    [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private IRobustRandom _random = default!;
-// ES END
 
     public override void Initialize()
     {
@@ -49,9 +35,6 @@ public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem
         SubscribeLocalEvent<WantedListCartridgeComponent, CartridgeUiReadyEvent>(OnCartridgeUiReady);
         SubscribeLocalEvent<WantedListCartridgeComponent, CriminalHistoryAddedEvent>(OnHistoryAdded);
         SubscribeLocalEvent<WantedListCartridgeComponent, CriminalHistoryRemovedEvent>(OnHistoryRemoved);
-// ES START
-        SubscribeLocalEvent<CriminalRecordsConsoleComponent, ESUndergoDegradationEvent>(OnUndergoDegradation);
-// ES END
     }
 
     private void OnGeneralRecordCreated(AfterGeneralRecordCreatedEvent ev)
@@ -163,33 +146,6 @@ public sealed partial class CriminalRecordsSystem : SharedCriminalRecordsSystem
 
     private void OnHistoryRemoved(Entity<WantedListCartridgeComponent> ent, ref CriminalHistoryRemovedEvent args) =>
         StateChanged(ent);
-// ES START
-    private static readonly ProtoId<LocalizedDatasetPrototype> DegradationReasonDataset = "ESCriminalRecordsDegradationReasons";
-
-    private void OnUndergoDegradation(Entity<CriminalRecordsConsoleComponent> ent, ref ESUndergoDegradationEvent args)
-    {
-        if (_station.GetOwningStation(ent) is not {} station)
-            return;
-
-        var reasons = _prototype.Index(DegradationReasonDataset);
-        var statuses = new List<SecurityStatus> { SecurityStatus.Wanted, SecurityStatus.Suspected, SecurityStatus.Hostile };
-        var records = _records.GetRecordsOfType<CriminalRecord>(station).ToList();
-        var count = Math.Min(_random.Next(1, 4), records.Count);
-
-        if (count == 0)
-            return;
-
-        for (var i = 0; i < count; i++)
-        {
-            var (key, record) = _random.PickAndTake(records);
-            var reason = _random.Pick(reasons);
-            var status = _random.Pick(statuses);
-            OverwriteStatus(new StationRecordKey(key, station), record, status, reason);
-        }
-
-        args.Handled = true;
-    }
-// ES END
 
     private void StateChanged(Entity<WantedListCartridgeComponent> ent)
     {

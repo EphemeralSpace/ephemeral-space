@@ -18,10 +18,7 @@
     - id: ESDegradationEventLights
     - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
-    - id: ESDegradationEventCriminalRecords
     - id: ESDegradationEventTelecoms
-    - id: ESDegradationEventCrewMonitoring
-    - id: ESDegradationEventEmergencyAccess
 
 # Event Prototypes
 
@@ -73,39 +70,10 @@
 
 - type: entity
   parent: ESBaseDegradationEvent
-  id: ESDegradationEventCriminalRecords
-  name: Hacked Criminal Records
-  description: Messes up the criminal records, adding fake crimes for various players.
-  components:
-  - type: ESDegradationEvent
-    component: CriminalRecordsConsole
-
-- type: entity
-  parent: ESBaseDegradationEvent
   id: ESDegradationEventTelecoms
   name: Telecom Malfunction
   description: Causes the radio system to malfunction, distorting all messages sent.
   components:
   - type: ESDegradationEvent
     component: ESRadioScrambler
-    degradeImmediately: true # Doesn't react to anything
-
-- type: entity
-  parent: ESBaseDegradationEvent
-  id: ESDegradationEventCrewMonitoring
-  name: Sensor Manipulation
-  description: Manipulates the crew monitoring server, altering the suit sensors of various crew.
-  components:
-  - type: ESDegradationEvent
-    component: CrewMonitoringServer
-    degradeImmediately: true # Doesn't react to anything
-
-- type: entity
-  parent: ESBaseDegradationEvent
-  id: ESDegradationEventEmergencyAccess
-  name: False Emergency Access
-  description: Randomly enables emergency access on various airlocks across the station.
-  components:
-  - type: ESDegradationEvent
-    component: ESEmergencyAccessConsole
     degradeImmediately: true # Doesn't react to anything

@@ -30,9 +30,6 @@
     - pick:
         all:
         - id: ESObjectiveTraitorSabotageCommunications
-        - id: ESObjectiveTraitorSabotageCrewMonitoring
-        - id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
-        - id: ESObjectiveTraitorSabotageCriminalRecords
         - id: ESObjectiveTraitorSabotageTelecom
       amount: 2
     - id: ESObjectiveTraitorBugAPC

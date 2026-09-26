@@ -191,11 +191,7 @@
     - pick:
         all:
         - id: ESObjectiveVandalSabotageCommunications
-        - id: ESObjectiveVandalSabotageCrewMonitoring
-        - id: ESObjectiveVandalSabotageEmergencyAccessTerminal
-        - id: ESObjectiveVandalSabotageCriminalRecords
         - id: ESObjectiveVandalSabotageTelecom
-          weight: 2
       amount: 1, 2
 
 - type: esSecretIdentity

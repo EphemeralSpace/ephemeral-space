@@ -3,9 +3,3 @@
   values:
     prefix: es-communication-degradation-message-
     count: 10
-
-- type: localizedDataset
-  id: ESCriminalRecordsDegradationReasons
-  values:
-    prefix: es-criminal-records-degradation-wanted-reason-
-    count: 16

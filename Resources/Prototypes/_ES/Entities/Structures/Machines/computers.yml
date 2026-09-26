@@ -255,7 +255,6 @@
   - type: PointLight
     color: "#ffff55"
   - type: ESEmergencyAccessConsole
-  - type: ESSabotageTarget
   - type: UseDelay
     delay: 0.5
   - type: ActivatableUI
