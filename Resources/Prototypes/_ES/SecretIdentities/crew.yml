@@ -186,6 +186,8 @@
   organization: Crew
   description: es-secret-identity-vandal-desc
   color: tomato
+  tips:
+  - GravitySabotage
   objectives:
     all:
     - pick:

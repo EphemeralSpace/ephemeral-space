@@ -24,6 +24,7 @@
   - TraitorDistraction
   - TraitorLoseHeat
   - AmmoLimitedResource
+  - GravitySabotage
   objectives:
     all:
     - id: ESObjectiveTraitorKillRandom
