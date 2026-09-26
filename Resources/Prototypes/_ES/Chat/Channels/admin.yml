@@ -13,6 +13,7 @@
   id: AdminChatProcessor
   components:
   - type: ESUsernameChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESAdminChatChannel
     adminSendable: true
   - type: ESSimpleFormatChatChannel

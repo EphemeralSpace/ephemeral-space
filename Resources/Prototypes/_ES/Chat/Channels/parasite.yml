@@ -12,6 +12,7 @@
   id: ParasiteHivemindChatProcessor
   components:
   - type: ESGhostListenableChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESOrganizationChatChannel
     organization: Parasite
   - type: ESSpeechVerbChatChannel
