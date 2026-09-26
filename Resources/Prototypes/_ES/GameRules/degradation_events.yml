@@ -18,6 +18,7 @@
     - id: ESDegradationEventLights
     - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
+    - id: ESDegradationEventGravity
     - id: ESDegradationEventTelecoms
 
 # Event Prototypes
@@ -66,6 +67,16 @@
   components:
   - type: ESDegradationEvent
     component: CommunicationsConsole
+    degradeImmediately: true
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventGravity
+  name: Gravity Interruption
+  description: Interrupts the station's gravity generator for a short period.
+  components:
+  - type: ESDegradationEvent
+    component: GravityGenerator
     degradeImmediately: true
 
 - type: entity
