@@ -78,5 +78,5 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 [Serializable, NetSerializable]
 public sealed class ChatLinkClickedRequestEvent(NetEntity target) : EntityEventArgs
 {
-public readonly NetEntity Target = target;
+    public readonly NetEntity Target = target;
 }
