@@ -12,6 +12,7 @@
   id: SpeakChatProcessor
   components:
   - type: ESGhostListenableChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESRangedChatChannel # TODO: The main message should be obscured through walls but it should still indicate someone talking
     requireLOS: true
   - type: ESSpeechVerbChatChannel
@@ -43,6 +44,7 @@
   id: WhisperChatProcessor
   components:
   - type: ESGhostListenableChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESRangedChatChannel
     range: 5
   - type: ESSimpleFormatChatChannel
@@ -65,6 +67,7 @@
   id: EmoteNoEffectChatProcessor
   components:
   - type: ESGhostListenableChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESRangedChatChannel
   - type: ESEmoteChatChannel
     emoteFromChat: false
