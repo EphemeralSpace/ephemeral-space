@@ -30,6 +30,7 @@
     - pick:
         all:
         - id: ESObjectiveTraitorSabotageCommunications
+        - id: ESObjectiveTraitorSabotageGravity
         - id: ESObjectiveTraitorSabotageTelecom
       amount: 2
     - id: ESObjectiveTraitorBugAPC

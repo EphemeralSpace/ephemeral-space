@@ -4,6 +4,11 @@
   description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer in Bridge.
 
 - type: entity
+  id: ESObjectiveVandalSabotageGravity
+  parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageGravity]
+  description: Wouldn't it just be so awesome to watch all those losers float around in the air? Messing around with the gravity generator would show them a fun time.
+
+- type: entity
   id: ESObjectiveVandalSabotageTelecom
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageTelecom]
   description: Those telecom processors in the engineering department have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?

@@ -191,6 +191,7 @@
     - pick:
         all:
         - id: ESObjectiveVandalSabotageCommunications
+        - id: ESObjectiveVandalSabotageGravity
         - id: ESObjectiveVandalSabotageTelecom
       amount: 1, 2
 

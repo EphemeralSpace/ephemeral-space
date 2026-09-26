@@ -69,6 +69,27 @@
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
   description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer located in the bridge.
 
+# Gravgen
+- type: entity
+  id: ESBaseObjectiveSabotageGravity
+  name: Sabotage the gravity generator
+  abstract: true
+  components:
+  - type: ESObjective
+    icon:
+      sprite: Structures/Machines/gravity_generator_core.rsi
+      state: static_clip
+  - type: ESCounterObjective
+  - type: ESSabotageCondition
+    whitelist:
+      components:
+      - GravityGenerator
+
+- type: entity
+  id: ESObjectiveTraitorSabotageGravity
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageGravity]
+  description: The syndicate is trying to reconstruct a model of the station. Hacking the detailed gyroscopic data from the gravity generator would help.
+
 # Telecomms servers
 - type: entity
   id: ESBaseObjectiveSabotageTelecom

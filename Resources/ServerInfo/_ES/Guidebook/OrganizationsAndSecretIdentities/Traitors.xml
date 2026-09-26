@@ -39,6 +39,7 @@
 
   [bold]Sabotage[/bold]
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageCommunications"/>
+  <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageGravity"/>
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageTelecom"/>
   You need to sabotage the machine your objective tells you to. You can do this by opening up the context menu on them and selecting "sabotage." Doing this causes adverse effects that typically alert people to your presence.
 
