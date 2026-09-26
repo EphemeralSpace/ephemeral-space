@@ -1,10 +1,13 @@
 using Content.Server.Administration;
+using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Humanoid;
+using Content.Server.Destructible;
 using Content.Server.Mind;
 using Content.Server.Speech.Components;
+using Content.Server.Temperature.Components;
 using Content.Shared._ES.Cryohusk;
 using Content.Shared._ES.Cryohusk.Components;
+using Content.Shared._ES.Filth.Components;
 using Content.Shared._ES.Stagehand;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
@@ -13,7 +16,9 @@ using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
+using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Preferences;
 using Robust.Server.Audio;
@@ -35,7 +40,9 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
     [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -44,6 +51,12 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
     [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     [Dependency] private EntityQuery<IdCardComponent> _idCardQuery;
+
+    private const SlotFlags DisintegratedSlots = SlotFlags.FEET
+                            | SlotFlags.GLOVES
+                            | SlotFlags.HEAD
+                            | SlotFlags.OUTERCLOTHING
+                            | SlotFlags.INNERCLOTHING;
 
     public override void Initialize()
     {
@@ -89,6 +102,24 @@ public sealed partial class ESCryohuskSystem : ESSharedCryohuskSystem
         {
             if (_idCardQuery.HasComp(uid))
                 EnsureComp<ESCryohuskIdCardComponent>(uid);
+        }
+
+        // Destroy clothing in specified slots
+        var enumerator = _inventory.GetSlotEnumerator(target.Owner, DisintegratedSlots);
+        while (enumerator.MoveNext(out var slot))
+        {
+            if (slot.ContainedEntity is not { } clothing)
+                continue;
+
+            // Shitty exclusion of firesuits and such since they are not identifiable
+            if (HasComp<TemperatureProtectionComponent>(clothing) ||
+                HasComp<PressureProtectionComponent>(clothing) ||
+                HasComp<ESDiseaseCloudProtectionComponent>(clothing) ||
+                HasComp<InsulatedComponent>(clothing))
+                continue;
+
+            _inventory.TryUnequip(target.Owner, slot.ID, silent: true, force: true);
+            _destructible.DestroyEntity(clothing);
         }
 
         _audio.PlayPvs(target.Comp.FreezeSound, target);
