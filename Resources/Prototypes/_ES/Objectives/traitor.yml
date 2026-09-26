@@ -67,7 +67,7 @@
 - type: entity
   id: ESObjectiveTraitorSabotageCommunications
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
-  description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer located in the bridge.
+  description: The syndicate is trying to subvert official NT communication channels. It can be done from the communications computer located in the bridge.
 
 # Gravgen
 - type: entity
@@ -89,6 +89,27 @@
   id: ESObjectiveTraitorSabotageGravity
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageGravity]
   description: The syndicate is trying to reconstruct a model of the station. Hacking the detailed gyroscopic data from the gravity generator would help.
+
+# Navigation Terminal
+- type: entity
+  id: ESBaseObjectiveSabotageNavigation
+  name: Sabotage the navigation terminal
+  abstract: true
+  components:
+  - type: ESObjective
+    icon:
+      sprite: _ES/Structures/Machines/computer.rsi
+      state: navigation-icon
+  - type: ESCounterObjective
+  - type: ESSabotageCondition
+    whitelist:
+      components:
+      - ESNavigationConsole
+
+- type: entity
+  id: ESObjectiveTraitorSabotageNavigation
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageNavigation]
+  description: The navigation terminal in the bridge has important flight path information for the station. Getting ahold of it would be advantageous for the syndicate's goals.
 
 # Telecomms servers
 - type: entity

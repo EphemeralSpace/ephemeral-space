@@ -6,6 +6,7 @@
 
     <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageCommunications"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageGravity"/>
+    <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageNavigation"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageTelecom"/>
 
     <ESGuideTipsEmbed SecretIdentity="Vandal"/>

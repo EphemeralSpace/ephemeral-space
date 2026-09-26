@@ -9,6 +9,11 @@
   description: Wouldn't it just be so awesome to watch all those losers float around in the air? Messing around with the gravity generator would show them a fun time.
 
 - type: entity
+  id: ESObjectiveVandalSabotageNavigation
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageNavigation ]
+  description: I heard that futzing with the navigation terminal would make the station do a sick barrel roll! Wouldn't that be absolutely hilarious?
+
+- type: entity
   id: ESObjectiveVandalSabotageTelecom
   parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageTelecom]
   description: Those telecom processors in the engineering department have a whole heap of mandatory "diagnostic logging" built in. Why not let everyone know by hacking one?

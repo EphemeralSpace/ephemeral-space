@@ -32,6 +32,7 @@
         all:
         - id: ESObjectiveTraitorSabotageCommunications
         - id: ESObjectiveTraitorSabotageGravity
+        - id: ESObjectiveTraitorSabotageNavigation
         - id: ESObjectiveTraitorSabotageTelecom
       amount: 2
     - id: ESObjectiveTraitorBugAPC

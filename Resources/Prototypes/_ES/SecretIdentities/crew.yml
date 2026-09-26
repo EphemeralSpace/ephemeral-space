@@ -194,6 +194,7 @@
         all:
         - id: ESObjectiveVandalSabotageCommunications
         - id: ESObjectiveVandalSabotageGravity
+        - id: ESObjectiveVandalSabotageNavigation
         - id: ESObjectiveVandalSabotageTelecom
       amount: 1, 2
 

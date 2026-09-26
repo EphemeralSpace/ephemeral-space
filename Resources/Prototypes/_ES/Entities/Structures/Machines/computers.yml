@@ -300,4 +300,6 @@
     netsync: false
     maxCharge: 600
   - type: ExaminableBattery
+  - type: ESNavigationConsole
+  - type: ESSabotageTarget
   - type: ESAmbientMusicMarkerCommand
