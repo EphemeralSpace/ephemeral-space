@@ -5,7 +5,6 @@ using Content.Shared.Database;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -175,6 +174,38 @@ public sealed partial class PowerChargeSystem : EntitySystem
                 var eventArgs = new ChargedMachineDeactivatedEvent();
                 RaiseLocalEvent(uid, ref eventArgs);
             }
+        }
+    }
+
+    public void SetCharge(Entity<PowerChargeComponent?, ApcPowerReceiverComponent?> ent, float charge)
+    {
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2))
+            return;
+
+        ent.Comp1.Charge = Math.Clamp(charge, 0, ent.Comp1.MaxCharge);
+        UpdateState((ent, ent.Comp1, ent.Comp2));
+    }
+
+    public void SetActive(Entity<PowerChargeComponent?, ApcPowerReceiverComponent?> ent, bool active)
+    {
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2))
+            return;
+
+        if (ent.Comp1.Active == active)
+            return;
+
+        ent.Comp1.Active = active;
+        UpdateState((ent, ent.Comp1, ent.Comp2));
+
+        if (ent.Comp1.Active)
+        {
+            var eventArgs = new ChargedMachineActivatedEvent();
+            RaiseLocalEvent(ent, ref eventArgs);
+        }
+        else
+        {
+            var eventArgs = new ChargedMachineDeactivatedEvent();
+            RaiseLocalEvent(ent, ref eventArgs);
         }
     }
 
