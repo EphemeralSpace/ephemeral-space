@@ -2184,3 +2184,9 @@ Entries:
       message: APCs can no longer be bugged after the objective is completed.
   id: 238
   time: '2026-09-26T01:43:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: Stagehands can now click a follow button in chat to teleport to someone
+  id: 239
+  time: '2026-09-27T03:27:43.0000000+00:00'
