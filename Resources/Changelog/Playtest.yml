@@ -2190,3 +2190,13 @@ Entries:
       message: Stagehands can now click a follow button in chat to teleport to someone
   id: 239
   time: '2026-09-27T03:27:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Lockers are now significantly harder to destroy.
+    - type: Tweak
+      message: The firefighting pack no longer has slowdown.
+    - type: Fix
+      message: Clothing which hides hair no longer makes you bald.
+  id: 240
+  time: '2026-09-27T14:50:06.0000000+00:00'
