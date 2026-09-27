@@ -41,5 +41,6 @@
   - type: ESAdminChatChannel
     adminSendable: true
   - type: ESStagehandChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESSimpleFormatChatChannel
     format: es-chat-channel-stagehand-fmt

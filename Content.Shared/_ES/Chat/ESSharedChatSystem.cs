@@ -201,10 +201,11 @@ public abstract partial class ESSharedChatSystem : EntitySystem
 
         foreach (var recipient in GetMessageRecipients(source, processor))
         {
-            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, source, recipient);
+            var recipientEv = new ESRecipientTransformChatMessageEvent(transformedContent, name, source, recipient);
             RaiseLocalEvent(processor, ref recipientEv);
 
             var recipientContent = recipientEv.Content;
+            var recipientName = recipientEv.Name;
 
             // do not send empty messages
             if (string.IsNullOrWhiteSpace(recipientContent))
@@ -219,7 +220,7 @@ public abstract partial class ESSharedChatSystem : EntitySystem
                     source,
                     formatEv.Format,
                     ephemeral: hideChat,
-                    name: name,
+                    name: recipientName,
                     font: formatEv.Font,
                     fontSize: formatEv.FontSize,
                     color: formatEv.Color,
@@ -527,7 +528,7 @@ public record struct ESPostTransformMessageSourceNameEvent(string Name, EntityUi
 /// This is the final modification done to the text itself before being displayed.
 /// </summary>
 [ByRefEvent]
-public record struct ESRecipientTransformChatMessageEvent(string Content, EntityUid Source, EntityUid Recipient)
+public record struct ESRecipientTransformChatMessageEvent(string Content, string Name, EntityUid Source, EntityUid Recipient)
 {
     /// <summary>
     /// The original string sent
@@ -538,6 +539,16 @@ public record struct ESRecipientTransformChatMessageEvent(string Content, Entity
     /// The modified message.
     /// </summary>
     public string Content = Content;
+
+    /// <summary>
+    /// The original name for the chat message
+    /// </summary>
+    public readonly string OriginalName = Name;
+
+    /// <summary>
+    /// The modified name for the chat message
+    /// </summary>
+    public string Name = Name;
 
     /// <summary>
     /// The message's source

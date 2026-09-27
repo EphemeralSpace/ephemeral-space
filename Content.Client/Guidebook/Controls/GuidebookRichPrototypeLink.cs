@@ -5,6 +5,7 @@ using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Client.UserInterface.ControlExtensions;
+using Content.Client.UserInterface.RichText;
 
 namespace Content.Client.Guidebook.Controls;
 
@@ -28,7 +29,7 @@ public sealed class GuidebookRichPrototypeLink : Control, IPrototypeLinkControl
 
         DefaultCursorShape = CursorShape.Hand;
 
-        _richTextLabel.SetMessage(_message, null, TextLinkTag.LinkColor);
+        _richTextLabel.SetMessage(_message, null, TextLinkTag.DefaultLinkColor);
     }
 
     public GuidebookRichPrototypeLink() : base()
