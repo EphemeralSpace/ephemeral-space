@@ -19,6 +19,7 @@
     - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
     - id: ESDegradationEventGravity
+    - id: ESDegradationEventSpaceTurbulence
     - id: ESDegradationEventTelecoms
 
 # Event Prototypes
