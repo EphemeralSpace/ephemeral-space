@@ -3,6 +3,7 @@ using Content.Server._ES.Radstorm.Components;
 using Content.Server.GameTicking;
 using Content.Server.Power.EntitySystems;
 using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.Degradation;
 using Content.Shared._ES.Radstorm.Components;
 using Content.Shared.Power;
 
@@ -23,6 +24,8 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
         SubscribeLocalEvent<ESRadstormModifierMachineComponent, ESRadstormModifierMachinePowerTimerEvent>(OnPowerTimer);
         SubscribeLocalEvent<ESRadstormModifierMachineComponent, ESThrusterEngineFuelStateChangedEvent>(OnFuelStateChanged);
         SubscribeLocalEvent<GetRadstormSpeedMultiplierEvent>(OnGetMultiplier);
+
+        SubscribeLocalEvent<ESNavigationConsoleComponent, ESUndergoDegradationEvent>(OnUndergoDegradation);
     }
 
     private void OnPowerChanged(Entity<ESRadstormModifierMachineComponent> ent, ref PowerChangedEvent args)
@@ -56,6 +59,15 @@ public sealed partial class ESRadstormModifierMachineSystem : EntitySystem
 
             ev.Speed += comp.Modifier;
         }
+    }
+
+    private void OnUndergoDegradation(Entity<ESNavigationConsoleComponent> ent, ref ESUndergoDegradationEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        _ticker.AddGameRule(ent.Comp.TurbulenceRule);
+        args.Handled = true;
     }
 
     public void SetEnabled(Entity<ESRadstormModifierMachineComponent?> ent, bool value)

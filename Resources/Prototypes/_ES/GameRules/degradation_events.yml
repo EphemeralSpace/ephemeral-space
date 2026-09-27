@@ -81,6 +81,21 @@
 
 - type: entity
   parent: ESBaseDegradationEvent
+  id: ESDegradationEventSpaceTurbulence
+  name: Space Turbulence
+  description: Throw and shake everyone not buckled down.
+  components:
+  - type: StationEvent
+    startAudio: /Audio/_ES/Announcements/attention_low.ogg
+    startAnnouncement: station-event-space-turbulence-start-announcement
+  - type: ESSpaceTurbulenceEvent
+  - type: GameRule
+    delay:
+      min: 5
+      max: 15
+
+- type: entity
+  parent: ESBaseDegradationEvent
   id: ESDegradationEventTelecoms
   name: Telecom Malfunction
   description: Causes the radio system to malfunction, distorting all messages sent.
