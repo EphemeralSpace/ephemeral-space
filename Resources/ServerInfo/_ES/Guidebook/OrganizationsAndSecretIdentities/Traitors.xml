@@ -44,7 +44,8 @@
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorSabotageTelecom"/>
   You need to sabotage the machine your objective tells you to. You can do this by opening up the context menu on them and selecting "sabotage." Doing this causes adverse effects that typically alert people to your presence.
 
-  Every machine has a different effect when sabotaged. For example, telecomms will replace the majority of messages with static, and the communications computer will send a garbled announcement.
+  Every machine has a different effect when sabotaged.
+  The telecomms processor will add a large amount of static to radio messages, the gravity generator will temporarily disable itself (with an announcement if there was gravity prior), the navigation terminal will force the station to undergo a nauseating flight maneuver, and the communications computer will distort station announcements.
 
   [bold]Bug APC[/bold]
   <ESGuideObjectiveEmbed Objective="ESObjectiveTraitorBugAPC"/>
