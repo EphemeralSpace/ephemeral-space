@@ -191,3 +191,4 @@
       state: nuclearbomb_base
   - type: ESCounterObjective
   - type: ESDetonateNukeObjective
+  - type: ESHideSummaryObjective # Don't show on round-end summary

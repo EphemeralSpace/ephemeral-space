@@ -12,6 +12,8 @@
     - tableId: ESOutfitShrineMaiden
     - tableId: ESOutfitVaquero
     - tableId: ESOutfitWitch
+    - tableId: ESOutfitGladiator
+    - tableId: ESOutfitChud
 
 - type: entityTable
   id: ESOutfitCardborg
@@ -91,3 +93,17 @@
     all:
     - id: ClothingHeadHatWitch
     - id: ClothingOuterSuitWitchRobes
+
+- type: entityTable
+  id: ESOutfitGladiator
+  table:
+    all:
+    - id: ClothingHeadHatGladiator
+    - id: ClothingUniformJumpsuitGladiator
+
+- type: entityTable
+  id: ESOutfitChud
+  table:
+    all:
+    - id: ClothingHeadPropellerHat
+    - id: FoodSnackSwirlLollipop

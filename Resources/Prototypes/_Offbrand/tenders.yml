@@ -1,9 +1,9 @@
 - type: stack
+  parent: BaseVerySmallStack
   id: Suture
   name: stack-suture
   icon: { sprite: "/Textures/_Offbrand/sutures.rsi", state: suture }
   spawn: Suture
-  maxCount: 10
 
 - type: entity
   name: suture
@@ -44,7 +44,7 @@
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: Stack
     stackType: Suture
-    count: 10
+    count: 5
 
 - type: entity
   id: Suture1

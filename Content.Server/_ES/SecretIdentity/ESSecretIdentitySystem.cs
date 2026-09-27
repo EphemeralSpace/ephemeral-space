@@ -5,6 +5,7 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.Chat;
+using Content.Shared._ES.Objectives.Components;
 using Content.Shared._ES.SecretIdentity;
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Stagehand;
@@ -67,6 +68,7 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
         foreach (var organization in organizations)
         {
             var organizationProto = PrototypeManager.Index(organization.Comp.Organization);
+            var organizationObjectives = Objective.GetObjectives(organization.Owner);
 
             ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-group",
                 ("name", Loc.GetString(organizationProto.Name)),
@@ -85,7 +87,8 @@ public sealed partial class ESSecretIdentitySystem : ESSharedSecretIdentitySyste
 
                 // get secret-identity-specific objectives
                 var objectives = Objective.GetObjectives(mind)
-                    .Except(Objective.GetObjectives(organization.Owner))
+                    .Except(organizationObjectives)
+                    .Where(e => !HasComp<ESHideSummaryObjectiveComponent>(e))
                     .ToList();
 
                 ev.AddLine(Loc.GetString("es-roundend-secret-identity-player-summary",
