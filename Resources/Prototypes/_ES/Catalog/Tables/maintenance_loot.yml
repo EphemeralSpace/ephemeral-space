@@ -205,6 +205,8 @@
     - id: ClothingBeltUtility
       weight: 2
     - id: ESClothingHeadHelmetSecurity
+    - id: ESClothingOuterArmorSecurity
+      weight: 0.5
 
     - id: DefaultStationBeaconUnanchored
     - tableId: ESSoap
