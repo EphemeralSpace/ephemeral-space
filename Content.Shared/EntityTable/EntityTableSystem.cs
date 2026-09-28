@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.EntityTable.EntitySelectors;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.EntityTable;
 
@@ -10,6 +12,16 @@ public sealed partial class EntityTableSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
+
+    public EntProtoId GetSingleSpawn(
+        EntityTableSelector? table,
+        System.Random? rand = null,
+        EntityTableContext? ctx = null)
+    {
+        var spawns = GetSpawns(table, rand, ctx).ToList();
+        DebugTools.Assert(spawns.Count == 1, "Must have exactly 1 spawn");
+        return spawns.First();
+    }
 
     public IEnumerable<EntProtoId> GetSpawns(EntityTablePrototype entTableProto, System.Random? rand = null, EntityTableContext? ctx = null)
     {

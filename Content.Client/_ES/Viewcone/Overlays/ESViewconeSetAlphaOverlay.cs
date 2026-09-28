@@ -100,6 +100,10 @@ public sealed partial class ESViewconeSetAlphaOverlay : Overlay
             if (!_ent.TryGetComponent<SpriteComponent>(uid, out var sprite))
                 continue;
 
+            // Doesn't matter anyway
+            if (!sprite.Visible)
+                continue;
+
             if (comp.Source == ent)
                 continue;
 

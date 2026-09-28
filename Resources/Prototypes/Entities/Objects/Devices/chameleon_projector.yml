@@ -14,24 +14,9 @@
       map: [ "enum.PowerDeviceVisualLayers.Charging" ]
       visible: false
   - type: ChameleonProjector
-    whitelist:
-      components:
-      - Anchorable
-      - Item
-      tags:
-      - Bot # for funny bot moments
-    blacklist:
-      components: # TODO: This blacklist should be cut down by a lot once Chameleon Projector code is less buggy. See #40510
-      - ChameleonDisguise # no becoming kleiner
-      - Door # no faking doors
-      - MindContainer # no
-      - Pda # PDAs currently make you invisible /!\
-      - SubFloorHide # no hiding under the floor
-      tags:
-      - Catwalk # Catwalks make you invisible
-      - Wall # Walls make you invisible
-      - Window # Windows make you invisible
-    disguiseProto: ChameleonDisguise
+    disguiseProto:
+      group:
+      - id: ESChameleonDisguise1
 
 - type: entity
   parent: ChameleonProjectorNoBattery
@@ -74,42 +59,28 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: ChameleonDisguise
-  name: Urist McKleiner
+  name: disguise
+  abstract: true
+  suffix: Chameleon Disguise
   components:
   # this and the name/desc get replaced, this is just placeholder incase something goes wrong
   - type: Sprite
-    sprite: /Textures/Mobs/Species/Human/parts.rsi
-    state: full
+    noRot: true
   - type: Transform
     noRot: true # players rotation and anchor is used instead
   - type: InteractionOutline
   - type: Clickable
   - type: Damageable
   - type: ChameleonDisguise
-
-# actions
-- type: entity
-  parent: BaseAction
-  id: ActionDisguiseNoRot
-  name: Toggle Rotation
-  description: Use this to prevent your disguise from rotating, making it easier to hide in some scenarios.
-  components:
-  - type: Action
-    icon: Interface/VerbIcons/refresh.svg.192dpi.png
-    itemIconStyle: BigAction
-  - type: InstantAction
-    event: !type:DisguiseToggleNoRotEvent
+  - type: Item
+    size: Tiny
 
 - type: entity
-  parent: BaseAction
-  id: ActionDisguiseAnchor
-  name: Toggle Anchored
-  description: For many objects you will want to be anchored to not be completely obvious.
+  parent: ChameleonDisguise
+  id: ESChameleonDisguise1
+  name: 4no raisins
+  description: This is rubbish.
   components:
-  - type: Action
-    icon:
-      sprite: Objects/Tools/wrench.rsi
-      state: icon
-    itemIconStyle: BigAction
-  - type: InstantAction
-    event: !type:DisguiseToggleAnchoredEvent
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: raisins-trash
