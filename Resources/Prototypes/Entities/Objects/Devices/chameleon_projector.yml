@@ -2,7 +2,7 @@
   parent: BaseItem
   id: ChameleonProjectorNoBattery
   name: chameleon projector
-  description: Holoparasite technology used to create a hard-light replica of any object around you. Disguise is destroyed when picked up or deactivated.
+  description: Projects an image across a user, disguising them as a small object, so long as they don't move it from their hand.
   components:
   - type: Sprite
     sprite: /Textures/Objects/Devices/chameleon_projector.rsi
@@ -16,13 +16,24 @@
   - type: ChameleonProjector
     disguiseProto:
       group:
-      - id: ESChameleonDisguise1
+      - id: FoodPacketBoritosTrash
+      - id: FoodPacketCheesieTrash
+      - id: FoodPacketChipsTrash
+      - id: FoodPacketChocolateTrash
+      - id: FoodPacketChowMeinTrash
+      - id: FoodPacketCnDsTrash
+      - id: FoodPacketDanDanTrash
+      - id: FoodPacketPistachioTrash
+      - id: FoodPacketEnergyTrash
+      - id: FoodPacketPopcornTrash
+      - id: FoodPacketRaisinsTrash
+      - id: FoodPacketSemkiTrash
+      - id: FoodPacketSusTrash
+      - id: FoodPacketSyndiTrash
 
 - type: entity
   parent: ChameleonProjectorNoBattery
   id: ChameleonProjector
-  name: chameleon projector
-  description: Holoparasite technology used to create a hard-light replica of any object around you. Disguise is destroyed when picked up or deactivated.
   suffix: Battery
   components:
   - type: Appearance
@@ -55,32 +66,3 @@
   - type: ItemToggle
     onActivate: false
     onUse: false
-
-- type: entity
-  categories: [ HideSpawnMenu ]
-  id: ChameleonDisguise
-  name: disguise
-  abstract: true
-  suffix: Chameleon Disguise
-  components:
-  # this and the name/desc get replaced, this is just placeholder incase something goes wrong
-  - type: Sprite
-    noRot: true
-  - type: Transform
-    noRot: true # players rotation and anchor is used instead
-  - type: InteractionOutline
-  - type: Clickable
-  - type: Damageable
-  - type: ChameleonDisguise
-  - type: Item
-    size: Tiny
-
-- type: entity
-  parent: ChameleonDisguise
-  id: ESChameleonDisguise1
-  name: 4no raisins
-  description: This is rubbish.
-  components:
-  - type: Sprite
-    sprite: Objects/Consumable/Food/snacks.rsi
-    state: raisins-trash

@@ -1,5 +1,6 @@
 using Content.Shared._ES.Sparks;
 using Content.Shared.Coordinates;
+using Content.Shared.Damage.Components;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -14,6 +15,10 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Stunnable;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Polymorph.Systems;
 
@@ -23,12 +28,15 @@ namespace Content.Shared.Polymorph.Systems;
 /// </summary>
 public abstract partial class SharedChameleonProjectorSystem : EntitySystem
 {
-    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private ESSparksSystem _sparks = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private ItemToggleSystem _toggle = default!;
 
     public override void Initialize()
@@ -36,10 +44,13 @@ public abstract partial class SharedChameleonProjectorSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ChameleonDisguiseComponent, InteractHandEvent>(OnDisguiseInteractHand, before: [typeof(SharedItemSystem)]);
-        SubscribeLocalEvent<ChameleonDisguiseComponent, DamageChangedEvent>(OnDisguiseDamaged);
         SubscribeLocalEvent<ChameleonDisguiseComponent, InsertIntoEntityStorageAttemptEvent>(OnDisguiseInsertAttempt);
         SubscribeLocalEvent<ChameleonDisguiseComponent, GettingPickedUpAttemptEvent>(OnDisguisePickedUpAttempt);
+        SubscribeLocalEvent<ChameleonDisguiseComponent, DamageChangedEvent>(OnDisguiseDamaged);
+
+        SubscribeLocalEvent<ChameleonDisguisedComponent, DamageChangedEvent>(OnDamaged);
         SubscribeLocalEvent<ChameleonDisguisedComponent, EntGotInsertedIntoContainerMessage>(OnDisguisedInserted);
+        SubscribeLocalEvent<ChameleonDisguisedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
 
         SubscribeLocalEvent<ChameleonProjectorComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<ChameleonProjectorComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
@@ -55,13 +66,6 @@ public abstract partial class SharedChameleonProjectorSystem : EntitySystem
     {
         TryReveal(ent.Comp.User);
         args.Handled = true;
-    }
-
-    private void OnDisguiseDamaged(Entity<ChameleonDisguiseComponent> ent, ref DamageChangedEvent args)
-    {
-        // this mirrors damage 1:1
-        if (args.DamageDelta is {} damage)
-            _damageable.TryChangeDamage(ent.Comp.User, damage);
     }
 
     private void OnDisguiseInsertAttempt(Entity<ChameleonDisguiseComponent> ent, ref InsertIntoEntityStorageAttemptEvent args)
@@ -80,14 +84,45 @@ public abstract partial class SharedChameleonProjectorSystem : EntitySystem
         args.Cancel();
     }
 
+    private void OnDisguiseDamaged(Entity<ChameleonDisguiseComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.DamageDelta is { } damage)
+        {
+            _damageable.TryChangeDamage(ent.Comp.User,
+                damage,
+                interruptsDoAfters: args.InterruptsDoAfters,
+                source: args.Source,
+                origin: args.Origin,
+                weapon: args.Weapon);
+        }
+    }
+
     #endregion
 
     #region Disguised player
+
+    private void OnDamaged(Entity<ChameleonDisguisedComponent> ent, ref DamageChangedEvent args)
+    {
+        // FUCK YOU !!!
+        if (_timing.ApplyingState)
+            return;
+
+        if (!args.DamageIncreased)
+            return;
+
+        _stun.TryUpdateParalyzeDuration(ent, ent.Comp.DamageStunTime);
+        TryReveal(ent.Owner);
+    }
 
     private void OnDisguisedInserted(Entity<ChameleonDisguisedComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
         // prevent player going into locker/mech/etc while disguised
         TryReveal((ent, ent));
+    }
+
+    private void OnRefreshMovementSpeedModifiers(Entity<ChameleonDisguisedComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
+    {
+        args.ModifySpeed(ent.Comp.SpeedModifier);
     }
 
     #endregion
@@ -191,8 +226,10 @@ public abstract partial class SharedChameleonProjectorSystem : EntitySystem
         proj.Disguised = user;
         Dirty(ent);
 
-        var disguiseProto = _entityTable.GetSingleSpawn(proj.DisguiseProto);
+        var disguiseProto = _entityTable.GetSingleSpawn(proj.DisguiseProto, new System.Random((int) _timing.CurTick.Value));
         var disguise = PredictedSpawnAttachedTo(disguiseProto, user.ToCoordinates());
+        EnsureComp<DamageableComponent>(disguise);
+        RemComp<PhysicsComponent>(disguise);
 
         var disguised = EnsureComp<ChameleonDisguisedComponent>(user);
         disguised.Disguise = disguise;
@@ -202,6 +239,8 @@ public abstract partial class SharedChameleonProjectorSystem : EntitySystem
         comp.User = user;
         comp.Projector = ent;
         Dirty(disguise, comp);
+
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(user);
     }
 
     /// <summary>
@@ -221,6 +260,7 @@ public abstract partial class SharedChameleonProjectorSystem : EntitySystem
         _sparks.DoSparks(ent);
 
         RemComp<ChameleonDisguisedComponent>(ent);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(ent);
         return true;
     }
 
