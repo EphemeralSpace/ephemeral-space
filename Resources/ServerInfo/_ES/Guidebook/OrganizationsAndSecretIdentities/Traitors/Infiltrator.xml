@@ -6,23 +6,26 @@
 
 
 ## Tools of the Trade
-    Their cache contains an EMAG, two C-4 charges, and a bag with a full set of chameleon clothes for quick disguise changes.
+    Their cache contains an EMAG, two C-4 charges, a pinpointer, and a chameleon projector for sneaking around unseen.
 
     <Box>
-        <GuideEntityEmbed Entity="ESEmag"/>
-        <GuideEntityEmbed Entity="C4" Caption="2 C-4"/>
-        <GuideEntityEmbed Entity="ESClothingBackpackChameleonFill" Caption="chameleon kit"/>
+        <GuideEntityEmbed Entity="ESEmag" Caption="EMAG"/>
+        <GuideEntityEmbed Entity="ChameleonProjectorNoBattery"/>
+        <GuideEntityEmbed Entity="PinpointerNuclear"/>
+        <GuideEntityEmbed Entity="C4" Caption="C-4 (x2)"/>
     </Box>
 
 ### EMAG
     Can be used to open any airlock or locker, damaging them in the process and bolting open airlocks. It only has a few uses, so make sure to make them count!
 
+### Chameleon Projector
+    When used, hides your body as a small piece of trash. When cloaked, you'll be significantly slower and unable to use tools or weapons. Make sure to stay out of peoples' way, since being hit or grabbed will make you visible again!
+
+### Pinpointer
+    When active, points towards the location of the nuke disk. While security override terminals also display the location of the disk, the pinpointer allow you to track down the holder without needing to break into a secure area.
+
 ### C4
     Blows up whatever is on the tile it's on, and not much else. Great for breaching, but not that good at damaging players. Must be planted to arm; cannot be manually activated like other explosives.
 
-### Chameleon Kit
-    Special clothing that can change its appearance to look like almost any other piece of clothing. Useful for losing heat after taking suspicious actions.
-	Don't forget that the bag is also a part of the kit, too!
-	
 	<ESGuideTipsEmbed SecretIdentity="Infiltrator"/>
 </Document>

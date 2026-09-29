@@ -33,6 +33,8 @@
       - id: FoodPacketSemkiTrash
       - id: FoodPacketSusTrash
       - id: FoodPacketSyndiTrash
+  - type: Item
+    size: Normal
   - type: ItemToggle
     onActivate: false
     onUse: false
