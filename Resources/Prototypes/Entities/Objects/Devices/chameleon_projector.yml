@@ -5,14 +5,17 @@
   description: Projects an image across a user, disguising them as a small object, so long as they don't move it from their hand.
   components:
   - type: Sprite
-    sprite: /Textures/Objects/Devices/chameleon_projector.rsi
+    sprite: _ES/Objects/Devices/champroj.rsi
     layers:
-    - state: icon
-    - state: powered
-      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-    - state: decharging
-      map: [ "enum.PowerDeviceVisualLayers.Charging" ]
-      visible: false
+    - state: shield0
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        base:
+          True: { state: "shield1" }
+          False: { state: "shield0" }
   - type: ChameleonProjector
     disguiseProto:
       group:
@@ -30,25 +33,15 @@
       - id: FoodPacketSemkiTrash
       - id: FoodPacketSusTrash
       - id: FoodPacketSyndiTrash
+  - type: ItemToggle
+    onActivate: false
+    onUse: false
 
 - type: entity
   parent: ChameleonProjectorNoBattery
   id: ChameleonProjector
   suffix: Battery
   components:
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.BatteryVisuals.State:
-        enum.PowerDeviceVisualLayers.Powered:
-          Full: { visible: true }
-          Neither: { visible: true }
-          Empty: { visible: false }
-      enum.BatteryVisuals.Charging:
-        enum.PowerDeviceVisualLayers.Charging:
-          Charging: { visible: false }
-          Decharging: { visible: true }
-          Constant: { visible: false }
   - type: BatteryVisuals
   - type: ContainerContainer
     containers:
@@ -63,6 +56,3 @@
   - type: PowerCellDraw
     drawRate: 4 # About 3 minutes with a medium cell.
   - type: ToggleCellDraw
-  - type: ItemToggle
-    onActivate: false
-    onUse: false
