@@ -7,6 +7,11 @@ namespace Content.Shared._ES.Auditions.Traits;
 
 public sealed partial class ESTraitSystem : EntitySystem
 {
+    public override void Initialize()
+    {
+        InitializeEvents();
+    }
+
     public void ApplyTrait(EntityUid target, IEnumerable<ProtoId<ESTraitPrototype>> traits)
     {
         foreach (var trait in traits)
@@ -22,7 +27,10 @@ public sealed partial class ESTraitSystem : EntitySystem
 
     public void ApplyTrait(EntityUid target, ESTraitPrototype trait)
     {
-        RaiseLocalEvent(target, trait.Event);
+        foreach (var ev in trait.Events)
+        {
+            RaiseLocalEvent(target, (object) ev);
+        }
     }
 
     public HashSet<ProtoId<ESTraitPrototype>> GetRandomTraits(IRobustRandom random)

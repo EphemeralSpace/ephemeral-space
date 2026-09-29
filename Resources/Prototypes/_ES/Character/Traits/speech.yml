@@ -1,5 +1,37 @@
 - type: esTraitCategory
   id: Speech
-  prob: 1.0 # 0.25
+  prob: 0.05
 
+- type: esTrait
+  id: FrenchAccent
+  category: Speech
+  name: es-trait-french-name
+  description: es-trait-french-desc
+  prob: 1
+  events:
+  - !type:ESAddComponentTraitEvent
+    components:
+    - type: FrenchAccent
+
+- type: esTrait
+  id: GermanAccent
+  category: Speech
+  name: es-trait-german-name
+  description: es-trait-german-desc
+  prob: 1
+  events:
+  - !type:ESAddComponentTraitEvent
+    components:
+    - type: GermanAccent
+
+- type: esTrait
+  id: SlowTalker
+  category: Speech
+  name: es-trait-slowtalker-name
+  description: es-trait-slowtalker-desc
+  prob: 0.5
+  events:
+  - !type:ESAddComponentTraitEvent
+    components:
+    - type: SlowAccent
 

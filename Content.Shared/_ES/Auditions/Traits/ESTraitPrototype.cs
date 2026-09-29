@@ -29,9 +29,9 @@ public sealed partial class ESTraitPrototype : IPrototype
     [DataField(required: true)]
     public float Prob = 1.0f;
 
-    [DataField(required: true)]
-    public ESTraitEvent Event = default!;
+    [DataField]
+    public List<ESTraitEvent> Events = [];
 }
 
 [ImplicitDataDefinitionForInheritors]
-public abstract partial class ESTraitEvent;
+public abstract partial class ESTraitEvent : EntityEventArgs;
