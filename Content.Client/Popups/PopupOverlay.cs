@@ -95,8 +95,11 @@ public sealed class PopupOverlay : Overlay
             var distance = (mapPos.Position - ourPos).Length();
 
             // Should handle fade here too wyci.
-            if (!args.WorldBounds.Contains(mapPos.Position) || !_examine.InRangeUnOccluded(viewPos, mapPos, distance,
-                    e => e == popup.InitialPos.EntityId || e == ourEntity))
+            if (!args.WorldBounds.Contains(mapPos.Position))
+                continue;
+
+            var checkOcclusion = args.Viewport.Eye?.DrawFov == true; // nullable bool
+            if (checkOcclusion && !_examine.InRangeUnOccluded(viewPos, mapPos, distance, e => e == popup.InitialPos.EntityId || e == ourEntity))
                 continue;
 
             var pos = Vector2.Transform(mapPos.Position, matrix);

@@ -241,7 +241,7 @@
   #       Heat: -0.07
   #     groups:
   #       Brute: -0.07
-  - type: Fingerprint
+  - type: ESFingerprints
   - type: Blindable
   - type: Temperature
     currentTemperature: 310.15

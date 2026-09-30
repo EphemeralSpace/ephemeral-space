@@ -1,0 +1,9 @@
+es-tiles-dirt-floor = dirt
+es-tiles-gravel-floor = gravel
+es-tiles-grass-floor = grass
+es-tiles-sand-floor = sand
+es-tiles-dirt-astroturf-floor = dirt astroturf
+es-tiles-gravel-astroturf-floor = gravel astroturf
+es-tiles-sand-astroturf-floor = sand astroturf
+es-tiles-grass-astroturf-floor = grass astroturf
+es-tiles-trimmed-grass-astroturf-floor = trimmed grass astroturf

@@ -18,7 +18,7 @@
     - group:
       - id: InflatableWallStack3
       - id: InflatableDoorStack1
-      prob: 0.15
+      prob: 0.33
 # ES End
 
 - type: entity

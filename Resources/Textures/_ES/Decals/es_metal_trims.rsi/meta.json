@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by Flareguy for Ephemeral Space",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "trim_metal_left"
+    },
+    {
+      "name": "trim_metal_right"
+    },
+    {
+      "name": "trim_metal_up"
+    },
+    {
+      "name": "trim_metal_down"
+    },
+    {
+      "name": "trim_metal_corner_sw"
+    },
+    {
+      "name": "trim_metal_corner_se"
+    },
+    {
+      "name": "trim_metal_corner_nw"
+    },
+    {
+      "name": "trim_metal_corner_ne"
+    },
+    {
+      "name": "trim_metal_corner_small_sw"
+    },
+    {
+      "name": "trim_metal_corner_small_se"
+    },
+    {
+      "name": "trim_metal_corner_small_nw"
+    },
+    {
+      "name": "trim_metal_corner_small_ne"
+    },
+    {
+      "name": "trim_metal_rivet_left"
+    },
+    {
+      "name": "trim_metal_rivet_right"
+    },
+    {
+      "name": "trim_metal_rivet_up"
+    },
+    {
+      "name": "trim_metal_rivet_down"
+    },
+    {
+      "name": "trim_metal_rivet_corner_sw"
+    },
+    {
+      "name": "trim_metal_rivet_corner_se"
+    },
+    {
+      "name": "trim_metal_rivet_corner_nw"
+    },
+    {
+      "name": "trim_metal_rivet_corner_ne"
+    },
+    {
+      "name": "trim_metal_rivet_corner_small_sw"
+    },
+    {
+      "name": "trim_metal_rivet_corner_small_se"
+    },
+    {
+      "name": "trim_metal_rivet_corner_small_nw"
+    },
+    {
+      "name": "trim_metal_rivet_corner_small_ne"
+    },
+    {
+      "name": "trim_metal_heavy_left"
+    },
+    {
+      "name": "trim_metal_heavy_right"
+    },
+    {
+      "name": "trim_metal_heavy_up"
+    },
+    {
+      "name": "trim_metal_heavy_down"
+    },
+    {
+      "name": "trim_metal_heavy_corner_sw"
+    },
+    {
+      "name": "trim_metal_heavy_corner_se"
+    },
+    {
+      "name": "trim_metal_heavy_corner_nw"
+    },
+    {
+      "name": "trim_metal_heavy_corner_ne"
+    },
+    {
+      "name": "trim_metal_heavy_corner_small_sw"
+    },
+    {
+      "name": "trim_metal_heavy_corner_small_se"
+    },
+    {
+      "name": "trim_metal_heavy_corner_small_nw"
+    },
+    {
+      "name": "trim_metal_heavy_corner_small_ne"
+    },
+    {
+      "name": "trim_metal_dotted"
+    },
+    {
+      "name": "trim_metal_dotted_corner"
+    },
+    {
+      "name": "trim_metal_dotted_corner_small"
+    }
+  ]
+}

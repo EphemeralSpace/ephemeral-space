@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._ES.Breakable;
 using Content.Shared._ES.Core.Timer;
 using Content.Shared._ES.SecretIdentity.Traitor.Components;
@@ -71,9 +72,6 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnGetVerbs(Entity<ESTraitorBuggableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess)
-            return;
-
         if (ent.Comp.IsBugged)
         {
             var user = args.User;
@@ -81,6 +79,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
             {
                 Priority = 2,
                 Text = Loc.GetString("es-remove-bug-verb-text"),
+                Disabled = !args.CanAccess,
                 DoContactInteraction = true,
                 Act = () =>
                 {
@@ -110,7 +109,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
                 Priority = 1,
                 Text = Loc.GetString("es-bug-verb-text"),
                 DoContactInteraction = true,
-                Disabled = ent.Comp.IsBugged,
+                Disabled = ent.Comp.IsBugged || !args.CanAccess,
                 Act = () =>
                 {
                     if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
@@ -135,7 +134,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnPlantTraitorBugDoAfter(Entity<ESTraitorBuggableComponent> ent, ref ESPlantTraitorBugDoAfterEvent args)
     {
-        if (args.Cancelled || !CanBug(ent.AsNullable(), args.User))
+        if (args.Cancelled || !CanBug(ent.AsNullable(), args.User, out var objectives))
             return;
 
         _popup.PopupEntity(Loc.GetString("es-bug-popup-planted"), ent, args.User);
@@ -143,6 +142,7 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
         _appearance.SetData(ent, ESTraitorBugVisuals.Bugged, true);
         ent.Comp.Timer = _entityTimer.SpawnTimer(ent, ent.Comp.BugDuration, new ESTraitorBugTimerEvent());
+        ent.Comp.Objectives = objectives;
 
         _notification.SendStagehandNotification(Loc.GetString("es-stagehand-notification-apc-bugged",
             ("buggable", _notification.WrapEntityName(ent.Owner)),
@@ -170,18 +170,26 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
 
     private void OnTraitorBugTimer(Entity<ESTraitorBuggableComponent> ent, ref ESTraitorBugTimerEvent args)
     {
+        // increment objectives
+        var objectives = new HashSet<EntityUid>(ent.Comp.Objectives);
+        foreach (var objective in objectives)
+        {
+            if (TerminatingOrDeleted(objective))
+                continue;
+            ObjectivesSys.AdjustObjectiveCounter(objective);
+        }
+
         CancelBug(ent.AsNullable());
+        // Un-bug any bugged entities that would affect objectives that are already complete.
+        foreach (var (otherUid, otherComp) in AllEntityQuery<ESTraitorBuggableComponent>())
+        {
+            if (otherComp.Objectives.IsSubsetOf(objectives))
+                CancelBug((otherUid, otherComp));
+        }
 
         _sparks.DoSparks(ent);
         var ev = new ESTraitorBugHackedEvent(ent.Comp.Department);
         RaiseLocalEvent(ref ev);
-
-        // Globally increment all matching bug objectives. Maybe this should be user, specific, but it doesn't matter right now.
-        foreach (var objective in ObjectivesSys.GetObjectives<ESTraitorBugObjectiveComponent>())
-        {
-            if (objective.Comp1.Target == ent.Comp.Department)
-                ObjectivesSys.AdjustObjectiveCounter(objective.Owner);
-        }
     }
 
     private void OnBrokenStateChanged(Entity<ESTraitorBuggableComponent> ent, ref ESBrokenStateChanged args)
@@ -218,15 +226,26 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+        if (!ent.Comp.IsBugged)
+            return;
+
         _appearance.SetData(ent, ESTraitorBugVisuals.Bugged, false);
 
         PredictedDel(ent.Comp.Timer);
         ent.Comp.Timer = null;
+        ent.Comp.Objectives.Clear();
         Dirty(ent);
     }
 
     public bool CanBug(Entity<ESTraitorBuggableComponent?> ent, EntityUid user)
     {
+        return CanBug(ent, user, out _);
+    }
+
+    public bool CanBug(Entity<ESTraitorBuggableComponent?> ent, EntityUid user, out HashSet<EntityUid> objectives)
+    {
+        objectives = [];
+
         if (!Resolve(ent, ref ent.Comp, false))
             return false;
 
@@ -236,19 +255,24 @@ public sealed partial class ESTraitorBugSystem : ESBaseObjectiveSystem<ESTraitor
         if (ent.Comp.Department == IgnoreDepartment)
             return false;
 
-        if (_admin.HasAdminFlag(user, AdminFlags.Debug))
-            return true;
-
         if (!_mind.TryGetMind(user, out var mind))
             return false;
 
         foreach (var objective in ObjectivesSys.GetObjectives<ESTraitorBugObjectiveComponent>(mind.Value.Owner))
         {
-            if (objective.Comp.Target == ent.Comp.Department)
-                return true;
+            if (objective.Comp.Target != ent.Comp.Department)
+                continue;
+
+            if (ObjectivesSys.IsCompleted(objective.Owner))
+                continue;
+
+            objectives.Add(objective);
         }
 
-        return false;
+        if (_admin.HasAdminFlag(user, AdminFlags.Debug))
+            return true;
+
+        return objectives.Any();
     }
 
     public override void Update(float frameTime)

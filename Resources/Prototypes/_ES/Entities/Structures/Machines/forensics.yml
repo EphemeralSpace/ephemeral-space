@@ -1,0 +1,35 @@
+- type: entity
+  id: ESMachineMicroscopeElectron
+  parent: [ ESBaseStructureMachineTabletop, ESBaseBreakableMachine, ESBasePoweredMachine ]
+  name: electron microscope
+  description: A high-powered microscope for analyzing forensic evidence. Also electrons and shit like that.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Specific/Forensics/microscope.rsi
+    layers:
+    - state: icon
+      map: [ "base" ]
+    - map: [ "slide" ]
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.ESBreakableVisuals.Broken:
+        base:
+          True: { state: "broken" }
+          False: { state: "icon" }
+  - type: ESItemMapper
+    mappings:
+      slide:
+      - containerId: slide_slot
+        state: slide
+  - type: ESEvidenceMicroscope
+  - type: ContainerContainer
+    containers:
+      slide_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      slide_slot:
+        name: es-microscope-slot-name-slide
+        whitelist:
+          components:
+          - ESFingerprintCard

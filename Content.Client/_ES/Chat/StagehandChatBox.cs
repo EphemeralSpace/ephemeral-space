@@ -1,5 +1,7 @@
+using Content.Client.UserInterface.RichText;
 using Content.Client.UserInterface.Systems.Chat.Widgets;
 using Content.Shared._ES.Chat;
+using Content.Shared.Chat;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -9,7 +11,7 @@ namespace Content.Client._ES.Chat;
 /// <summary>
 ///     A chat box with two separate output panels for deadchat messages and all other chat messages.
 /// </summary>
-public sealed partial class StagehandChatBox : ChatBox
+public sealed partial class StagehandChatBox : ChatBox, IEntityLinkClickHandler
 {
     [Dependency] private IPrototypeManager _prototype = default!;
 
@@ -90,5 +92,14 @@ public sealed partial class StagehandChatBox : ChatBox
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
         StagehandContents.AddMessage(formatted, tagsAllowed: null);
+    }
+
+    /// <summary>
+    /// Sends a message to the server when this chat message is clicked.
+    /// </summary>
+    /// <param name="netEntity">Target entity of our event</param>
+    public void HandleClick(NetEntity netEntity)
+    {
+        EntManager.RaisePredictiveEvent(new ChatLinkClickedRequestEvent(netEntity));
     }
 }

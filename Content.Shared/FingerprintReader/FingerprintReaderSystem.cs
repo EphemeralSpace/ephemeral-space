@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._ES.Forensics.Fingerprints;
+using Content.Shared._ES.Forensics.Fingerprints.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Lock;
@@ -12,6 +14,7 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ESFingerprintsSystem _fingerprints = default!;
 
     public override void Initialize()
     {
@@ -70,8 +73,8 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
         }
 
         // Check fingerprint match
-        if (!TryComp<FingerprintComponent>(user, out var fingerprint) || fingerprint.Fingerprint == null ||
-            !target.Comp.AllowedFingerprints.Contains(fingerprint.Fingerprint))
+        if (!_fingerprints.TryGetFingerprint(user, out var print, ignoreBlockers: true) ||
+            !target.Comp.AllowedFingerprints.Contains(print.Value))
         {
             denyReason = Loc.GetString("fingerprint-reader-fail");
 
@@ -108,7 +111,7 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
     /// Sets the allowed fingerprints for a fingerprint reader
     /// </summary>
     [PublicAPI]
-    public void SetAllowedFingerprints(Entity<FingerprintReaderComponent> target, HashSet<string> fingerprints)
+    public void SetAllowedFingerprints(Entity<FingerprintReaderComponent> target, HashSet<ESFingerprint> fingerprints)
     {
         target.Comp.AllowedFingerprints = fingerprints;
         Dirty(target);
@@ -118,7 +121,7 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
     /// Adds an allowed fingerprint to a fingerprint reader
     /// </summary>
     [PublicAPI]
-    public void AddAllowedFingerprint(Entity<FingerprintReaderComponent> target, string fingerprint)
+    public void AddAllowedFingerprint(Entity<FingerprintReaderComponent> target, ESFingerprint fingerprint)
     {
         target.Comp.AllowedFingerprints.Add(fingerprint);
         Dirty(target);
@@ -128,7 +131,7 @@ public sealed partial class FingerprintReaderSystem : EntitySystem
     /// Removes an allowed fingerprint from a fingerprint reader
     /// </summary>
     [PublicAPI]
-    public void RemoveAllowedFingerprint(Entity<FingerprintReaderComponent> target, string fingerprint)
+    public void RemoveAllowedFingerprint(Entity<FingerprintReaderComponent> target, ESFingerprint fingerprint)
     {
         target.Comp.AllowedFingerprints.Remove(fingerprint);
         Dirty(target);

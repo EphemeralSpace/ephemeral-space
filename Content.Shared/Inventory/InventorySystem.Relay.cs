@@ -1,4 +1,5 @@
 using Content.Shared._ES.Chat.SpeechVerb;
+using Content.Shared._ES.Forensics.Fingerprints;
 using Content.Shared._ES.Viewcone.Components;
 using Content.Shared.Armor;
 using Content.Shared.Atmos;
@@ -81,6 +82,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, UnwieldAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IngestionAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshNightVisionEvent>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, ESTransferFingerprintsAttemptEvent>(RefRelayInventoryEvent);
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);

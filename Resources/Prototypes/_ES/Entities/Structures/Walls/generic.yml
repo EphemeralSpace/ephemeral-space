@@ -1,0 +1,11 @@
+# Orange
+- type: entity
+  parent: WallSolid
+  id: WallSolidOrange
+  suffix: Orange
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/solid_orange.rsi
+  - type: Icon
+    sprite: _ES/Structures/Walls/solid_orange.rsi
+    state: full

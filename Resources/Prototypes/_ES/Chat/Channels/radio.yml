@@ -19,6 +19,7 @@
   abstract: true
   components:
   - type: ESGhostListenableChatChannel
+  - type: ESStagehandFollowButtonChatChannel
   - type: ESRadioChatChannel
 
 # Channels

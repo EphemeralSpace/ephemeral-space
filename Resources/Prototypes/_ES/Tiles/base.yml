@@ -13,3 +13,26 @@
   - ESDamagedQuartertile3
   - ESDamagedQuartertile4
   - ESDamagedQuartertile5
+
+- type: tile
+  id: ESBaseTileGeneric
+  damageDecals:
+  - ESDamagedGeneric1
+  - ESDamagedGeneric2
+  - ESDamagedGeneric3
+  - ESDamagedGeneric4
+  - ESDamagedGeneric5
+
+- type: tile
+  parent: ESBaseTileGeneric
+  id: ESBaseCarpet
+  footstepSounds:
+    collection: FootstepCarpet
+  barestepSounds:
+    collection: BarestepCarpet
+  friction: 4
+  damageDecals:
+  - ESDamagedCarpet1
+  - ESDamagedCarpet2
+  - ESDamagedCarpet3
+  - ESDamagedCarpet4

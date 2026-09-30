@@ -211,6 +211,15 @@
 - type: entity
   parent: [ OrganBaseHeadSexless, ESOrganMonkeyExternal ]
   id: ESOrganMonkeyHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      layers: # redefined layers w/o hair
+      - Head
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
 
 - type: entity
   parent: [ OrganBaseEyes, ESOrganMonkeyInternal, ESOrganMonkeyExternal ]

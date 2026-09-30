@@ -207,7 +207,7 @@
 
 - type: entity
   id: GunSafe
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: gun safe
   components:
   - type: Appearance
@@ -353,7 +353,7 @@
 
 - type: entity
   id: LockerEvidence
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: evidence locker
   description: To store bags of bullet casings and detainee belongings.
   components:
@@ -368,7 +368,7 @@
 - type: entity
   id: LockerSyndicatePersonal
   name: blood-red locker
-  parent: LockerBaseSecure
+  parent: LockerBase
   description: It's a personal storage unit with a blood-red design.
   suffix: "Locked"
   components:

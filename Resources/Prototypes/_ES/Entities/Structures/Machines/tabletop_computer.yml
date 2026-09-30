@@ -25,10 +25,6 @@
         computerLayerScreen:
           True: { visible: true, shader: unshaded }
           False: { visible: false }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
   - type: ESBreakableVisuals
     brokenLayers:
       computerLayerBody:

@@ -15,8 +15,9 @@
       <ESGuideObjectiveEmbed Objective="ESObjectiveHaterDontKill"/>
     </Box>
 
-    Additionally, the Hater is prohibited from killing their target (that would be illegal) and doing so voids the success of their other objective.
-    Even if their target has an objective to be killed, the Hater cannot be the one to do so.
+    Additionally, the Hater must try and ensure that their target does not die.
+    Although they HATE them, a grudge is a two-way often highly-romantic street, and the Hater would be left emotionally destitute if their target were to die.
+    If they do end up dying, the Hater can still succeed at their other objective.
 
   <ESGuideTipsEmbed SecretIdentity="Hater"/>
 </Document>

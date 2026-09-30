@@ -1,5 +1,6 @@
 using Content.Shared._ES.Chat.Components;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat.SpeechVerb.Components;
 
@@ -8,6 +9,7 @@ namespace Content.Shared._ES.Chat.SpeechVerb.Components;
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(ESSpeechVerbSystem))]
+[EntityCategory("ESChatProcessors")]
 public sealed partial class ESSpeechVerbChatChannelComponent : Component
 {
     /// <summary>

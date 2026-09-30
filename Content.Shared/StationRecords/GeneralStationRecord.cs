@@ -1,3 +1,4 @@
+using Content.Shared._ES.Forensics.Fingerprints.Components;
 using Robust.Shared.Enums;
 using Robust.Shared.Serialization;
 
@@ -62,7 +63,7 @@ public sealed partial record GeneralStationRecord
     ///     Fingerprint of the person.
     /// </summary>
     [DataField]
-    public string? Fingerprint;
+    public ESFingerprint? Fingerprint;
 
     /// <summary>
     ///     DNA of the person.

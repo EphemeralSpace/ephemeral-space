@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Baystation12 at https://github.com/Baystation12/Baystation12/blob/1244c4a5fd0e0bda839823157b5f3ab887299a12/icons/obj/forensics.dmi, broken by EmoGarbage404",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "broken"
+    },
+    {
+      "name": "slide"
+    }
+  ]
+}

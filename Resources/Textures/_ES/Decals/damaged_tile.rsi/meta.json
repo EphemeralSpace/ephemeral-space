@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "tgstation at 606005645d3a14c4439e5ce14785650121b22678, cut into alpha layers by Flareguy",
+  "copyright": "tgstation at 606005645d3a14c4439e5ce14785650121b22678, cut into alpha layers by Flareguy. carpet states made for Ephemeral Space by Flareguy",
   "size": {
     "x": 32,
     "y": 32
@@ -30,6 +30,33 @@
     },
     {
       "name": "quartertile_5"
+    },
+    {
+      "name": "generic_1"
+    },
+    {
+      "name": "generic_2"
+    },
+    {
+      "name": "generic_3"
+    },
+    {
+      "name": "generic_4"
+    },
+    {
+      "name": "generic_5"
+    },
+    {
+      "name": "carpet_1"
+    },
+    {
+      "name": "carpet_2"
+    },
+    {
+      "name": "carpet_3"
+    },
+    {
+      "name": "carpet_4"
     }
   ]
 }

@@ -1,11 +1,11 @@
-# Insulated Gloves 
+# Insulated Gloves
 - type: entity
   parent: ClothingHandsBase
   id: ClothingHandsGlovesInsulated
   name: insulated gloves
   description: These gloves will protect the wearer from electric shocks.
   components:
-  - type: FingerprintMask
+  - type: ESFingerprintBlocker
   - type: Sprite
     sprite: Clothing/Hands/Gloves/Color/yellow.rsi
   - type: Clothing
@@ -70,7 +70,7 @@
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-red
-  - type: FingerprintMask
+  - type: ESFingerprintBlocker
   - type: Tag
     tags:
     - Kangaroo
@@ -88,7 +88,7 @@
   - type: Fiber
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
-  - type: FingerprintMask
+  - type: ESFingerprintBlocker
 
 #### Medical
 - type: entity
@@ -103,7 +103,7 @@
     sprite: Clothing/Hands/Gloves/latex.rsi
   - type: Fiber
     fiberMaterial: fibers-latex
-  - type: FingerprintMask
+  - type: ESFingerprintBlocker
 
 - type: entity
   parent: ClothingHandsButcherable
@@ -118,7 +118,7 @@
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-brown
-  - type: FingerprintMask
+  - type: ESFingerprintBlocker
   - type: DamageOnInteractProtection
     damageProtection:
       flatReductions:
@@ -135,7 +135,7 @@
     sprite: Clothing/Hands/Gloves/forensic.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/forensic.rsi
-  - type: FingerprintMask
+  - type: ESFingerprintBlocker
   - type: GuideHelp
     guides:
     - Forensics

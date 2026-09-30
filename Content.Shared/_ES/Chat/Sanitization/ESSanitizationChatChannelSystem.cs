@@ -1,10 +1,12 @@
 using System.Globalization;
 using System.Text;
+using Content.Shared._ES.CCVar;
 using Content.Shared._ES.Chat.Sanitization.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Prototypes;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Chat.Sanitization;
@@ -13,6 +15,7 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
 {
     [Dependency] private IChatSanitizationManager _sanitizer = default!;
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private INetConfigurationManager _netConfig = default!;
     [Dependency] private ESSharedChatSystem _chat = default!;
     [Dependency] private ReplacementAccentSystem _replacementAccent = default!;
 
@@ -56,11 +59,18 @@ public sealed partial class ESSanitizationChatChannelSystem : EntitySystem
 
     private string SanitizeMessage(EntityUid source, string message, Entity<ESSanitizationChatChannelComponent> ent)
     {
-        var newMessage = SanitizeMessageReplaceWords(message.Trim());
+        // User disabled chatsan for themselves, they're Free.
+        var doSanitize = !TryComp<ActorComponent>(source, out var actor) ||
+            _netConfig.GetClientCVar(actor.PlayerSession.Channel, ESCVars.UserChatSanitizationEnabled);
+
+        var newMessage = message.Trim();
+
+        if (doSanitize)
+            newMessage = SanitizeMessageReplaceWords(newMessage);
         newMessage = SanitizeMessageEmojis(newMessage);
 
         // Sanitize it first as it might change the word order
-        if (_sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out var emoteStr))
+        if (doSanitize && _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out var emoteStr))
             _chat.TrySendMessage(emoteStr, ent.Comp.EmoteChannel, source);
 
         // Capitalizing the word I only happens in English, so we check language here

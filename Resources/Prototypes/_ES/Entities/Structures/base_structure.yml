@@ -26,6 +26,25 @@
     damageModifierSet: ESMachine
 
 - type: entity
+  parent: ESBaseStructureMachine
+  id: ESBaseStructureMachineTabletop
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.10,-0.10,0.10,0.10"
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: RequireProjectileTarget
+
+- type: entity
   id: ESBaseBreakableMachine
   abstract: true
   components:
@@ -46,6 +65,8 @@
   - type: ESSparkOnHit
     prob: 0.25
     tileFireChance: 0.2
+    count: 2
+  - type: ESSparkWhileBroken
     count: 2
   - type: LightningTarget
     priority: 1

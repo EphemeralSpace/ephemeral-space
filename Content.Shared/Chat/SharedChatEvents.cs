@@ -3,6 +3,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chat;
 
@@ -68,4 +69,14 @@ public sealed class EntitySpokeEvent : EntityEventArgs
         Message = message;
         Channel = channel;
     }
+}
+
+/// <summary>
+/// Net Message that is sent when a client clicks a link in the chat box.
+/// </summary>
+/// <param name="target">Target entity of the text link</param>
+[Serializable, NetSerializable]
+public sealed class ChatLinkClickedRequestEvent(NetEntity target) : EntityEventArgs
+{
+    public readonly NetEntity Target = target;
 }

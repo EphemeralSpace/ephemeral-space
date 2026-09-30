@@ -35,6 +35,12 @@ public sealed partial class ESTraitorBuggableComponent : Component
 
     [ViewVariables, MemberNotNullWhen(true, nameof(Timer))]
     public bool IsBugged => Timer != null;
+
+    /// <summary>
+    /// Stored objectives that this entity will increment progress on once the bugging successfully completes.
+    /// </summary>
+    [DataField]
+    public HashSet<EntityUid> Objectives = new();
 }
 
 [Serializable, NetSerializable]
