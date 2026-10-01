@@ -2219,3 +2219,13 @@ Entries:
       message: Removed crew monitor, security records, and EA terminal sabotages
   id: 242
   time: '2026-10-01T19:58:23.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Cryohusks now lose their clothing when transforming.
+    - type: Tweak
+      message: Frozen IDs now lose all access.
+    - type: Fix
+      message: Cryohusks no longer have eyes.
+  id: 243
+  time: '2026-10-01T20:00:52.0000000+00:00'
