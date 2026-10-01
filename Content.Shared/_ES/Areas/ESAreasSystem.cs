@@ -26,15 +26,14 @@ public sealed partial class ESAreasSystem : EntitySystem
         SubscribeLocalEvent<GridInitializeEvent>(OnGridInit);
     }
 
-    // TODO: testing
+    // TODO: testing, seed grids with random areas
     private void OnGridInit(GridInitializeEvent ev)
     {
         var rand = new RobustRandom();
+        var areas = ProtoMan.EnumeratePrototypes<ESAreaPrototype>().ToList();
         foreach (var tile in _map.GetAllTiles(ev.EntityUid, ev.Grid))
         {
-            TrySetArea((ev.EntityUid, ev.Grid),
-                tile.GridIndices,
-                rand.Pick(ProtoMan.EnumeratePrototypes<ESAreaPrototype>().ToList()));
+            TrySetArea((ev.EntityUid, ev.Grid), tile.GridIndices,rand.Pick(areas));
         }
     }
 
