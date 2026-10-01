@@ -2211,3 +2211,11 @@ Entries:
       message: Reduced EMAG charges to 4.
   id: 241
   time: '2026-10-01T19:32:26.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Added new sabotages for the gravity generator and navigation terminal.
+    - type: Remove
+      message: Removed crew monitor, security records, and EA terminal sabotages
+  id: 242
+  time: '2026-10-01T19:58:23.0000000+00:00'
