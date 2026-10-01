@@ -44,15 +44,9 @@
   id: ESTraitorCacheInfiltrator
   table:
     all:
-    - all: # Chameleon clothes
-      - id: ClothingUniformJumpsuitChameleon
-      - id: ClothingOuterChameleon
-      - id: ClothingHeadHatChameleon
-      - id: ClothingHandsChameleon
-      - id: ClothingHeadsetChameleon
-      - id: ClothingShoesChameleon
-      - id: ESChameleonControllerImplanter
     - id: ESEmag
+    - id: ChameleonProjectorNoBattery
+    - id: PinpointerNuclear
     - id: C4
       amount: 2
 

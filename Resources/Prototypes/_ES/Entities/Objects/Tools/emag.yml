@@ -13,5 +13,5 @@
     storedRotation: -90
   - type: ESEmag
   - type: LimitedCharges
-    maxCharges: 6
+    maxCharges: 4
   - type: ESPickpocketPriorityItem

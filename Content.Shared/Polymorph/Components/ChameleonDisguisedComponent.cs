@@ -22,4 +22,10 @@ public sealed partial class ChameleonDisguisedComponent : Component
     /// </summary>
     [DataField]
     public bool WasVisible;
+
+    [DataField]
+    public float SpeedModifier = 0.25f;
+
+    [DataField]
+    public TimeSpan DamageStunTime = TimeSpan.FromSeconds(5);
 }
