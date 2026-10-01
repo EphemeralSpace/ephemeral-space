@@ -36,6 +36,10 @@
             "directions": 4
         },
         {
+            "name": "double-comfy",
+            "directions": 4
+        },
+        {
             "name": "comfy-overlay",
             "directions": 4
         },

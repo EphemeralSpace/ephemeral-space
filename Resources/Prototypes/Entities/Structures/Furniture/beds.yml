@@ -25,8 +25,9 @@
     state: bed
     noRot: true
   - type: Strap
-    position: Down
-    rotation: -90
+    strapPoints:
+    - position: Down
+      rotation: -90
   # Construction has to be before PlaceableSurface or you'll place things onto the entity instead of deconstructing it.
   - type: Construction
     graph: bed
@@ -93,8 +94,9 @@
   - type: Sprite
     state: dogbed
   - type: Strap
-    position: Stand
-    rotation: 0
+    strapPoints:
+    - position: Stand
+      rotation: 0
   - type: Construction
     graph: bed
     node: dogbed
