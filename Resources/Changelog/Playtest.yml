@@ -2200,3 +2200,14 @@ Entries:
       message: Clothing which hides hair no longer makes you bald.
   id: 240
   time: '2026-09-27T14:50:06.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Infiltrator now gets a chameleon projector and pinpointer instead of a
+        set of chameleon clothes. The chameleon projector disguises you as a
+        random small item when used.
+    - type: Tweak
+      message: Reduced EMAG charges to 4.
+  id: 241
+  time: '2026-10-01T19:32:26.0000000+00:00'
