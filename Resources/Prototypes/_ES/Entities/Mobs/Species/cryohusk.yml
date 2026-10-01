@@ -108,3 +108,6 @@
   parent: [ OrganBaseFootRight, ESOrganCryohuskExternal ]
   id: ESOrganCryohuskFootRight
 
+- type: entity
+  parent: [ OrganBaseEyesInternal, OrganHumanInternal, ESOrganCryohusk ]
+  id: ESOrganCryohuskEyes
