@@ -158,6 +158,7 @@ public sealed partial class ESAreasSystem : EntitySystem
 
             var oldArea = area.Area;
             area.Area = newArea;
+            Dirty(uid, area);
             var ev = new ESAreaChangedEvent(oldArea, newArea);
             RaiseLocalEvent(uid, ref ev);
         }
