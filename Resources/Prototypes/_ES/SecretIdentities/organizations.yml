@@ -24,15 +24,15 @@
   - TraitorDistraction
   - TraitorLoseHeat
   - AmmoLimitedResource
+  - GravitySabotage
   objectives:
     all:
     - id: ESObjectiveTraitorKillRandom
     - pick:
         all:
         - id: ESObjectiveTraitorSabotageCommunications
-        - id: ESObjectiveTraitorSabotageCrewMonitoring
-        - id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
-        - id: ESObjectiveTraitorSabotageCriminalRecords
+        - id: ESObjectiveTraitorSabotageGravity
+        - id: ESObjectiveTraitorSabotageNavigation
         - id: ESObjectiveTraitorSabotageTelecom
       amount: 2
     - id: ESObjectiveTraitorBugAPC

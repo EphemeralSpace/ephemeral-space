@@ -4,19 +4,14 @@
   description: It'd be pretty funny to see everybody freak out about a scary announcement message. Let's tinker with the communications computer in Bridge.
 
 - type: entity
-  id: ESObjectiveVandalSabotageCrewMonitoring
-  parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageCrewMonitoring]
-  description: I wonder what everyone's weird medical secrets are. How about checking the crew monitoring server behind the counter?
+  id: ESObjectiveVandalSabotageGravity
+  parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageGravity]
+  description: Wouldn't it just be so awesome to watch all those losers float around in the air? Messing around with the gravity generator would show them a fun time.
 
 - type: entity
-  id: ESObjectiveVandalSabotageEmergencyAccessTerminal
-  parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageEmergencyAccessTerminal]
-  description: Doors hold back people. They separate us. They create hate. Hacking the emergency access terminal in the Bridge to open up a bunch of them would show Nanotrasen!
-
-- type: entity
-  id: ESObjectiveVandalSabotageCriminalRecords
-  parent: [ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageCriminalRecords]
-  description: I really should try and make sure my long arrest history is a little more hidden. Scrambling the security outpost's criminal records computer's database might be fun.
+  id: ESObjectiveVandalSabotageNavigation
+  parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveSabotageNavigation ]
+  description: I heard that futzing with the navigation terminal would make the station do a sick barrel roll! Wouldn't that be absolutely hilarious?
 
 - type: entity
   id: ESObjectiveVandalSabotageTelecom

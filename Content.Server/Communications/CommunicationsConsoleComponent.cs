@@ -73,5 +73,11 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public bool AnnounceSentBy = true;
+
+        /// <summary>
+        /// Number of round announcements that will be intentionally distorted.
+        /// </summary>
+        [DataField]
+        public int CorruptedAnnouncements;
     }
 }

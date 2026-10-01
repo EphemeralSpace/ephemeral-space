@@ -105,7 +105,6 @@
     color: "#e9755e"
   - type: AccessReader
     access: [["Security"]]
-  - type: ESSabotageTarget
   - type: ESAmbientMusicMarkerSecurity
 
 - type: entity

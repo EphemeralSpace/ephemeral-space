@@ -186,16 +186,16 @@
   organization: Crew
   description: es-secret-identity-vandal-desc
   color: tomato
+  tips:
+  - GravitySabotage
   objectives:
     all:
     - pick:
         all:
         - id: ESObjectiveVandalSabotageCommunications
-        - id: ESObjectiveVandalSabotageCrewMonitoring
-        - id: ESObjectiveVandalSabotageEmergencyAccessTerminal
-        - id: ESObjectiveVandalSabotageCriminalRecords
+        - id: ESObjectiveVandalSabotageGravity
+        - id: ESObjectiveVandalSabotageNavigation
         - id: ESObjectiveVandalSabotageTelecom
-          weight: 2
       amount: 1, 2
 
 - type: esSecretIdentity

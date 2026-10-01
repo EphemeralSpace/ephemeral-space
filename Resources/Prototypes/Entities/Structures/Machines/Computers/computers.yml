@@ -287,7 +287,6 @@
       state: generic_panel_open
   - type: PointLight
     color: "#e9755e"
-  - type: ESSabotageTarget
   - type: ESAmbientMusicMarkerSecurity
 
 - type: entity

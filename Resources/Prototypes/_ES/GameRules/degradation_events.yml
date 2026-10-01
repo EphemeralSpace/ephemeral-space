@@ -18,10 +18,9 @@
     - id: ESDegradationEventLights
     - id: ESDegradationEventMouse
     - id: ESDegradationEventCommunicationsConsole
-    - id: ESDegradationEventCriminalRecords
+    - id: ESDegradationEventGravity
+    - id: ESDegradationEventSpaceTurbulence
     - id: ESDegradationEventTelecoms
-    - id: ESDegradationEventCrewMonitoring
-    - id: ESDegradationEventEmergencyAccess
 
 # Event Prototypes
 
@@ -73,12 +72,28 @@
 
 - type: entity
   parent: ESBaseDegradationEvent
-  id: ESDegradationEventCriminalRecords
-  name: Hacked Criminal Records
-  description: Messes up the criminal records, adding fake crimes for various players.
+  id: ESDegradationEventGravity
+  name: Gravity Interruption
+  description: Interrupts the station's gravity generator for a short period.
   components:
   - type: ESDegradationEvent
-    component: CriminalRecordsConsole
+    component: GravityGenerator
+    degradeImmediately: true
+
+- type: entity
+  parent: ESBaseDegradationEvent
+  id: ESDegradationEventSpaceTurbulence
+  name: Space Turbulence
+  description: Throw and shake everyone not buckled down.
+  components:
+  - type: StationEvent
+    startAudio: /Audio/_ES/Announcements/attention_low.ogg
+    startAnnouncement: station-event-space-turbulence-start-announcement
+  - type: ESSpaceTurbulenceEvent
+  - type: GameRule
+    delay:
+      min: 5
+      max: 15
 
 - type: entity
   parent: ESBaseDegradationEvent
@@ -88,24 +103,4 @@
   components:
   - type: ESDegradationEvent
     component: ESRadioScrambler
-    degradeImmediately: true # Doesn't react to anything
-
-- type: entity
-  parent: ESBaseDegradationEvent
-  id: ESDegradationEventCrewMonitoring
-  name: Sensor Manipulation
-  description: Manipulates the crew monitoring server, altering the suit sensors of various crew.
-  components:
-  - type: ESDegradationEvent
-    component: CrewMonitoringServer
-    degradeImmediately: true # Doesn't react to anything
-
-- type: entity
-  parent: ESBaseDegradationEvent
-  id: ESDegradationEventEmergencyAccess
-  name: False Emergency Access
-  description: Randomly enables emergency access on various airlocks across the station.
-  components:
-  - type: ESDegradationEvent
-    component: ESEmergencyAccessConsole
     degradeImmediately: true # Doesn't react to anything

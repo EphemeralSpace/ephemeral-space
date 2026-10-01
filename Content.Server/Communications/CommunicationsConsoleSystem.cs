@@ -69,6 +69,7 @@ namespace Content.Server.Communications
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
 // ES START
             SubscribeLocalEvent<CommunicationsConsoleComponent, ESUndergoDegradationEvent>(OnUndergoDegradation);
+            SubscribeLocalEvent<ESModifyRoundAnnouncementEvent>(OnModifyRoundAnnouncement);
 // ES END
         }
 
@@ -123,14 +124,30 @@ namespace Content.Server.Communications
             var ev = new CommunicationConsoleAnnouncementEvent(ent, ent, msg, null);
             RaiseLocalEvent(ref ev);
 
-            Loc.TryGetString(ent.Comp.Title, out var title);
-            title ??= ent.Comp.Title;
-
-            msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            var title = Loc.GetString("es-communication-fail-sender");
 
             _chatSystem.DispatchRoundAnnouncement(msg, title, announcementSound: DegradationSoundEffect, colorOverride: Color.DarkGray, important: true);
 
+            // Corrupt the next three announcements
+            ent.Comp.CorruptedAnnouncements = 2;
+
             args.Handled = true;
+        }
+
+        private void OnModifyRoundAnnouncement(ref ESModifyRoundAnnouncementEvent ev)
+        {
+            foreach (var ent in EntityQueryEnumerator<CommunicationsConsoleComponent>())
+            {
+                if (ent.Comp.CorruptedAnnouncements <= 0)
+                    continue;
+                ent.Comp.CorruptedAnnouncements -= 1;
+
+                ev.Message = FormattedMessage.RemoveMarkupPermissive(ESRadioSystem.DistortRadioMessage(Loc.GetString("es-communication-fail-generic"), 0.33f, _prototype, _random, Loc));
+                ev.Sender = Loc.GetString("es-communication-fail-sender");
+                ev.Color = Color.DarkGray;
+                ev.Sound = ev.Sound == null ? null : DegradationSoundEffect;
+                break;
+            }
         }
 // ES END
 

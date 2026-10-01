@@ -5,9 +5,8 @@
     Although they may often be mistaken for traitors, and their objectives may cause havoc, they are still good guys who want the crew to succeed.
 
     <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageCommunications"/>
-    <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageCrewMonitoring"/>
-    <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageEmergencyAccessTerminal"/>
-    <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageCriminalRecords"/>
+    <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageGravity"/>
+    <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageNavigation"/>
     <ESGuideObjectiveEmbed Objective="ESObjectiveVandalSabotageTelecom"/>
 
     <ESGuideTipsEmbed SecretIdentity="Vandal"/>

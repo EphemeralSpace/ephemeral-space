@@ -8,6 +8,9 @@
     "copyright":"Taken from https://github.com/tgstation/tgstation",
     "states":[
         {
+            "name": "static_clip"
+        },
+        {
             "name": "activated",
             "delays": [
                 [

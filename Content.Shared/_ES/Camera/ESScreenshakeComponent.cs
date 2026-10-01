@@ -60,4 +60,11 @@ public partial record ESScreenshakeParameters()
     /// </summary>
     [DataField]
     public float Frequency = 0.01f;
+
+    public ESScreenshakeParameters(float trauma, float decayRate = 1.2f, float frequency = 0.01f) : this()
+    {
+        Trauma = trauma;
+        DecayRate = decayRate;
+        Frequency = frequency;
+    }
 };

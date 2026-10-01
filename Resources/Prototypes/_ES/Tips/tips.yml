@@ -309,3 +309,7 @@
 - type: esTip
   id: BurnableBarricades
   text: Clicking a barricade with a flammable item lets you burn it down, breaking the structure quickly. This even works on things that can't damage them through normal means, such as matches.
+
+- type: esTip
+  id: GravitySabotage
+  text: If the gravity generator is sabotaged when active, it'll make a loud announcement alerting the crew. Cutting the gravity before sabotaging will make it silent, but it may cause the crew to investigate and catch you in the act.

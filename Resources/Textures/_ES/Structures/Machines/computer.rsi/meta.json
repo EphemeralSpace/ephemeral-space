@@ -79,6 +79,9 @@
       "name": "navigation"
     },
     {
+      "name": "navigation-icon"
+    },
+    {
       "name": "warpdrive",
       "delays": [
         [

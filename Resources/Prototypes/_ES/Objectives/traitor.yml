@@ -67,70 +67,49 @@
 - type: entity
   id: ESObjectiveTraitorSabotageCommunications
   parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCommunications]
-  description: The syndicate is trying to calculate the station trajectory. It can be extracted from the communications computer located in the bridge.
+  description: The syndicate is trying to subvert official NT communication channels. It can be done from the communications computer located in the bridge.
 
-# Crew monitoring
+# Gravgen
 - type: entity
-  id: ESBaseObjectiveSabotageCrewMonitoring
-  name: Sabotage the crew monitoring server
+  id: ESBaseObjectiveSabotageGravity
+  name: Sabotage the gravity generator
   abstract: true
   components:
   - type: ESObjective
     icon:
-      sprite: Structures/Machines/server.rsi
-      state: server
+      sprite: Structures/Machines/gravity_generator_core.rsi
+      state: static_clip
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
       components:
-      - CrewMonitoringServer
+      - GravityGenerator
 
 - type: entity
-  id: ESObjectiveTraitorSabotageCrewMonitoring
-  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCrewMonitoring]
-  description: The syndicate is trying to acquire sensitive crew medical records. It can be extracted from the crew monitoring server located behind the medbay desk.
+  id: ESObjectiveTraitorSabotageGravity
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageGravity]
+  description: The syndicate is trying to reconstruct a model of the station. Hacking the detailed gyroscopic data from the gravity generator would help.
 
-# Emergency access terminal
+# Navigation Terminal
 - type: entity
-  id: ESBaseObjectiveSabotageEmergencyAccessTerminal
-  name: Sabotage the emergency access terminal
-  abstract: true
-  components:
-  - type: ESObjective
-    icon:
-      sprite: _ES/Structures/Machines/computer.rsi
-      state: emerg-icon
-  - type: ESCounterObjective
-  - type: ESSabotageCondition
-    whitelist:
-      components:
-      - ESEmergencyAccessConsole
-
-- type: entity
-  id: ESObjectiveTraitorSabotageEmergencyAccessTerminal
-  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageEmergencyAccessTerminal]
-  description: The syndicate want to infiltrate the station's central access network. It can be done at the emergency access terminal located in command areas.
-
-# Criminal records
-- type: entity
-  id: ESBaseObjectiveSabotageCriminalRecords
-  name: Sabotage the criminal records
+  id: ESBaseObjectiveSabotageNavigation
+  name: Sabotage the navigation terminal
   abstract: true
   components:
   - type: ESObjective
     icon:
       sprite: _ES/Structures/Machines/computer.rsi
-      state: security-icon
+      state: navigation-icon
   - type: ESCounterObjective
   - type: ESSabotageCondition
     whitelist:
       components:
-      - CriminalRecordsConsole
+      - ESNavigationConsole
 
 - type: entity
-  id: ESObjectiveTraitorSabotageCriminalRecords
-  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageCriminalRecords]
-  description: The syndicate needs information on its imprisoned members. It can be extracted from the criminal records computer located in security outposts.
+  id: ESObjectiveTraitorSabotageNavigation
+  parent: [ESBaseTraitorObjectiveMinor, ESBaseObjectiveSabotageNavigation]
+  description: The navigation terminal in the bridge has important flight path information for the station. Getting ahold of it would be advantageous for the syndicate's goals.
 
 # Telecomms servers
 - type: entity

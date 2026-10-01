@@ -136,9 +136,13 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         bool important = false)
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         var sound = playSound ? (announcementSound ?? DefaultAnnouncementSound) : null;
-        QueueAnnouncement(false, message, wrappedMessage, default, sound, colorOverride, important);
+
+        var ev = new ESModifyRoundAnnouncementEvent(message, sender, colorOverride, sound);
+        RaiseLocalEvent(ref ev);
+
+        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", ev.Sender), ("message", FormattedMessage.EscapeText(ev.Message)));
+        QueueAnnouncement(false, ev.Message, wrappedMessage, default, ev.Sound, ev.Color, important);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Round Announcement from {sender}: {message}");
     }
@@ -154,3 +158,10 @@ public sealed partial class ESAnnouncementSystem : ESSharedAnnouncementSystem
         SoundSpecifier? Sound,
         Color? Color);
 }
+
+[ByRefEvent]
+public record struct ESModifyRoundAnnouncementEvent(
+    string Message,
+    string Sender,
+    Color? Color,
+    SoundSpecifier? Sound);
