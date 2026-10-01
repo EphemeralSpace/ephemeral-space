@@ -3,9 +3,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Areas.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ESAreaChunkComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField]
     public Dictionary<Vector2i, ProtoId<ESAreaPrototype>> Areas = new();
 }

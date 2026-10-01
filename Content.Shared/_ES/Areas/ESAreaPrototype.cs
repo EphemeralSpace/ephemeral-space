@@ -8,4 +8,7 @@ public sealed partial class ESAreaPrototype : IPrototype
     /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; } = default!;
+
+    [DataField]
+    public Color DebugColor = Color.White;
 }
