@@ -1,32 +1,24 @@
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Content.Shared.CCVar;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding.Components;
-using Robust.Shared.Configuration;
 
 namespace Content.Client.Eye.Blinding
 {
     public sealed partial class BlurryVisionOverlay : Overlay
     {
-        private static readonly ProtoId<ShaderPrototype> CataractsShader = "Cataracts";
         private static readonly ProtoId<ShaderPrototype> CircleShader = "CircleMask";
 
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
-        [Dependency] private IConfigurationManager _configManager = default!;
 
         public override bool RequestScreenTexture => true;
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
-        private readonly ShaderInstance _cataractsShader;
         private readonly ShaderInstance _circleMaskShader;
         private float _magnitude;
         private float _correctionPower = 2.0f;
-
-        private const float Distortion_Pow = 2.0f; // Exponent for the distortion effect
-        private const float Cloudiness_Pow = 1.0f; // Exponent for the cloudiness effect
 
         private const float NoMotion_Radius = 30.0f; // Base radius for the nomotion variant at its full strength
         private const float NoMotion_Pow = 0.2f; // Exponent for the nomotion variant's gradient
@@ -36,7 +28,6 @@ namespace Content.Client.Eye.Blinding
         public BlurryVisionOverlay()
         {
             IoCManager.InjectDependencies(this);
-            _cataractsShader = _prototypeManager.Index(CataractsShader).InstanceUnique();
             _circleMaskShader = _prototypeManager.Index(CircleShader).InstanceUnique();
 
             _circleMaskShader.SetParameter("CircleMinDist", 0.0f);
@@ -90,29 +81,11 @@ namespace Content.Client.Eye.Blinding
                 zoom = eyeComponent.Zoom.X;
             }
 
-            // While the cataracts shader is designed to be tame enough to keep motion sickness at bay, the general waviness means that those who are particularly sensitive to motion sickness will probably hurl.
-            // So the reasonable alternative here is to replace it with a static effect! Specifically, one that replicates the blindness effect seen across most SS13 servers.
-            if (_configManager.GetCVar(CCVars.ReducedMotion))
-            {
-                _circleMaskShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-                _circleMaskShader.SetParameter("Zoom", zoom);
-                _circleMaskShader.SetParameter("CircleRadius", NoMotion_Radius / strength);
+            _circleMaskShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+            _circleMaskShader.SetParameter("Zoom", zoom);
+            _circleMaskShader.SetParameter("CircleRadius", NoMotion_Radius / strength);
 
-                worldHandle.UseShader(_circleMaskShader);
-                worldHandle.DrawRect(viewport, Color.White);
-                worldHandle.UseShader(null);
-                return;
-            }
-
-            _cataractsShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-            _cataractsShader.SetParameter("LIGHT_TEXTURE", args.Viewport.LightRenderTarget.Texture); // this is a little hacky but we spent way longer than we'd like to admit trying to do this a cleaner way to no avail
-
-            _cataractsShader.SetParameter("Zoom", zoom);
-
-            _cataractsShader.SetParameter("DistortionScalar", (float) Math.Pow(strength, Distortion_Pow));
-            _cataractsShader.SetParameter("CloudinessScalar", (float) Math.Pow(strength, Cloudiness_Pow));
-
-            worldHandle.UseShader(_cataractsShader);
+            worldHandle.UseShader(_circleMaskShader);
             worldHandle.DrawRect(viewport, Color.White);
             worldHandle.UseShader(null);
         }

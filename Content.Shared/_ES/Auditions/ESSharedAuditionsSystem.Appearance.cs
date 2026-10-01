@@ -116,6 +116,8 @@ public abstract partial class ESSharedAuditionsSystem
 
         var profile = HumanoidCharacterProfile.DefaultWithSpecies(speciesId).WithSex(sex).WithGender(gender);
 
+        profile.Traits = _trait.GetRandomTraits(random);
+
         var skinColors = species.SkinColors.Select(_prototypeManager.Index).ToList();
         var weightedSkinColors = skinColors.Select(prototype => (prototype, prototype.Weight)).ToDictionary();
 
