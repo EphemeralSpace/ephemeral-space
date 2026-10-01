@@ -40,8 +40,7 @@ public sealed partial class ESSharedAreasSystem : EntitySystem
 
     public bool TrySetArea(EntityCoordinates coords, ProtoId<ESAreaPrototype>? area)
     {
-        if (_transform.GetGrid(coords) is not { } grid ||
-            !_gridQuery.TryComp(grid, out var gridComp))
+        if (_transform.GetGrid(coords) is not { } grid || !_gridQuery.TryComp(grid, out var gridComp))
             return false;
 
         var tile = _map.CoordinatesToTile(grid, gridComp, coords);
@@ -59,6 +58,41 @@ public sealed partial class ESSharedAreasSystem : EntitySystem
             chent.Value.Comp2.Areas.Remove(indices);
         DirtyChunk(chent.Value);
         return true;
+    }
+
+    public ProtoId<ESAreaPrototype>? GetAreaOrNull(Entity<TransformComponent?> ent)
+    {
+        TryGetArea(ent, out var area);
+        return area;
+    }
+
+    public ProtoId<ESAreaPrototype>? GetAreaOrNull(EntityCoordinates coords)
+    {
+        TryGetArea(coords, out var area);
+        return area;
+    }
+
+    public bool TryGetArea(Entity<TransformComponent?> ent, [NotNullWhen(true)] out ProtoId<ESAreaPrototype>? area)
+    {
+        area = null;
+        if (!Resolve(ent, ref ent.Comp))
+            return false;
+
+        if (ent.Comp.GridUid is not { } grid || !_gridQuery.TryComp(grid, out var gridComp))
+            return false;
+
+        var tile = _map.CoordinatesToTile(grid, gridComp, ent.Comp.Coordinates);
+        return TryGetArea((grid, gridComp), tile, out area);
+    }
+
+    public bool TryGetArea(EntityCoordinates coords, [NotNullWhen(true)] out ProtoId<ESAreaPrototype>? area)
+    {
+        area = null;
+        if (_transform.GetGrid(coords) is not { } grid || !_gridQuery.TryComp(grid, out var gridComp))
+            return false;
+
+        var tile = _map.CoordinatesToTile(grid, gridComp, coords);
+        return TryGetArea((grid, gridComp), tile, out area);
     }
 
     public bool TryGetArea(Entity<MapGridComponent> ent, Vector2i indices, [NotNullWhen(true)] out ProtoId<ESAreaPrototype>? area)
@@ -79,6 +113,10 @@ public sealed partial class ESSharedAreasSystem : EntitySystem
     {
         chent = null;
 
+        // Client should not initialize new chunk entities,
+        // so we need to fail if we try and access a nonexistent chunk ent from the client.
+        // This also means chunk ent creation can't be predicted, but tbh you could never predict
+        // entity spawning to begin with.
         if (_net.IsClient)
         {
             if (!_chunkEntity.TryGetChunk(grid, ChunkEntitySystem.GetChunkIndices(coords), out var ent))
@@ -108,5 +146,21 @@ public sealed partial class ESSharedAreasSystem : EntitySystem
         }
 
         Dirty(chent, chent.Comp2);
+    }
+
+    public override void Update(float frameTime)
+    {
+        foreach (var (uid, area, xform) in EntityQueryEnumerator<ESAreaTrackingComponent, TransformComponent>())
+        {
+            var newArea = GetAreaOrNull((uid, xform));
+
+            if (area.Area == newArea)
+                continue;
+
+            var oldArea = area.Area;
+            area.Area = newArea;
+            var ev = new ESAreaChangedEvent(oldArea, newArea);
+            RaiseLocalEvent(uid, ref ev);
+        }
     }
 }
