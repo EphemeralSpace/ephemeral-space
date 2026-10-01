@@ -9,11 +9,11 @@ namespace Content.Client._ES.Areas;
 public sealed partial class ESDebugAreaOverlay : TileDebugOverlay
 {
     [Dependency] private IPrototypeManager _protoMan = default!;
-    private ESSharedAreasSystem _areas = default!;
+    private ESAreasSystem _areas = default!;
 
     protected override void Init()
     {
-        _areas = Entity.System<ESSharedAreasSystem>();
+        _areas = Entity.System<ESAreasSystem>();
     }
 
     protected override string? GetText(Vector2i indices, Entity<MapGridComponent> grid)

@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._ES.Areas;
 
-public sealed partial class ESSharedAreasSystem : EntitySystem
+public sealed partial class ESAreasSystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private ChunkEntitySystem _chunkEntity = default!;

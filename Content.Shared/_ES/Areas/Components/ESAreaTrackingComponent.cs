@@ -7,7 +7,7 @@ namespace Content.Shared._ES.Areas.Components;
 /// Query component for tracking and sending updates when an entity changes areas.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(ESSharedAreasSystem))]
+[Access(typeof(ESAreasSystem))]
 public sealed partial class ESAreaTrackingComponent : Component
 {
     /// <summary>
