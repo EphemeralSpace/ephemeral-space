@@ -45,7 +45,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:EntityNestedSelector
+      storagebase:
         tableId: BeltSecurityEntityTable
 
 - type: entity
@@ -57,8 +57,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - !type:EntityNestedSelector
-          tableId: ESSoap
+        - tableId: ESSoap
         - id: SprayBottleSpaceCleaner
         - id: CleanerGrenade
           amount: 2

@@ -5,6 +5,6 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:EntityNestedSelector
+      entity_storage:
         tableId: ESFillLockerScientist
 

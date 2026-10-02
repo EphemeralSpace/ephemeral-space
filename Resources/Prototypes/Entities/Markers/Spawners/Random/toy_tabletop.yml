@@ -32,7 +32,7 @@
       state: chessboard
   - type: EntityTableSpawner
     offset: 0
-    table: !type:EntityNestedSelector
+    table:
       tableId: AllBoardGamesTable
 
 - type: entity
@@ -48,5 +48,5 @@
       state: icon
   - type: EntityTableSpawner
     offset: 0
-    table: !type:EntityNestedSelector
+    table:
       tableId: AllBattlemapsTable

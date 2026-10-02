@@ -124,18 +124,12 @@
   id: SalvageInstrumentTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: VarietyInstrumentTable
-    - !type:EntityNestedSelector
-      tableId: BrassInstrumentTable
-    - !type:EntityNestedSelector
-      tableId: StringInstrumentTable
-    - !type:EntityNestedSelector
-      tableId: KeyedPercussionInstrumentTable
-    - !type:EntityNestedSelector
-      tableId: WoodwindInstrumentTable
-    - !type:EntityNestedSelector
-      tableId: SpecialInstrumentTable
+    - tableId: VarietyInstrumentTable
+    - tableId: BrassInstrumentTable
+    - tableId: StringInstrumentTable
+    - tableId: KeyedPercussionInstrumentTable
+    - tableId: WoodwindInstrumentTable
+    - tableId: SpecialInstrumentTable
 
 - type: entity
   id: RandomInstruments
@@ -148,5 +142,5 @@
       - sprite: Objects/Fun/Instruments/h_synthesizer.rsi
         state: icon
   - type: EntityTableSpawner
-    table: !type:EntityNestedSelector
+    table:
       tableId: RandomInstrumentTable

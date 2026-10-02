@@ -206,7 +206,7 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/mixed.rsi
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:EntityNestedSelector
+      storagebase:
         rolls: !type:RangeNumberSelector
           range: 2, 9
         tableId: RandomSoakedSmokeTable

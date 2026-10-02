@@ -25,9 +25,9 @@ public sealed partial class GatherableComponent : Component
     ///        - Tag1
     ///        - Tag2
     ///     loot:
-    ///       Tag1: !type:EntityNestedSelector
+    ///       Tag1:
     ///         tableId: LootTableID1
-    ///       Tag2: !type:EntityNestedSelector
+    ///       Tag2:
     ///         tableId: LootTableID2
     /// </summary>
     [DataField]

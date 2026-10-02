@@ -72,18 +72,15 @@
   table: !type:AllSelector
     children:
 # Shoes
-    - !type:EntityNestedSelector
-      tableId: ESMixedLockerShoesTable
+    - tableId: ESMixedLockerShoesTable
       rolls: !type:RangeNumberSelector
         range: 1, 2
 # Jumpsuits
-    - !type:EntityNestedSelector
-      tableId: ESMixedLockerJumpsuitTable
+    - tableId: ESMixedLockerJumpsuitTable
       rolls: !type:RangeNumberSelector
         range: 2, 8
 # Bonus (Hats, bandanas, etc.)
-    - !type:EntityNestedSelector
-      tableId: ESMixedLockerBonusTable
+    - tableId: ESMixedLockerBonusTable
       prob: 0.33
       rolls: !type:RangeNumberSelector
         range: 1, 2

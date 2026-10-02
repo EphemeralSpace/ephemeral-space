@@ -11,7 +11,7 @@
         - sprite: Objects/Materials/Sheets/metal.rsi
           state: steel_3
     - type: EntityTableSpawner
-      table: !type:EntityNestedSelector
+      table:
         tableId: RandomAllConstructionMaterialsTable
         prob: 0.8
 
@@ -27,7 +27,7 @@
         - sprite: Objects/Materials/materials.rsi
           state: wood_2
     - type: EntityTableSpawner
-      table: !type:EntityNestedSelector
+      table:
         tableId: RandomAllSupplementaryMaterialsTable
         prob: 0.8
 
@@ -45,7 +45,7 @@
         - sprite: Objects/Materials/Sheets/metal.rsi
           state: plasteel_2
     - type: EntityTableSpawner
-      table: !type:EntityNestedSelector
+      table:
         tableId: RandomAllHighValueConstructionMaterialsTable
         prob: 0.8
 
@@ -60,7 +60,7 @@
         - sprite: Objects/Materials/Sheets/other.rsi
           state: plasma_2
     - type: EntityTableSpawner
-      table: !type:EntityNestedSelector
+      table:
         tableId: RandomAllHighValueMaterialsTable
         prob: 0.8
 
@@ -78,7 +78,7 @@
         - sprite: Objects/Materials/Sheets/metal.rsi
           state: steel_3
     - type: EntityTableSpawner
-      table: !type:EntityNestedSelector
+      table:
         tableId: RandomAllSurplusMaterialTable
         prob: 0.9
 
@@ -94,7 +94,7 @@
         - sprite: Objects/Tools/cable-coils.rsi
           state: coilall-30
     - type: EntityTableSpawner
-      table: !type:EntityNestedSelector
+      table:
         tableId: RandomAllCableCoilTable
         prob: 0.9
 
@@ -104,11 +104,9 @@
   id: RandomAllConstructionMaterialsTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: RandomCommonConstructionMaterialsTable
+    - tableId: RandomCommonConstructionMaterialsTable
       weight: 0.80
-    - !type:EntityNestedSelector
-      tableId: RandomRareConstructionMaterialsTable
+    - tableId: RandomRareConstructionMaterialsTable
       weight: 0.20
 
 - type: entityTable
@@ -133,11 +131,9 @@
   id: RandomAllHighValueConstructionMaterialsTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: RandomCommonHighValueConstructionMaterialsTable
+    - tableId: RandomCommonHighValueConstructionMaterialsTable
       weight: 0.80
-    - !type:EntityNestedSelector
-      tableId: RandomRareHighValueConstructionMaterialsTable
+    - tableId: RandomRareHighValueConstructionMaterialsTable
       weight: 0.20
 
 - type: entityTable
@@ -158,11 +154,9 @@
   id: RandomAllHighValueMaterialsTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: RandomCommonHighValueMaterialsTable
+    - tableId: RandomCommonHighValueMaterialsTable
       weight: 0.80
-    - !type:EntityNestedSelector
-      tableId: RandomRareHighValueMaterialsTable
+    - tableId: RandomRareHighValueMaterialsTable
       weight: 0.20
 
 - type: entityTable
@@ -184,8 +178,7 @@
   id: RandomAllSupplementaryMaterialsTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: RandomCommonSupplementaryMaterialsTable
+    - tableId: RandomCommonSupplementaryMaterialsTable
 
 - type: entityTable
   id: RandomCommonSupplementaryMaterialsTable
@@ -200,11 +193,9 @@
   id: RandomAllSurplusMaterialTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: RandomCommonSurplusMaterialTable
+    - tableId: RandomCommonSurplusMaterialTable
       weight: 0.90
-    - !type:EntityNestedSelector
-      tableId: RandomRareSurplusMaterialTable
+    - tableId: RandomRareSurplusMaterialTable
       weight: 0.10
 
 - type: entityTable
@@ -237,11 +228,9 @@
   id: RandomAllCableCoilTable
   table: !type:GroupSelector
     children:
-    - !type:EntityNestedSelector
-      tableId: RandomCommonCableCoilTable
+    - tableId: RandomCommonCableCoilTable
       weight: 0.90
-    - !type:EntityNestedSelector
-      tableId: RandomRareCableCoilTable
+    - tableId: RandomRareCableCoilTable
       weight: 0.10
 
 - type: entityTable
