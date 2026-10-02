@@ -5,7 +5,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: ESFillLockerSecurity
 
 - type: entity
@@ -15,7 +15,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: ESFillLockerDetective
 
 - type: entity
@@ -25,7 +25,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillClosetBomb
 
 - type: entityTable

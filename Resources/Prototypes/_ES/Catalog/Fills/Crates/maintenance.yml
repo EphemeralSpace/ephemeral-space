@@ -5,5 +5,5 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: MaintenanceLockerLoot

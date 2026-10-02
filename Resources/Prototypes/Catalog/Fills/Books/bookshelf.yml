@@ -5,7 +5,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase: !type:EntityNestedSelector
         tableId: BookshelfEntityTable
 
 # Entity tables
@@ -14,7 +14,7 @@
   table: !type:AllSelector
     children:
     # Guidebooks
-    - !type:NestedSelector
+    - !type:EntityNestedSelector
       rolls: !type:RangeNumberSelector
         range: 0, 2
       tableId: RandomGuidebookTable
@@ -42,5 +42,5 @@
   id: RandomBookTable
   table: !type:GroupSelector
     children:
-    - !type:NestedSelector
+    - !type:EntityNestedSelector
       tableId: RandomGuidebookTable

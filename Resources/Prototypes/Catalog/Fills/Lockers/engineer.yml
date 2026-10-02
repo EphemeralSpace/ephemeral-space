@@ -5,7 +5,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillClosetTool
 
 - type: entityTable
@@ -58,7 +58,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillElectricalSupplies
 
 - type: entityTable
@@ -87,11 +87,11 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - !type:NestedSelector
+        - !type:EntityNestedSelector
           tableId: FillWelderSupplies
           rolls: !type:ConstantNumberSelector
             value: 3
-        - !type:NestedSelector
+        - !type:EntityNestedSelector
           tableId: FillWelderSuppliesMask
           rolls: !type:ConstantNumberSelector
             value: 3

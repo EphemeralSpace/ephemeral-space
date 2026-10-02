@@ -28,7 +28,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillLockerEmergencyStandard
 
 - type: entity
@@ -38,7 +38,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillLockerEmergencyStandard
 
 # ES Start
@@ -64,7 +64,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillLockerEmergencyN2Standard
 
 - type: entity
@@ -74,7 +74,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: FillLockerEmergencyN2Standard
 
 - type: entity
@@ -84,7 +84,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
 # ES Start
         tableId: ESFillLockerFireStandard
 # ES End
@@ -96,7 +96,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
 # ES START
         tableId: ESFillLockerFireStandard
 # ES END
@@ -118,7 +118,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: MaintenanceLockerLoot
 
 - type: entity
@@ -128,5 +128,5 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: MaintenanceLockerLoot

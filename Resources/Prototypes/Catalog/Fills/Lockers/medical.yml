@@ -22,7 +22,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: LockerFillMedicine
 
 - type: entity
@@ -33,7 +33,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: LockerFillMedicine
 
 - type: entityTable
@@ -54,7 +54,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
 # ES Start
         tableId: ESLockerFillPhysician
 # ES End
@@ -67,7 +67,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
 # ES Start
         tableId: ESLockerFillPhysician
 # ES End
@@ -95,5 +95,5 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage: !type:EntityNestedSelector
         tableId: LockerFillChemistry

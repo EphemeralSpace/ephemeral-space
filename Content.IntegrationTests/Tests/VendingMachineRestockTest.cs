@@ -7,7 +7,7 @@ using Content.Shared.Containers;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.Prototypes;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.VendingMachines;

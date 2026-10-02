@@ -1,4 +1,5 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.StationEvents.Meteors.Components;
 
@@ -19,7 +20,7 @@ public sealed partial class ESMeteorsRuleComponent : Component
     /// The meteors that are spawned each wave
     /// </summary>
     [DataField]
-    public EntityTableSelector MeteorTable = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> MeteorTable = new NoneSelector<EntityPrototype>();
 
     /// <summary>
     /// How fast the meteors fly

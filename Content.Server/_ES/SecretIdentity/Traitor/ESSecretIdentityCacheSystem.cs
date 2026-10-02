@@ -4,7 +4,7 @@ using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.SecretIdentity.Traitor;
 using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared._ES.SpawnRegion;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.Localizations;
 using Content.Shared.Mind;
 using Robust.Shared.Map;

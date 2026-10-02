@@ -4,7 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Content.Shared.Atmos;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;

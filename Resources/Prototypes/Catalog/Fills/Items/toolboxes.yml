@@ -35,7 +35,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase: !type:EntityNestedSelector
         tableId: ToolboxElectricalEntityTable
 
 - type: entityTable

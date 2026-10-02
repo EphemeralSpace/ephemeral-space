@@ -6,7 +6,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGrey
         - tableId: ESBackpackItems
@@ -20,7 +20,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGrey
         - tableId: ESBackpackItems
@@ -46,7 +46,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeMixed
         - tableId: ESBackpackItems
@@ -60,7 +60,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeMixed
         - tableId: ESBackpackItems
@@ -72,17 +72,17 @@
   table: !type:AllSelector
     children:
 # Shoes
-    - !type:NestedSelector
+    - !type:EntityNestedSelector
       tableId: ESMixedLockerShoesTable
       rolls: !type:RangeNumberSelector
         range: 1, 2
 # Jumpsuits
-    - !type:NestedSelector
+    - !type:EntityNestedSelector
       tableId: ESMixedLockerJumpsuitTable
       rolls: !type:RangeNumberSelector
         range: 2, 8
 # Bonus (Hats, bandanas, etc.)
-    - !type:NestedSelector
+    - !type:EntityNestedSelector
       tableId: ESMixedLockerBonusTable
       prob: 0.33
       rolls: !type:RangeNumberSelector
@@ -97,7 +97,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeYellow
         - tableId: ESBackpackItems
@@ -111,7 +111,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeYellow
         - tableId: ESBackpackItems
@@ -134,7 +134,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeWhite
         - tableId: ESBackpackItems
@@ -148,7 +148,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeWhite
         - tableId: ESBackpackItems
@@ -170,7 +170,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlue
         - tableId: ESBackpackItems
@@ -184,7 +184,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlue
         - tableId: ESBackpackItems
@@ -205,7 +205,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobePink
         - tableId: ESBackpackItems
@@ -219,7 +219,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobePink
         - tableId: ESBackpackItems
@@ -240,7 +240,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlack
         - tableId: ESBackpackItems
@@ -254,7 +254,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlack
         - tableId: ESBackpackItems
@@ -278,7 +278,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGreen
         - tableId: ESBackpackItems
@@ -292,7 +292,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGreen
         - tableId: ESBackpackItems

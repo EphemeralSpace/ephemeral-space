@@ -1,4 +1,4 @@
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;

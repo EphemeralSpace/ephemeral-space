@@ -165,7 +165,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase: !type:EntityNestedSelector
         tableId: FilingCabinetFillTable
 
 - type: entity
