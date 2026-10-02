@@ -8,6 +8,8 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 /// </summary>
 public sealed partial class EntityNestedSelector : PrototypeTableSelector<EntityPrototype>
 {
+    public const string DataFieldTag = "tableId";
+
     [DataField(required: true)]
     public ProtoId<EntityTablePrototype> TableId;
 

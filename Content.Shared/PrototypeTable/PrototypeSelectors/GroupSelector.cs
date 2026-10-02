@@ -9,6 +9,8 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 public sealed partial class GroupSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
+    public const string DataFieldTag = "group";
+
     [DataField(required: true)]
     public List<PrototypeTableSelector<T>> Children = new();
 

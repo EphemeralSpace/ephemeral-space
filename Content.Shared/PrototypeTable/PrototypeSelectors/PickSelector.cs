@@ -1,11 +1,9 @@
 using System.Linq;
-using Content.Shared.PrototypeTable;
-using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.PrototypeTable.ValueSelector;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Shared._ES.PrototypeTable.PrototypeSelectors;
+namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 
 /// <summary>
 /// Picks out a specified number of spawns out of all spawns provided by child selectors.
@@ -14,7 +12,7 @@ namespace Content.Shared._ES.PrototypeTable.PrototypeSelectors;
 /// <remarks>
 /// This is essentially the same as <see cref="GroupSelector{T}"/> except it selects a single spawn instead of a single selector.
 /// </remarks>
-public sealed partial class ESPickSelector<T> : PrototypeTableSelector<T>
+public sealed partial class PickSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
     public const string DataFieldTag = "pick";

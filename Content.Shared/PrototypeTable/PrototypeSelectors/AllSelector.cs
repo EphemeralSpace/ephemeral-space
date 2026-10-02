@@ -8,6 +8,8 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 public sealed partial class AllSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
+    public const string DataFieldTag = "all";
+
     [DataField(required: true)]
     public List<PrototypeTableSelector<T>> Children;
 
