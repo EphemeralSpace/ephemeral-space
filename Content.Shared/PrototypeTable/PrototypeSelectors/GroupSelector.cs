@@ -6,12 +6,11 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 /// <summary>
 /// Gets the spawns from one of the child selectors, based on the weight of the children
 /// </summary>
-public sealed partial class GroupSelector<T> : PrototypeTableSelector<T>
+public sealed class GroupSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
     public const string DataFieldTag = "group";
 
-    [DataField(required: true)]
     public List<PrototypeTableSelector<T>> Children = new();
 
     protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,

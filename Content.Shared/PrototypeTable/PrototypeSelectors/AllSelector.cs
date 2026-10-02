@@ -5,13 +5,12 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 /// <summary>
 /// Gets spawns from all of the child selectors
 /// </summary>
-public sealed partial class AllSelector<T> : PrototypeTableSelector<T>
+public sealed class AllSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
     public const string DataFieldTag = "all";
 
-    [DataField(required: true)]
-    public List<PrototypeTableSelector<T>> Children;
+    public List<PrototypeTableSelector<T>> Children = new();
 
     protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,

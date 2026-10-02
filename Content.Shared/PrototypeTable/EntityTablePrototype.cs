@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.PrototypeTable;
 
 /// <summary>
-/// This is a prototype for...
+/// Prototype version of a <see cref="PrototypeTableSelector{T}"/> containing entity prototypes, for reuse in <see cref="EntityNestedSelector"/>
 /// </summary>
 [Prototype]
 public sealed partial class EntityTablePrototype : IPrototype

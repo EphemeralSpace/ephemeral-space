@@ -6,15 +6,13 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 /// <summary>
 /// Gets the spawn for the specified prototype ID at whatever count specified.
 /// </summary>
-public sealed partial class IdSelector<T> : PrototypeTableSelector<T>
+public sealed class IdSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
     public const string IdDataFieldTag = "id";
 
-    [DataField(IdDataFieldTag, required: true)]
     public ProtoId<T> Id;
 
-    [DataField]
     public NumberSelector Amount = new ConstantNumberSelector(1);
 
     protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,

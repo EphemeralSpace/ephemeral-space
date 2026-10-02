@@ -12,15 +12,13 @@ namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 /// <remarks>
 /// This is essentially the same as <see cref="GroupSelector{T}"/> except it selects a single spawn instead of a single selector.
 /// </remarks>
-public sealed partial class PickSelector<T> : PrototypeTableSelector<T>
+public sealed class PickSelector<T> : PrototypeTableSelector<T>
     where T: class, IPrototype
 {
     public const string DataFieldTag = "pick";
 
-    [DataField(DataFieldTag, required: true)]
-    public PrototypeTableSelector<T> Child;
+    public PrototypeTableSelector<T> Child = new NoneSelector<T>();
 
-    [DataField]
     public NumberSelector Amount = new ConstantNumberSelector(1);
 
     protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,
