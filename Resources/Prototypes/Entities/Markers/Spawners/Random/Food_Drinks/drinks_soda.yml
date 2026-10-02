@@ -17,8 +17,8 @@
 
 - type: entityTable
   id: RandomAllSodaTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonSodaTable
       weight: 0.95
     - tableId: RandomRareSodaTable
@@ -26,8 +26,8 @@
 
 - type: entityTable
   id: RandomCommonSodaTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: DrinkBeerCan
     - id: DrinkCafeLatte
     - id: DrinkColaBottleFull
@@ -51,7 +51,7 @@
 
 - type: entityTable
   id: RandomRareSodaTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: DrinkNukieCan
     - id: DrinkLean

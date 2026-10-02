@@ -331,8 +331,8 @@
 
 - type: entityTable
   id: FoodRandomCakeTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: FoodCakeBirthday
     - id: FoodCakePlain
     - id: FoodCakeCheese

@@ -5,8 +5,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Crowbar
         - id: Wrench
         - id: Screwdriver
@@ -21,8 +21,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: CrowbarYellow
         - id: Wrench
         - id: Screwdriver
@@ -32,8 +32,8 @@
 
 - type: entityTable
   id: BeltSecurityEntityTable
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ESWeaponBlackjack
     - id: Handcuffs
       amount: 2
@@ -55,8 +55,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - tableId: ESSoap
         - id: SprayBottleSpaceCleaner
         - id: CleanerGrenade
@@ -70,7 +70,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: FoodShakerSalt
         - id: FoodShakerPepper

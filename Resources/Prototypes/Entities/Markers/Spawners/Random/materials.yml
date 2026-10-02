@@ -102,8 +102,8 @@
 ## Construction Materials
 - type: entityTable
   id: RandomAllConstructionMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonConstructionMaterialsTable
       weight: 0.80
     - tableId: RandomRareConstructionMaterialsTable
@@ -111,8 +111,8 @@
 
 - type: entityTable
   id: RandomCommonConstructionMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetSteel
     - id: SheetGlass
     - id: SheetPlastic
@@ -122,15 +122,15 @@
 
 - type: entityTable
   id: RandomRareConstructionMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetPlasteel10
 
 ## High value construction materials
 - type: entityTable
   id: RandomAllHighValueConstructionMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonHighValueConstructionMaterialsTable
       weight: 0.80
     - tableId: RandomRareHighValueConstructionMaterialsTable
@@ -138,22 +138,22 @@
 
 - type: entityTable
   id: RandomCommonHighValueConstructionMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetPlasteel
     - id: SheetRGlass
 
 - type: entityTable
   id: RandomRareHighValueConstructionMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetRPGlass
 
 ## High value materials
 - type: entityTable
   id: RandomAllHighValueMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonHighValueMaterialsTable
       weight: 0.80
     - tableId: RandomRareHighValueMaterialsTable
@@ -161,29 +161,29 @@
 
 - type: entityTable
   id: RandomCommonHighValueMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetPlasma
     - id: IngotGold
     - id: IngotSilver
 
 - type: entityTable
   id: RandomRareHighValueMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetUranium
 
 ## Supplementary Materials
 - type: entityTable
   id: RandomAllSupplementaryMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonSupplementaryMaterialsTable
 
 - type: entityTable
   id: RandomCommonSupplementaryMaterialsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: MaterialWoodPlank10
     - id: MaterialCardboard10
     - id: PartRodMetal10
@@ -191,8 +191,8 @@
 ## Surplus Materials
 - type: entityTable
   id: RandomAllSurplusMaterialTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonSurplusMaterialTable
       weight: 0.90
     - tableId: RandomRareSurplusMaterialTable
@@ -200,8 +200,8 @@
 
 - type: entityTable
   id: RandomCommonSurplusMaterialTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetPlasteel10
     - id: SheetPlasma1
     - id: MaterialWoodPlank10
@@ -217,8 +217,8 @@
 
 - type: entityTable
   id: RandomRareSurplusMaterialTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SheetUranium1
     - id: IngotGold1
     - id: IngotSilver1
@@ -226,8 +226,8 @@
 ## Cables
 - type: entityTable
   id: RandomAllCableCoilTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonCableCoilTable
       weight: 0.90
     - tableId: RandomRareCableCoilTable
@@ -235,16 +235,16 @@
 
 - type: entityTable
   id: RandomCommonCableCoilTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: CableApcStack
     - id: CableMVStack
     - id: CableHVStack
 
 - type: entityTable
   id: RandomRareCableCoilTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: CableApcStack10
     - id: CableMVStack10
     - id: CableHVStack10

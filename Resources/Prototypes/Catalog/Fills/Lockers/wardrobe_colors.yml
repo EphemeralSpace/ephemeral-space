@@ -28,8 +28,8 @@
 
 - type: entityTable
   id: FillWardrobeGrey
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorGrey
       amount: 2
     - id: ClothingShoesColorBlack
@@ -69,8 +69,8 @@
 # ES Start
 - type: entityTable
   id: FillWardrobeMixed
-  table: !type:AllSelector
-    children:
+  table:
+    all:
 # Shoes
     - tableId: ESMixedLockerShoesTable
       rolls: !type:RangeNumberSelector
@@ -116,8 +116,8 @@
 
 - type: entityTable
   id: FillWardrobeYellow
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorYellow
     - id: ClothingShoesColorOrange
     - id: ClothingHeadBandGold
@@ -153,8 +153,8 @@
 
 - type: entityTable
   id: FillWardrobeWhite
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorWhite
     - id: ClothingShoesColorWhite
     - id: ClothingHeadHatMimesoft
@@ -189,8 +189,8 @@
 
 - type: entityTable
   id: FillWardrobeBlue
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorBlue
     - id: ClothingShoesColorBrown
 
@@ -224,8 +224,8 @@
 
 - type: entityTable
   id: FillWardrobePink
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorPink
     - id: ClothingShoesColorBrown
 
@@ -259,8 +259,8 @@
 
 - type: entityTable
   id: FillWardrobeBlack
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorBlack
     - id: ClothingShoesColorBlack
     - id: ClothingHeadBandBlack
@@ -297,8 +297,8 @@
 
 - type: entityTable
   id: FillWardrobeGreen
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorGreen
     - id: ClothingShoesColorBlack
     - id: ClothingHeadBandGreen

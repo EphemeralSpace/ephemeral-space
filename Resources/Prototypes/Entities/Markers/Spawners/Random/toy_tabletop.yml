@@ -1,7 +1,7 @@
 - type: entityTable # size 1x2
   id: AllBoardGamesTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: BackgammonBoard
     - id: ChessBoard
     - id: ParchisBoard
@@ -9,8 +9,8 @@
 
 - type: entityTable # size 1x2
   id: AllBattlemapsTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: GrassBattlemap
     - id: MoonBattlemap
     - id: SandBattlemap

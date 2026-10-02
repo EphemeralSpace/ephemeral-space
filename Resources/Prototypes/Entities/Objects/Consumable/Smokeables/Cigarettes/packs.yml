@@ -215,8 +215,8 @@
 
 - type: entityTable
   id: RandomSoakedSmokeTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: CigaretteWeldingFuel
       weight: 3
     - id: CigaretteMold

@@ -235,8 +235,8 @@
 
 - type: entityTable
   id: BloodBagFill
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: IVBagBlood
       amount: 8
 

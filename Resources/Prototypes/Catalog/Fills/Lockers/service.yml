@@ -30,8 +30,8 @@
 
 - type: entityTable
   id: FillClosetJanitor
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: MopItem
     - id: BoxLightMixed
     - id: WetFloorSign

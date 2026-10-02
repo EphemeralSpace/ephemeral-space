@@ -11,8 +11,8 @@
 # Entity tables
 - type: entityTable
   id: BookshelfEntityTable
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     # Guidebooks
     - rolls: !type:RangeNumberSelector
         range: 0, 2
@@ -20,8 +20,8 @@
 
 - type: entityTable
   id: RandomGuidebookTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: BookBartendersManual
     - id: BookChemicalCompendium
     - id: BookEngineersHandbook
@@ -39,6 +39,6 @@
 
 - type: entityTable
   id: RandomBookTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomGuidebookTable

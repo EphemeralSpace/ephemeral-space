@@ -1,10 +1,9 @@
 - type: entityTable
   id: RandomInstrumentTable
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      weight: 95
-      children:
+  table:
+    group:
+    - weight: 95
+      group:
       - id: AcousticGuitarInstrument
       - id: ViolinInstrument
       - id: TrumpetInstrument
@@ -28,9 +27,8 @@
       - id: BassGuitarInstrument
       - id: OcarinaInstrument
       - id: PanFluteInstrument
-    - !type:GroupSelector
-      weight: 5
-      children:
+    - weight: 5
+      group:
       - id: SynthesizerInstrument
       - id: GunpetInstrument
       - id: BagpipeInstrument
@@ -40,8 +38,8 @@
 
 - type: entityTable
   id: VarietyInstrumentTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: SynthesizerInstrument
     - id: AcousticGuitarInstrument
     - id: TrumpetInstrument
@@ -52,8 +50,8 @@
 
 - type: entityTable
   id: BrassInstrumentTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: TrumpetInstrument
     - id: TromboneInstrument
     - id: FrenchHornInstrument
@@ -62,8 +60,8 @@
 
 - type: entityTable
   id: StringInstrumentTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
       - id: AcousticGuitarInstrument
       - id: ElectricGuitarInstrument
       - id: BassGuitarInstrument
@@ -76,8 +74,8 @@
 
 - type: entityTable
   id: WoodwindInstrumentTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
       - id: RecorderInstrument
       - id: BagpipeInstrument
       - id: ClarinetInstrument
@@ -89,8 +87,8 @@
 
 - type: entityTable
   id: KeyedPercussionInstrumentTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
       - id: SynthesizerInstrument
       - id: AccordionInstrument
       - id: KalimbaInstrument
@@ -100,11 +98,10 @@
 
 - type: entityTable
   id: SpecialInstrumentTable
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      weight: 1
-      children:
+  table:
+    group:
+    - weight: 1
+      group:
       - id: BikeHornInstrument
       - id: MusicBoxInstrument
       - id: SeashellInstrument
@@ -115,15 +112,14 @@
       - id: BirdToyInstrument
       - id: MusicalLungInstrument
       - id: ReverseCymbalsInstrument
-    - !type:GroupSelector
-      weight: 0.1
-      children:
+    - weight: 0.1
+      group:
       - id: DawInstrumentMachineCircuitboard
 
 - type: entityTable
   id: SalvageInstrumentTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: VarietyInstrumentTable
     - tableId: BrassInstrumentTable
     - tableId: StringInstrumentTable

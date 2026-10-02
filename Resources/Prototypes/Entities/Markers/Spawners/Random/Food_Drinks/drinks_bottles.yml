@@ -18,15 +18,15 @@
 
 - type: entityTable
   id: RandomAllAlcoholTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - tableId: RandomCommonAlcoholTable
       weight: 1
 
 - type: entityTable
   id: RandomCommonAlcoholTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: DrinkCognacBottleFull
     - id: DrinkGrenadineBottleFull
     - id: DrinkGinBottleFull

@@ -64,8 +64,8 @@
 
 - type: entityTable
   id: RandomChemicalBarrel
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: BarrelChemFilledIodine
     - id: BarrelChemFilledFluorine
     - id: BarrelChemFilledChlorine
@@ -78,8 +78,8 @@
 
 - type: entityTable
   id: RandomChemicalBarrelRadioactive
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: BaseBarrelChemRadioactiveEmpty
       weight: 2
     - id: BaseBarrelChemRadioactiveFilledRadium

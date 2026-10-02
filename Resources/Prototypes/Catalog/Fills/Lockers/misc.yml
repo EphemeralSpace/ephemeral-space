@@ -2,11 +2,10 @@
 # Removes emergency suits, flareguns, and MREs
 - type: entityTable
   id: FillLockerEmergencyStandard
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingMaskBreath
-    - !type:GroupSelector
-      children:
+    - group:
       - id: EmergencyOxygenTankFilled
       - id: OxygenTankFilled
     - id: ToolboxEmergencyFilled
@@ -45,13 +44,12 @@
 # Removes emergency suits and MREs. These are unused but have been changed for consistency anyways.
 - type: entityTable
   id: FillLockerEmergencyN2Standard
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingMaskBreath
     - id: ToolboxEmergencyFilled
       prob: 0.05
-    - !type:GroupSelector
-      children:
+    - group:
       - id: EmergencyNitrogenTankFilled
         weight: 4
       - id: NitrogenTankFilled
@@ -103,8 +101,8 @@
 
 - type: entityTable
   id: MaintenanceLockerLoot
-  table: !type:AllSelector
-    children:
+  table:
+    all:
 # ES START
     - tableId: ESMaintLoot
       rolls: !type:BinomialNumberSelector
