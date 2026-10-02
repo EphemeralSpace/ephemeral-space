@@ -6,37 +6,40 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 
-// no datadef stuff since we uhh kind of have to serialize shit manually with PrototypeTableTypeSerializer
-// to get around datadefs not supporting generics very well
-[UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
+[DataDefinition, UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
 [CopyByRef]
-public abstract class PrototypeTableSelector<T>
+public abstract partial class PrototypeTableSelector<T>
     where T: class, IPrototype
 {
     /// <summary>
     /// The number of times this selector is run
     /// </summary>
+    [DataField]
     public NumberSelector Rolls = new ConstantNumberSelector(1);
 
     /// <summary>
     /// A weight used to pick between selectors.
     /// </summary>
+    [DataField]
     public float Weight = 1;
 
     /// <summary>
     /// A simple chance that the selector will run.
     /// </summary>
+    [DataField]
     public double Prob = 1;
 
     /// <summary>
     /// A list of conditions that must evaluate to 'true' for the selector to apply.
     /// </summary>
+    [DataField]
     public List<PrototypeTableCondition> Conditions = new();
 
     /// <summary>
     /// If true, all the conditions must be successful in order for the selector to process.
     /// Otherwise, only one of them must be.
     /// </summary>
+    [DataField]
     public bool RequireAll = true;
 
     public IEnumerable<ProtoId<T>> GetSpawns(System.Random rand,
