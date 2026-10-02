@@ -6,8 +6,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: JugAluminium
         - id: JugCarbon
         - id: JugChlorine
@@ -27,8 +27,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: JugHydrogen
         - id: JugLithium
         - id: JugSodium
@@ -43,8 +43,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: JugIron
         - id: JugCopper
         - id: JugGold

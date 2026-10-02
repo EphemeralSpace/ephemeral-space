@@ -1,5 +1,6 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.Whitelist;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Gatherable.Components;
 
@@ -24,13 +25,13 @@ public sealed partial class GatherableComponent : Component
     ///        - Tag1
     ///        - Tag2
     ///     loot:
-    ///       Tag1: !type:NestedSelector
+    ///       Tag1:
     ///         tableId: LootTableID1
-    ///       Tag2: !type:NestedSelector
+    ///       Tag2:
     ///         tableId: LootTableID2
     /// </summary>
     [DataField]
-    public Dictionary<string, EntityTableSelector>? Loot = new();
+    public Dictionary<string, PrototypeTableSelector<EntityPrototype>>? Loot = new();
 
     /// <summary>
     /// Random shift of the appearing entity during gathering

@@ -1,18 +1,18 @@
 using System.Linq;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.EntityTable.Conditions;
+namespace Content.Shared.PrototypeTable.Conditions;
 
 /// <summary>
 /// Condition that succeeds only when the specified gamerule has been run under a certain amount of times
 /// </summary>
 /// <remarks>
-/// This is meant to be attached directly to EntSelector. If it is not, then you'll need to specify what rule
+/// This is meant to be attached directly to IdSelector. If it is not, then you'll need to specify what rule
 /// is being used inside RuleOverride.
 /// </remarks>
-public sealed partial class MaxRuleOccurenceCondition : EntityTableCondition
+public sealed partial class MaxRuleOccurenceCondition : PrototypeTableCondition
 {
     /// <summary>
     /// The maximum amount of times this rule can have already be run.
@@ -27,10 +27,7 @@ public sealed partial class MaxRuleOccurenceCondition : EntityTableCondition
     [DataField]
     public EntProtoId? RuleOverride;
 
-    protected override bool EvaluateImplementation(EntityTableSelector root,
-        IEntityManager entMan,
-        IPrototypeManager proto,
-        EntityTableContext ctx)
+    protected override bool EvaluateImplementation<T>(PrototypeTableSelector<T> root, IEntityManager entMan, IPrototypeManager proto, EntityTableContext ctx)
     {
         string rule;
         if (RuleOverride is { } ruleOverride)
@@ -39,7 +36,7 @@ public sealed partial class MaxRuleOccurenceCondition : EntityTableCondition
         }
         else
         {
-            rule = root is EntSelector entSelector
+            rule = root is IdSelector<T> entSelector
                 ? entSelector.Id
                 : string.Empty;
         }

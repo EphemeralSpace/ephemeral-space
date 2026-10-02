@@ -11,25 +11,23 @@
       - sprite: Objects/Consumable/Drinks/dr_gibb.rsi
         state: icon
   - type: EntityTableSpawner
-    table: !type:NestedSelector
+    table:
       tableId: RandomAllSodaTable
       prob: 0.8
 
 - type: entityTable
   id: RandomAllSodaTable
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: RandomCommonSodaTable
+  table:
+    group:
+    - tableId: RandomCommonSodaTable
       weight: 0.95
-    - !type:NestedSelector
-      tableId: RandomRareSodaTable
+    - tableId: RandomRareSodaTable
       weight: 0.05
 
 - type: entityTable
   id: RandomCommonSodaTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: DrinkBeerCan
     - id: DrinkCafeLatte
     - id: DrinkColaBottleFull
@@ -53,7 +51,7 @@
 
 - type: entityTable
   id: RandomRareSodaTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: DrinkNukieCan
     - id: DrinkLean

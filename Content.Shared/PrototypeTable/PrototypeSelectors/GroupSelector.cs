@@ -1,22 +1,24 @@
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.EntityTable.EntitySelectors;
+namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 
 /// <summary>
 /// Gets the spawns from one of the child selectors, based on the weight of the children
 /// </summary>
-public sealed partial class GroupSelector : EntityTableSelector
+public sealed class GroupSelector<T> : PrototypeTableSelector<T>
+    where T: class, IPrototype
 {
-    [DataField(required: true)]
-    public List<EntityTableSelector> Children = new();
+    public const string DataFieldTag = "group";
 
-    protected override IEnumerable<EntProtoId> GetSpawnsImplementation(System.Random rand,
+    public List<PrototypeTableSelector<T>> Children = new();
+
+    protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx)
     {
-        var children = new Dictionary<EntityTableSelector, float>(Children.Count);
+        var children = new Dictionary<PrototypeTableSelector<T>, float>(Children.Count);
         foreach (var child in Children)
         {
             // Don't include invalid groups
@@ -27,7 +29,7 @@ public sealed partial class GroupSelector : EntityTableSelector
         }
 
         if (children.Count == 0)
-            return Array.Empty<EntProtoId>();
+            return Array.Empty<ProtoId<T>>();
 
         var pick = SharedRandomExtensions.Pick(children, rand);
 

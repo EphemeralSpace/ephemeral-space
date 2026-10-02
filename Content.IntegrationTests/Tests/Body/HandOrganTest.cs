@@ -20,8 +20,8 @@ public sealed class HandOrganTest
   - type: Hands
   - type: EntityTableContainerFill
     containers:
-      body_organs: !type:AllSelector
-        children:
+      body_organs:
+        all:
         - id: LeftHand
         - id: RightHand
 

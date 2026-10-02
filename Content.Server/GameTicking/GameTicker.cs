@@ -10,7 +10,7 @@ using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared._ES.Chat;
 using Content.Shared.Alert;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;

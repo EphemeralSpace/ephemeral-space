@@ -37,8 +37,8 @@
 
 - type: entityTable
   id: ESFillLockerEngineer
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingHandsGlovesInsulated
     - id: ClothingMaskGas
     - id: ClothingEyesGlassesMeson

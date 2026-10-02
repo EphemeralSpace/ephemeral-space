@@ -1,11 +1,10 @@
 - type: entityTable
   id: FilingCabinetFillTable
-  table: !type:AllSelector
-    children:
-    - !type:GroupSelector
-      rolls: !type:RangeNumberSelector
+  table:
+    all:
+    - rolls: !type:RangeNumberSelector
         range: 2, 4
-      children:
+      group:
       - id: BoxFolderBase
       - id: BoxFolderRed
       - id: BoxFolderBlue
@@ -13,24 +12,20 @@
       - id: BoxFolderGrey
       - id: BoxFolderBlack
       - id: BoxFolderGreen
-    - !type:GroupSelector
-      rolls: !type:RangeNumberSelector
+    - rolls: !type:RangeNumberSelector
         range: 0, 3
-      children:
+      group:
       - id: Paper
       - id: PaperOffice
-    - !type:GroupSelector
-      prob: .3
+    - prob: .3
       rolls: !type:ConstantNumberSelector
         value: 2
-      children:
+      group:
       - id: Pen
-    - !type:GroupSelector
-      prob: 0.15
-      children:
-      - !type:AllSelector
-        weight: 0.2
-        children:
+    - prob: 0.15
+      group:
+      - weight: 0.2
+        all:
         - id: RubberStampApproved
         - id: RubberStampDenied
       - id: LuxuryPen
@@ -165,7 +160,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase:
         tableId: FilingCabinetFillTable
 
 - type: entity

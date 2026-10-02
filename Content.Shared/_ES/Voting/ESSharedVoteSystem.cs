@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared.Atmos.EntitySystems;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Collections;
 using Robust.Shared.GameStates;

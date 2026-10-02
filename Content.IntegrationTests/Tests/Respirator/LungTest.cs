@@ -26,8 +26,8 @@ public sealed class LungTest
   - type: Body
   - type: EntityTableContainerFill
     containers:
-      body_organs: !type:AllSelector
-        children:
+      body_organs:
+        all:
         - id: OrganHumanLungs
   - type: MobState
     allowedStates:

@@ -1,7 +1,7 @@
 using Content.Server._ES.Spawner.Components;
 using Content.Shared._ES.Core.Entity;
-using Content.Shared.EntityTable;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -57,7 +57,7 @@ public sealed partial class ESSpawnerSystem : EntitySystem
         }
         _random.Shuffle(markers);
 
-        var tables = new List<EntityTableSelector>(ent.Comp.Tables);
+        var tables = new List<PrototypeTableSelector<EntityPrototype>>(ent.Comp.Tables);
         var spawnPoints = Math.Min(markers.Count, ent.Comp.Tables.Count);
         var iterations = (int) MathF.Floor((float) ent.Comp.Tables.Count / spawnPoints);
         var picklist = new List<Entity<ESDistributedSpawnerMarkerComponent>>();
