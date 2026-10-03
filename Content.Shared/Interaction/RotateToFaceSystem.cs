@@ -7,6 +7,7 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Rotatable;
 using JetBrains.Annotations;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Interaction
 {
@@ -19,6 +20,7 @@ namespace Content.Shared.Interaction
     [UsedImplicitly]
     public sealed partial class RotateToFaceSystem : EntitySystem
     {
+        [Dependency] private IGameTiming _timing = default!;
         [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
 
@@ -26,11 +28,34 @@ namespace Content.Shared.Interaction
         {
             base.Initialize();
 
+            SubscribeLocalEvent<ESForcedFacingUiComponent, BoundUIOpenedEvent>(OnBoundUiOpened);
+            SubscribeLocalEvent<ESForcedFacingUiComponent, BoundUIClosedEvent>(OnBoundUiClosed);
+            SubscribeLocalEvent<UserInterfaceUserComponent, ESRefreshForcedFacingEvent>(OnRefreshForcedFacingUi);
+
             SubscribeLocalEvent<ESForcedFacingComponent, ESRefreshNoRotateOnMoveEvent>(OnRefreshNoRotateOnMove);
             SubscribeLocalEvent<ESForcedFacingComponent, ESRefreshNoRotateOnInteractEvent>(OnRefreshNoRotateOnInteract);
 
             SubscribeLocalEvent<ESForcedFacingComponent, ComponentShutdown>(OnForcedFacingShutdown);
             SubscribeLocalEvent<ESForcedFacingTargetComponent, ComponentShutdown>(OnForcedFacingTargetShutdown);
+        }
+
+        private void OnBoundUiOpened(Entity<ESForcedFacingUiComponent> ent, ref BoundUIOpenedEvent args)
+        {
+            RefreshForcedFacing(args.Actor);
+        }
+
+        private void OnBoundUiClosed(Entity<ESForcedFacingUiComponent> ent, ref BoundUIClosedEvent args)
+        {
+            RefreshForcedFacing(args.Actor);
+        }
+
+        private void OnRefreshForcedFacingUi(Entity<UserInterfaceUserComponent> ent, ref ESRefreshForcedFacingEvent args)
+        {
+            foreach (var entity in ent.Comp.OpenInterfaces.Keys)
+            {
+                if (HasComp<ESForcedFacingUiComponent>(entity))
+                    args.Targets.Add(entity);
+            }
         }
 
         private void OnRefreshNoRotateOnMove(Entity<ESForcedFacingComponent> ent, ref ESRefreshNoRotateOnMoveEvent args)
@@ -183,6 +208,9 @@ namespace Content.Shared.Interaction
 
         public void RefreshForcedFacing(EntityUid uid)
         {
+            if (_timing.ApplyingState)
+                return;
+
             var ev = new ESRefreshForcedFacingEvent();
             RaiseLocalEvent(uid, ref ev);
 

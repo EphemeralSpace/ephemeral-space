@@ -99,6 +99,7 @@
     key: enum.CryoPodUiKey.Key
     requiresComplex: false
   - type: ActivatableUIRequiresPower
+  - type: ESForcedFacingUi
   - type: PointLight
     color: "#3a807f"
     radius: 2

@@ -8,6 +8,7 @@
   - type: ReagentGrinder
   - type: ActivatableUI
     key: enum.ReagentGrinderUiKey.Key
+  - type: ESForcedFacingUi
   - type: UserInterface
     interfaces:
       enum.ReagentGrinderUiKey.Key:

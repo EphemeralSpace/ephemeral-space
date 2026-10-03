@@ -13,6 +13,7 @@
     powerLoad: 100
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
+  - type: ESForcedFacingUi
   - type: Sprite
     sprite: Structures/Machines/computers.rsi
 # ES START

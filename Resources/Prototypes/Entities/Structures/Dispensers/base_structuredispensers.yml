@@ -27,6 +27,7 @@
   - type: ExtensionCableReceiver
   - type: ActivatableUI
     key: enum.ReagentDispenserUiKey.Key
+  - type: ESForcedFacingUi
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:

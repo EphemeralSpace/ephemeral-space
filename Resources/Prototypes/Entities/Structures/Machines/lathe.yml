@@ -35,6 +35,7 @@
   - type: WiresPanel
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
+  - type: ESForcedFacingUi
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
