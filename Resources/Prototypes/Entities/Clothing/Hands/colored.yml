@@ -28,8 +28,6 @@
       gloves:
       - state: equipped-HAND
         color: "#9C0DE1"
-  - type: Fiber
-    fiberColor: fibers-purple
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -60,8 +58,6 @@
       gloves:
       - state: equipped-HAND
         color: "#940000"
-  - type: Fiber
-    fiberColor: fibers-red
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -86,6 +82,7 @@
       right:
       - state: inhand-right
         color: "#4da3ff"
+  # TODO: Reparent so this doesn't have fibers.
   - type: Clothing
     sprite: Clothing/Hands/Gloves/Color/color.rsi
     clothingVisuals:
@@ -93,8 +90,7 @@
       - state: equipped-HAND
         color: "#4da3ff"
 # ES End
-  - type: Fiber
-    fiberColor: fibers-nitrile
+
 
 # Teal Gloves
 - type: entity
@@ -122,8 +118,6 @@
       gloves:
       - state: equipped-HAND
         color: "#3CB57C"
-  - type: Fiber
-    fiberColor: fibers-teal
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -154,8 +148,6 @@
       gloves:
       - state: equipped-HAND
         color: "#723A02"
-  - type: Fiber
-    fiberColor: fibers-brown
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -186,8 +178,6 @@
       gloves:
       - state: equipped-HAND
         color: "#999999"
-  - type: Fiber
-    fiberColor: fibers-grey
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -218,8 +208,6 @@
       gloves:
       - state: equipped-HAND
         color: "#5ABF2F"
-  - type: Fiber
-    fiberColor: fibers-green
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -250,8 +238,6 @@
       gloves:
       - state: equipped-HAND
         color: "#C09F72"
-  - type: Fiber
-    fiberColor: fibers-light-brown
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -282,8 +268,6 @@
       gloves:
       - state: equipped-HAND
         color: "#EAE8E8"
-  - type: Fiber
-    fiberColor: fibers-white
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -306,5 +290,3 @@
       - state: inhand-right
   - type: Clothing
     sprite: Clothing/Hands/Gloves/Color/black.rsi
-  - type: Fiber
-    fiberColor: fibers-black

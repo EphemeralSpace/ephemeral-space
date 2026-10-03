@@ -1,0 +1,20 @@
+- type: entity
+  id: ESBaseClothingFiberGloves
+  abstract: true
+  components:
+  - type: ESFiberClothing
+    transferChance: 0.20
+
+- type: entity
+  id: ESBaseClothingFiberUniform
+  abstract: true
+  components:
+  - type: ESFiberClothing
+    transferChance: 0.15
+
+- type: entity
+  id: ESBaseClothingFiberOuter
+  abstract: true
+  components:
+  - type: ESFiberClothing
+    transferChance: 0.10

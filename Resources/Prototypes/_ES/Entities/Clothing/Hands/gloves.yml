@@ -25,6 +25,4 @@
       gloves:
       - state: equipped-HAND
         color: "#EF8100"
-  - type: Fiber
-    fiberColor: fibers-orange
   - type: ESChameleonClothingWhitelist
