@@ -126,6 +126,7 @@
   - type: ActivatableUI
     inHandsOnly: false
     key: enum.ApcUiKey.Key
+  - type: ESForcedFacingUi
   - type: ESBreakableActivatableUi
   - type: PowerNetworkBattery
     maxSupply: 10000

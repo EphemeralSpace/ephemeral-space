@@ -61,6 +61,7 @@
     interfaces:
       enum.ChemMasterUiKey.Key:
         type: ChemMasterBoundUserInterface
+  - type: ESForcedFacingUi
   - type: ApcPowerReceiver
     # ES START
     powerLoad: 200

@@ -24,6 +24,7 @@
   - type: ExtensionCableReceiver
   - type: ActivatableUI
     key: enum.JukeboxUiKey.Key
+  - type: ESForcedFacingUi
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:

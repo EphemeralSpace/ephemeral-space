@@ -50,6 +50,7 @@
           type: PortableGeneratorBoundUserInterface
     - type: ActivatableUI
       key: enum.GeneratorComponentUiKey.Key
+    - type: ESForcedFacingUi
     - type: Electrified
       onHandInteract: false
       onInteractUsing: false

@@ -19,6 +19,7 @@
   - type: ActivatableUIRequiresAccess
   - type: ActivatableUI
     key: enum.BarSignUiKey.Key
+  - type: ESForcedFacingUi
   - type: UserInterface
     interfaces:
       enum.BarSignUiKey.Key:
