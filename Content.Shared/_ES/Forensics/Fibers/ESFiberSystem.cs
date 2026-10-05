@@ -60,12 +60,12 @@ public sealed partial class ESFiberSystem : EntitySystem
     {
         fibers = new HashSet<ESFiber>();
 
+        var itemMultiplier = HasComp<ItemComponent>(target) ? ItemMultiplier : 1f;
         foreach (var slotEntity in _inventory.GetSlotEntities(user, SlotFlags.WITHOUT_POCKET))
         {
             if (!TryComp<ESFiberClothingComponent>(slotEntity, out var comp))
                 continue;
 
-            var itemMultiplier = HasComp<ItemComponent>(target) ? ItemMultiplier : 1f;
             if (!_random.Prob(comp.TransferChance * itemMultiplier))
                 continue;
 
