@@ -68,6 +68,7 @@
     interfaces:
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
+  - type: ESForcedFacingUi
   - type: Destructible
     thresholds:
     - trigger:

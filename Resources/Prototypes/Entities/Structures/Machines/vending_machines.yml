@@ -59,6 +59,7 @@
     doAfterDelay: 8
   - type: ActivatableUI
     key: enum.VendingMachineUiKey.Key
+  - type: ESForcedFacingUi
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
@@ -145,6 +146,7 @@
     doAfterDelay: 8
   - type: ActivatableUI
     key: enum.VendingMachineUiKey.Key
+  - type: ESForcedFacingUi
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:

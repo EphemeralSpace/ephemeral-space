@@ -98,6 +98,7 @@
   - type: InteractionOutline
   - type: ActivatableUI
     key: enum.NukeUiKey.Key
+  - type: ESForcedFacingUi
   - type: UserInterface
     interfaces:
       enum.NukeUiKey.Key:

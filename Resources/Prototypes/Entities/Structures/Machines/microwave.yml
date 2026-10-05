@@ -34,6 +34,7 @@
           False: { visible: false }
   - type: ActivatableUI
     key: enum.MicrowaveUiKey.Key
+  - type: ESForcedFacingUi
   - type: DeviceLinkSink
     ports:
     - On
