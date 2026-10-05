@@ -2229,3 +2229,11 @@ Entries:
       message: Cryohusks no longer have eyes.
   id: 243
   time: '2026-10-01T20:00:52.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Your viewcone will now automatically face structures when looking at
+        their UIs.
+  id: 244
+  time: '2026-10-05T15:41:52.0000000+00:00'
