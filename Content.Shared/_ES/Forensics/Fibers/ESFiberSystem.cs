@@ -11,6 +11,8 @@ public sealed partial class ESFiberSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private InventorySystem _inventory = default!;
 
+    // Additional chance to transfer fibers to entities that have ItemComponent
+    // Taken arbitrarily from bay
     private const float ItemMultiplier = 1.2f;
 
     /// <inheritdoc/>
@@ -30,11 +32,15 @@ public sealed partial class ESFiberSystem : EntitySystem
     private void OnContactInteraction(Entity<InventoryComponent> ent, ref ContactInteractionEvent args)
     {
         TryTransferFiber(args.Other, ent);
+        args.Handled = true;
     }
 
+    /// <summary>
+    /// Attempts to transfer a random amount of worn clothing fibers from <see cref="user"/> to <see cref="target"/>.
+    /// </summary>
     public bool TryTransferFiber(EntityUid target, EntityUid user)
     {
-        if (!TryGetRandomClothingFiber(target, user, out var fibers))
+        if (!TryGetRandomClothingFibers(target, user, out var fibers))
             return false;
 
         var comp = EnsureComp<ESFiberEvidenceComponent>(target);
@@ -46,7 +52,11 @@ public sealed partial class ESFiberSystem : EntitySystem
         return true;
     }
 
-    public bool TryGetRandomClothingFiber(EntityUid target, EntityUid user, out HashSet<ESFiber> fibers)
+    /// <summary>
+    /// Retrieves a random amount of clothing fibers from the <see cref="user"/> entity's worn items.
+    /// Non-deterministic and based on the random transfer chance per clothing item.
+    /// </summary>
+    public bool TryGetRandomClothingFibers(EntityUid target, EntityUid user, out HashSet<ESFiber> fibers)
     {
         fibers = new HashSet<ESFiber>();
 
@@ -65,6 +75,9 @@ public sealed partial class ESFiberSystem : EntitySystem
         return fibers.Count != 0;
     }
 
+    /// <summary>
+    /// Constructs a fiber based on an entity
+    /// </summary>
     public ESFiber GetFiber(Entity<ESFiberClothingComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp))
