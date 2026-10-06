@@ -45,6 +45,7 @@
     state: fiber
   - type: Item
     size: Tiny
+    heldPrefix: fiber
 
 - type: entity
   parent: BaseItem
