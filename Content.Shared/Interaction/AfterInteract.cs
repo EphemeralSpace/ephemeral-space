@@ -52,6 +52,8 @@ namespace Content.Shared.Interaction
     {
         // ES START
         public bool SpawnInteractionParticles = true;
+
+        public bool DoContactInteraction = true;
         // ES END
 
         public AfterInteractEvent(EntityUid user, EntityUid used, EntityUid? target,

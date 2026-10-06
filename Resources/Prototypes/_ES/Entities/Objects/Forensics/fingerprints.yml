@@ -57,3 +57,4 @@
     state: m_glass
   - type: Item
     size: Normal
+  - type: ESFiberKit

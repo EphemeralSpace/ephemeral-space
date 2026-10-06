@@ -1140,7 +1140,7 @@ namespace Content.Shared.Interaction
             var afterInteractEvent = new AfterInteractEvent(user, used, target, clickLocation, canReach);
             RaiseLocalEvent(used, afterInteractEvent);
             DoContactInteraction(user, used, null, true, afterInteractEvent, interactionParticles: afterInteractEvent.SpawnInteractionParticles); // Stellar/ES Interaction particles
-            if (canReach)
+            if (canReach && afterInteractEvent.DoContactInteraction)
             {
                 DoContactInteraction(user, target, used, true, afterInteractEvent, interactionParticles: afterInteractEvent.SpawnInteractionParticles); // Stellar/ES Interaction particles
                 // Contact interactions are currently only used for forensics, so we don't raise used -> target

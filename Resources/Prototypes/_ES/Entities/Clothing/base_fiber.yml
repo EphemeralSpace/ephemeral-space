@@ -7,6 +7,13 @@
     transferChance: 0.20
 
 - type: entity
+  id: ESBaseClothingFiberShoes
+  abstract: true
+  components:
+  - type: ESFiberClothing
+    transferChance: 0.125
+
+- type: entity
   id: ESBaseClothingFiberUniform
   abstract: true
   components:
