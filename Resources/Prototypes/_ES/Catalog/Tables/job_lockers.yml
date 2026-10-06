@@ -13,7 +13,6 @@
     - id: PinpointerNuclear
     - id: RubberStampCaptain
     - id: ESWeaponBlackjack
-    - id: ForensicScanner
     - id: ClothingEyesGlassesSecurity
 
 - type: entityTable
@@ -53,8 +52,7 @@
     - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
     - id: FlippoEngravedLighter
     - id: FlashlightSeclite
-    - id: ForensicScanner
-    - id: BoxForensicPad
+    - id: ESFiberKit
     - id: ESFingerprintKit
     - id: ESCardFingerprint # TODO: box
       amount: 4
