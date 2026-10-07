@@ -11,6 +11,8 @@ public sealed partial class ESAreasOverlaySystem : EntitySystem
 
     private ESDebugAreaOverlay _overlay = default!;
 
+    private const string ToggleAreasCommand = "toggleareas";
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -19,7 +21,12 @@ public sealed partial class ESAreasOverlaySystem : EntitySystem
         if (_overlay is IPostInjectInit init)
             init.PostInject();
 
-        _consoleHost.RegisterCommand("toggleareas", "Toggles the debug area overlay", "", OnToggleAreaOverlay);
+        _consoleHost.RegisterCommand(ToggleAreasCommand, "Toggles the debug area overlay", "", OnToggleAreaOverlay);
+    }
+
+    public override void Shutdown()
+    {
+        _consoleHost.UnregisterCommand(ToggleAreasCommand);
     }
 
     private void OnToggleAreaOverlay(IConsoleShell shell, string argStr, string[] args)
