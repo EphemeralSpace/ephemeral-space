@@ -30,6 +30,8 @@ public sealed partial class ESFiberSystem : EntitySystem
     {
         SubscribeLocalEvent<ESFiberClothingComponent, MapInitEvent>(OnMapInit);
 
+        SubscribeLocalEvent<ESFiberEvidenceComponent, ESTransferForensicsEvent>(OnTransferForensics);
+
         SubscribeLocalEvent<InventoryComponent, ContactInteractionEvent>(OnContactInteraction);
 
         SubscribeLocalEvent<ESFiberKitComponent, AfterInteractEvent>(OnAfterInteract);
@@ -41,6 +43,13 @@ public sealed partial class ESFiberSystem : EntitySystem
     {
         ent.Comp.FiberId = _random.Next();
         Dirty(ent);
+    }
+
+    private void OnTransferForensics(Entity<ESFiberEvidenceComponent> ent, ref ESTransferForensicsEvent args)
+    {
+        var comp = EnsureComp<ESFiberEvidenceComponent>(args.Recipient);
+        comp.Evidence = new(ent.Comp.Evidence);
+        Dirty(args.Recipient, comp);
     }
 
     private void OnContactInteraction(Entity<InventoryComponent> ent, ref ContactInteractionEvent args)
