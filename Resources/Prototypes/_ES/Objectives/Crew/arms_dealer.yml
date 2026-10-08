@@ -2,7 +2,7 @@
   parent: [ ESBaseSecretIdentityObjective, ESBaseObjectiveRadstormFreeze ]
   id: ESObjectiveHoldSummonedGuns
   name: Hand out guns
-  description: Use your ability to summon firearms and make sure crew members hold onto them until the end of the shift.
+  description: Collect firearms from your caches and make sure people hold onto them until the end.
   components:
   - type: ESObjective
     icon:
