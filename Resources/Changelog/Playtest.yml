@@ -2245,3 +2245,9 @@ Entries:
         collection kit.
   id: 245
   time: '2026-10-09T20:49:36.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Tragedian votes now run upon being converted to a different role.
+  id: 246
+  time: '2026-10-09T21:14:32.0000000+00:00'
