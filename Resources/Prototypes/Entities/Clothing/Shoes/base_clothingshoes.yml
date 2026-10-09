@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [ Clothing, ESBaseClothingFiberShoes ]
   id: ClothingShoesBase
   components:
   - type: Clothing

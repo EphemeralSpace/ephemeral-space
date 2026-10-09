@@ -96,6 +96,14 @@ namespace Content.Shared.Random.Helpers
             return pick;
         }
 
+        public static T PickAndTake<T>(this IRobustRandom random, HashSet<T> set)
+            where T : notnull
+        {
+            var pick = random.Pick(set.ToList());
+            set.Remove(pick);
+            return pick;
+        }
+
         public static bool TryPickAndTake<T>(this IRobustRandom random, Dictionary<T, float> weights, [NotNullWhen(true)] out T? pick)
             where T : notnull
         {

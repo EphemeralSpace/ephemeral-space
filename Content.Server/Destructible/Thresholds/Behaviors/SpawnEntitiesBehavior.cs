@@ -1,12 +1,10 @@
 using System.Numerics;
-using Content.Server.Forensics;
-using Content.Server.Stack;
+using Content.Shared._ES.Forensics;
 using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.Destructible.Thresholds.Behaviors
 {
@@ -79,17 +77,10 @@ namespace Content.Server.Destructible.Thresholds.Behaviors
 
         public void TransferForensics(EntityUid spawned, DestructibleSystem system, EntityUid owner)
         {
-            if (!DoTransferForensics ||
-                !system.EntityManager.TryGetComponent<ForensicsComponent>(owner, out var forensicsComponent))
+            if (!DoTransferForensics)
                 return;
 
-            var comp = system.EntityManager.EnsureComponent<ForensicsComponent>(spawned);
-            comp.DNAs = forensicsComponent.DNAs;
-
-            if (!system.Random.Prob(0.4f))
-                return;
-            comp.Fingerprints = forensicsComponent.Fingerprints;
-            comp.Fibers = forensicsComponent.Fibers;
+            system.EntityManager.System<ESForensicsSystem>().TransferForensics(owner, spawned);
         }
     }
 }
