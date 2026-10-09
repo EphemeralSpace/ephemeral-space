@@ -218,6 +218,8 @@
     - damageTypes: [Heat, Cold, Caustic, Shock]
       minimumTotalDamage: 200
       conversionFactor: 0.6
+  - type: MessageOnHeartstop
+    message: DefaultHeartstop
 
 - type: entity
   abstract: true
