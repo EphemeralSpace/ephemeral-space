@@ -1,0 +1,11 @@
+- type: esArea
+  id: Test1
+  debugColor: red
+
+- type: esArea
+  id: Test2
+  debugColor: blue
+
+- type: esArea
+  id: Test3
+  debugColor: green
