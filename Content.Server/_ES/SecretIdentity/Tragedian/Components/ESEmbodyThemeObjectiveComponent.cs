@@ -16,6 +16,12 @@ public sealed partial class ESEmbodyThemeObjectiveComponent : Component
     [DataField]
     public LocId Title = "es-embody-theme-objective-title";
 
+    /// <summary>
+    /// Tracks if the concluding vote for this objective has been ran yet.
+    /// </summary>
+    [DataField]
+    public bool VoteRan;
+
     [DataField]
     public EntProtoId VoteEntity = "ESVoteTragedianSuccess";
 
