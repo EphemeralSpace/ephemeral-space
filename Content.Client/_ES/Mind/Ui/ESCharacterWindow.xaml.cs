@@ -152,6 +152,17 @@ public sealed partial class ESCharacterWindow : FancyWindow
                 ("things", ContentLocalizationManager.FormatList(character.Likes.Select(e => Loc.GetString(e)).ToList()))));
             DislikesLabel.UnsafeSetMarkup(Loc.GetString("es-character-personality-dislikes",
                 ("things", ContentLocalizationManager.FormatList(character.Dislikes.Select(e => Loc.GetString(e)).ToList()))));
+
+            var msg = new FormattedMessage();
+            foreach (var traitId in character.Profile.Traits)
+            {
+                var trait = _prototype.Index(traitId);
+                msg.AddMarkupPermissive(Loc.GetString("es-character-trait-fmt",
+                    ("name", Loc.GetString(trait.Name)),
+                    ("desc", Loc.GetString(trait.Description))));
+            }
+            TraitsLabel.UnsafeSetMarkup(msg.ToMarkup());
+            TraitsLabel.Visible = !msg.IsEmpty;
         }
 
         if (_job.MindTryGetJob(mind, out var job))

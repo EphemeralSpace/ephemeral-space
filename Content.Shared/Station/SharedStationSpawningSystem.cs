@@ -1,13 +1,20 @@
 using System.Linq;
+using Content.Shared._ES.Auditions.Traits;
+using Content.Shared.Body;
+using Content.Shared.Clothing;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
-using Content.Shared.Item;
+using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
-using Robust.Shared.Collections;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -18,11 +25,16 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
 {
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] protected InventorySystem InventorySystem = default!;
+    [Dependency] private ActorSystem _actors = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] protected InventorySystem InventorySystem = default!;
     [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private ESTraitSystem _trait = default!;
     [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     private EntityQuery<HandsComponent> _handsQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
@@ -36,6 +48,112 @@ public abstract partial class SharedStationSpawningSystem : EntitySystem
         _inventoryQuery = GetEntityQuery<InventoryComponent>();
         _storageQuery = GetEntityQuery<StorageComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+    }
+
+    /// <summary>
+    /// Spawns in a player's mob according to their job and character information at the given coordinates.
+    /// Used by systems that need to handle spawning players.
+    /// </summary>
+    /// <param name="coordinates">Coordinates to spawn the character at.</param>
+    /// <param name="job">Job to assign to the character, if any.</param>
+    /// <param name="profile">Appearance profile to use for the character.</param>
+    /// <param name="station">The station this player is being spawned on.</param>
+    /// <param name="entity">The entity to use, if one already exists.</param>
+    /// <returns>The spawned entity</returns>
+    public EntityUid SpawnPlayerMob(
+        EntityCoordinates? coordinates,
+        ProtoId<JobPrototype>? job,
+        HumanoidCharacterProfile? profile,
+        EntityUid? station,
+        EntityUid? entity = null)
+    {
+        ProtoMan.Resolve(job, out var prototype);
+        RoleLoadout? loadout = null;
+
+        // Need to get the loadout up-front to handle names if we use an entity spawn override.
+        var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
+
+        if (ProtoMan.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
+        {
+            profile?.Loadouts.TryGetValue(jobLoadout, out loadout);
+
+            // Set to default if not present
+            if (loadout == null)
+            {
+                loadout = new RoleLoadout(jobLoadout);
+                loadout.SetDefault(profile, _actors.GetSession(entity), ProtoMan);
+            }
+        }
+
+        // If we're not spawning a humanoid, we're gonna exit early without doing all the humanoid stuff.
+        if (prototype?.JobEntity != null)
+        {
+            DebugTools.Assert(entity is null);
+            entity = coordinates.HasValue ? Spawn(prototype.JobEntity, coordinates.Value) : Spawn(prototype.JobEntity);
+        }
+        else
+        {
+            string speciesId = profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
+
+            if (!ProtoMan.TryIndex<SpeciesPrototype>(speciesId, out var species))
+                throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
+
+            entity ??= coordinates.HasValue ? Spawn(species.Prototype, coordinates.Value) : Spawn(species.Prototype);
+        }
+
+        if (profile != null)
+        {
+            _visualBody.ApplyProfileTo(entity.Value, profile);
+            _humanoidProfile.ApplyProfileTo(entity.Value, profile);
+            _metadata.SetEntityName(entity.Value, profile.Name);
+            _trait.ApplyTrait(entity.Value, profile.Traits);
+        }
+
+        if (loadout != null)
+        {
+            EquipRoleLoadout(entity.Value, loadout, roleProto!);
+        }
+
+        if (prototype?.StartingGear != null)
+        {
+            var startingGear = ProtoMan.Index<StartingGearPrototype>(prototype.StartingGear);
+            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+        }
+
+        var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
+        RaiseLocalEvent(entity.Value, ref gearEquippedEv);
+
+        if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData))
+        {
+            SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station);
+        }
+
+        DoJobSpecials(job, entity.Value);
+        _identity.QueueIdentityUpdate(entity.Value);
+        return entity.Value;
+    }
+
+    protected void DoJobSpecials(ProtoId<JobPrototype>? job, EntityUid entity)
+    {
+        if (!ProtoMan.Resolve(job, out JobPrototype? prototype))
+            return;
+
+        foreach (var jobSpecial in prototype.Special)
+        {
+            jobSpecial.AfterEquip(entity);
+        }
+    }
+
+    /// <summary>
+    /// Sets the ID card and PDA name, job, and access data.
+    /// </summary>
+    /// <param name="entity">Entity to load out.</param>
+    /// <param name="characterName">Character name to use for the ID.</param>
+    /// <param name="jobPrototype">Job prototype to use for the PDA and ID.</param>
+    /// <param name="station">The station this player is being spawned on.</param>
+    public virtual void SetPdaAndIdCardData(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station)
+    {
+
     }
 
     /// <summary>
