@@ -1,5 +1,5 @@
 using Content.Shared._ES.Voting.Components;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -13,7 +13,7 @@ public sealed partial class ESEventVoteSchedulerComponent : Component
     /// Table of events to use.
     /// </summary>
     [DataField(required: true)]
-    public EntityTableSelector EventTable = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> EventTable = new NoneSelector<EntityPrototype>();
 
     /// <summary>
     /// Prototype for the vote entity that is spawned

@@ -1,6 +1,7 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.Polymorph.Systems;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Polymorph.Components;
 
@@ -16,7 +17,7 @@ public sealed partial class ChameleonProjectorComponent : Component
     /// Disguise entity to spawn and use.
     /// </summary>
     [DataField(required: true)]
-    public EntityTableSelector DisguiseProto = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> DisguiseProto = new NoneSelector<EntityPrototype>();
 
     /// <summary>
     /// User currently disguised by this projector, if any

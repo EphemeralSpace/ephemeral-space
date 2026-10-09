@@ -1,6 +1,6 @@
 using Content.Server.Spawners.Components;
 using Content.Shared._ES.Core.Entity;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
@@ -36,7 +36,7 @@ public sealed partial class ESDistributedSpawnerComponent : Component
     /// Each individual table is associated with a single corresponding <see cref="ESDistributedSpawnerMarkerComponent"/> entity.
     /// </summary>
     [DataField]
-    public List<EntityTableSelector> Tables = new();
+    public List<PrototypeTableSelector<EntityPrototype>> Tables = new();
 
     /// <summary>
     /// Scatter of entity spawn coordinates

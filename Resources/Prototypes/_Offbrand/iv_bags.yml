@@ -235,8 +235,8 @@
 
 - type: entityTable
   id: BloodBagFill
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: IVBagBlood
       amount: 8
 
@@ -248,5 +248,5 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: BloodBagFill

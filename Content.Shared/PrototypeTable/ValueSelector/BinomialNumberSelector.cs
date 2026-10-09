@@ -1,6 +1,6 @@
 using Robust.Shared.Random;
 
-namespace Content.Shared.EntityTable.ValueSelector;
+namespace Content.Shared.PrototypeTable.ValueSelector;
 
 /// <summary>
 /// Picks a value based on a Binomial Distribution of N Trials given P Chance

@@ -53,8 +53,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Paper
           prob: 0.5
         - id: PaperOffice

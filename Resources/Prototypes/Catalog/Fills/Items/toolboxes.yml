@@ -6,14 +6,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: CrowbarRed
         - id: WelderMini
         - id: FireExtinguisherMini
         # Random lighting item GroupSelector
-        - !type:GroupSelector
-          children:
+        - group:
           - id: FlashlightLantern
           - id: Flare
           - id: GlowstickGreen
@@ -35,13 +34,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase:
         tableId: ToolboxElectricalEntityTable
 
 - type: entityTable
   id: ToolboxElectricalEntityTable
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: Screwdriver
     - id: CrowbarOrange
     - id: Wirecutter
@@ -49,8 +48,7 @@
     - id: CableMVStack10
     - id: trayScanner
       prob: 0.9
-    - !type:GroupSelector
-      children:
+    - group:
       - id: ClothingHandsGlovesInsulated
         weight: 0.05
       - id: CableHVStack10
@@ -63,8 +61,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: CrayonBox
         - id: Paper
           amount: 3
@@ -82,8 +80,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: CrowbarOrange
         - id: Wrench
         - id: Welder
@@ -103,8 +101,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Crowbar
         - id: Wrench
         - id: Screwdriver
@@ -119,8 +117,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Crowbar
         - id: Wrench
         - id: Screwdriver
@@ -138,8 +136,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: IngotGold
         - id: DrinkGoldenCup
           prob: 0.05

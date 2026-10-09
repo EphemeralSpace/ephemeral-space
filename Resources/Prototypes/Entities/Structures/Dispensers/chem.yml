@@ -56,8 +56,8 @@
   - type: ReagentDispenser
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: JugAluminium
         - id: JugCarbon
         - id: JugChlorine

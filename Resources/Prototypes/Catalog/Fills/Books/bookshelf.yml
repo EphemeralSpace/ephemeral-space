@@ -5,24 +5,23 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase:
         tableId: BookshelfEntityTable
 
 # Entity tables
 - type: entityTable
   id: BookshelfEntityTable
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     # Guidebooks
-    - !type:NestedSelector
-      rolls: !type:RangeNumberSelector
+    - rolls: !type:RangeNumberSelector
         range: 0, 2
       tableId: RandomGuidebookTable
 
 - type: entityTable
   id: RandomGuidebookTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: BookBartendersManual
     - id: BookChemicalCompendium
     - id: BookEngineersHandbook
@@ -40,7 +39,6 @@
 
 - type: entityTable
   id: RandomBookTable
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: RandomGuidebookTable
+  table:
+    group:
+    - tableId: RandomGuidebookTable

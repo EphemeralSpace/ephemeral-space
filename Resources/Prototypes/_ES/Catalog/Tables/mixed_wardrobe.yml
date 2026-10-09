@@ -1,9 +1,8 @@
 - type: entityTable
   id: ESMixedLockerShoesTable
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
+  table:
+    group:
+    - group:
       - id: ClothingShoesColorWhite
       - id: ClothingShoesColorBlack
       - id: ClothingShoesColorBrown
@@ -16,10 +15,9 @@
 
 - type: entityTable
   id: ESMixedLockerJumpsuitTable
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector
-      children:
+  table:
+    group:
+    - group:
       - id: ClothingUniformJumpsuitColorWhite
       - id: ClothingUniformJumpsuitColorGrey
       - id: ClothingUniformJumpsuitColorBlack
@@ -39,8 +37,8 @@
 
 - type: entityTable
   id: ESMixedLockerBonusTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
 # Gloves
     - tableId: ESMixedBasicGloves
 # Soft caps

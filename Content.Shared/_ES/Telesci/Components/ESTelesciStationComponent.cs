@@ -1,6 +1,7 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Telesci.Components;
 
@@ -58,5 +59,5 @@ public partial struct ESTelesciStage
     /// Events to run
     /// </summary>
     [DataField]
-    public EntityTableSelector Events = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Events = new NoneSelector<EntityPrototype>();
 }

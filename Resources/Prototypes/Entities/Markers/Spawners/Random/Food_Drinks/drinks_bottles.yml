@@ -12,22 +12,21 @@
       - sprite: Objects/Consumable/Drinks/ginbottle.rsi
         state: icon
   - type: EntityTableSpawner
-    table: !type:NestedSelector
+    table:
       tableId: RandomAllAlcoholTable
       prob: 0.8
 
 - type: entityTable
   id: RandomAllAlcoholTable
-  table: !type:GroupSelector
-    children:
-    - !type:NestedSelector
-      tableId: RandomCommonAlcoholTable
+  table:
+    group:
+    - tableId: RandomCommonAlcoholTable
       weight: 1
 
 - type: entityTable
   id: RandomCommonAlcoholTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: DrinkCognacBottleFull
     - id: DrinkGrenadineBottleFull
     - id: DrinkGinBottleFull

@@ -953,8 +953,8 @@
 # Entity tables
 - type: entityTable
   id: BasicReagentBottlesTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: ChemistryBottleAluminium
     - id: ChemistryBottleCarbon
     - id: ChemistryBottleChlorine
@@ -978,8 +978,8 @@
 
 - type: entityTable
   id: CoreMedicineReagentBottleTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: ChemistryBottleBicaridine
     - id: ChemistryBottleKelotane
     - id: ChemistryBottleDermaline
@@ -992,8 +992,8 @@
 
 - type: entityTable
   id: SpecialtyMedicineReagentBottleTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: ChemistryBottleCryoxadone
     - id: ChemistryBottleEpinephrine
     - id: ChemistryBottleHyronalin

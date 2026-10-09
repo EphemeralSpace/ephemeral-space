@@ -6,7 +6,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGrey
         - tableId: ESBackpackItems
@@ -20,7 +20,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGrey
         - tableId: ESBackpackItems
@@ -28,8 +28,8 @@
 
 - type: entityTable
   id: FillWardrobeGrey
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorGrey
       amount: 2
     - id: ClothingShoesColorBlack
@@ -46,7 +46,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeMixed
         - tableId: ESBackpackItems
@@ -60,7 +60,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeMixed
         - tableId: ESBackpackItems
@@ -69,21 +69,18 @@
 # ES Start
 - type: entityTable
   id: FillWardrobeMixed
-  table: !type:AllSelector
-    children:
+  table:
+    all:
 # Shoes
-    - !type:NestedSelector
-      tableId: ESMixedLockerShoesTable
+    - tableId: ESMixedLockerShoesTable
       rolls: !type:RangeNumberSelector
         range: 1, 2
 # Jumpsuits
-    - !type:NestedSelector
-      tableId: ESMixedLockerJumpsuitTable
+    - tableId: ESMixedLockerJumpsuitTable
       rolls: !type:RangeNumberSelector
         range: 2, 8
 # Bonus (Hats, bandanas, etc.)
-    - !type:NestedSelector
-      tableId: ESMixedLockerBonusTable
+    - tableId: ESMixedLockerBonusTable
       prob: 0.33
       rolls: !type:RangeNumberSelector
         range: 1, 2
@@ -97,7 +94,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeYellow
         - tableId: ESBackpackItems
@@ -111,7 +108,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeYellow
         - tableId: ESBackpackItems
@@ -119,8 +116,8 @@
 
 - type: entityTable
   id: FillWardrobeYellow
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorYellow
     - id: ClothingShoesColorOrange
     - id: ClothingHeadBandGold
@@ -134,7 +131,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeWhite
         - tableId: ESBackpackItems
@@ -148,7 +145,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeWhite
         - tableId: ESBackpackItems
@@ -156,8 +153,8 @@
 
 - type: entityTable
   id: FillWardrobeWhite
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorWhite
     - id: ClothingShoesColorWhite
     - id: ClothingHeadHatMimesoft
@@ -170,7 +167,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlue
         - tableId: ESBackpackItems
@@ -184,7 +181,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlue
         - tableId: ESBackpackItems
@@ -192,8 +189,8 @@
 
 - type: entityTable
   id: FillWardrobeBlue
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorBlue
     - id: ClothingShoesColorBrown
 
@@ -205,7 +202,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobePink
         - tableId: ESBackpackItems
@@ -219,7 +216,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobePink
         - tableId: ESBackpackItems
@@ -227,8 +224,8 @@
 
 - type: entityTable
   id: FillWardrobePink
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorPink
     - id: ClothingShoesColorBrown
 
@@ -240,7 +237,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlack
         - tableId: ESBackpackItems
@@ -254,7 +251,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeBlack
         - tableId: ESBackpackItems
@@ -262,8 +259,8 @@
 
 - type: entityTable
   id: FillWardrobeBlack
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorBlack
     - id: ClothingShoesColorBlack
     - id: ClothingHeadBandBlack
@@ -278,7 +275,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGreen
         - tableId: ESBackpackItems
@@ -292,7 +289,7 @@
   - type: EntityTableContainerFill
     containers:
 # ES Start
-      entity_storage: 
+      entity_storage:
         all:
         - tableId: FillWardrobeGreen
         - tableId: ESBackpackItems
@@ -300,8 +297,8 @@
 
 - type: entityTable
   id: FillWardrobeGreen
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingUniformJumpsuitColorGreen
     - id: ClothingShoesColorBlack
     - id: ClothingHeadBandGreen

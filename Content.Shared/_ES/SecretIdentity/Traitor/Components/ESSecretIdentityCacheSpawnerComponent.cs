@@ -1,5 +1,5 @@
 using Content.Shared._ES.SpawnRegion;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -13,7 +13,7 @@ public sealed partial class ESSecretIdentityCacheSpawnerComponent : Component
     public ProtoId<ESSpawnRegionPrototype> Region = "ESMaintenance";
 
     [DataField(required: true)]
-    public EntityTableSelector CacheProto = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> CacheProto = new NoneSelector<EntityPrototype>();
 
     [DataField]
     public List<string> Locations = [];

@@ -1,4 +1,4 @@
-using Content.Shared.EntityTable.ValueSelector;
+using Content.Shared.PrototypeTable.ValueSelector;
 using Content.Shared.Whitelist;
 
 namespace Content.Server._ES.Degradation.Components;

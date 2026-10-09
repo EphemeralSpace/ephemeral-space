@@ -1,4 +1,4 @@
-﻿using Content.Shared.EntityTable.EntitySelectors;
+﻿using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
 
@@ -23,6 +23,6 @@ public sealed partial class RoundstartStationVariationRuleComponent : Component
     // ES START
     // oh god i just want it to be an entity table im sorry when ifirst made this system those didnt exist
     [DataField]
-    public EntityTableSelector RulesTable = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> RulesTable = new NoneSelector<EntityPrototype>();
     // ES END
 }
