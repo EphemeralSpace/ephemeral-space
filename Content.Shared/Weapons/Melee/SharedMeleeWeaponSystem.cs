@@ -473,11 +473,11 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         if (weapon.NextAttack < curTime)
             weapon.NextAttack = curTime;
 
-        while (weapon.NextAttack <= curTime)
+        do
         {
             weapon.NextAttack += fireRate;
             swings++;
-        }
+        } while (weapon.NextAttack <= curTime);
 
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
@@ -1093,9 +1093,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         var msgUser = Loc.GetString("disarm-action-shove-popup-message-cursor", ("targetName", targetEnt));
         PopupSystem.PopupEntity(msgUser, msgOther, target.Value, user);
 
-        if (TryGetWeapon(user, out var heldWeapon, out var heldWeaponComponent))
+        if (TryGetWeapon(user, out var heldWeapon, out var heldWeaponComponent) && heldWeapon != user)
         {
-            heldWeaponComponent.NextAttack = Timing.CurTime + TimeSpan.FromSeconds(1f / GetAttackRate(heldWeapon, user, heldWeaponComponent));
+            heldWeaponComponent.NextAttack = Timing.CurTime + component.ShoveDelay;
             DirtyField(heldWeapon, heldWeaponComponent, nameof(MeleeWeaponComponent.NextAttack));
         }
 
