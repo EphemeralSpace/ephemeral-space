@@ -199,6 +199,7 @@
     - id: Jerrycan
 
     - id: ESFingerprintKit
+    - id: ESFiberKit
 
     - id: ClothingEyesHudMedical
     - tableId: FillWelderSupplies # Welding masks

@@ -4,6 +4,7 @@ using Content.Server.Mind;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
+using Content.Shared._ES.SecretIdentity;
 using Content.Shared.Mind;
 
 namespace Content.Server._ES.Organizations.Parasite;

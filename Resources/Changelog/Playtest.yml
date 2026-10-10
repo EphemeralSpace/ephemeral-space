@@ -2237,3 +2237,17 @@ Entries:
         their UIs.
   id: 244
   time: '2026-10-05T15:41:52.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: >-
+        Clothing now leaves fibers which can be collected with the fiber
+        collection kit.
+  id: 245
+  time: '2026-10-09T20:49:36.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Tragedian votes now run upon being converted to a different role.
+  id: 246
+  time: '2026-10-09T21:14:32.0000000+00:00'

@@ -35,6 +35,8 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
         SubscribeLocalEvent<ESFingerprintBlockerComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<ESFingerprintBlockerComponent, InventoryRelayedEvent<ESTransferFingerprintsAttemptEvent>>(OnTransferFingerprintsAttempt);
 
+        SubscribeLocalEvent<ESFingerprintEvidenceComponent, ESTransferForensicsEvent>(OnTransferForensics);
+
         InitializeCard();
         InitializeKit();
     }
@@ -62,6 +64,13 @@ public sealed partial class ESFingerprintsSystem : EntitySystem
     private void OnTransferFingerprintsAttempt(Entity<ESFingerprintBlockerComponent> ent, ref InventoryRelayedEvent<ESTransferFingerprintsAttemptEvent> args)
     {
         args.Args.Cancel();
+    }
+
+    private void OnTransferForensics(Entity<ESFingerprintEvidenceComponent> ent, ref ESTransferForensicsEvent args)
+    {
+        var comp = EnsureComp<ESFingerprintEvidenceComponent>(args.Recipient);
+        comp.Fingerprints = new(ent.Comp.Fingerprints);
+        Dirty(args.Recipient, comp);
     }
 
     /// <summary>

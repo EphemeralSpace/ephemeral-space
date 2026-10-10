@@ -472,6 +472,18 @@ public abstract partial class ESSharedSecretIdentitySystem : EntitySystem
     }
 }
 
+/// <summary>
+/// Raised on a organization entity and broadcast when an entity's secret identity changes.
+/// </summary>
+/// <remarks>
+/// This is raised both when an identity is removed, and when a new one is applied.
+/// So, it will be raised twice if something fully changes an entity's secret identity (e.g. conversion)
+/// When being removed, <see cref="NewSecretIdentity"/> will be null, and <see cref="OldSecretIdentity"/> will have the old identity,
+/// and vice versa for being applied.
+/// </remarks>
+[ByRefEvent]
+public record struct ESSecretIdentityChangedEvent(Entity<MindComponent> Mind, ESSecretIdentityPrototype? NewSecretIdentity, ESSecretIdentityPrototype? OldSecretIdentity);
+
 [ByRefEvent]
 public record struct ESGetCharacterInfoBlurbEvent()
 {

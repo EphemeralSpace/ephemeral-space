@@ -1,6 +1,6 @@
 # Insulated Gloves
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ ESBaseClothingFiberGloves, ClothingHandsBase ]
   id: ClothingHandsGlovesInsulated
   name: insulated gloves
   description: These gloves will protect the wearer from electric shocks.
@@ -11,9 +11,6 @@
   - type: Clothing
     sprite: Clothing/Hands/Gloves/Color/yellow.rsi
   - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-insulative
-    fiberColor: fibers-yellow
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
@@ -41,15 +38,12 @@
       - 3
       - 3.5
       - 4
-  - type: Fiber
-    fiberMaterial: fibers-insulative-frayed
-    fiberColor: fibers-yellow
 # ES START
   - type: ESChameleonClothingWhitelist
 # ES END
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ ESBaseClothingFiberGloves, ClothingHandsBase ]
   id: ClothingHandsGlovesBoxingRed
   name: red boxing gloves
   description: Red gloves for competitive boxing.
@@ -67,16 +61,13 @@
       collection: BoxingHit
     animation: WeaponArcFist
     mustBeEquippedToUse: true
-  - type: Fiber
-    fiberMaterial: fibers-leather
-    fiberColor: fibers-red
   - type: ESFingerprintBlocker
   - type: Tag
     tags:
     - Kangaroo
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: [ ESBaseClothingFiberGloves, ClothingHandsBase ]
   id: ClothingHandsGlovesCaptain
   name: captain gloves
   description: Regal brown gloves, with a nice gold trim. Swanky.
@@ -85,9 +76,6 @@
     sprite: Clothing/Hands/Gloves/captain.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/captain.rsi
-  - type: Fiber
-    fiberMaterial: fibers-durathread
-    fiberColor: fibers-regal-blue
   - type: ESFingerprintBlocker
 
 #### Medical
@@ -101,12 +89,10 @@
     sprite: Clothing/Hands/Gloves/latex.rsi
   - type: Clothing
     sprite: Clothing/Hands/Gloves/latex.rsi
-  - type: Fiber
-    fiberMaterial: fibers-latex
   - type: ESFingerprintBlocker
 
 - type: entity
-  parent: ClothingHandsButcherable
+  parent: [ ESBaseClothingFiberGloves, ClothingHandsButcherable ]
   id: ClothingHandsGlovesLeather
   name: botanist's leather gloves
   description: These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin. They're also quite warm.

@@ -262,8 +262,6 @@
     - type: Tag
       tags:
         - Mop
-    - type: Fiber
-      fiberColor: fibers-white
     - type: DnaSubstanceTrace
 
 - type: entity

@@ -22,6 +22,8 @@
     icon:
       sprite: Clothing/Mask/clown.rsi
       state: icon
+  - type: ESSecretIdentityObjective
+    transferBetweenIdentities: true
   - type: ESCounterObjective
   - type: ESEmbodyThemeObjective
 

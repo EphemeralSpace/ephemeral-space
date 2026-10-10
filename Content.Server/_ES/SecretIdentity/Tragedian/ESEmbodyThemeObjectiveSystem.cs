@@ -1,8 +1,11 @@
 using Content.Server._ES.SecretIdentity.Objectives.Relays.Components;
 using Content.Server._ES.SecretIdentity.Tragedian.Components;
+using Content.Shared._ES.Auditions.Components;
 using Content.Shared._ES.KillTracking.Components;
 using Content.Shared._ES.Objectives;
 using Content.Shared._ES.Objectives.Components;
+using Content.Shared._ES.SecretIdentity;
+using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared._ES.Voting.Results;
 using Content.Shared.Random.Helpers;
@@ -25,16 +28,49 @@ public sealed partial class ESEmbodyThemeObjectiveSystem : ESBaseObjectiveSystem
         base.Initialize();
 
         SubscribeLocalEvent<ESEmbodyThemeObjectiveComponent, ESPlayerKilledEvent>(OnPlayerKilled);
+        SubscribeLocalEvent<ESSecretIdentityChangedEvent>(OnSecretIdentityChanged);
         SubscribeLocalEvent<ESEmbodyThemeVoteComponent, ESVoteCompletedEvent>(OnVoteCompleted);
     }
 
     private void OnPlayerKilled(Entity<ESEmbodyThemeObjectiveComponent> ent, ref ESPlayerKilledEvent args)
     {
-        if (!MindSys.TryGetMind(args.Killed, out var mind))
+        RunVote(ent);
+    }
+
+    private void OnSecretIdentityChanged(ref ESSecretIdentityChangedEvent args)
+    {
+        foreach (var objective in ObjectivesSys.GetObjectives<ESEmbodyThemeObjectiveComponent>(args.Mind.Owner))
+        {
+            if (!TryComp<ESSecretIdentityObjectiveComponent>(objective, out var comp) ||
+                comp.AssociatedIdentity == args.NewSecretIdentity?.ID)
+                continue;
+
+            RunVote(objective);
+        }
+    }
+
+    private void OnVoteCompleted(Entity<ESEmbodyThemeVoteComponent> ent, ref ESVoteCompletedEvent args)
+    {
+        if (args.Result is not ESBooleanVoteOption option)
             return;
 
+        if (option.Value)
+            ObjectivesSys.AdjustObjectiveCounter(ent.Comp.Objective);
+    }
+
+    public void RunVote(Entity<ESEmbodyThemeObjectiveComponent> ent)
+    {
+        if (ent.Comp.VoteRan)
+            return;
+
+        if (!ObjectivesSys.TryFindObjectiveHolder(ent.Owner, out var holder) ||
+            !TryComp<ESCharacterComponent>(holder, out var character))
+            return;
+
+        ent.Comp.VoteRan = true;
+
         var voteTitle = Loc.GetString(ent.Comp.VoteTitle,
-            ("name", mind.Value.Comp.CharacterName ?? string.Empty),
+            ("name", character.Name),
             ("theme", ent.Comp.Theme));
 
         // This is really ugly and i'm kicking myself for not making a better API
@@ -45,15 +81,6 @@ public sealed partial class ESEmbodyThemeObjectiveSystem : ESBaseObjectiveSystem
 
         var comp = EnsureComp<ESEmbodyThemeVoteComponent>(vote);
         comp.Objective = ent;
-    }
-
-    private void OnVoteCompleted(Entity<ESEmbodyThemeVoteComponent> ent, ref ESVoteCompletedEvent args)
-    {
-        if (args.Result is not ESBooleanVoteOption option)
-            return;
-
-        if (option.Value)
-            ObjectivesSys.AdjustObjectiveCounter(ent.Comp.Objective);
     }
 
     protected override void InitializeObjective(Entity<ESEmbodyThemeObjectiveComponent> ent, ref ESInitializeObjectiveEvent args)
