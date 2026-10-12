@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
@@ -369,9 +370,12 @@ public abstract partial class ESSharedSelectionSystem : EntitySystem
             ReplaceAt(gridEnt, entry.Entity, entities);
         }
 
+        var destinationIndices = destinationTiles.Select(p => p.Item1).ToHashSet();
         var cleared = new List<(Vector2i, Tile)>(sources.Count);
         foreach (var (index, _) in sources)
         {
+            if (destinationIndices.Contains(index))
+                continue;
             cleared.Add((index, Tile.Empty));
         }
 
