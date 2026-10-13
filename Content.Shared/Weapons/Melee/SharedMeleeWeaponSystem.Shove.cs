@@ -6,6 +6,7 @@ using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Standing;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -15,6 +16,7 @@ namespace Content.Shared.Weapons.Melee;
 
 public abstract partial class SharedMeleeWeaponSystem
 {
+    [Dependency] private INetManager _net = default!;
     [Dependency] protected SharedColorFlashEffectSystem ColorFlashEffect = default!;
     [Dependency] private ESEntityTimerSystem _entityTimer = default!;
     [Dependency] private StandingStateSystem _standingState = default!;
@@ -70,7 +72,9 @@ public abstract partial class SharedMeleeWeaponSystem
 
         var predictEv = new ESShovePredictTimerEvent(GetNetEntity(user), dir);
         _entityTimer.SpawnTimer(target.Value, ShoveBuffer, predictEv);
-        ColorFlashEffect.RaiseEffect(Color.Cyan, new List<EntityUid> { target.Value }, Filter.Pvs(target.Value, entityManager: EntityManager));
+
+        if (_net.IsClient)
+            ColorFlashEffect.RaiseEffect(Color.Cyan, new List<EntityUid> { target.Value }, Filter.Pvs(target.Value, entityManager: EntityManager));
 
         var targetEnt = Identity.Entity(target.Value, EntityManager);
         var userEnt = Identity.Entity(user, EntityManager);

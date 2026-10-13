@@ -126,9 +126,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         if (target.HasValue && Interaction.CombatModeCanHandInteract(user, target.Value))
             return;
 
-        // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform))
-            return;
+        var userXform = Transform(user);
 
         if (targetMap.MapId != userXform.MapID)
             return;
