@@ -13,7 +13,6 @@ using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
@@ -28,9 +27,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Network;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -43,7 +40,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 {
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] protected SharedMapSystem MapManager = default!;
-    [Dependency] private INetManager _netMan = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] protected ISharedAdminLogManager AdminLogger = default!;
     [Dependency] protected ActionBlockerSystem Blocker = default!;
@@ -79,6 +75,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        InitializeShove();
 
         SubscribeLocalEvent<MeleeWeaponComponent, HandSelectedEvent>(OnMeleeSelected);
         SubscribeLocalEvent<MeleeWeaponComponent, ShotAttemptedEvent>(OnMeleeShotAttempted);
@@ -482,7 +479,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                     animation = weapon.Animation;
                     break;
                 case ShoveAttackEvent shove:
-                    if (!DoShove(user, shove, weaponUid, weapon, session))
+                    if (!DoShove(user, shove, weapon, session))
                         return false;
 
                     animation = weapon.Animation;
@@ -864,70 +861,6 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         }
 
         return highestDamageType;
-    }
-
-    private bool DoShove(EntityUid user, ShoveAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
-    {
-        var target = GetEntity(ev.Target);
-
-        if (Deleted(target) || user == target)
-            return false;
-
-        if (MobState.IsIncapacitated(target.Value))
-            return false;
-
-        if (!TryComp<PhysicsComponent>(target, out var body) || body.BodyType == BodyType.Static)
-            return false;
-
-        if (!InRange(user, target.Value, component.Range, session))
-        {
-            return false;
-        }
-
-        // At this point we diverge
-        if (_netMan.IsClient)
-        {
-            // Play a sound to give instant feedback; same with playing the animations
-            _meleeSound.PlaySwingSound(user, meleeUid, component);
-            return true;
-        }
-
-        Interaction.DoContactInteraction(user, target, null, true); // Stellar - Interaction particles
-        AdminLogger.Add(LogType.DisarmedAction, $"{ToPrettyString(user):user} shoved {ToPrettyString(target):target}");
-
-        var targetPos = TransformSystem.GetWorldPosition(target.Value);
-        var userPos = TransformSystem.GetWorldPosition(user);
-        var dir = targetPos != userPos ? (targetPos - userPos).Normalized() : Vector2.Zero;
-
-        _throwing.TryThrow(
-            target.Value,
-            dir,
-            10f,
-            user,
-            compensateFriction: true,
-            animated: false,
-            playSound: false,
-            doSpin: false);
-        _status.TrySetStatusEffectDuration(target.Value, ShoveStatusEffect, ShoveStatusDuration);
-
-        var targetEnt = Identity.Entity(target.Value, EntityManager);
-        var userEnt = Identity.Entity(user, EntityManager);
-
-        var msgOther = Loc.GetString(
-            "disarm-action-shove-popup-message-other-clients",
-            ("performerName", userEnt),
-            ("targetName", targetEnt));
-
-        var msgUser = Loc.GetString("disarm-action-shove-popup-message-cursor", ("targetName", targetEnt));
-        PopupSystem.PopupEntity(msgUser, msgOther, target.Value, user);
-
-        if (TryGetWeapon(user, out var heldWeapon, out var heldWeaponComponent) && heldWeapon != user)
-        {
-            heldWeaponComponent.NextAttack = Timing.CurTime + component.ShoveDelay;
-            DirtyField(heldWeapon, heldWeaponComponent, nameof(MeleeWeaponComponent.NextAttack));
-        }
-
-        return true;
     }
 
     private void DoLungeAnimation(EntityUid user, EntityUid weapon, Angle angle, MapCoordinates coordinates, float length, string? animation)

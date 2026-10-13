@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Client.Gameplay;
-using Content.Shared.Effects;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Client.GameObjects;
@@ -22,7 +21,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private IStateManager _stateManager = default!;
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private InputSystem _inputSystem = default!;
-    [Dependency] private SharedColorFlashEffectSystem _color = default!;
     [Dependency] private MapSystem _map = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
@@ -112,7 +110,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     protected override void DoDamageEffect(List<EntityUid> targets, EntityUid? user, TransformComponent targetXform)
     {
         // Server never sends the event to us for predictiveeevent.
-        _color.RaiseEffect(Color.Red, targets, Filter.Local());
+        ColorFlashEffect.RaiseEffect(Color.Red, targets, Filter.Local());
     }
 
     /// <summary>
