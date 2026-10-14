@@ -60,7 +60,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             }
 
             // lower it to a random lower stage fire and disable growing in strength
-            var randomDivisor = _random.Next(2, 7);
+            var randomDivisor = _random.Next(1, 5);
             _flammable.SetFireStacks(uid, flammable.FireStacks / randomDivisor, flammable);
             flammable.FirestackFade = 0f;
             Dirty(uid, flammable);

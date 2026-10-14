@@ -51,7 +51,7 @@ public sealed partial class ESTileFireComponent : Component
     public float FireStrengthRandomAlterationChance = 0.25f;
 
     /// <summary>
-    ///     Minimum time after the fire spawns at which it will smolder (return to first stage and stop spreading)
+    ///     Minimum time after the fire spawns at which it will smolder (return to random stage and stop spreading)
     /// </summary>
     [DataField]
     public TimeSpan MinSmolderTime = TimeSpan.FromMinutes(3);
@@ -66,7 +66,7 @@ public sealed partial class ESTileFireComponent : Component
     ///     Chance that when a fire smolders its just deleted
     /// </summary>
     [DataField]
-    public float SmolderDeleteFireChance = 0.5f;
+    public float SmolderDeleteFireChance = 0.33f;
 
     /// <summary>
     ///     Time after a fire smolders that it's deleted if <see cref="SmolderDeleteFireChance"/> procs.
