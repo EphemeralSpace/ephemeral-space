@@ -72,13 +72,7 @@ public abstract partial class SharedBuckleSystem
         if (!Resolve(strapUid, ref strapComp, false))
             return false;
 
-        var avail = strapComp.Size;
-        foreach (var buckle in strapComp.BuckledEntities)
-        {
-            avail -= CompOrNull<BuckleComponent>(buckle)?.Size ?? 0;
-        }
-
-        return avail >= buckleComp.Size;
+        return strapComp.BuckledEntities.Count < strapComp.StrapPoints.Count;
     }
 
     /// <summary>
