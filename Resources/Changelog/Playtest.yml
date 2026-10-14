@@ -2257,3 +2257,9 @@ Entries:
       message: Characters may now spawn with random accents and glasses.
   id: 247
   time: '2026-10-14T14:55:07.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Tweak
+      message: Melee hit slows are more punishing for the attacker
+  id: 248
+  time: '2026-10-14T15:01:43.0000000+00:00'
