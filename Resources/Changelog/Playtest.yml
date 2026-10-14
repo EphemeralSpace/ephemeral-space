@@ -2251,3 +2251,9 @@ Entries:
       message: Tragedian votes now run upon being converted to a different role.
   id: 246
   time: '2026-10-09T21:14:32.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Add
+      message: Characters may now spawn with random accents and glasses.
+  id: 247
+  time: '2026-10-14T14:55:07.0000000+00:00'
