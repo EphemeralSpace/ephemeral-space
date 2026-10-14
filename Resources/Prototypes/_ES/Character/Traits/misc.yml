@@ -1,0 +1,17 @@
+- type: esTrait
+  id: Nearsighted
+  name: es-trait-nearsighted-name
+  description: es-trait-nearsighted-desc
+  prob: 0.025
+  events:
+  - !type:ESAddComponentTraitEvent
+    components:
+    - type: PermanentBlindness
+      blindness: 3
+  - !type:ESStartingGearTraitEvent
+    gear: NearsightedGear
+
+- type: startingGear
+  id: NearsightedGear
+  equipment:
+    eyes: ClothingEyesGlasses

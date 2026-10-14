@@ -1,5 +1,6 @@
 es-character-info-blurb = {CAPITALIZE($gender)} • {$age} • Born {$month} {$day}
 es-character-personality-prompt = [color=gray][italic]I am {INDEFINITE($descriptor)} {$descriptor} {$job} who {$focus}.[/italic][/color]
+es-character-trait-fmt = {$name}: [color=gray][italic]{$desc}[/italic][/color]
 es-character-personality-likes = Likes: [color=gray][italic]{$things}[/italic][/color]
 es-character-personality-dislikes = Dislikes: [color=gray][italic]{$things}[/italic][/color]
 

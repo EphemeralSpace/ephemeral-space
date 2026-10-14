@@ -27,6 +27,7 @@
                 <Spacer VSpace="10"/>
                 <RichTextLabel Name="PromptLabel" HorizontalAlignment="Center" Margin="10 0"/>
                 <Spacer VSpace="10"/>
+                <RichTextLabel Name="TraitsLabel" HorizontalAlignment="Center" Margin="0 0 0 10"/>
                 <RichTextLabel Name="LikesLabel" HorizontalAlignment="Center"/>
                 <RichTextLabel Name="DislikesLabel" HorizontalAlignment="Center"/>
             </VStack>

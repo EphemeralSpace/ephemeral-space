@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._ES.Auditions.Components;
+using Content.Shared._ES.Auditions.Traits;
 using Content.Shared._ES.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid.Markings;
@@ -21,6 +22,7 @@ public abstract partial class ESSharedAuditionsSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private SharedJobSystem _job = default!;
     [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ESTraitSystem _trait = default!;
     [Dependency] private IRobustRandom _random = default!;
 
     public bool RandomCharactersEnabled { get; private set; }

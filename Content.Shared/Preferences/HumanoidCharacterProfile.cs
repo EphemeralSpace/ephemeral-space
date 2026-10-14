@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._ES.Auditions.Traits;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -108,6 +109,8 @@ namespace Content.Shared.Preferences
         /// <see cref="_antagPreferences"/>
         /// </summary>
         public IReadOnlySet<ProtoId<AntagPrototype>> AntagPreferences => _antagPreferences;
+
+        public HashSet<ProtoId<ESTraitPrototype>> Traits = new();
 
         /// <summary>
         /// If we're unable to get one of our preferred jobs do we spawn as a fallback job or do we stay in lobby.
@@ -408,6 +411,7 @@ namespace Content.Shared.Preferences
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
+            if (!Traits.SequenceEqual(other.Traits)) return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -616,6 +620,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(Appearance);
             hashCode.Add((int)SpawnPriority);
             hashCode.Add((int)PreferenceUnavailable);
+            hashCode.Add(Traits);
             return hashCode.ToHashCode();
         }
 
