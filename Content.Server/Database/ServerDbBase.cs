@@ -14,10 +14,10 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Enums;
@@ -223,6 +223,9 @@ namespace Content.Server.Database
 
         private async Task<HumanoidCharacterProfile> ConvertProfiles(Profile profile)
         {
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            if (!prototypeManager.HasIndex<SpeciesPrototype>(profile.Species))
+                profile.Species = HumanoidCharacterProfile.DefaultSpecies;
 
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
