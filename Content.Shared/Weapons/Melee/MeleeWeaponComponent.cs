@@ -165,8 +165,13 @@ public sealed partial class MeleeWeaponComponent : Component
     [DataField, AutoNetworkedField]
     public bool MustBeEquippedToUse = false;
 
+    // TODO: these really should be on a different component.
+
     [DataField]
     public TimeSpan ShoveDelay = TimeSpan.FromSeconds(1.5f);
+
+    [DataField]
+    public Angle ShoveAngle = Angle.Zero;
 }
 
 /// <summary>

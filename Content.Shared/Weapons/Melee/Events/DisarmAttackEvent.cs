@@ -4,16 +4,15 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Weapons.Melee.Events;
 
 [Serializable, NetSerializable]
-public sealed class DisarmAttackEvent : AttackEvent
+public sealed class WideShoveAttackEvent : AttackEvent
 {
-    public NetEntity? Target;
+    public List<NetEntity> Entities;
 
-    public DisarmAttackEvent(NetEntity? target, NetCoordinates coordinates) : base(coordinates)
+    public WideShoveAttackEvent(List<NetEntity> entities, NetCoordinates coordinates) : base(coordinates)
     {
-        Target = target;
+        Entities = entities;
     }
 }
-
 
 [Serializable, NetSerializable]
 public sealed class ShoveAttackEvent : AttackEvent

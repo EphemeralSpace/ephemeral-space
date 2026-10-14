@@ -533,31 +533,6 @@ public abstract partial class InteractionTest
     }
 
     /// <summary>
-    /// Simulate a disarm attack that hits its target.
-    /// </summary>
-    protected async Task AttemptDisarmAttack(NetEntity? target = null)
-    {
-        // Enter combat mode before attacking.
-        var wasInCombatMode = IsInCombatMode();
-        await SetCombatMode(true);
-
-        target ??= Target;
-        Assert.That(target, Is.Not.Null, "No target specified.");
-        var sTarget = ToServer(target!.Value);
-
-        await Server.WaitAssertion(() =>
-        {
-            Assert.That(SMelee.TryGetWeapon(SPlayer, out var weaponUid, out var weaponComp), "No weapon to attack with.");
-            SMelee.AttemptDisarmAttack(SPlayer, weaponUid, weaponComp!, sTarget);
-        });
-
-        // If the player was not in combat mode before then disable it again.
-        await SetCombatMode(wasInCombatMode);
-
-        // TODO: Validate that an attack actually happened.
-    }
-
-    /// <summary>
     /// Make the player shoot with their currently held gun.
     /// The player needs to be able to enter combat mode for this.
     /// This does not pass a target entity into the GunSystem, meaning that targets that

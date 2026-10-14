@@ -2,6 +2,7 @@ using Content.Shared._ES.Core.Timer.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -15,6 +16,7 @@ public sealed partial class ESEntityTimerSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private INetManager _net = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
@@ -128,7 +130,18 @@ public sealed partial class ESEntityTimerSystem : EntitySystem
 
     private bool TimerTargetIsValid(EntityUid uid)
     {
-        return !TerminatingOrDeleted(uid) && LifeStage(uid) == EntityLifeStage.MapInitialized;
+        if (TerminatingOrDeleted(uid))
+            return false;
+
+        var lifeStage = LifeStage(uid);
+
+        // Client entities may not be marked as map initialized
+        if (_net.IsClient)
+        {
+            return lifeStage == EntityLifeStage.Initialized;
+        }
+
+        return lifeStage == EntityLifeStage.MapInitialized;
     }
 
     public override void Update(float frameTime)
