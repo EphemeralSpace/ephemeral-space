@@ -32,7 +32,7 @@
     explosionType: FireBomb
     totalIntensity: 25
     intensitySlope: 5
-    maxIntensity: 3
+    maxIntensity: 5
     canCreateVacuum: false
   - type: ExplodeOnTrigger
     keysIn:
