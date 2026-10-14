@@ -52,6 +52,7 @@ public sealed partial class ESSparksSystem : EntitySystem
             ent.Comp.SparkPrototype,
             user: user,
             tileFireChance: ent.Comp.TileFireChance,
+            tileFireStrength: ent.Comp.TileFireStrength,
             cooldown: cooldown);
     }
 
@@ -63,6 +64,7 @@ public sealed partial class ESSparksSystem : EntitySystem
     /// <param name="sparksPrototype">Spark prototype to use. Defaults to <see cref="DefaultSparks"/></param>
     /// <param name="user">A "user" who triggered the sparks</param>
     /// <param name="tileFireChance">Chance that sparks will cause a fire to start</param>
+    /// <param name="tileFireStrength">Strength of the resulting fire from sparks</param>
     /// <param name="cooldown">If true, will check the cooldown on <see cref="ESSparkCooldownComponent"/> before spawning sparks</param>
     [PublicAPI]
     public void DoSparks(
@@ -71,6 +73,7 @@ public sealed partial class ESSparksSystem : EntitySystem
         EntProtoId? sparksPrototype = null,
         EntityUid? user = null,
         float tileFireChance = 0f,
+        int tileFireStrength = 3,
         bool cooldown = true)
     {
         // track last spark time
@@ -80,7 +83,7 @@ public sealed partial class ESSparksSystem : EntitySystem
         comp.LastSparkTime = _timing.CurTime;
 
         var coords = Transform(source).Coordinates;
-        DoSparks(coords, number, sparksPrototype, user, source, tileFireChance);
+        DoSparks(coords, number, sparksPrototype, user, source, tileFireChance, tileFireStrength);
     }
 
     /// <summary>
@@ -92,6 +95,7 @@ public sealed partial class ESSparksSystem : EntitySystem
     /// <param name="user">A "user" who triggered the sparks</param>
     /// <param name="ignored">An entity whose collision will be ignored by the sparks</param>
     /// <param name="tileFireChance">Chance that sparks will cause a fire to start</param>
+    /// <param name="tileFireStrength">Strength of the resulting fire from sparks</param>
     [PublicAPI]
     public void DoSparks(
         EntityCoordinates coordinates,
@@ -99,14 +103,15 @@ public sealed partial class ESSparksSystem : EntitySystem
         EntProtoId? sparksPrototype = null,
         EntityUid? user = null,
         EntityUid? ignored = null,
-        float tileFireChance = 0f)
+        float tileFireChance = 0f,
+        int tileFireStrength = 3)
     {
         if (_net.IsClient)
             return;
 
         sparksPrototype ??= DefaultSparks;
 
-        var angleDelta = (Angle) (MathF.Tau / number);
+        var angleDelta = (Angle)(MathF.Tau / number);
         var angle = _random.NextAngle();
         for (var i = 0; i < number; i++)
         {
@@ -117,6 +122,6 @@ public sealed partial class ESSparksSystem : EntitySystem
         }
 
         if (_random.Prob(tileFireChance))
-            _tileFire.TryDoTileFire(coordinates, user, _random.Next(1, 3));
+            _tileFire.TryDoTileFire(coordinates, user, _random.Next(1, 3), strength: tileFireStrength);
     }
 }

@@ -1,8 +1,11 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Spreader;
+using Content.Shared._ES.Core.Timer;
+using Content.Shared._ES.Core.Timer.Components;
 using Content.Shared._ES.TileFires;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Examine;
 using Content.Shared.Maps;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
@@ -23,6 +26,7 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
     [Dependency] private AtmosphereSystem _atmos = default!;
     [Dependency] private FlammableSystem _flammable = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private ESEntityTimerSystem _timer = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _timing = default!;
 
@@ -34,6 +38,8 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
         SubscribeLocalEvent<ESTileFireComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ESTileFireComponent, SpreadNeighborsEvent>(OnSpreadNeighbors);
+        SubscribeLocalEvent<ESTileFireComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<FlammableComponent, ESTileFireSmolderTimerDeletionEvent>(OnTileFileSmolderDeletion);
     }
 
     public override void Update(float frameTime)
@@ -50,12 +56,11 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
             if (_random.Prob(tilefire.SmolderDeleteFireChance))
             {
-                QueueDel(uid);
-                continue;
+                _timer.SpawnTimer(uid, tilefire.SmolderDeleteFireTime, new ESTileFireSmolderTimerDeletionEvent());
             }
 
             // lower it to a random lower stage fire and disable growing in strength
-            var randomDivisor = _random.Next(2, 7);
+            var randomDivisor = _random.Next(1, 5);
             _flammable.SetFireStacks(uid, flammable.FireStacks / randomDivisor, flammable);
             flammable.FirestackFade = 0f;
             Dirty(uid, flammable);
@@ -83,12 +88,13 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
         if (!TryComp<FlammableComponent>(ent, out var flammable))
             return;
 
-        if (args.NeighborFreeTiles.Count == 0)
+        if (args.NeighborFreeTiles.Count == 0 || ent.Comp.FireStrength <= 0)
         {
             RemCompDeferred<ActiveEdgeSpreaderComponent>(ent);
             return;
         }
 
+        // todo pretty sure this doesnt do anything lol
         if (!_random.Prob(ent.Comp.BaseSpreadChance))
             return;
 
@@ -143,10 +149,18 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
             var coords = _random.PickAndTake(weights);
             var fire = Spawn(ent.Comp.Prototype, coords);
+            var comp = EnsureComp<ESTileFireComponent>(fire);
+            comp.FireStrength = ent.Comp.FireStrength - 1;
+
+            if (_random.Prob(ent.Comp.FireStrengthRandomAlterationChance))
+            {
+                var alteration = _random.Prob(0.5f) ? 1 : -1;
+                comp.FireStrength += alteration;
+            }
 
             if (ent.Comp.Origin is { } origin)
             {
-                EnsureComp<ESTileFireComponent>(fire).Origin = origin;
+                comp.Origin = origin;
                 EnsureComp<ESTileFireOriginComponent>(origin).Fires.Add(fire);
 
                 var ev = new ESTileFireCreatedEvent(coords, origin);
@@ -157,12 +171,27 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
             args.Updates--;
         }
     }
+
+    private void OnExamined(EntityUid uid, ESTileFireComponent component, ref ExaminedEvent args)
+    {
+        args.PushMarkup(component.FireStrength > 0
+                ? Loc.GetString("es-tile-fire-examine-strength", ("strength", component.FireStrength))
+                : Loc.GetString("es-tile-fire-examine-strength-cant-spread"),
+            priority: 9);
+    }
+
+    // bound to flammable since we remove tilefire
+    private void OnTileFileSmolderDeletion(Entity<FlammableComponent> ent, ref ESTileFireSmolderTimerDeletionEvent args)
+    {
+        QueueDel(ent);
+    }
+
     #endregion
 
     #region API
 
     [PublicAPI]
-    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
+    public override bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, int strength = 10)
     {
         var xform = Transform(coords.EntityId);
         if (xform.GridUid is not { } grid || !TryComp<MapGridComponent>(grid, out var mapGrid))
@@ -177,19 +206,13 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
         EntProtoId proto = stage == 1 ? Stage1Fire : $"{Stage1Fire}Stage{stage}";
 
         var fire = SpawnAtPosition(proto, coords);
-
-        if (!spread)
-        {
-            RemCompDeferred<ESTileFireComponent>(fire);
-        }
+        var comp = EnsureComp<ESTileFireComponent>(fire);
+        comp.FireStrength = strength;
 
         if (!TerminatingOrDeleted(originatingUser) && Exists(originatingUser))
         {
-            if (spread)
-            {
-                EnsureComp<ESTileFireComponent>(fire).Origin = originatingUser;
-                EnsureComp<ESTileFireOriginComponent>(originatingUser.Value).Fires.Add(fire);
-            }
+            comp.Origin = originatingUser;
+            EnsureComp<ESTileFireOriginComponent>(originatingUser.Value).Fires.Add(fire);
 
             var ev = new ESTileFireCreatedEvent(coords, originatingUser);
             RaiseLocalEvent(originatingUser.Value, ref ev);
@@ -199,3 +222,5 @@ public sealed partial class ESTileFireSystem : ESSharedTileFireSystem
 
     #endregion
 }
+
+public sealed partial class ESTileFireSmolderTimerDeletionEvent : ESEntityTimerEvent;

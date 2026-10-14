@@ -52,7 +52,7 @@
   - type: ExtensionCableReceiver
   - type: ESSparkOnHit
     prob: 0.25
-    tileFireChance: 0.2
+    tileFireChance: 0.4
     count: 2
   - type: WiresPanel
   - type: WiresVisuals

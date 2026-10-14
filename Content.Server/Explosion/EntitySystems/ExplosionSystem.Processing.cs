@@ -269,7 +269,7 @@ public sealed partial class ExplosionSystem
                 _tileFire.TryDoTileFire(_map.ToCoordinates(grid, tile, grid),
                     stage: _robustRandom.Next(explosionType.MinFireLevel, explosionType.MaxFireLevel + 1),
                     originatingUser: origin,
-                    spread: explosionType.FireSpread);
+                    strength: explosionType.FireStrength);
             }
         }
 // ES END

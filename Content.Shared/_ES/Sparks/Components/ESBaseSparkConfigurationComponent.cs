@@ -27,6 +27,12 @@ public abstract partial class ESBaseSparkConfigurationComponent : Component
     public float TileFireChance;
 
     /// <summary>
+    /// Strength of the random fire resulting from <see cref="TileFireChance"/>
+    /// </summary>
+    [DataField]
+    public int TileFireStrength;
+
+    /// <summary>
     /// Spark prototypes
     /// </summary>
     [DataField]

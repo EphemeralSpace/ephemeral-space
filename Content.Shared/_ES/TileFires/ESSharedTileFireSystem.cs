@@ -56,19 +56,21 @@ public abstract partial class ESSharedTileFireSystem : EntitySystem
     #region API
 
     /// <summary>
-    ///     Spawns a tile fire at stage <see cref="stage"/> at the given entity.
+    ///     Spawns a tile fire at stage <see cref="stage"/> and strength <see cref="strength"/> at the given entity.
+    ///     If a fire shouldn't spread, <see cref="strength"/> should be set to 0.
     /// </summary>
     [PublicAPI]
-    public bool TryDoTileFire(Entity<TransformComponent?> entity, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
+    public bool TryDoTileFire(Entity<TransformComponent?> entity, EntityUid? originatingUser = null, int stage = 1, int strength = 10)
     {
-        return TryDoTileFire(entity.Comp?.Coordinates ?? Transform(entity.Owner).Coordinates, originatingUser, stage, spread);
+        return TryDoTileFire(entity.Comp?.Coordinates ?? Transform(entity.Owner).Coordinates, originatingUser, stage, strength);
     }
 
     /// <summary>
-    ///     Spawns a tile fire at stage <see cref="stage"/> at the given entity's coordinates.
+    ///     Spawns a tile fire at stage <see cref="stage"/> and strength <see cref="strength"/> at the given entity's coordinates.
+    ///     If a fire shouldn't spread, <see cref="strength"/> should be set to 0.
     /// </summary>
     [PublicAPI]
-    public virtual bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, bool spread = true)
+    public virtual bool TryDoTileFire(EntityCoordinates coords, EntityUid? originatingUser = null, int stage = 1, int strength = 10)
     {
         // See server logic
         return false;
