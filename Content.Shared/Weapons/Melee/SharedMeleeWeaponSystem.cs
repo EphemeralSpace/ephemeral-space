@@ -90,6 +90,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         SubscribeAllEvent<HeavyAttackEvent>(OnHeavyAttack);
         SubscribeAllEvent<LightAttackEvent>(OnLightAttack);
         SubscribeAllEvent<ShoveAttackEvent>(OnShoveAttack);
+        SubscribeAllEvent<WideShoveAttackEvent>(OnWideShoveAttack);
         SubscribeAllEvent<StopAttackEvent>(OnStopAttack);
 
 #if DEBUG
@@ -225,6 +226,17 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
     }
 
     private void OnShoveAttack(ShoveAttackEvent msg, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity is not {} user)
+            return;
+
+        if (!TryComp<MeleeWeaponComponent>(user, out var weapon))
+            return;
+
+        AttemptAttack(user, user, weapon, msg, args.SenderSession);
+    }
+
+    private void OnWideShoveAttack(WideShoveAttackEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not {} user)
             return;
@@ -426,6 +438,9 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
                     return false;
                 fireRate = weapon.ShoveDelay;
                 break;
+            case WideShoveAttackEvent:
+                fireRate = weapon.ShoveDelay;
+                break;
             default:
                 if (!Blocker.CanAttack(user, weapon: (weaponUid, weapon)))
                     return false;
@@ -471,6 +486,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         for (var i = 0; i < swings; i++)
         {
             string animation;
+            var angle = weapon.Angle;
 
             switch (attack)
             {
@@ -490,11 +506,18 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
 
                     animation = weapon.WideAnimation;
                     break;
+                case WideShoveAttackEvent wideShove:
+                    if (!DoWideShove(user, wideShove, weapon, session))
+                        return false;
+
+                    angle = weapon.ShoveAngle;
+                    animation = weapon.WideAnimation;
+                    break;
                 default:
                     throw new NotImplementedException();
             }
 
-            DoLungeAnimation(user, weaponUid, weapon.Angle, TransformSystem.ToMapCoordinates(GetCoordinates(attack.Coordinates)), weapon.Range, animation);
+            DoLungeAnimation(user, weaponUid, angle, TransformSystem.ToMapCoordinates(GetCoordinates(attack.Coordinates)), weapon.Range, animation);
         }
 
         var attackEv = new MeleeAttackEvent(weaponUid);

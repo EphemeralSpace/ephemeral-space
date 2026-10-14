@@ -85,9 +85,9 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             : TransformSystem.ToCoordinates(_map.GetMap(mousePos.MapId), mousePos);
 
         // secondary attack
-        if (altDown == BoundKeyState.Down && weapon.Value.Comp.AltDisarm)
+        if (altDown == BoundKeyState.Down && weapon.Value.Comp.AltDisarm && TryComp<MeleeWeaponComponent>(entity, out var shoveComp))
         {
-            ClientShove(mousePos, coordinates);
+            ClientShove((entity, shoveComp), coordinates);
             return;
         }
 
@@ -155,11 +155,38 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         }
     }
 
-    private void ClientShove(MapCoordinates mousePos, EntityCoordinates coordinates)
+    private void ClientShove(Entity<MeleeWeaponComponent> ent, EntityCoordinates coordinates)
     {
-        var target = GetClickedEntity(mousePos);
+        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+        var target = GetClickedEntity(targetMap);
 
-        RaisePredictiveEvent(new ShoveAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
+        var userXform = Transform(ent);
+
+        if (targetMap.MapId != userXform.MapID)
+            return;
+
+        var userPos = TransformSystem.GetWorldPosition(userXform);
+
+        // mimics server-side lagcomp
+        var adjustedRange = ent.Comp.Range + 0.1f;
+
+        // Light attacks occur only if we're clicking a specific target in our approximate weapon range.
+        // Heavy attacks occur in all other situations.
+        if (target.HasValue &&
+            (userPos - TransformSystem.GetWorldPosition(target.Value)).Length() <= adjustedRange)
+        {
+            RaisePredictiveEvent(new ShoveAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
+        }
+        else
+        {
+            var direction = targetMap.Position - userPos;
+            var distance = MathF.Min(ent.Comp.Range, direction.Length());
+
+            // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
+            // Server will validate it with InRangeUnobstructed.
+            var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), ent.Comp.ShoveAngle, distance, userXform.MapID, ent).ToList());
+            RaisePredictiveEvent(new WideShoveAttackEvent(entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
+        }
     }
 
     private void OnMeleeLunge(MeleeLungeEvent ev)

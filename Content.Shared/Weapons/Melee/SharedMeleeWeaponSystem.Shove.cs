@@ -59,9 +59,9 @@ public abstract partial class SharedMeleeWeaponSystem
             return false;
 
         if (!InRange(user, target.Value, component.Range, session))
-        {
             return false;
-        }
+
+        _meleeSound.PlaySwingSound(user, user, component);
 
         Interaction.DoContactInteraction(user, target, null, true); // Stellar - Interaction particles
         AdminLogger.Add(LogType.DisarmedAction, $"{ToPrettyString(user):user} shoved {ToPrettyString(target):target}");
@@ -86,6 +86,107 @@ public abstract partial class SharedMeleeWeaponSystem
 
         var msgUser = Loc.GetString("disarm-action-shove-popup-message-cursor", ("targetName", targetEnt));
         PopupSystem.PopupEntity(msgUser, msgOther, target.Value, user);
+
+        if (TryGetWeapon(user, out var heldWeapon, out var heldWeaponComponent) && heldWeapon != user)
+        {
+            heldWeaponComponent.NextAttack = Timing.CurTime + component.ShoveDelay;
+            DirtyField(heldWeapon, heldWeaponComponent, nameof(MeleeWeaponComponent.NextAttack));
+        }
+
+        return true;
+    }
+
+    private bool DoWideShove(EntityUid user, WideShoveAttackEvent ev, MeleeWeaponComponent component, ICommonSession? session)
+    {
+        if (!TryComp(user, out TransformComponent? userXform))
+            return false;
+
+        var targetMap = TransformSystem.ToMapCoordinates(GetCoordinates(ev.Coordinates));
+
+        if (targetMap.MapId != userXform.MapID)
+            return false;
+
+        var userPos = TransformSystem.GetWorldPosition(userXform);
+        var direction = targetMap.Position - userPos;
+        var distance = Math.Min(component.Range, direction.Length());
+
+        _meleeSound.PlaySwingSound(user, user, component);
+
+        var entities = GetEntityList(ev.Entities);
+        if (entities.Count == 0)
+            return true;
+
+        // Naughty input
+        if (entities.Count > MaxTargets)
+        {
+            entities.RemoveRange(MaxTargets, entities.Count - MaxTargets);
+        }
+
+        // Validate client
+        for (var i = entities.Count - 1; i >= 0; i--)
+        {
+            if (ArcRaySuccessful(entities[i],
+                    userPos,
+                    direction.ToWorldAngle(),
+                    component.ShoveAngle,
+                    distance,
+                    userXform.MapID,
+                    user,
+                    session))
+            {
+                continue;
+            }
+
+            // Bad input
+            entities.RemoveAt(i);
+        }
+
+        var targets = new List<EntityUid>();
+        var physicsQuery = GetEntityQuery<PhysicsComponent>();
+
+        foreach (var entity in entities)
+        {
+            if (entity == user ||
+                !physicsQuery.HasComponent(entity))
+                continue;
+
+            targets.Add(entity);
+        }
+
+        foreach (var target in targets)
+        {
+            Interaction.DoContactInteraction(user, target, null, true, interactionParticles: false); // Stellar/ES - Interaction particles
+        }
+
+        for (var i = targets.Count - 1; i >= 0; i--)
+        {
+            var target = targets[i];
+            if (!Blocker.CanAttack(user, target, (user, component), disarm: true))
+            {
+                targets.RemoveAt(i);
+                continue;
+            }
+
+            var targetPos = TransformSystem.GetWorldPosition(target);
+            var dir = targetPos != userPos ? (targetPos - userPos).Normalized() : Vector2.Zero;
+
+            var predictEv = new ESShovePredictTimerEvent(GetNetEntity(user), dir);
+            _entityTimer.SpawnTimer(target, ShoveBuffer, predictEv);
+
+            if (_net.IsClient)
+                ColorFlashEffect.RaiseEffect(Color.Cyan, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager));
+
+            var targetEnt = Identity.Entity(target, EntityManager);
+            var userEnt = Identity.Entity(user, EntityManager);
+
+            var msgOther = Loc.GetString(
+                "disarm-action-shove-popup-message-other-clients",
+                ("performerName", userEnt),
+                ("targetName", targetEnt));
+
+            var msgUser = Loc.GetString("disarm-action-shove-popup-message-cursor", ("targetName", targetEnt));
+            PopupSystem.PopupEntity(msgUser, msgOther, target, user);
+        }
 
         if (TryGetWeapon(user, out var heldWeapon, out var heldWeaponComponent) && heldWeapon != user)
         {
