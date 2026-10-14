@@ -14,10 +14,10 @@ using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Traits;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Enums;
@@ -223,6 +223,8 @@ namespace Content.Server.Database
 
         private async Task<HumanoidCharacterProfile> ConvertProfiles(Profile profile)
         {
+            // TODO: HACK BECAUSE THIS IS CAUSING CRASHES AND WE DONT USE IT. SORRY
+            var species = HumanoidCharacterProfile.DefaultSpecies;
 
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -275,7 +277,7 @@ namespace Content.Server.Database
 
                     try
                     {
-                        markings = markingManager.ConvertMarkings(markingsList, profile.Species);
+                        markings = markingManager.ConvertMarkings(markingsList, species);
                         completion.SetResult();
                     }
                     catch (Exception ex)
@@ -313,7 +315,7 @@ namespace Content.Server.Database
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
-                profile.Species,
+                species,
                 profile.Age,
                 sex,
                 gender,
