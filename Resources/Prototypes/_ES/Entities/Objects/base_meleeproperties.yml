@@ -83,7 +83,7 @@
       path: /Audio/Weapons/smash.ogg
     damage:
       types:
-        Blunt: 13
+        Blunt: 10
   - type: Tool
     qualities:
     - Rolling
@@ -110,7 +110,7 @@
       path: /Audio/Weapons/bladeslice.ogg
     damage:
       types:
-        Slash: 10 # 15 slash dps
+        Slash: 8 # 12 slash dps
 
 - type: entity
   parent: BaseMeleeKnife
@@ -120,4 +120,4 @@
   - type: MeleeWeapon
     damage:
       types:
-        Slash: 13
+        Slash: 10 # 15 slash dps

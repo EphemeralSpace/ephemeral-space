@@ -79,7 +79,7 @@
     availableModes:
     - SemiAuto
   - type: GunSpreadModifier
-    spread: 1.5
+    spread: 0.8
   - type: ESPickpocketPriorityItem
 
 - type: entity
@@ -107,7 +107,7 @@
     capacity: 2
     proto: ESShellShotgunBuckshot
   - type: Gun
-    fireRate: 1.5
+    fireRate: 0.7
     soundGunshot:
       path: /Audio/_ES/Weapons/Guns/Gunshots/doublebarrel_shot.ogg
     soundEmpty:

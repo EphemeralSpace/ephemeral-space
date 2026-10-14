@@ -44,7 +44,7 @@
       path: /Audio/_ES/Weapons/Guns/Hits/sear.ogg
     damage:
       types:
-        Heat: 22
+        Heat: 20
 
 - type: entity
   name: weak energy bolt
@@ -60,7 +60,7 @@
   - type: Projectile
     damage:
       types:
-        Heat: 10
+        Heat: 8
 
 # The rest of them
 - type: entity

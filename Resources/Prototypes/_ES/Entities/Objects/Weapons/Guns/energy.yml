@@ -13,7 +13,7 @@
     - Back
   - type: AmmoCounter
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -62,7 +62,7 @@
     projectileSpeed: 22.5
   - type: BatteryAmmoProvider
     proto: ESEnergyBolt
-    fireCost: 70
+    fireCost: 100
   - type: ESPickpocketPriorityItem
 
 - type: entity
@@ -99,6 +99,8 @@
     shotsPerBurst: 3
     projectileSpeed: 22.5
     fireRate: 3
+    burstCooldown: 0.75
+    burstFireRate: 6
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
