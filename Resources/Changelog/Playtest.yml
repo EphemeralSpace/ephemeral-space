@@ -2273,3 +2273,17 @@ Entries:
       message: Decreased energy rifle and antique laser rifle damage.
   id: 249
   time: '2026-10-14T15:16:34.0000000+00:00'
+- author: mirrorcult
+  changes:
+    - type: Add
+      message: >-
+        Fires now have strength, you can examine a fire to see roughly how far
+        it will spread. Fires no longer spread indefinitely by default
+    - type: Tweak
+      message: >-
+        Welding tanks, firebombs, simple sources of fires etc now have much
+        lower strength
+    - type: Fix
+      message: Fix fire smoldering being inconsistent because of re-spreading
+  id: 250
+  time: '2026-10-14T16:13:59.0000000+00:00'
