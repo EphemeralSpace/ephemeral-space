@@ -2263,3 +2263,13 @@ Entries:
       message: Melee hit slows are more punishing for the attacker
   id: 248
   time: '2026-10-14T15:01:43.0000000+00:00'
+- author: EmoGarbage404
+  changes:
+    - type: Tweak
+      message: Lowered the damage of various sharp pointy weapons.
+    - type: Tweak
+      message: Decreased firerate on energy weapons and shotguns.
+    - type: Tweak
+      message: Decreased energy rifle and antique laser rifle damage.
+  id: 249
+  time: '2026-10-14T15:16:34.0000000+00:00'
