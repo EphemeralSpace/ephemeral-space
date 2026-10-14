@@ -2287,3 +2287,9 @@ Entries:
       message: Fix fire smoldering being inconsistent because of re-spreading
   id: 250
   time: '2026-10-14T16:13:59.0000000+00:00'
+- author: Sadie-silly
+  changes:
+    - type: Add
+      message: Mapped decorations and microscope on toast
+  id: 251
+  time: '2026-10-14T16:25:41.0000000+00:00'
