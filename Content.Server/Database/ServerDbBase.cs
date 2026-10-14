@@ -223,9 +223,18 @@ namespace Content.Server.Database
 
         private async Task<HumanoidCharacterProfile> ConvertProfiles(Profile profile)
         {
-            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-            if (!prototypeManager.HasIndex<SpeciesPrototype>(profile.Species))
-                profile.Species = HumanoidCharacterProfile.DefaultSpecies;
+            var species = HumanoidCharacterProfile.DefaultSpecies;
+
+            {
+                var completion = new TaskCompletionSource();
+                _task.RunOnMainThread(() =>
+                {
+                    var markingManager = IoCManager.Resolve<IPrototypeManager>();
+                    if (markingManager.HasIndex(profile.Species))
+                        species = profile.Species;
+                });
+                await completion.Task;
+            }
 
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
@@ -278,7 +287,7 @@ namespace Content.Server.Database
 
                     try
                     {
-                        markings = markingManager.ConvertMarkings(markingsList, profile.Species);
+                        markings = markingManager.ConvertMarkings(markingsList, species);
                         completion.SetResult();
                     }
                     catch (Exception ex)
@@ -316,7 +325,7 @@ namespace Content.Server.Database
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.FlavorText,
-                profile.Species,
+                species,
                 profile.Age,
                 sex,
                 gender,
