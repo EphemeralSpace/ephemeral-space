@@ -580,7 +580,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, null);
             RaiseLocalEvent(meleeUid, missEvent);
             _meleeSound.PlaySwingSound(user, meleeUid, component);
-            _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.35));
+            _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.4));
             return;
         }
 
@@ -607,7 +607,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         // somewhat messy scuffle. See also, heavy attacks.
         Interaction.DoContactInteraction(user, target, weapon, true, interactionParticles: false); // Stellar/ES - Interaction particles
 
-        _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.35));
+        _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.4));
 
         // For stuff that cares about it being attacked.
         var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
@@ -639,7 +639,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         if (damageResult.GetTotal() > FixedPoint2.Zero)
         {
             DoDamageEffect(targets, user, targetXform);
-            _status.TrySetStatusEffectDuration(target.Value, MeleeDamageSlowStatusEffect, TimeSpan.FromSeconds(0.35));
+            _status.TrySetStatusEffectDuration(target.Value, MeleeDamageSlowStatusEffect, TimeSpan.FromSeconds(0.2));
 
             // ES START
             // dog shit copy plaste but thats melee for you
@@ -694,7 +694,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             RaiseLocalEvent(meleeUid, missEvent);
 
             // immediate audio feedback
-            _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.35));
+            _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.4));
             _meleeSound.PlaySwingSound(user, meleeUid, component);
 
             return true;
@@ -749,7 +749,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         var weapon = GetEntity(ev.Weapon);
 
         Interaction.DoContactInteraction(user, weapon, null, true, interactionParticles: false); // Stellar - Interaction particles
-        _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.35));
+        _status.TrySetStatusEffectDuration(user, MeleeAttackSlowStatusEffect, TimeSpan.FromSeconds(0.4));
 
         // For stuff that cares about it being attacked.
         foreach (var target in targets)
@@ -785,7 +785,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
             if (damageResult.GetTotal() > FixedPoint2.Zero)
             {
                 appliedDamage += damageResult;
-                _status.TrySetStatusEffectDuration(entity, MeleeDamageSlowStatusEffect, TimeSpan.FromSeconds(0.35));
+                _status.TrySetStatusEffectDuration(entity, MeleeDamageSlowStatusEffect, TimeSpan.FromSeconds(0.2));
 
                 if (meleeUid == user)
                 {
