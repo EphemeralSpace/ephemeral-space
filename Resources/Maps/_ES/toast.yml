@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.0.1
   forkId: ""
   forkVersion: ""
-  time: 10/14/2026 15:30:43
-  entityCount: 14814
+  time: 10/14/2026 16:11:10
+  entityCount: 14813
 maps:
 - 3
 grids:
@@ -35992,11 +35992,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -13.5,-8.5
-  - uid: 98
-    components:
-    - type: Transform
-      parent: 2
-      pos: -13.5,-8.5
   - uid: 437
     components:
     - type: Transform
@@ -36082,11 +36077,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -26.5,-23.5
-    - type: UserInterface
-      actors:
-        enum.DisposalUnitUiKey.Key:
-        - invalid
-    - type: ActiveUserInterface
   - uid: 3691
     components:
     - type: Transform
