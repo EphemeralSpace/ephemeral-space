@@ -1,4 +1,5 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server._ES.StationEvents.VentSwarm.Components;
@@ -11,7 +12,7 @@ public sealed partial class ESVentSwarmRuleComponent : Component
     public EntityUid? Vent;
 
     [DataField]
-    public EntityTableSelector SpawnTable;
+    public PrototypeTableSelector<EntityPrototype> SpawnTable;
 
     [DataField]
     public int MinSwarmCount = 6;

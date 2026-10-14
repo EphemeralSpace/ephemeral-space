@@ -23,8 +23,8 @@
     sprite: Clothing/OuterClothing/Coats/detective.rsi
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: FlippoEngravedLighter
 
 - type: entity

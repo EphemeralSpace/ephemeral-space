@@ -5,8 +5,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: EmergencyPouchBrute
         - id: EmergencyPouchBurn
 
@@ -17,8 +17,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: EmergencyPouchBurn
           amount: 2
 
@@ -29,8 +29,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: EmergencyPouchToxin
           amount: 2
 
@@ -41,8 +41,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: EmergencyPouchOxygenDeprivation
           amount: 2
 
@@ -53,8 +53,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: EmergencyPouchBrute
           amount: 2
 
@@ -65,8 +65,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: EmergencyPouchRadiation
           amount: 2
 

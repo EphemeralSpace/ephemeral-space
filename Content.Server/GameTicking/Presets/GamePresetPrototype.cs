@@ -1,5 +1,5 @@
 using Content.Server.Maps;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -33,7 +33,7 @@ namespace Content.Server.GameTicking.Presets
         public int? MaxPlayers;
 
         [DataField]
-        public EntityTableSelector Rules { get; private set; } = new NoneSelector();
+        public PrototypeTableSelector<EntityPrototype> Rules { get; private set; } = new NoneSelector<EntityPrototype>();
 
         /// <summary>
         /// If specified, the gamemode will only be run with these maps.

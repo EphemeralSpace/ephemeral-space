@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._ES.Telesci.Components;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.Gravity;
 using Content.Shared.Station;
 using Robust.Shared.Timing;

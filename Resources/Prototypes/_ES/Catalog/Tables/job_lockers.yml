@@ -2,8 +2,8 @@
 # Command
 - type: entityTable
   id: ESLockerFillCaptain
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingHeadsetAltCommand
@@ -17,8 +17,8 @@
 
 - type: entityTable
   id: ESLockerFillStationAdmin
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: CigarGoldCase
@@ -33,8 +33,8 @@
 # Security
 - type: entityTable
   id: ESFillLockerSecurity
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: FlashlightSeclite
       prob: 0.8
     - id: ESClothingHeadHelmetSecurity
@@ -45,8 +45,8 @@
 
 - type: entityTable
   id: ESFillLockerDetective
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingEyesGlassesSunglasses
     - id: ESWeaponRevolver357 # sure, the other security roles don't get guns, but what is a detective without their revolver?
     - id: ClothingBeltSecurity # this belt is supposed to be empty so det doesn't get a batong
@@ -63,8 +63,8 @@
 # Service
 - type: entityTable
   id: ESFillLockerBooze
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingOuterVest
     - id: ESWeaponDoubleBarrelShotgunNonlethal
     - id: DrinkShaker
@@ -72,9 +72,8 @@
     - id: DrinkBeerBottleFull
       amount: !type:BinomialNumberSelector
         trials: 3
-    - !type:AllSelector
-      rolls: 2
-      children:
+    - rolls: 2
+      all:
       - id: ESShotgunShellsBoxBeanbag
       - id: RagItem
 
@@ -198,8 +197,8 @@
 # Science
 - type: entityTable
   id: ESFillLockerScientist
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingHandsGlovesLatex
     - id: ClothingHeadsetScience
     - id: ClothingNeckTieSci
@@ -210,8 +209,8 @@
 # Medical
 - type: entityTable
   id: ESLockerFillPhysician
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: BriefcaseAluminumFilledDoctor
     - id: ClothingHandsGlovesColorBlue
     - id: ClothingHeadsetMedical

@@ -6,8 +6,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: ClothingBeltUtility
           amount: 2
         - id: ClothingEyesGlassesMeson
@@ -29,8 +29,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: ToolboxMechanicalFilled
           amount: 2
         - id: ToolboxElectricalFilled
@@ -92,8 +92,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: CableHVStack
           amount: 2
         - id: CableMVStack
@@ -109,8 +109,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: ToolboxElectricalFilled
           amount: 2
         - id: ClothingHandsGlovesInsulated
@@ -160,8 +160,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: SheetSteel
         - id: CableApcStack
         - id: DoorElectronics
@@ -203,8 +203,8 @@
 
 - type: entityTable
   id: RandomTechBoardTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: AirAlarmElectronics
     - id: FireAlarmElectronics
     - id: DoorElectronics

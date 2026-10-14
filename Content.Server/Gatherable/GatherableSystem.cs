@@ -1,6 +1,6 @@
 using Content.Server.Destructible;
 using Content.Server.Gatherable.Components;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;

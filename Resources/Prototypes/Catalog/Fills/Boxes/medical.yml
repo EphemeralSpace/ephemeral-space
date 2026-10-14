@@ -127,8 +127,8 @@
     - 0,0,3,1
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: ChemistryEmptyVial
           amount: 3
         - id: ChemistryEmptyVialSmall

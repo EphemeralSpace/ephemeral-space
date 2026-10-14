@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 

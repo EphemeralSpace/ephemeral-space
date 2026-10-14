@@ -24,8 +24,8 @@
         components:
           - Hands
       loot:
-        All: !type:GroupSelector
-          children:
+        All:
+          group:
           - id: FoodSpaceshroom
     - type: Damageable
       damageContainer: StructuralInorganic

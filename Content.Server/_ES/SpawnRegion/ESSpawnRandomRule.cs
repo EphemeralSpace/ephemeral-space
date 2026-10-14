@@ -1,6 +1,6 @@
 using Content.Server._ES.SpawnRegion.Components;
 using Content.Server.GameTicking.Rules;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 

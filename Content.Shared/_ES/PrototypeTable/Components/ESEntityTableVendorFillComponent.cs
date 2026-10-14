@@ -1,8 +1,9 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.VendingMachines;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
-namespace Content.Shared._ES.EntityTable.Components;
+namespace Content.Shared._ES.PrototypeTable.Components;
 
 /// <summary>
 /// Works with <see cref="VendingMachineComponent"/> to fill the inventory based on an entity table.
@@ -15,5 +16,5 @@ public sealed partial class ESEntityTableVendorFillComponent : Component
     /// Items that will be added to <see cref="VendingMachineComponent.Inventory"/> on MapInit.
     /// </summary>
     [DataField]
-    public EntityTableSelector Inventory = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Inventory = new NoneSelector<EntityPrototype>();
 }

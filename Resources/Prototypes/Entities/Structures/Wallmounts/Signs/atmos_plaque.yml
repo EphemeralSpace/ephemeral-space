@@ -10,8 +10,8 @@
     - sprite: Structures/Wallmounts/signs.rsi
       state: atmosplaque
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: PlaqueAtmosZUM
         weight: 1
       - id: PlaqueAtmosFEA

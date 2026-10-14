@@ -1,5 +1,6 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Trigger.Components.Effects;
 
@@ -15,7 +16,7 @@ public sealed partial class SpawnEntityTableOnTriggerComponent : BaseXOnTriggerC
     /// The table to spawn.
     /// </summary>
     [DataField(required: true)]
-    public EntityTableSelector Table;
+    public PrototypeTableSelector<EntityPrototype> Table;
 
     /// <summary>
     /// Use MapCoordinates for spawning?

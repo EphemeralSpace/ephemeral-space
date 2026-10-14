@@ -30,8 +30,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: MaterialCloth
           amount: 2
         - id: MaterialDurathread
@@ -129,30 +129,26 @@
 
 - type: entityTable
   id: RandomMaterialCrateTable
-  table: !type:GroupSelector
-    children:
-    - !type:GroupSelector # regular materials, 10
-      weight: 35
-      children:
+  table:
+    group:
+    - weight: 35
+      group:
       - id: SheetGlass10
       - id: SheetSteel10
       - id: SheetPlastic10
-    - !type:GroupSelector # regular materials, stack
-      weight: 30
-      children:
+    - weight: 30
+      group:
       - id: SheetGlass
       - id: SheetSteel
       - id: SheetPlastic
-    - !type:GroupSelector # secondary materials, stack
-      weight: 30
-      children:
+    - weight: 30
+      group:
       - id: MaterialCloth
       - id: SheetPlasteel
       - id: MaterialWoodPlank
       - id: PartRodMetal
-    - !type:GroupSelector # tertiary materials, singles
-      weight: 5
-      children:
+    - weight: 5
+      group:
       - id: SheetPlasma1
       - id: SheetUranium1
       - id: IngotGold1
@@ -166,7 +162,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: RandomMaterialCrateTable
         rolls: !type:RangeNumberSelector
           range: 2, 4
@@ -179,8 +175,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - id: SheetSteel
         - id: SheetGlass
         - id: SheetPlastic

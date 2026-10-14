@@ -144,8 +144,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: d4Dice
         - id: d6Dice
         - id: d8Dice

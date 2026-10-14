@@ -1,5 +1,6 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._ES.Voting.Components;
 
@@ -11,5 +12,5 @@ namespace Content.Shared._ES.Voting.Components;
 public sealed partial class ESEntityPrototypeVoteComponent : Component
 {
     [DataField(required: true)]
-    public EntityTableSelector Options = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Options = new NoneSelector<EntityPrototype>();
 }

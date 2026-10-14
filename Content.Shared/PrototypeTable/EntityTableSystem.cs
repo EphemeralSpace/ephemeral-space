@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.EntityTable;
+namespace Content.Shared.PrototypeTable;
 
 public sealed partial class EntityTableSystem : EntitySystem
 {
@@ -14,7 +14,7 @@ public sealed partial class EntityTableSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
 
     public EntProtoId GetSingleSpawn(
-        EntityTableSelector? table,
+        PrototypeTableSelector<EntityPrototype>? table,
         System.Random? rand = null,
         EntityTableContext? ctx = null)
     {
@@ -29,14 +29,14 @@ public sealed partial class EntityTableSystem : EntitySystem
         return GetSpawns(entTableProto.Table, rand, ctx);
     }
 
-    public IEnumerable<EntProtoId> GetSpawns(EntityTableSelector? table, System.Random? rand = null, EntityTableContext? ctx = null)
+    public IEnumerable<EntProtoId> GetSpawns(PrototypeTableSelector<EntityPrototype>? table, System.Random? rand = null, EntityTableContext? ctx = null)
     {
         if (table == null)
             return new List<EntProtoId>();
 
         rand ??= _random.GetRandom();
         ctx ??= new EntityTableContext();
-        return table.GetSpawns(rand, EntityManager, _prototypeManager, ctx);
+        return table.GetSpawns(rand, EntityManager, _prototypeManager, ctx).Select(p => new EntProtoId(p));
     }
 }
 

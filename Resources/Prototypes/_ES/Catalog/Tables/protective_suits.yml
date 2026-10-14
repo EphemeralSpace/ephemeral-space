@@ -1,17 +1,15 @@
 - type: entityTable
   id: ESFillLockerFireStandard
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ESClothingOuterSuitFire
     - id: ESClothingHeadHelmetFire
     - id: ClothingMaskGas
-    - !type:GroupSelector
-      children:
+    - group:
       - id: EmergencyOxygenTankFilled
       - id: OxygenTankFilled
     - id: CrowbarRed
-    - !type:GroupSelector
-      children:
+    - group:
       - id: FireExtinguisher
         weight: 98
       - id: SprayBottleWater #It's just budget cut after budget cut man
@@ -21,8 +19,8 @@
 
 - type: entityTable
   id: ESFillBiohazardSuit
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ESClothingHeadHatHoodBio
     - id: ESClothingOuterSuitBio
     - id: EmergencyPouchToxin
@@ -30,8 +28,8 @@
 
 - type: entityTable
   id: ESFillRadiationSuit
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ESClothingHeadHatHoodRadiation
     - id: ESClothingOuterSuitRadiation
     - id: GeigerCounter

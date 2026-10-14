@@ -52,8 +52,8 @@
     heldPrefix: box
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: FoodDonutPink
           amount: 3
         - id: FoodDonutPlain
@@ -246,11 +246,10 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: KnifePlastic
-        - !type:GroupSelector
-          children:
+        - group:
           - id: FoodPizzaMargherita
             weight: 1.5
           - id: FoodPizzaMeat
@@ -345,7 +344,7 @@
     storedOffset: -1,1
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: FoodDonkpocket
           amount: 6

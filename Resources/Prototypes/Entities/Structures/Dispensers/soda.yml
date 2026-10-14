@@ -34,8 +34,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: DrinkCoconutWaterJug
         - id: DrinkCoffeeJug
         - id: DrinkColaBottleFull

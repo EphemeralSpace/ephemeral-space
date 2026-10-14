@@ -6,8 +6,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
+      entity_storage:
+        all:
         - tableId: ESFillRadiationSuit
           rolls: 2
         - id: DrinkVodkaBottleFull

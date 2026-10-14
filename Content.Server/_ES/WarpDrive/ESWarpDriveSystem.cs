@@ -18,7 +18,7 @@ using Content.Shared._ES.WarpDrive;
 using Content.Shared.Administration;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Hands;
 using Robust.Shared.Audio;

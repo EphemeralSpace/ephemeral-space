@@ -1,9 +1,9 @@
 using System.Linq;
-using Content.Shared._ES.EntityTable.Components;
-using Content.Shared.EntityTable;
+using Content.Shared._ES.PrototypeTable.Components;
+using Content.Shared.PrototypeTable;
 using Content.Shared.VendingMachines;
 
-namespace Content.Shared._ES.EntityTable;
+namespace Content.Shared._ES.PrototypeTable;
 
 /// <summary>
 /// This handles <see cref="ESEntityTableVendorFillComponent"/>

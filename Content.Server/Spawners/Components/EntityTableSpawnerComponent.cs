@@ -1,5 +1,5 @@
 using Content.Server.Spawners.EntitySystems;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Spawners.Components;
@@ -11,7 +11,7 @@ public sealed partial class EntityTableSpawnerComponent : Component
     /// Table that determines what gets spawned.
     /// </summary>
     [DataField(required: true)]
-    public EntityTableSelector Table = default!;
+    public PrototypeTableSelector<EntityPrototype> Table = default!;
 
     /// <summary>
     /// Scatter of entity spawn coordinates

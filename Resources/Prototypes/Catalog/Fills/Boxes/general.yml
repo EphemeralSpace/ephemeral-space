@@ -109,8 +109,8 @@
       - state: lightmixed
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         # ES START
         - id: ESLightTubeDepartment
         # ES END
@@ -125,8 +125,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: LightTubeCrystalRed
         - id: LightTubeCrystalGreen
         rolls: 6 # Rolls instead of amounts to alternate.
@@ -216,8 +216,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
           - id: InflatableWallStack
             amount: 2
           - id: InflatableDoorStack
@@ -235,8 +235,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: ClothingShoesBootsPerformer
         - id: ClothingHeadPerformerWig
 
@@ -419,8 +419,8 @@
       - Candle
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Candle
           amount: 4
         - id: CandleBlue
@@ -439,8 +439,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: CandleSmall
           amount: 8
         - id: CandleBlueSmall
@@ -470,8 +470,8 @@
       - state: darts
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Dart
           amount: 2
         - id: DartBlue
@@ -509,8 +509,8 @@
       - state: utensils
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: Fork
           amount: 2
         - id: Spoon

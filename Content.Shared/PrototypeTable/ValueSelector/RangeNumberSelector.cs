@@ -1,4 +1,4 @@
-namespace Content.Shared.EntityTable.ValueSelector;
+namespace Content.Shared.PrototypeTable.ValueSelector;
 
 /// <summary>
 /// Gives a value between the two numbers specified, inclusive.

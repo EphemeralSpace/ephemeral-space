@@ -1,5 +1,5 @@
 using Content.Shared._ES.SpawnRegion;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._ES.SpawnRegion.Components;
@@ -16,7 +16,7 @@ public sealed partial class ESSpawnRandomRuleComponent : Component
     /// Entities that will be spawned
     /// </summary>
     [DataField]
-    public EntityTableSelector Table = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Table = new NoneSelector<EntityPrototype>();
 
     /// <summary>
     ///     If non-null, will use this spawn region to choose locations

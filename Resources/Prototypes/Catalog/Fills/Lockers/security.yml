@@ -5,7 +5,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillLockerSecurity
 
 - type: entity
@@ -15,7 +15,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESFillLockerDetective
 
 - type: entity
@@ -25,13 +25,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: FillClosetBomb
 
 - type: entityTable
   id: FillClosetBomb
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: Wirecutter
     - id: Screwdriver
     - id: Multitool

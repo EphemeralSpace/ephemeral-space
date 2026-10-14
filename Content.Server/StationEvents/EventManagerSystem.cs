@@ -7,8 +7,8 @@ using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.EntityTable.EntitySelectors;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
+using Content.Shared.PrototypeTable;
 
 namespace Content.Server.StationEvents;
 
@@ -51,9 +51,9 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Randomly runs an event from provided EntityTableSelector.
+    /// Randomly runs an event from provided prototype table.
     /// </summary>
-    public void RunRandomEvent(EntityTableSelector limitedEventsTable)
+    public void RunRandomEvent(PrototypeTableSelector<EntityPrototype> limitedEventsTable)
     {
         var availableEvents = AvailableEvents(); // handles the player counts and individual event restrictions.
                                                  // Putting this here only makes any sense in the context of the toolshed commands in BasicStationEventScheduler. Kill me.
@@ -81,10 +81,10 @@ public sealed partial class EventManagerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns true if the provided EntityTableSelector gives at least one prototype with a StationEvent comp.
+    /// Returns true if the provided prototype table gives at least one prototype with a StationEvent comp.
     /// </summary>
     public bool TryBuildLimitedEvents(
-        EntityTableSelector limitedEventsTable,
+        PrototypeTableSelector<EntityPrototype> limitedEventsTable,
         Dictionary<EntityPrototype, StationEventComponent> availableEvents,
         out Dictionary<EntityPrototype, StationEventComponent> limitedEvents
         )

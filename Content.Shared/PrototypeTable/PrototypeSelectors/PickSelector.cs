@@ -1,30 +1,27 @@
 using System.Linq;
-using Content.Shared.EntityTable;
-using Content.Shared.EntityTable.EntitySelectors;
-using Content.Shared.EntityTable.ValueSelector;
+using Content.Shared.PrototypeTable.ValueSelector;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Shared._ES.EntityTable.EntitySelectors;
+namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 
 /// <summary>
 /// Picks out a specified number of spawns out of all spawns provided by child selectors.
 /// Does not respect weight.
 /// </summary>
 /// <remarks>
-/// This is essentially the same as <see cref="GroupSelector"/> except it selects a single spawn instead of a single selector.
+/// This is essentially the same as <see cref="GroupSelector{T}"/> except it selects a single spawn instead of a single selector.
 /// </remarks>
-public sealed partial class ESPickSelector : EntityTableSelector
+public sealed class PickSelector<T> : PrototypeTableSelector<T>
+    where T: class, IPrototype
 {
     public const string DataFieldTag = "pick";
 
-    [DataField(DataFieldTag, required: true)]
-    public EntityTableSelector Child;
+    public PrototypeTableSelector<T> Child = new NoneSelector<T>();
 
-    [DataField]
     public NumberSelector Amount = new ConstantNumberSelector(1);
 
-    protected override IEnumerable<EntProtoId> GetSpawnsImplementation(System.Random rand,
+    protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx)

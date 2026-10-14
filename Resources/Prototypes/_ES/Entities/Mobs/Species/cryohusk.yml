@@ -11,8 +11,8 @@
     species: ESCryohusk
   - type: EntityTableContainerFill
     containers:
-      body_organs: !type:AllSelector
-        children:
+      body_organs:
+        all:
         - id: ESOrganCryohuskHead
         - id: ESOrganCryohuskTorso
         - id: ESOrganCryohuskLegLeft

@@ -5,7 +5,7 @@ using Content.Server.StationEvents.Events;
 using Content.Shared._ES.Core;
 using Content.Shared._ES.Voting.Components;
 using Content.Shared._ES.Voting.Results;
-using Content.Shared.EntityTable;
+using Content.Shared.PrototypeTable;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Localizations;
 using Robust.Server.GameObjects;

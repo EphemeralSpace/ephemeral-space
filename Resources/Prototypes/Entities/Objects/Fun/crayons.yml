@@ -285,8 +285,8 @@
     heldPrefix: box
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: CrayonRed
         - id: CrayonOrange
         - id: CrayonYellow

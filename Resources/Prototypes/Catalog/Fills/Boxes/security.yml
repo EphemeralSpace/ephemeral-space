@@ -108,8 +108,8 @@
     - 0,0,1,1
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: TimerTrigger
           amount: 2
         - id: VoiceTrigger

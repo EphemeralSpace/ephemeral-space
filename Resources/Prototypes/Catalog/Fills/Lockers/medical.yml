@@ -1,7 +1,7 @@
 - type: entityTable
   id: LockerFillMedicine
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: BoxSyringe
     - id: ChemistryBottleEpinephrine
     - id: Brutepack
@@ -22,7 +22,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: LockerFillMedicine
 
 - type: entity
@@ -33,13 +33,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: LockerFillMedicine
 
 - type: entityTable
   id: LockerFillMedicalDoctor
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: HandheldHealthAnalyzer
       prob: 0.6
     - id: ClothingHandsGlovesLatex
@@ -54,7 +54,7 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
 # ES Start
         tableId: ESLockerFillPhysician
 # ES End
@@ -67,15 +67,15 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
 # ES Start
         tableId: ESLockerFillPhysician
 # ES End
 
 - type: entityTable
   id: LockerFillChemistry
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: BoxSyringe
     - id: BoxBeaker
     - id: BoxBeaker
@@ -95,5 +95,5 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: LockerFillChemistry

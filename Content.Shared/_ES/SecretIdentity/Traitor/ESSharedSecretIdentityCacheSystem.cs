@@ -3,7 +3,7 @@ using Content.Shared._ES.SecretIdentity.Traitor.Components;
 using Content.Shared._ES.SpawnRegion;
 using Content.Shared.Alert;
 using Content.Shared.DoAfter;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -161,7 +161,7 @@ public sealed partial class ESAddCacheSecretIdentityModifierEvent : ESSecretIden
     public ProtoId<ESSpawnRegionPrototype> Region = "ESMaintenance";
 
     [DataField]
-    public EntityTableSelector CacheProto = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> CacheProto = new NoneSelector<EntityPrototype>();
 }
 
 [Serializable, NetSerializable]

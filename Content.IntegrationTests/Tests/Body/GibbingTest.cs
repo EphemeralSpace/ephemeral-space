@@ -16,8 +16,8 @@ public sealed class GibletTest
   - type: Body
   - type: EntityTableContainerFill
     containers:
-      body_organs: !type:AllSelector
-        children:
+      body_organs:
+        all:
         - id: Giblet
         - id: Giblet
         - id: Giblet

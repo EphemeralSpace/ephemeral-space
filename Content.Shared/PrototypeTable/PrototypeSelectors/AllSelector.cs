@@ -1,16 +1,18 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.EntityTable.EntitySelectors;
+namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 
 /// <summary>
 /// Gets spawns from all of the child selectors
 /// </summary>
-public sealed partial class AllSelector : EntityTableSelector
+public sealed class AllSelector<T> : PrototypeTableSelector<T>
+    where T: class, IPrototype
 {
-    [DataField(required: true)]
-    public List<EntityTableSelector> Children;
+    public const string DataFieldTag = "all";
 
-    protected override IEnumerable<EntProtoId> GetSpawnsImplementation(System.Random rand,
+    public List<PrototypeTableSelector<T>> Children = new();
+
+    protected override IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx)

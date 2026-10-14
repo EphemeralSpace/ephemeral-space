@@ -206,7 +206,7 @@
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/mixed.rsi
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:NestedSelector
+      storagebase:
         rolls: !type:RangeNumberSelector
           range: 2, 9
         tableId: RandomSoakedSmokeTable
@@ -215,8 +215,8 @@
 
 - type: entityTable
   id: RandomSoakedSmokeTable
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: CigaretteWeldingFuel
       weight: 3
     - id: CigaretteMold

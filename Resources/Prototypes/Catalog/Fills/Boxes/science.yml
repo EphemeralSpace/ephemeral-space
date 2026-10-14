@@ -10,8 +10,8 @@
     maxItemSize: Normal
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: LargeBeaker
           amount: 2
         - id: Beaker

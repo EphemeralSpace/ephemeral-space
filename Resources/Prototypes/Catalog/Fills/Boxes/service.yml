@@ -22,8 +22,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: PaperAgrichemManual
         - id: ChemistryEmptyBottle01
         - id: ChemistryBottlePotassium
@@ -58,8 +58,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: LightBulbCrystalCyan
           amount: 2
         - id: LightBulbCrystalBlue
@@ -80,8 +80,8 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      storagebase: !type:AllSelector
-        children:
+      storagebase:
+        all:
         - id: LightTubeCrystalCyan
           amount: 2
         - id: LightTubeCrystalBlue

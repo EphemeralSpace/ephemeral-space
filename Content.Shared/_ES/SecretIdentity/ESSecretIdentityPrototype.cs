@@ -1,5 +1,5 @@
 using Content.Shared._ES.Tips;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -94,13 +94,13 @@ public sealed partial class ESSecretIdentityPrototype : IPrototype, IInheritingP
     /// Removed when the secret identity is removed.
     /// </summary>
     [DataField]
-    public EntityTableSelector Actions = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Actions = new NoneSelector<EntityPrototype>();
 
     /// <summary>
     /// Objectives to assign
     /// </summary>
     [DataField]
-    public EntityTableSelector Objectives = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Objectives = new NoneSelector<EntityPrototype>();
 
     /// <summary>
     /// Players with any of these jobs will be ineligible for receiving this secret identity

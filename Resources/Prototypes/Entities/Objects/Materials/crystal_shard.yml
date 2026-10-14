@@ -171,8 +171,8 @@
   name: random crystal shard
   components:
   - type: EntityTableSpawner
-    table: !type:GroupSelector
-      children:
+    table:
+      group:
       - id: ShardCrystalGreen
       - id: ShardCrystalPink
       - id: ShardCrystalYellow

@@ -1,6 +1,6 @@
 using Content.Shared._ES.SecretIdentity.Components;
 using Content.Shared._ES.Tips;
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -51,7 +51,7 @@ public sealed partial class ESOrganizationPrototype : IPrototype, IInheritingPro
     /// The objectives that this organization gives to its members
     /// </summary>
     [DataField]
-    public EntityTableSelector Objectives = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> Objectives = new NoneSelector<EntityPrototype>();
 
     [DataField(required: true)]
     public EntProtoId<ESOrganizationRuleComponent> GameRule;

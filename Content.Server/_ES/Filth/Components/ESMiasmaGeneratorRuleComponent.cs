@@ -1,4 +1,5 @@
-using Content.Shared.EntityTable.EntitySelectors;
+using Content.Shared.PrototypeTable.PrototypeSelectors;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server._ES.Filth.Components;
@@ -9,7 +10,7 @@ public sealed partial class ESMiasmaGeneratorRuleComponent : Component
     public const float MinEventMols = 1.5f;
 
     [DataField]
-    public EntityTableSelector SpawnTable = new NoneSelector();
+    public PrototypeTableSelector<EntityPrototype> SpawnTable = new NoneSelector<EntityPrototype>();
 
     [DataField]
     public TimeSpan UpdateRate = TimeSpan.FromSeconds(10f);

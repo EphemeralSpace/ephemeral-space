@@ -5,13 +5,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: FillClosetTool
 
 - type: entityTable
   id: FillClosetTool
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ClothingOuterVestHazard
       prob: 0.4
     - id: FlashlightLantern
@@ -36,9 +36,8 @@
       prob: 0.2
     - id: ClothingHandsGlovesInsulated
       prob: 0.05
-    - !type:GroupSelector
-      prob: 0.4
-      children:
+    - prob: 0.4
+      group:
       - id: ClothingHeadHatHardhatRed
       - id: ClothingHeadHatHardhatBlue
       - id: ClothingHeadHatHardhatOrange
@@ -58,20 +57,19 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: FillElectricalSupplies
 
 - type: entityTable
   id: FillElectricalSupplies
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - id: ToolboxElectricalFilled
       prob: 0.7
     - id: FirelockElectronics
       prob: 0.05
-    - !type:GroupSelector
-      prob: 0.5
-      children:
+    - prob: 0.5
+      group:
       - id: CableApcStack
         weight: 5
       - id: CableMVStack
@@ -85,21 +83,19 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
-        children:
-        - !type:NestedSelector
-          tableId: FillWelderSupplies
+      entity_storage:
+        all:
+        - tableId: FillWelderSupplies
           rolls: !type:ConstantNumberSelector
             value: 3
-        - !type:NestedSelector
-          tableId: FillWelderSuppliesMask
+        - tableId: FillWelderSuppliesMask
           rolls: !type:ConstantNumberSelector
             value: 3
 
 - type: entityTable
   id: FillWelderSupplies
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: ClothingHeadHatWelding
     - id: ClothingHeadHatWeldingMaskFlame
       weight: 0.25
@@ -108,8 +104,8 @@
 
 - type: entityTable
   id: FillWelderSuppliesMask
-  table: !type:GroupSelector
-    children:
+  table:
+    group:
     - id: WelderMini
     - id: Welder
     - id: WelderIndustrial

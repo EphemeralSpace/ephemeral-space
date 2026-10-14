@@ -5,13 +5,13 @@
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:NestedSelector
+      entity_storage:
         tableId: ESTrashBinLoot
 
 - type: entityTable
   id: ESTrashBinLoot # A version of MaintenanceLockerLoot, but with lower probabilities
-  table: !type:AllSelector
-    children:
+  table:
+    all:
     - tableId: ESMaintLoot
       rolls: !type:BinomialNumberSelector
         trials: 4

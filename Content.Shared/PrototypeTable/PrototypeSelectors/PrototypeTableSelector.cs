@@ -1,13 +1,15 @@
-using Content.Shared.EntityTable.Conditions;
-using Content.Shared.EntityTable.ValueSelector;
+using Content.Shared.PrototypeTable.Conditions;
+using Content.Shared.PrototypeTable.ValueSelector;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Shared.EntityTable.EntitySelectors;
+namespace Content.Shared.PrototypeTable.PrototypeSelectors;
 
-[ImplicitDataDefinitionForInheritors, UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
-public abstract partial class EntityTableSelector
+[DataDefinition, UsedImplicitly(ImplicitUseTargetFlags.WithInheritors)]
+[CopyByRef]
+public abstract partial class PrototypeTableSelector<T>
+    where T: class, IPrototype
 {
     /// <summary>
     /// The number of times this selector is run
@@ -31,7 +33,7 @@ public abstract partial class EntityTableSelector
     /// A list of conditions that must evaluate to 'true' for the selector to apply.
     /// </summary>
     [DataField]
-    public List<EntityTableCondition> Conditions = new();
+    public List<PrototypeTableCondition> Conditions = new();
 
     /// <summary>
     /// If true, all the conditions must be successful in order for the selector to process.
@@ -40,7 +42,7 @@ public abstract partial class EntityTableSelector
     [DataField]
     public bool RequireAll = true;
 
-    public IEnumerable<EntProtoId> GetSpawns(System.Random rand,
+    public IEnumerable<ProtoId<T>> GetSpawns(System.Random rand,
         IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx)
@@ -83,7 +85,7 @@ public abstract partial class EntityTableSelector
         return success;
     }
 
-    protected abstract IEnumerable<EntProtoId> GetSpawnsImplementation(System.Random rand,
+    protected abstract IEnumerable<ProtoId<T>> GetSpawnsImplementation(System.Random rand,
         IEntityManager entMan,
         IPrototypeManager proto,
         EntityTableContext ctx);
