@@ -223,18 +223,8 @@ namespace Content.Server.Database
 
         private async Task<HumanoidCharacterProfile> ConvertProfiles(Profile profile)
         {
+            // TODO: HACK BECAUSE THIS IS CAUSING CRASHES AND WE DONT USE IT. SORRY
             var species = HumanoidCharacterProfile.DefaultSpecies;
-
-            {
-                var completion = new TaskCompletionSource();
-                _task.RunOnMainThread(() =>
-                {
-                    var markingManager = IoCManager.Resolve<IPrototypeManager>();
-                    if (markingManager.HasIndex(profile.Species))
-                        species = profile.Species;
-                });
-                await completion.Task;
-            }
 
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
