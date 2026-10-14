@@ -99,7 +99,7 @@ public sealed partial class ESElectricalOverloadRule : StationEventSystem<ESElec
                 var coord = _map.ToCoordinates(tile, gridComp);
 
                 if (RobustRandom.Prob(component.FireChance))
-                    _tileFire.TryDoTileFire(coord, stage: RobustRandom.Next(1, 3));
+                    _tileFire.TryDoTileFire(coord, stage: RobustRandom.Next(1, 3), strength: 15);
             }
 
             // Break lights around the APC

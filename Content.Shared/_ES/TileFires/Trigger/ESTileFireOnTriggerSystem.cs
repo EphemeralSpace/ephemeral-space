@@ -8,6 +8,6 @@ public sealed partial class ESTileFireOnTriggerSystem : XOnTriggerSystem<ESTileF
 
     protected override void OnTrigger(Entity<ESTileFireOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
-        args.Handled |= _tileFire.TryDoTileFire(ent.Owner, args.User, ent.Comp.Stage);
+        args.Handled |= _tileFire.TryDoTileFire(ent.Owner, args.User, ent.Comp.Stage, ent.Comp.Strength);
     }
 }

@@ -11,4 +11,7 @@ public sealed partial class ESTileFireOnTriggerComponent : BaseXOnTriggerCompone
     /// </summary>
     [DataField]
     public int Stage = 1;
+
+    [DataField]
+    public int Strength = 5;
 }

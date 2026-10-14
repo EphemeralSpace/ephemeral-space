@@ -67,6 +67,8 @@
   - type: ESGreyTideVirusTarget
   - type: ESSparkOnHit
     prob: 0.25
+    tileFireChance: 0.2
+    tileFireStrength: 2
     count: 2
 # ES END
 

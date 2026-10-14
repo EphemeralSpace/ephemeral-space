@@ -143,10 +143,10 @@ public sealed partial class ExplosionPrototype : IPrototype
     public int MaxFireLevel = 1;
 
     /// <summary>
-    /// Whether the fire should spread after being spawned.
+    /// The strength of the fires spawned by this explosion.
     /// </summary>
     [DataField]
-    public bool FireSpread;
+    public int FireStrength = 5;
 // ES END
 
     /// <summary>

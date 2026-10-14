@@ -255,7 +255,7 @@ public abstract partial class SharedPoweredLightSystem : EntitySystem
 
         // break it
 // ES START
-        _sparks.DoSparks(uid, user: user, tileFireChance: tileFireChanceOverride);
+        _sparks.DoSparks(uid, user: user, tileFireChance: tileFireChanceOverride, tileFireStrength: 2);
 // ES END
         _bulbSystem.SetState(bulbUid.Value, LightBulbState.Broken, lightBulb);
         _bulbSystem.PlayBreakSound(bulbUid.Value, lightBulb, user);

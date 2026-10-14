@@ -27,5 +27,5 @@ public sealed partial class ESLightFailureEventComponent : Component
     ///     Chance for lights broken to tilefire. This is usually 5% but gets lowered here for obvious reasons
     /// </summary>
     [DataField]
-    public float TileFireChanceOverride = 0.0075f;
+    public float TileFireChanceOverride = 0.025f;
 }
