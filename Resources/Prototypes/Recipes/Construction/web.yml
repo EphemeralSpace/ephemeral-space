@@ -1,20 +1,4 @@
 - type: construction
-  id: WallWeb
-  graph: WebStructures
-  startNode: start
-  targetNode: wall
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  entityWhitelist:
-    tags:
-    - SpiderCraft
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: TableWeb
   graph: WebStructures
   startNode: start
