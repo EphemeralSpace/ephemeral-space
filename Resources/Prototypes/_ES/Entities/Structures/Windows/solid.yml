@@ -52,3 +52,15 @@
     - type: IconSmooth
       key: windows
       base: solid
+
+# Orange Solid
+- type: entity
+  parent: ESWindowSolid
+  id: ESWindowSolidOrange
+  suffix: Normal, Orange
+  components:
+    - type: Sprite
+      sprite: _ES/Structures/Windows/Solid/solid_orange_normal.rsi
+    - type: Icon
+      sprite: _ES/Structures/Windows/Solid/solid_orange_normal.rsi
+      state: full

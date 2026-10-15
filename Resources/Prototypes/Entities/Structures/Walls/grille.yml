@@ -15,7 +15,7 @@
       fx: EffectRCDDeconstruct4
     - type: CanBuildWindowOnTop
     - type: Sprite
-      drawdepth: Walls
+      drawdepth: UnderWindows
       sprite: Structures/Walls/grille.rsi
       layers:
         - state: grille
