@@ -40,7 +40,7 @@
       - ForceFixRotations
       - Window
   - type: Sprite
-    drawdepth: WallTops
+    drawdepth: Windows
   - type: Icon
     state: full
   - type: Physics
@@ -54,9 +54,6 @@
         - FullTileMask
         layer:
         - GlassLayer
-  - type: IconSmooth
-    key: windows
-    base: window
   - type: DamageVisuals
     thresholds: [5, 10, 20]
     damageDivisor: 4
@@ -64,6 +61,16 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
   - type: ESBarricadeConstructible
+
+# Iconsmoothed Fulltile
+- type: entity
+  id: BaseWindowFulltileSmoothed
+  parent: BaseWindowFulltile
+  abstract: true
+  components:
+  - type: IconSmooth
+    key: windows
+    base: window
 
 # Directional
 - type: entity
@@ -182,7 +189,7 @@
 # Normal Fulltile
 - type: entity
   id: BaseWindowFulltileRCDable
-  parent: [ BaseWindowFulltile, BaseWindowDamageable ] # if you want something to be RCDable it should be damageable to begin with, probably?
+  parent: [ BaseWindowFulltileSmoothed, BaseWindowDamageable ] # if you want something to be RCDable it should be damageable to begin with, probably?
   abstract: true
   components:
   - type: RCDDeconstructable
@@ -204,7 +211,7 @@
 # Reinforced Fulltile
 - type: entity
   id: BaseWindowReinforcedFulltileRCDable
-  parent: [ BaseWindowFulltile, BaseWindowReinforcedDamageable ]
+  parent: [ BaseWindowFulltileSmoothed, BaseWindowReinforcedDamageable ]
   abstract: true
   components:
   - type: RCDDeconstructable
