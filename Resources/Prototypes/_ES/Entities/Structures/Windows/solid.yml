@@ -1,0 +1,66 @@
+# Window Variants
+# Normal Solid Walls
+- type: entity
+  parent: ESBaseStructureSolid
+  id: ESWindowSolid
+  name: window frame
+  description: When a sheet of glass is placed inside, this object transforms in to what is commonly known & percieved as a "window."
+  suffix: Normal
+  components:
+    - type: Sprite
+      sprite: _ES/Structures/Windows/Solid/solid_normal.rsi
+    - type: Icon
+      sprite: _ES/Structures/Windows/Solid/solid_normal.rsi
+      state: full
+    - type: IconSmooth
+      key: windows
+      base: solid
+
+- type: entity
+  parent: ESWindowSolid
+  id: ESWindowSolidUnsmoothed
+  suffix: No-corner
+  components:
+    - type: IconSmooth
+      key: walls
+      base: solid
+
+- type: entity
+  parent: ESWindowSolid
+  id: ESWindowSolidThin
+  suffix: Thin
+  components:
+    - type: Sprite
+      sprite: _ES/Structures/Windows/Solid/solid_thin.rsi
+    - type: Icon
+      sprite: _ES/Structures/Windows/Solid/solid_thin.rsi
+      state: full
+    - type: IconSmooth
+      key: windows
+      base: solid
+
+- type: entity
+  parent: ESWindowSolid
+  id: ESWindowSolidRound
+  suffix: Round
+  components:
+    - type: Sprite
+      sprite: _ES/Structures/Windows/Solid/solid_round.rsi
+    - type: Icon
+      sprite: _ES/Structures/Windows/Solid/solid_round.rsi
+      state: full
+    - type: IconSmooth
+      key: windows
+      base: solid
+
+# Orange Solid
+- type: entity
+  parent: ESWindowSolid
+  id: ESWindowSolidOrange
+  suffix: Normal, Orange
+  components:
+    - type: Sprite
+      sprite: _ES/Structures/Windows/Solid/solid_orange_normal.rsi
+    - type: Icon
+      sprite: _ES/Structures/Windows/Solid/solid_orange_normal.rsi
+      state: full

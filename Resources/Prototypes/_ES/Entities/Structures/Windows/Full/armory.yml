@@ -1,6 +1,6 @@
 # Armory
 - type: entity
-  parent: BaseWindowFulltile
+  parent: BaseWindowFulltileSmoothed
   id: ESWindowArmory
   name: armory window
   description: Lets you stare at the hooligans raiding the big guns... You aren't one of the hooligans, are you?

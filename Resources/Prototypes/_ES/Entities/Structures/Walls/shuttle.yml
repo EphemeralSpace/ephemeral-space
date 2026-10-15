@@ -1,16 +1,32 @@
+# Shuttle Walls
+# Normal
 - type: entity
-  parent: BaseWall
-  id: ESWallShuttleArrivals
-  name: hardened shuttle wall
-  description: Effectively impervious to conventional means of destruction.
-  suffix: ES, Indestructible
+  parent: [ ESWallReinforcedProperties, BaseWall ]
+  id: WallShuttle
+  name: shuttle wall
   components:
   - type: Sprite
     sprite: Structures/Walls/shuttle.rsi
   - type: Icon
     sprite: Structures/Walls/shuttle.rsi
     state: full
-  - type: WallReplacementMarker
+  - type: Construction
+    graph: Girder
+    node: shuttleWall
+  - type: IconSmooth
+    base: state
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ShuttleWallVisuals.DeconstructionStage:
+        ShuttleWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: shuttle_construct-0, visible: true}
+          1: { state: shuttle_construct-1, visible: true}
+          2: { state: shuttle_construct-2, visible: true}
+          3: { state: shuttle_construct-3, visible: true}
+          4: { state: shuttle_construct-4, visible: true}
+          5: { state: shuttle_construct-5, visible: true}
   - type: Fixtures
     fixtures:
       fix1:
@@ -22,6 +38,38 @@
         layer:
         - WallLayer
         density: 2000
+
+# Diagonal
+- type: entity
+  parent: [ ESWallReinforcedProperties, WallDiagonalBase ]
+  id: WallShuttleDiagonal
+  name: shuttle wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/shuttle_diagonal.rsi
+    state: state0
+  - type: Construction
+    graph: Girder
+    node: diagonalshuttleWall
+
+# Indestructible
+# TODO remove this after map2 is created, this doesn't need to exist with hypersleep walls
+- type: entity
+  parent: [ ESWallIndestructibleProperties, BaseWall ]
+  id: ESWallShuttleArrivals
+  name: hardened shuttle wall
+  description: Effectively impervious to conventional means of destruction.
+  suffix: ES, Indestructible
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/shuttle.rsi
+  - type: Icon
+    sprite: Structures/Walls/shuttle.rsi
+    state: full
   - type: IconSmooth
     key: walls
     base: state

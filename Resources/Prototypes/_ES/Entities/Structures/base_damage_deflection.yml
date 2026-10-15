@@ -14,3 +14,10 @@
   components:
   - type: ESDamageDeflection
     threshold: 24
+
+- type: entity
+  id: DeflectionWall # for very strong structures that are meant to keep people out, like secure containers
+  abstract: true
+  components:
+  - type: ESDamageDeflection
+    threshold: 45
