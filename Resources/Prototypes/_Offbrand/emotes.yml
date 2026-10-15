@@ -31,3 +31,14 @@
   chatMessages: ["chat-emote-msg-painslump"]
   chatTriggers:
   - painslump
+
+- type: emote
+  id: DefaultHeartstop
+  name: chat-emote-name-heartstop
+  icon: Interface/Emotes/deathgasp.png
+  whitelist:
+    components:
+    - Heartrate
+  chatMessages: ["chat-emote-msg-heartstop"]
+  chatTriggers:
+  - heartstop
