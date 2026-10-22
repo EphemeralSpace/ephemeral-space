@@ -1,6 +1,6 @@
 - type: entity
   id: ESShuttleWindowArrivals
-  parent: BaseWindowFulltile
+  parent: BaseWindowFulltileSmoothed
   name: hyper-reinforced shuttle window
   description: Effectively impervious to conventional means of destruction.
   suffix: ES, Indestructible

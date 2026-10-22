@@ -1,3 +1,22 @@
+# Solid Walls
+# Normal
+- type: entity
+  parent: [ ESBaseWallBreakable, BaseWall ]
+  id: WallSolid
+  name: solid wall
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/solid.rsi
+  - type: WallReplacementMarker
+  - type: Construction
+    graph: Girder
+    node: wall
+  - type: Icon
+    sprite: _ES/Structures/Walls/solid.rsi
+  - type: IconSmooth
+    key: walls
+    base: solid
+
 # Orange
 - type: entity
   parent: WallSolid
@@ -9,3 +28,96 @@
   - type: Icon
     sprite: _ES/Structures/Walls/solid_orange.rsi
     state: full
+
+# Normal Diagonal
+- type: entity
+  parent: [ ESBaseWallBreakable, WallDiagonalBase ]
+  id: WallSolidDiagonal
+  name: solid wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/solid_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/solid_diagonal.rsi
+    state: state0
+
+# Rusted
+- type: entity
+  parent: WallSolid
+  id: WallSolidRust
+  suffix: rusted
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid_rust.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid_rust.rsi
+    state: full
+  - type: Construction
+    graph: Girder
+    node: wallrust
+  - type: IconSmooth
+    key: walls
+
+# Reinforced
+- type: entity
+  parent: [ ESWallReinforcedProperties, BaseWall ]
+  id: WallReinforced
+  name: reinforced wall
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/reinforced.rsi
+  - type: Icon
+    sprite: _ES/Structures/Walls/reinforced.rsi
+    state: full
+  - type: Construction
+    graph: Girder
+    node: reinforcedWall
+  - type: IconSmooth
+    key: walls
+    base: solid
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ReinforcedWallVisuals.DeconstructionStage:
+        ReinforcedWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: reinf_construct-0, visible: true}
+          1: { state: reinf_construct-1, visible: true}
+          2: { state: reinf_construct-2, visible: true}
+          3: { state: reinf_construct-3, visible: true}
+          4: { state: reinf_construct-4, visible: true}
+          5: { state: reinf_construct-5, visible: true}
+
+# Rusty Reinforced
+- type: entity
+  parent: WallReinforced
+  id: WallReinforcedRust
+  suffix: rusted
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid_rust.rsi
+  - type: Icon
+    sprite: Structures/Walls/solid_rust.rsi
+    state: rgeneric
+  - type: Construction
+    graph: Girder
+    node: reinforcedWallRust
+  - type: IconSmooth
+    key: walls
+    base: reinf_over
+
+# Diagonal Reinforced
+- type: entity
+  parent: [ ESWallReinforcedProperties, WallDiagonalBase ]
+  id: WallReinforcedDiagonal
+  name: reinforced wall
+  components:
+  - type: Sprite
+    drawdepth: Walls
+    sprite: Structures/Walls/reinforced_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: Structures/Walls/reinforced_diagonal.rsi
+    state: state0

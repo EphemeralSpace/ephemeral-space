@@ -1,0 +1,78 @@
+# Normal Window
+- type: entity
+  parent: [ BaseWindowFulltile, BaseWindowDamageable ]
+  id: ESWindow
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Windows/window_parts.rsi
+    state: glass
+  - type: Icon
+    sprite: _ES/Structures/Windows/window_parts.rsi
+    state: glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# Reinforced Window
+- type: entity
+  parent: [ BaseWindowFulltile, BaseWindowReinforcedDamageable ]
+  id: ESWindowReinforced
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Windows/window_parts.rsi
+    state: reinforced_glass
+  - type: Icon
+    sprite: _ES/Structures/Windows/window_parts.rsi
+    state: reinforced_glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250 #excess damage (nuke?). avoid computational cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+          PartRodMetal:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageVisuals
+    damageDivisor: 8

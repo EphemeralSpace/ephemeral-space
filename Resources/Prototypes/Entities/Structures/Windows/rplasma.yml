@@ -1,7 +1,7 @@
 - type: entity
   id: ReinforcedPlasmaWindow
   name: reinforced plasma window
-  parent: [ BaseDeltaPressureReinforcedPlasma, BaseWindowReinforcedDamageable, BaseWindowFulltile ]
+  parent: [ BaseDeltaPressureReinforcedPlasma, BaseWindowReinforcedDamageable, BaseWindowFulltileSmoothed ]
   components:
   - type: Sprite
     sprite: Structures/Windows/reinforced_plasma_window.rsi

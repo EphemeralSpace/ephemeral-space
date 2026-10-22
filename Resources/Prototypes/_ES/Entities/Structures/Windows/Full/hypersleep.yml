@@ -1,6 +1,6 @@
 # Hypersleep
 - type: entity
-  parent: BaseWindowFulltile
+  parent: BaseWindowFulltileSmoothed
   id: ESWindowHypersleep
   name: sterile hardened window
   description: Lets you stare into the outside world, outside of your bubble of hyper-safety.

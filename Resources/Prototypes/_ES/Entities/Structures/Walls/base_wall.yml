@@ -1,0 +1,99 @@
+# Base Wall
+- type: entity
+  abstract: true
+  parent: ESBaseStructureSolid
+  id: BaseWallProperties
+  name: basewall
+  description: Keeps the air in and the greytide out.
+  components:
+  - type: Tag
+    tags:
+    - Wall
+  - type: Icon
+    state: full
+  - type: Airtight
+  - type: RadiationBlocker
+    resistance: 2
+  - type: SunShadowCast
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ESWall
+
+- type: entity
+  abstract: true
+  parent: BaseWallProperties
+  id: BaseWall
+  components:
+  - type: Occluder
+
+# Diagonal Base
+- type: entity
+  abstract: true
+  parent: BaseWallProperties
+  id: WallDiagonalBase
+  suffix: Diagonal
+  components:
+  - type: Tag
+    tags:
+    - Wall
+    - Diagonal
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+    - East
+  - type: Occluder
+    polygon:
+    - "-0.5,-0.5"
+    - "0.5,0.5"
+    - "0.5,-0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PolygonShape
+            vertices:
+            - "-0.5,-0.5"
+            - "0.5,0.5"
+            - "0.5,-0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+# Breakable
+- type: entity
+  id: ESBaseWallBreakable
+  abstract: true
+  components:
+  - type: ESBreakable
+    threshold: 200
+    sound:
+      collection: MetalSlam
+  - type: ESChangeConstructionOnBreak
+    node: girder
+
+# Reinforced Properties
+- type: entity
+  parent: ESBaseWallBreakable
+  id: ESWallReinforcedProperties
+  components:
+  - type: RadiationBlocker
+    resistance: 5
+  - type: ESBreakable
+    threshold: 400
+  - type: ReinforcedWallReplacementMarker
+
+# Indestructible Properties
+- type: entity
+  abstract: true
+  id: ESWallIndestructibleProperties
+  parent: ESWallReinforcedProperties
+  description: Immaculately constructed in such a manner as to make deconstruction effectively impossible.
+  components:
+  - type: RadiationBlocker
+    resistance: 1000

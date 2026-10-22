@@ -1,0 +1,12 @@
+# Sterile Wall
+- type: entity
+  parent: WallSolid
+  id: WallSterile
+  name: sterile wall
+  description: An expensive wall type used for environments where contaminants are highly dangerous. Looks delicious.
+  components:
+  - type: Sprite
+    sprite: _ES/Structures/Walls/sterile.rsi
+  - type: Icon
+    sprite: _ES/Structures/Walls/sterile.rsi
+    state: full
