@@ -88,7 +88,7 @@
   parent: [ClothingEyesBase, ShowSecurityIcons]
   id: ClothingEyesGlassesSecurity
   name: security glasses
-  description: Upgraded sunglasses that provide flash immunity and a security HUD.
+  description: Glasses that show you the ID status and records of crimi... crew of course!
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/secglasses.rsi

@@ -34,8 +34,6 @@
   storage:
     back:
     - ESBoxSurvival
-    - ForensicPad
-    - ForensicScanner
 
 - type: chameleonOutfit
   id: ESDetective
