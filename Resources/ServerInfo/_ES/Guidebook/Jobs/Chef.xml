@@ -29,8 +29,6 @@ It's hard to put into words how to play chef without feeling like you're being g
 - Check the Wiki (or Food Recipes) guidebook for things you can make, and put all the listed ingredients into a microwave to cook it into a meal.
 - Set up mouse traps. Yes, really. It's easy to see all your hard work disappear if you don't take precautions for mice infestations.
 
-Once you're a bit more experienced and familiar with what you can make, it might be best to put together a few menus, or a "cheat sheet" so you can give a list of ingredients to botany.
-
 ## Mixing Dough:
 Add Flour and Water together in a beaker. (Use the sink for water!)
 <Box>
@@ -48,9 +46,8 @@ Place wheat in a grinder (with a beaker placed inside) and grind it up!
 <GuideEntityEmbed Entity="ReagentContainerFlour"/>
 </Box>
 ## Getting Plants:
-Ask Botany for what you need, without a botanist, you may need to grow more plants yourself.
+Grow what you need! If you need help take a look at [textlink="botany's guide" link="Botany"].
 <Box>
-<GuideEntityEmbed Entity="SignHydro1" Caption=" "/>
 <GuideEntityEmbed Entity="hydroponicsTray"/>
 <GuideEntityEmbed Entity="WheatBushel"/>
 </Box>
