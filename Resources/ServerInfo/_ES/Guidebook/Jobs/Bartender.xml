@@ -1,11 +1,9 @@
 <Document>
 # Bartender
-The bartender has a pretty simple job: serve drinks. People will come up to you and request drinks, and your job is just to hand it to them.
-
-[textlink="Click here to see a complete list of drinks." link="Drinks"]
+Currently a very simple job. Rarely people come for drinks, and often they'll hop the counter anyways for them. That said, this just gives you more times to do your [textlink="Objectives" link="OrganizationsAndSecretIdentities"].
 
 <Box>
-The materials for these drinks can be found in various places:
+Drinks can be dispensed or found in a few places if you want to try whip something up:
 </Box>
 <Box>
 <GuideEntityEmbed Entity="BoozeDispenser"/>
@@ -13,15 +11,10 @@ The materials for these drinks can be found in various places:
 <GuideEntityEmbed Entity="VendingMachineBooze"/>
 </Box>
 
+Given you have freedom much like an [color=#9fed58]Assistant[/color], you are free to use you accesses, abilities, and Double Barrel however you think you can to best help your team. Beanbag rounds aren't incredible in combat, but if you manage to get your hands on some real ammunition than it can pack quite a punch.
 <Box>
-Don't forget containers to serve them in!
-</Box>
-<Box>
-<GuideEntityEmbed Entity="DrinkGlass" Caption="Glass"/>
-<GuideEntityEmbed Entity="DrinkGlassCoupeShaped"/>
-<GuideEntityEmbed Entity="DrinkShotGlass"/>
-<GuideEntityEmbed Entity="DrinkShaker"/>
-<GuideEntityEmbed Entity="DrinkJigger"/>
+<GuideEntityEmbed Entity="ESWeaponDoubleBarrelShotgunNonlethal" Caption="Double Barrel"/>
+<GuideEntityEmbed Entity="ESShotgunShellsBoxBuckshot" Caption="Buckshot Shells"/>
 </Box>
 
 </Document>
