@@ -1,30 +1,64 @@
 <Document>
 # Medical
-If someone finds themselves injured, Medical is tasked with bringing them to health.
+If someone finds themselves injured, Medical is tasked with bringing them to health. Since death is irreversible it can be helpful to have a basic understanding of medicine even not as a doctor.
 
-## Personnel
-[color=#5b97bc]Medical[/color] primarily employs [color=cyan]Doctors[/color], [color=cyan]Paramedics[/color], and [color=cyan]Coroners[/color].
-
-## Doctors
-
-[color=cyan]Doctors[/color] serve as the primary practitioners within the [color=#5b97bc]Medical[/color] ward, and are responsible for bringing patients to good health. This is done through performing surgeries and other intensive care as necessary.
-
-[textlink="Learn more about Doctors." link="OffbrandPhysician"]
-
-## Paramedics
-
-[color=cyan]Paramedics[/color] serve as the primary medical first responder on stations, and are tasked with retrieving and stabilizing patients to bring them to the [color=#5b97bc]Medical[/color] department for [color=cyan]Doctors[/color] to treat. In states of emergencies, [color=cyan]Paramedics[/color] may also take on additional responsibilities in the [color=#5b97bc]Medical[/color] ward whilst the [color=cyan]Doctors[/color] work through surgeries.
-
-[textlink="Learn more about Paramedics." link="OffbrandParamedic"]
-
-## Coroner
-
-The [color=cyan]Coroner[/color] is responsible for handling corpses of both man and beast and for performing autopsies.
-
-[textlink="Learn more about Coroners." link="Coroner"]
+Many wounds can be seen simply by [color=cyan]examined[/color] with [color=yellow][bold][keybind="ExamineEntity"][/bold][/color], which can help with basic first aid.
 
 ## The Body
 
+For many injuries, taking a visit to [color=#5b97bc]Medical[/color] can help as you get used to everything. However, for the complete picture you can read about hwo bodies work, and it will help tremendously if you have the time.
+
+The most important thing to know is that as long as someone's brain is alive they theoretically can be saved, [color=#00d3b8]but once a brain dies, it is dead, and the body cannot be rescuitated.[/color]
+
 [textlink="Learn more about The Body." link="OffbrandBody"]
 
+## Topicals
+
+<Box>
+  <GuideEntityEmbed Entity="Brutepack" Caption="Bruise Pack"/>
+  <GuideEntityEmbed Entity="Ointment" Caption="Ointment"/>
+  <GuideEntityEmbed Entity="Gauze" Caption="Gauze"/>
+</Box>
+
+Topicals are the first step in treating brute or burn injuries, and different medicated bandages and salves may be better for specific types of wounds.
+
+They serve as one of the most available healing methods, but can struggle with larger wounds.
+
+[textlink="Learn more about Topicals." link="OffbrandTopicals"]
+
+## Medications
+
+<Box>
+  <GuideEntityEmbed Entity="ChemistryBottleBicaridine" Caption="Bicaridine" />
+  <GuideEntityEmbed Entity="ChemistryBottleDermaline" Caption="Dermaline" />
+  <GuideEntityEmbed Entity="ChemistryBottleDexalin" Caption="Dexalin" />
+  <GuideEntityEmbed Entity="ChemistryBottleDylovene" Caption="Dylovene" />
+  <GuideEntityEmbed Entity="ChemistryBottleInaprovaline" Caption="Inaprovaline" />
+  <GuideEntityEmbed Entity="ChemistryBottleTramadol" Caption="Tramadol" />
+</Box>
+
+Medications can be given to aid the body in healing passively, as well as giving pain relief.
+
+[textlink="Learn more about Medications." link="OffbrandMedication"]
+
+## Cryostasis
+
+In emergency situations, you may not be able to attend to every patient in a timely manner.
+
+Cryostasis devices allow you to slow down your patients' bodies, buying you more time.
+
+<Box>
+  <GuideEntityEmbed Entity="StasisBed" Caption="stasis bed" />
+  <GuideEntityEmbed Entity="CryoPod" Caption="cryo pod" />
+</Box>
+
+[textlink="Learn more about Cryostasis." link="OffbrandCryostasis"]
+
+## Surgery
+
+Some injuries may be internal and surface-level administration of topicals or medicine will be unable heal. invisible to your eye but reported by the health analyzer.
+
+Ensure patients are stable and wounds have been treated before bringing them to an operating room.
+
+[textlink="Learn more about Surgery." link="OffbrandSurgery"]
 </Document>
