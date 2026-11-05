@@ -3,3 +3,53 @@
   hidden: false
   name: Masquerades
   text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades.xml"
+  children:
+  - Banquet
+  - Dramaclub
+  - Showdown
+  - Sycophancy
+  - Traitors
+  - Turncoats
+  - Wormtown
+
+- type: guideEntry
+  id: Banquet
+  hidden: false
+  name: Banquet
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Banquet.xml"
+
+- type: guideEntry
+  id: Dramaclub
+  hidden: false
+  name: Drama Club
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Dramaclub.xml"
+
+- type: guideEntry
+  id: Showdown
+  hidden: false
+  name: Showdown
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Showdown.xml"
+
+- type: guideEntry
+  id: Sycophancy
+  hidden: false
+  name: Sycophancy
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Sycophancy.xml"
+
+- type: guideEntry
+  id: Traitors
+  hidden: false
+  name: Traitors
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Traitors.xml"
+
+- type: guideEntry
+  id: Turncoats
+  hidden: false
+  name: Turncoats
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Turncoats.xml"
+
+- type: guideEntry
+  id: Wormtown
+  hidden: false
+  name: Wormtown
+  text: "/ServerInfo/_ES/Guidebook/OrganizationsAndSecretIdentities/Masquerades/Wormtown.xml"
