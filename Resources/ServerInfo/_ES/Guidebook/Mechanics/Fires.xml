@@ -10,10 +10,16 @@
 
   Firelocks and doors can help hold off fires of both types, holding back both the flames and smoke. Opening one even for a moment can let it spread outwards, so be prepared to fight it if you do.
 
+  ## Fire Sources
+
+  You are likely familiar with gas fires if you have played on other servers, usually from plasma gas igniting via an open flame, but tile fires have a few more causing factors.
+
+  Explosions are one source, most creating small fires that spread very little, with Firebombs being an obvious outlier. Machines sparking when they are hacked or damaged can also start fires, which when unnoticed can spread quickly.
+
   ## Combating Fires
   All fires need oxygen to burn, and removing it can easily extinguish a fire, if you can handle the aftermath.
 
-  More often then not though, the fires you will be handling will be tile fires however, and spacing might be overkill for them. If they're available, a [color=#f39f27]Firefighter[/color] is best equipped to handle a blaze, but there's still plenty around you can use.
+  More often then not though, spacing a room for a fire is rather overkill, both hard to achieve and repair afterwards. If they're available, a [color=#f39f27]Firefighter[/color] is best equipped to handle a blaze, but there's still plenty around you can use to help.
 
   <Box>
     <GuideEntityEmbed Entity="ClosetFire" Caption=""/>
@@ -26,8 +32,23 @@
 
   Firesuits and helmets can protect you from the flames, while a gas mask can help keep smoke out of your lungs. Fire extinguishers can have the safety removed by hitting [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color] and then can be sprayed as expected. You can refill them with most water sources by simply interacting with them.
 
+  ## Smoke
+
+  As tile fires burn they will make smoke, a gas that will fill the room and will cause minor damage and make it difficult to speak without coughing. The only way to dispose of it is through space or scrubbers sucking it out of the air.
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingMaskGas" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyOxygenTankFilled" Caption=""/>
+    <GuideEntityEmbed Entity="PortableScrubber" Caption=""/>
+  </Box>
+
+  So what can you do? Gas masks will prevent inhaling the smoke, but cannot supplement oxygen. Using a helmet or mask with an internal air tank can also be used just as effectively.
+
+  If you do inhale smoke and are feeling the side effects, breathing in fresh air from the environment or from an air tank can counteract the effects without much hassle.
+
   ## Tips
-  - Try to manage or avoid inhaling smoke by using internals or a gas mask, inhaling too much can give a cough among other temporary heal ailments. If you find yourself with any of these just breath some clean air and you'll recover shortly.
   - Tile fires can only spread so much, and eventually will burn out. If a situation seems hopeless it can be left at the price of smoke buildup and loss of access to the burning room.
   - Bring a water tank to handle larger fires, sometimes basic fire extinguishers can't handle a blaze.
+  - Team up! A [color=#f39f27]Firefighter[/color] or another crewmate can help handle one part of the flames as you handle another.
+  - Take note of where fire extinguishers are when you can, the sooner you can get to one in an emergency the less the fire will be able to spread.
 </Document>
