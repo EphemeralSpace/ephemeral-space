@@ -1,5 +1,26 @@
 ﻿<Document>
   # Stagehands
 
-WIP
+  Should you ever find yourself having missed round start, dead, or wanting a change of pace, the (theatre manager) can let you become a stagehand for the duration of the round.
+
+  <Box>
+    <GuideEntityEmbed Entity="ESCurtainsTheater" Caption=""/>
+    <GuideEntityEmbed Entity="ESMobTheaterStaffStagehand" Caption=""/>
+    <GuideEntityEmbed Entity="ESCurtainsTheater" Caption=""/>
+  </Box>
+
+  Stagehands work behind the scene of the round to influence events and react to the actor’s moves. While a stagehand you can fly around and spectate the round, invisible to the actors. You also have a list of warp locations as well as an exclusive stagehand only chat to discuss the round’s events. This list also lets you see all objectives and their completion, along with announcements in chat to accompany them!
+
+  ## Events
+  Random events aren’t all that random. When one is about to occur, a sound will play with vote appearing above the chat box. You can vote as much as you like on as many options, and each vote will make a result more likely among the rest.
+
+  Some events may have additional votes if they win, with a sound accompanying them, such as meteors allowing you to direct where they come from or vent critters and gas leaks allowing you to pick a location or gas.
+
+  ## Cheers
+  Stagehands also get an action to cheer or boo, playing a sound effect all nearby stagehands can hear. Sometimes players nearby will hear them too!
+
+  ## Tragedians
+  The Tragedian secret identity has some power over the stagehands, as stagehands have over them. They are given an objective to preform a certain theme, and at their time of death, a vote is held between all stagehands on if they preformed it well and should succeed.
+
+  All tragedians also have an ability to call all stagehands to their location, to ensure they have an audience spectating their action. Feel free to use any cheers as they act, they can hear them all!
 </Document>

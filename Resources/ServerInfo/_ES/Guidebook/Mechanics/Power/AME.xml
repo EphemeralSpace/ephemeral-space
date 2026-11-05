@@ -1,6 +1,48 @@
 <Document>
   # Antimatter Engine (AME)
-  The Antimatter Engine is the main form of power for the station.
 
-  # TODO ES write the rest Lol
+  The [bold]AME[/bold] is the primary source of power on the station, with other sources such as [textlink="generators" link="Generators"] or [textlink="solar panels" link="SolarPanels"] being supplementary.
+
+  <Box>
+    <GuideEntityEmbed Entity="ESAntimatterCapsule" Caption="Antimatter Capsule"/>
+  </Box>
+
+  Below you will find a setup guide, information on how it works, and some warnings and advice for managing it.
+
+  ## Setup Guide
+
+  1. Ensure plasma canisters are hooked up to the gas port. Some nearby will be placed on a valve automatically and will just need to be anchored with a wrench.
+
+  2. Ensure the plasma pump is set to [color=orange]6Kpa[/color]. Any higher may result in damage to the AME.
+
+  3. Make sure the shutoff valve is [bold]closed[/bold].
+
+  4. Place [bold]C4[/bold] from the secure storage onto the antimatter canister to detonate it, freeing the antimatter within.
+
+  5. Give the antimatter a second to expand in its chamber. It will [color=red]consume all oxygen in the room[/color] so it is advised to wait outside or use protective gear.
+
+  6. Turn the fuel pump is on and the open the shutoff valve.
+
+  <Box>
+    <GuideEntityEmbed Entity="GasPort" Caption="Plasma here"/>
+    <GuideEntityEmbed Entity="ESAntimatterGasPressurePump" Caption=""/>
+    <GuideEntityEmbed Entity="GasValve" Caption="Shutoff Valve, red up is open."/>
+    <GuideEntityEmbed Entity="ESNegentropyAccumulator" Caption=""/>
+  </Box>
+
+  After a moment the engine should become operational. Should any explosions occur, keep an eye on if any accumulators become damaged, these can easily be repaired with a welder if they do.
+
+  It is likely it will need refueling partway through the shift with new plasma tanks, otherwise however it is safe to leave running on its own.
+
+  ## How it Works
+  The antimatter will eat all material it comes into contact with, shrinking it. With plasma however, it will grow and fill the space available to it. The nearby accumulators will consume nearby antimatter to create power and send it through the network.
+
+  If for any reason you need to get rid of an amount of antimatter, you can toss items into it or use a fire extinguisher to spray water in.
+
+  ## Tips
+  - Be careful around antimatter! It will effectively [textlink="space" link="Spacing"] a room and will do [color=red]cellular damage[/color] if you make contact with it!
+  - As mentioned above, Fire extinguishers can be very effective for removing an amount of antimatter, especially if it spreads into engineering or the hallway.
+  - Complete sabotage of the AME hurts everyone’s odds! If other power sources are not set up, fully removing the station’s power may make it hard for you to hack machines or terminals that require power to function.
+  - Engineering contains some soft suits and helmets to help handle the pressure in the AME chamber if it is in need of repairs.
+  - Accumulators need to be surrounded by antimatter and not broken to make power.
 </Document>
