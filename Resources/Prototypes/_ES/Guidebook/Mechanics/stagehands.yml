@@ -1,0 +1,5 @@
+﻿- type: guideEntry
+  id: Stagehands
+  hidden: false
+  name: Stagehands
+  text: "/ServerInfo/_ES/Guidebook/Mechanics/Stagehands.xml"
