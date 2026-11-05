@@ -20,4 +20,16 @@
 
   You can also use [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] and [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] to rotate an object clockwise or counterclockwise if it's already built, as long as it is unanchored (unwrenched).
 
+  ## Walls and Barricades
+
+  Unlike traditional space station servers, you cannot build walls. Likewise however, walls cannot be fully destroyed, always leaving behind a girder or broken girder you can repair.
+
+  <Box>
+    <GuideEntityEmbed Entity="WallSolid" Caption=""/>
+    <GuideEntityEmbed Entity="Girder" Caption=""/>
+    <GuideEntityEmbed Entity="ESKitBarricade" Caption=""/>
+  </Box>
+
+  However, you can still build wooden barricades, and barricade kits can be used to board up windows and doors. Likewise, secret doors can still be created with specialized construction kits, and will become a door after some time when used on an anchored girder.
+
 </Document>

@@ -1,0 +1,5 @@
+﻿- type: guideEntry
+  id: Firefighter
+  hidden: false
+  name: Firefighter
+  text: "/ServerInfo/_ES/Guidebook/Jobs/Firefighter.xml"
