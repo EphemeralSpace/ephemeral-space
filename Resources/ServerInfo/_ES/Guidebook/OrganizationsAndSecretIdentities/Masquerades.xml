@@ -1,8 +1,7 @@
 <Document>
   # Masquerades
 
-  Masquerades are "gamemodes" that define which secret identities and organizations will be present in the round at each population level.
-  They can also control which gamerules are active (like event schedulers).
+  Masquerades are "gamemodes" that define which secret identities and organizations will be present in the round. Certain roles will be introduced at certain player counts, and some masquerades will also introduce special rules to try make each feel unique.
 
-  The sidebar on the left contains a list of every masquerade and their secret identity sets. (WIP)
+  The sidebar on the left contains an overview every masquerade and their secret identities
 </Document>
