@@ -7,7 +7,7 @@
   <Box>
     <GuideEntityEmbed Entity="Bed" Caption=""/>
     <GuideEntityEmbed Entity="TableReinforced" Caption=""/>
-    <GuideEntityEmbed Entity="WeaponImprovisedPneumaticCannon" Caption=""/>
+    <GuideEntityEmbed Entity="FireBomb" Caption=""/>
     <GuideEntityEmbed Entity="Chair" Caption=""/>
   </Box>
 
@@ -22,7 +22,7 @@
 
   ## Walls and Barricades
 
-  Unlike traditional space station servers, you cannot build walls. Likewise however, walls cannot be fully destroyed, always leaving behind a girder or broken girder you can repair.
+  Unlike traditional space station servers, you cannot build walls. Likewise however, walls cannot be fully destroyed, leaving behind a girder you can repair.
 
   <Box>
     <GuideEntityEmbed Entity="WallSolid" Caption=""/>
@@ -30,6 +30,6 @@
     <GuideEntityEmbed Entity="ESKitBarricade" Caption=""/>
   </Box>
 
-  However, you can still build wooden barricades, and barricade kits can be used to board up windows and doors. Likewise, secret doors can still be created with specialized construction kits, and will become a door after some time when used on an anchored girder.
+  You can still build wooden barricades, and can use barricade kits to board up windows and doors. Also, secret doors can still be created with specialized construction kits, constructed when you use them on a girder.
 
 </Document>

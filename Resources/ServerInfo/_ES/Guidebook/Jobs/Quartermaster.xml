@@ -1,14 +1,14 @@
 <Document>
 # Quartermaster
 
-The Quartermaster controls the warehouse inside [color=#b18644]Cargo[/color], as well as the lathe which can be used to produce useful tools.
+The Quartermaster controls the warehouse inside [color=#b18644]Cargo[/color], as well as the lathe which can be used to produce a small variety of items.
 
-The [color=#b18644]Cargo[/color] warehouse starts with a large number of crates full of items useful to all members of the station. Included in this are raw materials, medical supplies, tools, and a few rare goodies and firearms. It is up to you how or if you distribute these, or how you want to best utilize them.
+The [color=#b18644]Cargo[/color] warehouse itself starts with a large number of crates full of items useful to all members of the station. Included in this are raw materials, medical supplies, basic tools, and a few rare goodies and firearms. It is up to you how or if you distribute these, or how you want to best utilize them.
 
   Additionally, you start every round with either a Tether Gun or Force gun in your locker!
   <Box>
     <GuideEntityEmbed Entity="WeaponTetherGun"/>
     <GuideEntityEmbed Entity="WeaponForceGun"/>
   </Box>
-The Force gun can grab items from afar and pull them to you, then sent flying in the direction of your cursor when you hit [color=yellow][bold][keybind="Use"][/bold][/color]. The Tether gun instead grabs items which will follow your cursor, which can be used to grab items behind glass! Both will drop the item normally if you press [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color].
+The Force gun can grab items from afar and pull them to you, then sent flying in the direction of your cursor when you hit [color=yellow][bold][keybind="Use"][/bold][/color]. The Tether gun instead grabs items and make them follow your cursor, which can be used to grab items behind glass! Both will drop the item normally if you press [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color].
 </Document>

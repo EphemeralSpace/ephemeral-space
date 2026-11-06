@@ -25,9 +25,9 @@
 
   <Box>
     <GuideEntityEmbed Entity="GasPort" Caption="Plasma here"/>
-    <GuideEntityEmbed Entity="ESAntimatterGasPressurePump" Caption=""/>
-    <GuideEntityEmbed Entity="GasValve" Caption="Shutoff Valve, red up is open."/>
-    <GuideEntityEmbed Entity="ESNegentropyAccumulator" Caption=""/>
+    <GuideEntityEmbed Entity="ESAntimatterGasPressurePump" Caption="Gas Pump"/>
+    <GuideEntityEmbed Entity="GasValve" Caption="Shutoff Valve"/>
+    <GuideEntityEmbed Entity="ESNegentropyAccumulator" Caption="Accumulator"/>
   </Box>
 
   After a moment the engine should become operational. Should any explosions occur, keep an eye on if any accumulators become damaged, these can easily be repaired with a welder if they do.

@@ -1,25 +1,23 @@
 ﻿<Document>
   # Fires
-  Fires come in two forms, gas and tile based. Gas fires are incredibly dangerous and fast spreading, most commonly due to plasma gas igniting. Tile fires can be started from a variety of sources and can take over large sections of rooms if left unattended, while producing smoke.
+  Fires come in two forms, gas and tile. Gas fires are incredibly dangerous and fast spreading, most commonly due to plasma gas igniting. Tile fires can be started from a variety of sources and can take over large sections of rooms if left unattended, while producing smoke.
 
   <Box>
     <GuideEntityEmbed Entity="Firelock" Caption=""/>
+    <GuideEntityEmbed Entity="ESTileFire" Caption="A Fire!!!!!!!"/>
     <GuideEntityEmbed Entity="FirelockGlass" Caption=""/>
-    <GuideEntityEmbed Entity="ESTileFire" Caption=""/>
   </Box>
 
-  Firelocks and doors can help hold off fires of both types, holding back both the flames and smoke. Opening one even for a moment can let it spread outwards, so be prepared to fight it if you do.
+  Firelocks and doors can help hold off fires of both types, holding back both flames and smoke they produce. Gas fires can spread quickly though if the door is opened though, so be careful.
 
   ## Fire Sources
 
-  You are likely familiar with gas fires if you have played on other servers, usually from plasma gas igniting via an open flame, but tile fires have a few more causing factors.
+  You are likely familiar with gas fires if you have played on other servers, usually from plasma gas igniting via an open flame, but tile fires have more unique sources.
 
-  Explosions are one source, most creating small fires that spread very little, with Firebombs being an obvious outlier. Machines sparking when they are hacked or damaged can also start fires, which when unnoticed can spread quickly.
+  One source is explosives, which usually create small fires that spread slowly. Firebombs obviously are the exception to that. When machines take damage or are hacked they can also create sparks, which have a chance to make fires themselves. Fires from sparks vary in strength, so it's a good idea to take care of them quickly.
 
   ## Combating Fires
-  All fires need oxygen to burn, and removing it can easily extinguish a fire, if you can handle the aftermath.
-
-  More often then not though, spacing a room for a fire is rather overkill, both hard to achieve and repair afterwards. If they're available, a [color=#f39f27]Firefighter[/color] is best equipped to handle a blaze, but there's still plenty around you can use to help.
+  While all fires need air to burn, spacing a room for a fire is rather overkill most of the time. If they're available, a [color=#f39f27]Firefighter[/color] is best equipped to handle a blaze, but there's still plenty around you can use to help.
 
   <Box>
     <GuideEntityEmbed Entity="ClosetFire" Caption=""/>
@@ -28,13 +26,15 @@
     <GuideEntityEmbed Entity="FireExtinguisher" Caption=""/>
   </Box>
 
-  Fire Closets and Extinguisher Cabinets can be found around the station in the walls and in maintenance, and have everything you could need for basic fire fighting.
+  Fire Closets and Extinguisher Cabinets can be found around the station, in the walls and in maintenance, and have everything you could need for basic fire fighting.
 
   Firesuits and helmets can protect you from the flames, while a gas mask can help keep smoke out of your lungs. Fire extinguishers can have the safety removed by hitting [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color] and then can be sprayed as expected. You can refill them with most water sources by simply interacting with them.
 
+  If you prefer, most lockers also contain medicine for burns to treat any wounds you or others might get.
+
   ## Smoke
 
-  As tile fires burn they will make smoke, a gas that will fill the room and will cause minor damage and make it difficult to speak without coughing. The only way to dispose of it is through space or scrubbers sucking it out of the air.
+  As tile fires burn they will make smoke. Inhaling this gas cause minor damage and make it difficult to speak without coughing temporarily. The best way to dispose of it properly is through portable scrubbers sucking it out of the air.
 
   <Box>
     <GuideEntityEmbed Entity="ClothingMaskGas" Caption=""/>
@@ -42,7 +42,7 @@
     <GuideEntityEmbed Entity="PortableScrubber" Caption=""/>
   </Box>
 
-  So what can you do? Gas masks will prevent inhaling the smoke, but cannot supplement oxygen. Using a helmet or mask with an internal air tank can also be used just as effectively.
+  So what can you do? Gas masks will prevent inhaling the smoke, but cannot supplement oxygen, while a helmet or mask with an internal air tank can do both.
 
   If you do inhale smoke and are feeling the side effects, breathing in fresh air from the environment or from an air tank can counteract the effects without much hassle.
 

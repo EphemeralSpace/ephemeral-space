@@ -10,9 +10,8 @@
   Airlocks can be opened using either [color=yellow][bold][keybind="Use"][/bold][/color] with an empty hand, [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] if hands are full, or by colliding with the airlock.
 
   Airlocks will only open if you have an ID card with the correct access level.
-  The ID card must be in your hand or in your ID slot.
-  In the case of having multiple IDs, the airlock will check them all when you try to open it.
-  This behavior is also the same for IDs in a PDA.
+  The ID card must be in your hand, an ID slot, or a PDA in one of those two locations.
+  If you have multiple IDs, the airlock will check them all when you try to open it.
 
   Airlocks block gas flow, so they can be used to seal off areas in case of a [textlink="hull breach" link="Spacing"] or a [textlink="fire." link="Fires"]
   They also store gas on their tile, even when closed, so be careful when opening them during or after a gas leak.
@@ -31,7 +30,7 @@
   When an airlock is in emergency access mode, it'll display yellow blinking lights and will allow any person to pass, regardless of their ID access.
 
   ## Styling
-  Airlocks can come in different styles to match station departments. The department style commonly reflects the required access level.
+  Airlocks can come in different styles to match station departments. The department style commonly reflects the required access level. They can also be repainted with a spray painter.
 
   <Box>
     <GuideEntityEmbed Entity="Airlock" Caption=""/>
@@ -52,15 +51,9 @@
     <GuideEntityEmbed Entity="AirlockSecurityGlass" Caption=""/>
   </Box>
 
-  Airlocks can be repainted using a spray painter.
-  <Box>
-    <GuideEntityEmbed Entity="SprayPainter" Caption=""/>
-  </Box>
-
   ## Wiring
-  Airlocks have internal wiring under their maintenance panel, which can be opened using a screwdriver.
-  Each wire controls some aspect of the airlock's functionality.
-  When you either pulse, cut, or mend the wire, it will affect the airlock in different ways.
+  Airlocks have internal wiring, which can be opened using a screwdriver.
+  Each wire controls some aspect of the airlock's functionality, depending on which wires are cut, mended, or pulsed.
 
   To see a full list of wires and what they do, refer to the [textlink="wires" link="Wires"] page.
 

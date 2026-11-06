@@ -19,7 +19,7 @@
   You can cut and mend wires using the wirecutters and pulse wires using the multitool.
 
   Cutting wires often completely disables or restores functionality to a device.
-  It may also trigger unintended functionality like shocking people, dropping door bolts, or exploding.
+  It may also trigger unintended functionality like shocking people or forcing door bolts.
 
   Pulsing wires can have a variety of effects, but oftentimes it either temporarily disables or enables functionality.
 
@@ -27,7 +27,7 @@
 
   ## Hacking
 
-  As mentioned, each wire controls some aspect of the devices functionality. When you either pulse, cut, or mend the wire, it will affect the airlock in different ways.
+  As mentioned, each wire controls some aspect of the device's functionality. When you either pulse, cut, or mend the wire.
 
   The lights next to the wires will indicate the status of the wire:
   - A steady light indicates that the system is functioning as normal.
