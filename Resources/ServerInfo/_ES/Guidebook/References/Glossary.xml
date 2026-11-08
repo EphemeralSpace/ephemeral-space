@@ -3,6 +3,9 @@
 
 This page contains most slang terms you might encounter on the station.
 
+## Artery
+An Artery Bleed, a medical condition that needs surgery to remedy. Can be seen when inspecting someone with the line "They are spurting blood"
+
 ## AOS
 Arrest on sight.
 
@@ -13,43 +16,25 @@ A relay used to report rulebreaking behavior or other issues to administrators.
 Short for Atmospherics.
 
 ## Bolted
-An airlock that will never change states. It will stay permanently open or permanently closed until it is unbolted. Closed and bolted airlocks have solid red lights.
+An airlock that is stuck open or closed, and will remain so until it is unbolted. Often these have solid red lights on them.
 
 ## Brig
-The main area of the security department. This is where prisoners are brought and held for their punishment.
-
-## Cap
-Short for Captain.
+Effectively the jail in security, where prisoners are brought and held for their punishment.
 
 ## Crit/Critical
-Refers to the health state at which you fall unconscious and unable to move. While in critical, your health slowly decays until you die, unless you happen to get outside assistance.
+Refers to the dying health state at which you fall unconscious and unable to move. Soft Crit can be used to refer to the period where you can crawl but will soon fall into a full critical state.
 
 ## Emag
-  Refers to the Syndicate cryptographic sequencer. "Emagged" usually refers to airlocks or lockers that are bolted open, but also any other device hacked into by an Emag.
-
-## Emergency Access/EA
-  An airlock that can be opened by anyone, even without access or an ID at all. Airlocks that are set to emergency access have blinking yellow lights.
-
-## Greytide/Greyshirt/Tider
-Typically utilized to refer to an assistant due to the color of their standard uniform, though this may be used to negatively refer to other crew members (not only assistants) who act unruly or commit various minor crimes.
+The cryptographic sequencer. "Emagged" usually refers to airlocks or lockers that are bolted open due to this.
 
 ## Insuls
-Short for Insulated Gloves. These are the yellow gloves most often worn by Engineers. They are offer complete protection from getting electrocuted from shocked things. Vastily more effective than their budget variety.
-
-## Jani
-Short for Janitor.
+Short for Insulated Gloves. These are the yellow gloves most often worn by Engineers, which grant immunity to electric shocks.
 
 ## KOS
-Kill on sight. Someone has commited such a serious crime that they are deemed not even worth arresting.
+Kill on sight.
 
 ## Mats
-Materials. Usually steel, plastic, plasteel, glass, silver and gold.
-
-## Nanotrasen/NT
-Nanotrasen is the company which owns the space station you inhabit.
-
-## Perma
-Short for Permanent Brig. This is for the most serious crime and means that a prisoner will never be released.
+Materials. Usually steel, plastic, plasteel, glass.
 
 ## QM
 Short for Quartermaster.
@@ -57,14 +42,8 @@ Short for Quartermaster.
 ## Robust
 A word used to describe someone who is particularly adept in combat, or endured through a tough fight.
 
-## Sci
-Short for Science.
-
-## Sec
-Short for Security.
-
-## Secoff
-Short for Security Officer.
+## Sec / Secoff
+Short for Security / Security Officer
 
 ## Shift
 In-Character way to refer to rounds.
@@ -72,10 +51,6 @@ In-Character way to refer to rounds.
 ## Spacing
 An event which causes an area to lose air pressure, i.e. a hull breach.
 
-## SSD
-Short for Sudden Sleep Disorder or Space Sleep Disorder. This is an in-character way to refer to a player who has disconnected and is no longer responding.
-
-## Syndie/Syndi/Syndicate
-A catch-all reference to anyone employed by the Syndicate.
-
+## Worms
+The Parasite organization.
 </Document>

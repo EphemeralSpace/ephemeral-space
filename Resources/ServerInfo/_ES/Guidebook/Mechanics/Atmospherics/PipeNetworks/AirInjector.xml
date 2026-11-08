@@ -4,7 +4,7 @@
   <Box>
     <GuideEntityEmbed Entity="GasOutletInjector"/>
   </Box>
-  It is primarily used to force gasses into high-pressure rooms like the station's [textlink="gas storage rooms" link="GasMiningAndStorage"] or a burn chamber.
+  It is primarily used to force gasses into sometimes high-pressure rooms like the station's [textlink="AME chamber" link="AME"].
 
   The air injector does not require [textlink="power" link="Power"] to function.
 

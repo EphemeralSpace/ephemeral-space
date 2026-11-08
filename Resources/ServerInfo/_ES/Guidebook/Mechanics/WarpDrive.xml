@@ -7,7 +7,7 @@
 
   It is inhabited--or commandeered?--by a strange entity that makes itself known over announcements frequently.
 
-  The warp drive's holding area is public access, and the warp drive itself can be entered freely. Entering it will send you to a strange pocket dimension, which you will be teleported out of into a [bold]curated random spot on the station[/bold] after a delay.
+  The warp drive itself can be entered freely, sending you to a strange pocket dimension. After some time in there, you will be teleported out of into a [bold]curated random spot on the station[/bold].
 
   <Box>
     <GuideEntityEmbed Entity="ESMachineScienceWarpDrive" Caption="It."/>
@@ -17,7 +17,7 @@
 
   ## Interruptions
 
-  The Warp Drive can be interrupted, which causes its charging to stop for a duration until the interruption is fixed. At present, this arrives in the form of random clogs. Clogs can also be intentionally caused by repeatedly throwing objects into the warp drive. This is quite useful for traitors.
+  The Warp Drive can be interrupted, which causes its charging to stop for a duration until the interruption is fixed. At present, this arrives in the form of clogs, which will occur randomly or when items are manually thrown into the warp drive. This is quite useful for traitors.
 
   To clear an interruption, enter the Warp Drive and pick up any items that might have gotten stuck. These random items can sometimes be quite valuable--so it's worth clearing the drive, even if only for personal gain.
 

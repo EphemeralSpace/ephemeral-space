@@ -1,13 +1,19 @@
 ﻿<Document>
   # Atmospherics
-  Atmos has a wide variety of tools and equipment at their disposal for the manipulation of gasses throughout the station.
+  Atmos is everything about the gasses in the atmosphere of the station, or lack thereof.
+
+  The most obvious application of this the oxygen in the air, letting you breathe safely. In the event of [textlink="spacing" link="Spacing"] you might find an area lacks oxygen and is a dangerously low pressure. Or, conversely, you might find a room filled with dangerous gas such as smoke.
+
+  [color=#f39f27]Engineering[/color] has most control over the air distribution, as well as having access to protective suits and portable scrubbers to best handle situations, so if they're available they can be an excellent help with resolving situations.
 
   [bold]Warning: unanchoring (unwrenching) most devices containing gas will [color=red]leak gas[/color] into the atmosphere.[/bold]
   You can safely unanchor [textlink="canisters" link="GasCanisters"], [textlink="portable scrubbers" link="PortableScrubber"], [textlink="condensers" link="GasCondensing"], and [textlink="thermomachines" link="Thermomachines"].
 
+  ## Various devices around the station
+  For more details, see the pages for [textlink="Atmos Devices" link="AtmosDevices"] (Machines), or [textlink="Pipe Networks" link="PipeNetworks"] (For air distribution).
+
   <Box>
     <GuideEntityEmbed Entity="GasPipeStraight" Caption=""/>
-    <GuideEntityEmbed Entity="GasPipeHalf" Caption=""/>
     <GuideEntityEmbed Entity="GasPipeBend" Caption=""/>
     <GuideEntityEmbed Entity="GasPipeTJunction" Caption=""/>
     <GuideEntityEmbed Entity="GasPipeFourway" Caption=""/>
@@ -46,10 +52,6 @@
 
   <Box>
     <GuideEntityEmbed Entity="GasValve" Caption=""/>
-    <GuideEntityEmbed Entity="SignalControlledValve" Caption=""/>
-    <GuideEntityEmbed Entity="PressureControlledValve" Caption=""/>
-    <GuideEntityEmbed Entity="GasPassiveGate" Caption=""/>
-    <GuideEntityEmbed Entity="GasPressureRegulator" Caption=""/>
   </Box>
   <Box>
     ## Valves
@@ -88,22 +90,11 @@
     <GuideEntityEmbed Entity="SpaceHeater" Caption=""/>
     <GuideEntityEmbed Entity="GasThermoMachineHeater" Caption=""/>
     <GuideEntityEmbed Entity="GasThermoMachineFreezer" Caption=""/>
-    <GuideEntityEmbed Entity="HeatExchanger" Caption=""/>
   </Box>
   <Box>
-    ## Thermomachines and Radiators
+    ## Thermomachines
   </Box>
   <Box>
     [color=#999999][italic]Manipulating the temperature of gasses in a pipenet or atmosphere[italic][/color]
-  </Box>
-
-  <Box>
-    <GuideEntityEmbed Entity="BaseGasCondenser" Caption=""/>
-  </Box>
-  <Box>
-    ## Gas Condensing
-  </Box>
-  <Box>
-    [color=#999999][italic]Condensing gasses for further use[italic][/color]
   </Box>
 </Document>

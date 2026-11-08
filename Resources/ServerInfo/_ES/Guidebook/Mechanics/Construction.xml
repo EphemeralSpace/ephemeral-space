@@ -7,7 +7,7 @@
   <Box>
     <GuideEntityEmbed Entity="Bed" Caption=""/>
     <GuideEntityEmbed Entity="TableReinforced" Caption=""/>
-    <GuideEntityEmbed Entity="WeaponImprovisedPneumaticCannon" Caption=""/>
+    <GuideEntityEmbed Entity="FireBomb" Caption=""/>
     <GuideEntityEmbed Entity="Chair" Caption=""/>
   </Box>
 
@@ -19,5 +19,19 @@
   If you are building a mirrorable component (think: Gas Mixers/Filters), you can press [color=yellow][bold][keybind="EditorFlipObject"][/bold][/color] to flip the ghost.
 
   You can also use [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] and [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] to rotate an object clockwise or counterclockwise if it's already built, as long as it is unanchored (unwrenched).
+
+  ## Walls and Barricades
+
+  Unlike traditional space station servers, you cannot build walls. However walls cannot be fully destroyed, leaving behind a girder you can repair.
+
+  <Box>
+    <GuideEntityEmbed Entity="WallSolid" Caption=""/>
+    <GuideEntityEmbed Entity="Girder" Caption=""/>
+    <GuideEntityEmbed Entity="ESKitBarricade" Caption=""/>
+  </Box>
+
+  You can still build wooden barricades and windows, with barricade kits to board up windows and doors.
+
+  Also, secret doors can still be created with specialized construction kits, constructed when you use them on a girder.
 
 </Document>

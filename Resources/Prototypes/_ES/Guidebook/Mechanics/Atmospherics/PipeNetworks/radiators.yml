@@ -1,5 +1,5 @@
 - type: guideEntry
   id: Radiators
-  hidden: false
+  hidden: true
   name: Radiators
   text: "/ServerInfo/_ES/Guidebook/Mechanics/Atmospherics/PipeNetworks/Radiators.xml"
